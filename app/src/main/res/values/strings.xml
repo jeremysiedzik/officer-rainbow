@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Officer Rainbow</string>
+    <string name="what_is_your_first_name">What is your first name?</string>
+    <string name="what_is_your_last_name">What is your last name?</string>
+    <string name="sconder">Sconder</string>
+    <string name="abby">Abby</string>
+    <string name="next">Next</string>
+</resources>
