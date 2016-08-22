@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        Button buttonlastbutton = (Button) findViewById(R.id.buttonlast);
-        buttonlastbutton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
+        Button buttonlast = (Button) findViewById(R.id.buttonlast);
+        buttonlast.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View view) {
                 Intent qoneintent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(qoneintent);
