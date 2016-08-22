@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
 
-        Button buttonlastbutton = (Button) findViewById(R.id.buttonlast);
-        assert buttonlastbutton != null;
-        buttonlastbutton.setOnClickListener(new View.OnClickListener() {
+        Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
+        assert buttonfirstlast != null;
+        buttonfirstlast.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 Intent qoneintent = new Intent(MainActivity.this, Main2Activity.class);
