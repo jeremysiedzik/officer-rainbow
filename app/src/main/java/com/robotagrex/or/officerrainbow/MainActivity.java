@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
                 editor.putString(FirstName, firstname);
                 editor.putString(LastName, lastname);
-                editor.apply();
+                editor.commit();
                 Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
                 Intent qoneintent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(qoneintent);
