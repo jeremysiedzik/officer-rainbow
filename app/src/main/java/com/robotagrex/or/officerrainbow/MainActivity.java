@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
-
+            @Override
             public void onClick(View view) {
                 String firstname  = ed1.getText().toString();
                 String lastname  = ed2.getText().toString();
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(FirstName, firstname);
                 editor.putString(LastName, lastname);
                 editor.commit();
-                Toast.makeText(MainActivity.this,"Thanks",Toast.LENGTH_LONG).show();
                 Intent qoneintent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(qoneintent);
             }
