@@ -64,12 +64,12 @@
         android:layout_height="wrap_content"
         android:text="@string/next"
         android:id="@+id/buttonlast"
-        android:layout_alignParentBottom="true"
+        android:clickable="false"
+        android:layout_below="@+id/editText2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:clickable="false" />
+        android:layout_alignRight="@+id/my_toolbar"
+        android:layout_alignEnd="@+id/my_toolbar" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
