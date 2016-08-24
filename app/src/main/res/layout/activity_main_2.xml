@@ -131,7 +131,7 @@
         android:id="@+id/editText6"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
-        android:layout_above="@+id/buttonlast"
+        android:layout_below="@+id/editText5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
