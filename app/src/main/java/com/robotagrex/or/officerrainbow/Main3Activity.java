@@ -3,14 +3,14 @@ package com.robotagrex.or.officerrainbow;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main3Activity extends AppCompatActivity {
 
     EditText ed1,ed2,ed3,ed4,ed5,ed6;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -26,7 +26,7 @@ public class Main2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_2);
+        setContentView(R.layout.activity_main_3);
 
         ed1=(EditText)findViewById(R.id.editText);
         ed2=(EditText)findViewById(R.id.editText3);
@@ -77,7 +77,7 @@ public class Main2Activity extends AppCompatActivity {
                 editor.putString(smskey2, sms2);
                 editor.putString(smskey3, sms3);
                 editor.apply();
-                Intent qoneintent = new Intent(Main2Activity.this, Main3Activity.class);
+                Intent qoneintent = new Intent(Main3Activity.this, MainActivity.class);
                 startActivity(qoneintent);
             }
         });
