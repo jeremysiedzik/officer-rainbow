@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                 editor.putString(FirstName, firstname);
                 editor.putString(LastName, lastname);
-                editor.apply();
+                editor.commit();
                 Intent qoneintent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(qoneintent);
             }
