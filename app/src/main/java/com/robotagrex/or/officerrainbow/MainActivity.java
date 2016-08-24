@@ -36,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        String fillfirst = sharedpreferences.getString("firstnameKey", "");
+        String filllast = sharedpreferences.getString("lastnameKey", "");
+
+        if((fillfirst.length() != 0) && (filllast.length() != 0)) {
+            ed1.setText(fillfirst);
+            ed2.setText(filllast);
+        }
+
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
