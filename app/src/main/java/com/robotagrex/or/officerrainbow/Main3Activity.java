@@ -35,6 +35,8 @@ public class Main3Activity extends AppCompatActivity {
         ed5=(EditText)findViewById(R.id.editText5);
         ed6=(EditText)findViewById(R.id.editText6);
 
+
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 

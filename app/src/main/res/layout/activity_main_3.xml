@@ -21,8 +21,7 @@
         android:id="@+id/textView"
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="42dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -33,9 +32,9 @@
         android:id="@+id/editText"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
+        android:layout_alignParentStart="false"
         android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false" />
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,10 +44,9 @@
         android:textIsSelectable="true"
         android:textColor="#000000"
         android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="125dp" />
+        android:layout_below="@+id/editText4"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -58,9 +56,9 @@
         android:id="@+id/editText2"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -68,17 +66,18 @@
         android:text="@string/next"
         android:id="@+id/buttonlast"
         android:clickable="false"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/editText6"
+        android:layout_alignRight="@+id/my_toolbar"
+        android:layout_alignEnd="@+id/my_toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/my_toolbar"
-        android:layout_alignEnd="@+id/my_toolbar" />
+        android:textSize="50sp" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#df1313"
+        android:background="#ebd8d8"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_alignParentTop="true"
@@ -94,9 +93,9 @@
         android:id="@+id/editText3"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -106,10 +105,10 @@
         android:id="@+id/editText4"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:layout_below="@+id/editText3"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -119,9 +118,9 @@
         android:id="@+id/editText5"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -131,7 +130,7 @@
         android:id="@+id/editText6"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
-        android:layout_above="@+id/buttonlast"
+        android:layout_below="@+id/editText5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
