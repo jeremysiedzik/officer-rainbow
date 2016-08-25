@@ -27,12 +27,6 @@ public class Main3Activity extends AppCompatActivity {
 
     static final int PICK_CONTACT_REQUEST = 1;  // The request code
 
-    private void pickContact() {
-        Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
-        pickContactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
-        startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request it is that we're responding to
@@ -50,6 +44,7 @@ public class Main3Activity extends AppCompatActivity {
             // Consider using CursorLoader to perform the query.
             Cursor cursor = getContentResolver()
                     .query(contactUri, projection, null, null, null);
+            assert cursor != null;
             cursor.moveToFirst();
 
             // Retrieve the phone number from the NUMBER column
@@ -57,6 +52,7 @@ public class Main3Activity extends AppCompatActivity {
             String number = cursor.getString(column);
 
             // Do something with the phone number...
+            ed4.setText(number);
         }
     }
 
@@ -79,6 +75,9 @@ public class Main3Activity extends AppCompatActivity {
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
 
+        Button contactbutton = (Button) findViewById(R.id.buttoncontact);
+        assert contactbutton != null;
+
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         String fillemail1 = sharedpreferences.getString("email1Key", "");
@@ -91,9 +90,19 @@ public class Main3Activity extends AppCompatActivity {
         ed1.setText(fillemail1);
         ed2.setText(fillemail2);
         ed3.setText(fillemail3);
-        ed4.setText(fillsms1);
+        //ed4.setText(fillsms1);
         ed5.setText(fillsms2);
         ed6.setText(fillsms3);
+
+        contactbutton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View view) {
+                Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+                pickContactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
+                startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+            }
+        });
 
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
