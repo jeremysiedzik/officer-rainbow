@@ -49,10 +49,10 @@ public class Main3Activity extends AppCompatActivity {
 
             // Retrieve the phone number from the NUMBER column
             int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-            String number = cursor.getString(column);
+            String smskey1 = cursor.getString(column);
 
             // Do something with the phone number...
-            ed4.setText(number);
+            ed4.setText(smskey1);
         }
     }
 
@@ -90,7 +90,7 @@ public class Main3Activity extends AppCompatActivity {
         ed1.setText(fillemail1);
         ed2.setText(fillemail2);
         ed3.setText(fillemail3);
-        //ed4.setText(fillsms1);
+        ed4.setText(fillsms1);
         ed5.setText(fillsms2);
         ed6.setText(fillsms3);
 
