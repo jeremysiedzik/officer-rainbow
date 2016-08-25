@@ -157,8 +157,8 @@
         android:text="@string/contact_button"
         android:id="@+id/buttoncontact2"
         android:layout_below="@+id/buttoncontact1"
-        android:layout_toRightOf="@+id/editText2"
-        android:layout_toEndOf="@+id/editText2" />
+        android:layout_alignLeft="@+id/buttoncontact1"
+        android:layout_alignStart="@+id/buttoncontact1" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -166,8 +166,8 @@
         android:layout_height="wrap_content"
         android:text="@string/contact_button"
         android:id="@+id/buttoncontact3"
-        android:layout_below="@+id/editText5"
-        android:layout_toRightOf="@+id/editText5"
-        android:layout_toEndOf="@+id/editText5" />
+        android:layout_below="@+id/buttoncontact2"
+        android:layout_alignLeft="@+id/buttoncontact2"
+        android:layout_alignStart="@+id/buttoncontact2" />
 
 </RelativeLayout>
