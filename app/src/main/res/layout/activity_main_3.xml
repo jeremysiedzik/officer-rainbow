@@ -147,9 +147,28 @@
         android:text="@string/contact_button"
         android:id="@+id/buttoncontact"
         android:layout_alignTop="@+id/editText2"
-        android:layout_alignRight="@+id/buttonlast"
-        android:layout_alignEnd="@+id/buttonlast"
-        android:layout_toEndOf="@+id/editText2"
-        android:layout_toRightOf="@+id/editText2" />
+        android:layout_toRightOf="@+id/editText2"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_button"
+        android:id="@+id/button"
+        android:layout_below="@+id/buttoncontact"
+        android:layout_toRightOf="@+id/editText2"
+        android:layout_toEndOf="@+id/editText2" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_button"
+        android:id="@+id/button2"
+        android:layout_above="@+id/buttonlast"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button" />
 
 </RelativeLayout>

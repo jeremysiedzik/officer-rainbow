@@ -94,13 +94,33 @@ public class Main3Activity extends AppCompatActivity {
         ed5.setText(fillsms2);
         ed6.setText(fillsms3);
 
-        contactbutton.setOnClickListener(new View.OnClickListener()
+        contactbutton1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View view) {
-                Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
-                pickContactIntent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
-                startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+                Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+                pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
+                startActivityForResult(pickContactIntent1, PICK_CONTACT_REQUEST);
+            }
+        });
+
+        contactbutton2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View view) {
+                Intent pickContactIntent2 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+                pickContactIntent2.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
+                startActivityForResult(pickContactIntent2, PICK_CONTACT_REQUEST);
+            }
+        });
+
+        contactbutton3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick (View view) {
+                Intent pickContactIntent3 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
+                pickContactIntent3.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
+                startActivityForResult(pickContactIntent3, PICK_CONTACT_REQUEST);
             }
         });
 
