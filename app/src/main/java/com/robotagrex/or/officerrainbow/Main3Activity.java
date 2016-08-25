@@ -15,7 +15,7 @@ import android.widget.EditText;
 
 public class Main3Activity extends AppCompatActivity {
 
-    EditText ed1,ed2,ed3,ed4,ed5,ed6;
+    EditText ed1,ed2,ed3,ed4,ed5,ed6,current_ed;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String emailkey1 = "email1Key";
     public static final String emailkey2 = "email2Key";
@@ -27,34 +27,6 @@ public class Main3Activity extends AppCompatActivity {
 
     static final int PICK_CONTACT_REQUEST = 1;  // The request code
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request it is that we're responding to
-        // Make sure the request was successful
-        if (requestCode == PICK_CONTACT_REQUEST) if (resultCode == RESULT_OK) {
-            // Get the URI that points to the selected contact
-            Uri contactUri = data.getData();
-            // We only need the NUMBER column, because there will be only one row in the result
-            String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
-
-            // Perform the query on the contact to get the NUMBER column
-            // We don't need a selection or sort order (there's only one result for the given URI)
-            // CAUTION: The query() method should be called from a separate thread to avoid blocking
-            // your app's UI thread. (For simplicity of the sample, this code doesn't do that.)
-            // Consider using CursorLoader to perform the query.
-            Cursor cursor = getContentResolver()
-                    .query(contactUri, projection, null, null, null);
-            assert cursor != null;
-            cursor.moveToFirst();
-
-            // Retrieve the phone number from the NUMBER column
-            int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-            String smskey1 = cursor.getString(column);
-
-            // Do something with the phone number...
-            ed4.setText(smskey1);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +47,14 @@ public class Main3Activity extends AppCompatActivity {
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
 
-        Button contactbutton = (Button) findViewById(R.id.buttoncontact);
-        assert contactbutton != null;
+        Button contactbutton1 = (Button) findViewById(R.id.buttoncontact1);
+        assert contactbutton1 != null;
+
+        Button contactbutton2 = (Button) findViewById(R.id.buttoncontact2);
+        assert contactbutton2 != null;
+
+        Button contactbutton3 = (Button) findViewById(R.id.buttoncontact3);
+        assert contactbutton3 != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -98,6 +76,7 @@ public class Main3Activity extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
+                current_ed=(EditText)findViewById(R.id.editText2);
                 Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent1, PICK_CONTACT_REQUEST);
@@ -108,6 +87,7 @@ public class Main3Activity extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
+                current_ed=(EditText)findViewById(R.id.editText5);
                 Intent pickContactIntent2 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent2.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent2, PICK_CONTACT_REQUEST);
@@ -118,11 +98,14 @@ public class Main3Activity extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
+                current_ed=(EditText)findViewById(R.id.editText6);
                 Intent pickContactIntent3 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent3.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent3, PICK_CONTACT_REQUEST);
             }
         });
+
+
 
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,5 +130,34 @@ public class Main3Activity extends AppCompatActivity {
                 startActivity(qoneintent);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request it is that we're responding to
+        // Make sure the request was successful
+        if (requestCode == PICK_CONTACT_REQUEST) if (resultCode == RESULT_OK) {
+            // Get the URI that points to the selected contact
+            Uri contactUri = data.getData();
+            // We only need the NUMBER column, because there will be only one row in the result
+            String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
+
+            // Perform the query on the contact to get the NUMBER column
+            // We don't need a selection or sort order (there's only one result for the given URI)
+            // CAUTION: The query() method should be called from a separate thread to avoid blocking
+            // your app's UI thread. (For simplicity of the sample, this code doesn't do that.)
+            // Consider using CursorLoader to perform the query.
+            Cursor cursor = getContentResolver()
+                    .query(contactUri, projection, null, null, null);
+            assert cursor != null;
+            cursor.moveToFirst();
+
+            // Retrieve the phone number from the NUMBER column
+            int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            String number = cursor.getString(column);
+
+            // Do something with the phone number...
+            current_ed.setText(number);
+        }
     }
 }
