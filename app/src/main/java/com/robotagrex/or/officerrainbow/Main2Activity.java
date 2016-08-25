@@ -126,7 +126,7 @@ public class Main2Activity extends AppCompatActivity {
                 editor.putString(smskey2, sms2);
                 editor.putString(smskey3, sms3);
                 editor.apply();
-                Intent qoneintent = new Intent(Main2Activity.this, MainActivity.class);
+                Intent qoneintent = new Intent(Main2Activity.this, Main3Activity.class);
                 startActivity(qoneintent);
             }
         });

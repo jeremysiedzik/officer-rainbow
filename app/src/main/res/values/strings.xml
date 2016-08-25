@@ -7,6 +7,7 @@
     <string name="probation_colors">What are your probation colors?</string>
     <string name="probation_contact">Probation Office contact info:</string>
     <string name="notification_message">What shall the notification message be?</string>
+    <string name="notification_exampe">You need to report today!</string>
     <string name="email_address">Email reminder list:</string>
     <string name="sms_address">Text reminder list:</string>
     <string name="color_website">Choose your website:</string>
