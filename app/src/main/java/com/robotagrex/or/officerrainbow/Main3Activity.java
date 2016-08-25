@@ -49,7 +49,7 @@ public class Main3Activity extends AppCompatActivity {
 
                 editor.putString(Message, messagekey);
                 editor.apply();
-                Intent qoneintent = new Intent(Main3Activity.this, MainActivity.class);
+                Intent qoneintent = new Intent(Main3Activity.this, Main4Activity.class);
                 startActivity(qoneintent);
             }
         });

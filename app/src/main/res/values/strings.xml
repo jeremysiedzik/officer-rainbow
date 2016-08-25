@@ -4,7 +4,7 @@
     <string name="what_is_your_last_name">What is your last name?</string>
     <string name="abby">Abby</string>
     <string name="sconder">Sconder</string>
-    <string name="probation_colors">What are your probation colors?</string>
+    <string name="probation_colors">List your probation colors/test group names:</string>
     <string name="probation_contact">Probation Office contact info:</string>
     <string name="notification_message">What shall the notification message be?</string>
     <string name="notification_exampe">You need to report today!</string>
@@ -15,4 +15,5 @@
     <string name="probation_reminder">Next probation meeting:</string>
     <string name="next">Next</string>
     <string name="contact_button">Contact</string>
+    <string name="example_color">Blue</string>
 </resources>
