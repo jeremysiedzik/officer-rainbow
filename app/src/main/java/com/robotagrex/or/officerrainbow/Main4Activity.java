@@ -72,7 +72,7 @@ public class Main4Activity extends AppCompatActivity {
                 editor.putString(Color5, color5);
 
                 editor.apply();
-                Intent qoneintent = new Intent(Main4Activity.this, MainActivity.class);
+                Intent qoneintent = new Intent(Main4Activity.this, Main5Activity.class);
                 startActivity(qoneintent);
             }
         });
