@@ -25,7 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     public static final String smskey3 = "sms3Key";
     SharedPreferences sharedpreferences;
 
-    static final int PICK_CONTACT_REQUEST = 1;  // The request code
+    static final int PICK_CONTACT_REQUEST = 1;
 
 
     @Override
