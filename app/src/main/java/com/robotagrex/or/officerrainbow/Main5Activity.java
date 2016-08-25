@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,8 +23,8 @@ import java.net.URL;
 public class Main5Activity extends AppCompatActivity {
 
 
-    //http://stackoverflow.com/questions/3275467/why-cant-i-set-text-to-an-android-textview
-    EditText ed1;
+
+
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String DEBUG_TAG = "Officer Rainbow";
     SharedPreferences sharedpreferences;
@@ -77,7 +78,10 @@ public class Main5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_5);
 
-        ed1=(EditText)findViewById(R.id.editText);
+        //http://stackoverflow.com/questions/3275467/why-cant-i-set-text-to-an-android-textview
+        TextView notification_msg = (TextView) findViewById(R.id.textView3);
+        assert notification_msg != null;
+        notification_msg.setText("test");
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -86,10 +90,6 @@ public class Main5Activity extends AppCompatActivity {
         assert buttoncolor != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        String fillcolor1 = sharedpreferences.getString("color1Key", "");
-
-        ed1.setText(fillcolor1);
 
         buttoncolor.setOnClickListener(new View.OnClickListener() {
             @Override
