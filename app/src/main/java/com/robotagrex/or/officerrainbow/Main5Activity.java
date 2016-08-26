@@ -1,5 +1,6 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,17 +12,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
 
-import java.io.IOException;
-
 public class Main5Activity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
+    // URL Address
+    String url = "http://www.robotagrex.com";
+    ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_5);
+
+        Button titlebutton = (Button) findViewById(R.id.titlebutton);
 
         TextView notification_msg = (TextView) findViewById(R.id.textView3);
         assert notification_msg != null;
@@ -30,12 +35,12 @@ public class Main5Activity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        Button buttoncolor = (Button) findViewById(R.id.buttoncolor);
-        assert buttoncolor != null;
+        Button buttontest = (Button) findViewById(R.id.buttontest);
+        assert buttontest != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        buttoncolor.setOnClickListener(new View.OnClickListener() {
+        buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
