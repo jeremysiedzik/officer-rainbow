@@ -23,12 +23,6 @@ public class Main5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_5);
 
-        try {
-            String html = Jsoup.connect("http://stackoverflow.com").get().html();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         TextView notification_msg = (TextView) findViewById(R.id.textView3);
         assert notification_msg != null;
         notification_msg.setText(R.string.app_name);
