@@ -22,7 +22,7 @@ public class Main5Activity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
 
     // URL Address
-    String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/onsite-dropmessage.html";
+    String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/aggregate.html";
     ProgressDialog mProgressDialog;
 
     @Override
