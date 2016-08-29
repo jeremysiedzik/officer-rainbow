@@ -40,7 +40,7 @@ public class Main5Activity extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
                 mProgressDialog = new ProgressDialog(Main5Activity.this);
-                mProgressDialog.setTitle("Android Basic JSoup Tutorial");
+                mProgressDialog.setTitle("Officer Rainbow Data Grab");
                 mProgressDialog.setMessage("Loading...");
                 mProgressDialog.setIndeterminate(false);
                 mProgressDialog.show();
