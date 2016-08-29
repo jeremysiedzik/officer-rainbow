@@ -69,10 +69,6 @@ public class Main5Activity extends AppCompatActivity {
             }
         }
 
-        TextView notification_msg = (TextView) findViewById(R.id.textView3);
-        assert notification_msg != null;
-        notification_msg.setText(R.string.app_name);
-
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
