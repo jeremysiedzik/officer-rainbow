@@ -50,13 +50,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/titletxt"
-        android:textSize="50sp"
-        android:layout_below="@+id/buttontest"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="10sp"
+        android:layout_below="@+id/buttontest" />
 
     <Button
         android:layout_width="wrap_content"
