@@ -50,11 +50,34 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
+        android:text="@string/jams_button"
+        android:id="@+id/jamsbutton"
+        android:textSize="50sp"
+        android:layout_above="@+id/novabutton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nova_button"
+        android:id="@+id/novabutton"
         android:textSize="50sp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:checked="false" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/onsite_button"
+        android:id="@+id/onsitebutton"
+        android:textSize="50sp"
+        android:layout_below="@+id/novabutton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false" />
 
 </RelativeLayout>
