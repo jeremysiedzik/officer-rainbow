@@ -90,7 +90,7 @@ public class Main5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(Main5Activity.this, MainActivity.class);
+                Intent qoneintent = new Intent(Main5Activity.this, Main6Activity.class);
                 startActivity(qoneintent);
             }
         });
