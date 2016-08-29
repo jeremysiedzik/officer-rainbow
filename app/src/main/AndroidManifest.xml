@@ -22,6 +22,7 @@
         <activity android:name=".Main3Activity"/>
         <activity android:name=".Main4Activity"/>
         <activity android:name=".Main5Activity"/>
+        <activity android:name=".Main6Activity"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
