@@ -29,4 +29,6 @@
     <string name="jams_enterprises">JAMS Enterprises</string>
     <string name="nova_testing">Nova Testing</string>
     <string name="onsite_testing">Onsite Testing</string>
+    <string name="date_text">01/01/1970</string>
+    <string name="pick_date">Choose Date</string>
 </resources>
