@@ -12,6 +12,7 @@ import android.widget.Button;
 public class Main6Activity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
+
     SharedPreferences sharedpreferences;
 
     @Override
