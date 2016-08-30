@@ -46,7 +46,7 @@ public class Main6Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(Main6Activity.this, MainActivity.class);
+                Intent qoneintent = new Intent(Main6Activity.this, Main7Activity.class);
                 startActivity(qoneintent);
             }
         });
