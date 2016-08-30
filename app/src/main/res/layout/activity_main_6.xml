@@ -50,7 +50,7 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="jams"
+        android:text="@string/jams_toggle"
         android:textOff="Disabled"
         android:textOn="Enabled"
         android:id="@+id/toggleButton"
@@ -63,7 +63,7 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nova"
+        android:text="@string/nova_toggle"
         android:textOff="Disabled"
         android:textOn="Enabled"
         android:id="@+id/toggleButton2"
@@ -76,7 +76,7 @@
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="onsite"
+        android:text="@string/onsite_toggle"
         android:textOff="Disabled"
         android:textOn="Enabled"
         android:id="@+id/toggleButton3"
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Onsite Testing"
+        android:text="@string/onsite_testing"
         android:id="@+id/textView3"
         android:textSize="40sp"
         android:layout_below="@+id/toggleButton2"
@@ -101,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Nova Testing"
+        android:text="@string/nova_testing"
         android:id="@+id/textView4"
         android:textSize="40sp"
         android:layout_below="@+id/toggleButton"
@@ -112,11 +112,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="JAMS Enterprises"
+        android:text="@string/jams_enterprises"
         android:id="@+id/textView5"
         android:textSize="40sp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView6"
+        android:textSize="40sp"
+        android:layout_below="@+id/toggleButton3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/bgreen_button" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bgreen_toggle"
+        android:textOff="Disabled"
+        android:textOn="Enabled"
+        android:id="@+id/toggleButton4"
+        android:textSize="40sp"
+        android:checked="false"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>

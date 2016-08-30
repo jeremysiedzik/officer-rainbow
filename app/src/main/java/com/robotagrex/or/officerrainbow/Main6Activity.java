@@ -14,7 +14,7 @@ public class Main6Activity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
-    ToggleButton toggleButton, toggleButton2, toggleButton3;
+    ToggleButton toggleButton, toggleButton2, toggleButton3, toggleButton4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class Main6Activity extends AppCompatActivity {
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         toggleButton2 = (ToggleButton) findViewById(R.id.toggleButton2);
         toggleButton3 = (ToggleButton) findViewById(R.id.toggleButton3);
+        toggleButton4 = (ToggleButton) findViewById(R.id.toggleButton4);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -41,6 +42,9 @@ public class Main6Activity extends AppCompatActivity {
 
         boolean toggle3state = sharedpreferences.getBoolean("onsite_state", false);
             toggleButton3.setChecked(toggle3state);
+
+        boolean toggle4state = sharedpreferences.getBoolean("bgreen_state", false);
+        toggleButton4.setChecked(toggle4state);
 
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +107,25 @@ public class Main6Activity extends AppCompatActivity {
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("onsite_state", false);
+                    editor.apply();
+                }
+            }
+        });
+
+        toggleButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (toggleButton4.isChecked())
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("bgreen_state", true);
+                    editor.apply();
+                }
+                else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("bgreen_state", false);
                     editor.apply();
                 }
             }
