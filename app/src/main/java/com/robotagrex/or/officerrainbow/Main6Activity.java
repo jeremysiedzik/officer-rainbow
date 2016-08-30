@@ -22,12 +22,12 @@ public class Main6Activity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        Button buttontest = (Button) findViewById(R.id.buttontest);
-        assert buttontest != null;
+        Button buttonnext = (Button) findViewById(R.id.buttonnext);
+        assert buttonnext != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        buttontest.setOnClickListener(new View.OnClickListener() {
+        buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
