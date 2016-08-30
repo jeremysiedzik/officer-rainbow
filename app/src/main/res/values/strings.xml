@@ -10,7 +10,7 @@
     <string name="notification_exampe">You need to report today!</string>
     <string name="email_address">Email reminder list:</string>
     <string name="sms_address">Text reminder list:</string>
-    <string name="color_website">Choose your website:</string>
+    <string name="color_website">Choose your website(s):</string>
     <string name="phone_alarm">Set off your phone alarm if you need to report?</string>
     <string name="probation_reminder">Next probation meeting:</string>
     <string name="next">Next</string>
