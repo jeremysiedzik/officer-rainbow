@@ -21,6 +21,10 @@ public class Main6Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_6);
 
+        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        toggleButton2 = (ToggleButton) findViewById(R.id.toggleButton2);
+        toggleButton3 = (ToggleButton) findViewById(R.id.toggleButton3);
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
