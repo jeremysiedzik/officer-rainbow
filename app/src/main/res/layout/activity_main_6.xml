@@ -54,11 +54,11 @@
         android:textOff="Disabled"
         android:textOn="Enabled"
         android:id="@+id/toggleButton"
-        android:layout_centerVertical="true"
+        android:textSize="40sp"
+        android:checked="false"
+        android:layout_below="@+id/textView5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="60sp"
-        android:checked="false" />
+        android:layout_alignParentStart="true" />
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -67,9 +67,9 @@
         android:textOff="Disabled"
         android:textOn="Enabled"
         android:id="@+id/toggleButton2"
-        android:textSize="60sp"
+        android:textSize="40sp"
         android:checked="false"
-        android:layout_below="@+id/toggleButton"
+        android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -80,9 +80,9 @@
         android:textOff="Disabled"
         android:textOn="Enabled"
         android:id="@+id/toggleButton3"
-        android:textSize="60sp"
+        android:textSize="40sp"
         android:checked="false"
-        android:layout_below="@+id/toggleButton2"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -92,10 +92,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Onsite Testing"
         android:id="@+id/textView3"
-        android:textSize="50sp"
-        android:layout_alignBottom="@+id/toggleButton3"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4" />
+        android:textSize="40sp"
+        android:layout_below="@+id/toggleButton2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,10 +103,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Nova Testing"
         android:id="@+id/textView4"
-        android:textSize="50sp"
-        android:layout_above="@+id/toggleButton3"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignStart="@+id/textView5" />
+        android:textSize="40sp"
+        android:layout_below="@+id/toggleButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -114,9 +114,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="JAMS Enterprises"
         android:id="@+id/textView5"
-        android:textSize="50sp"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/toggleButton"
-        android:layout_toEndOf="@+id/toggleButton" />
+        android:textSize="40sp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
