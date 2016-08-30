@@ -32,11 +32,15 @@ public class Main6Activity extends AppCompatActivity {
         assert buttonnext != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        toggleButton.setChecked(sharedpreferences.getBoolean("jams_state", true));
-        toggleButton2.setChecked(sharedpreferences.getBoolean("nova_state", true));
-        toggleButton3.setChecked(sharedpreferences.getBoolean("onsite_state", true));
 
+        boolean toggle1state = sharedpreferences.getBoolean("jams_state", false);
+            toggleButton.setChecked(toggle1state);
 
+        boolean toggle2state = sharedpreferences.getBoolean("nova_state", false);
+            toggleButton2.setChecked(toggle2state);
+
+        boolean toggle3state = sharedpreferences.getBoolean("onsite_state", false);
+            toggleButton3.setChecked(toggle3state);
 
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
