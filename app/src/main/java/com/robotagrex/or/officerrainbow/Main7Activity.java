@@ -19,6 +19,7 @@ import java.util.Calendar;
 public class Main7Activity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String probation_date = "probation_meeting_date" ;
     SharedPreferences sharedpreferences;
     private Calendar calendar;
     private int year, month, day;
@@ -72,7 +73,6 @@ public class Main7Activity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-            // here argument values...
             // arg1 = year
             // arg2 = month
             // arg3 = day
@@ -82,9 +82,14 @@ public class Main7Activity extends AppCompatActivity {
 
     private void showDate(int year, int month, int day) {
 
+        String date_string = String.valueOf(month) + "/" +
+                day + "/" + year;
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(probation_date, date_string);
+        editor.apply();
+
         Toast.makeText(Main7Activity.this,new StringBuilder().append(month).append("/")
                 .append(day).append("/").append(year), Toast.LENGTH_SHORT).show();
-
 
     }
 }
