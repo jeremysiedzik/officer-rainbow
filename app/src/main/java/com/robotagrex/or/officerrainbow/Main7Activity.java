@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -78,7 +77,6 @@ public class Main7Activity extends AppCompatActivity {
     };
 
     private void showDate(int year, int month, int day) {
-
         String date_string = String.valueOf(month) + "/" +
                 day + "/" + year;
         SharedPreferences.Editor editor = sharedpreferences.edit();
