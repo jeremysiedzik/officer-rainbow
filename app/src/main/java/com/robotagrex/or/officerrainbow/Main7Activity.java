@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
@@ -20,19 +21,32 @@ public class Main7Activity extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String probation_date = "probation_meeting_date" ;
     SharedPreferences sharedpreferences;
-    private Calendar calendar;
+    ToggleButton toggleButton5, toggleButton6, toggleButton7;
     private int year, month, day;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_7);
+        toggleButton5 = (ToggleButton) findViewById(R.id.toggleButton5);
+        toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
+        toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        boolean toggle1state = sharedpreferences.getBoolean("email_state", false);
+        toggleButton5.setChecked(toggle1state);
+
+        boolean toggle2state = sharedpreferences.getBoolean("sms_state", false);
+        toggleButton6.setChecked(toggle2state);
+
+        boolean toggle3state = sharedpreferences.getBoolean("alarm_state", false);
+        toggleButton7.setChecked(toggle3state);
+
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
 
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
         month = calendar.get(Calendar.MONTH);
@@ -45,11 +59,67 @@ public class Main7Activity extends AppCompatActivity {
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
 
-                buttonnext.setOnClickListener(new View.OnClickListener() {
+        buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent qoneintent = new Intent(Main7Activity.this, MainActivity.class);
                 startActivity(qoneintent);
+            }
+        });
+        toggleButton5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (toggleButton5.isChecked())
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("jams_state", true);
+                    editor.apply();
+                }
+                else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("jams_state", false);
+                    editor.apply();
+                }
+            }
+        });
+
+        toggleButton6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (toggleButton6.isChecked())
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("nova_state", true);
+                    editor.apply();
+                }
+                else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("nova_state", false);
+                    editor.apply();
+                }
+            }
+        });
+
+        toggleButton7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if (toggleButton7.isChecked())
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("onsite_state", true);
+                    editor.apply();
+                }
+                else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
+                    editor.putBoolean("onsite_state", false);
+                    editor.apply();
+                }
             }
         });
     }

@@ -12,7 +12,7 @@
     <string name="sms_address">Text reminder list:</string>
     <string name="color_website">Choose your website(s):</string>
     <string name="phone_alarm">Set off your phone alarm if you need to report?</string>
-    <string name="probation_reminder">Next probation meeting:</string>
+    <string name="probation_reminder">Next probation meeting reminder:</string>
     <string name="next">Save</string>
     <string name="contact_button">Contact</string>
     <string name="example_color">Blue</string>

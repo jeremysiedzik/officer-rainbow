@@ -67,4 +67,40 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton5"
+        android:textSize="50sp"
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:textOn="Email Enabled"
+        android:textOff="Email Disabled" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton6"
+        android:textSize="50sp"
+        android:checked="false"
+        android:textOn="Text MSG Enabled"
+        android:textOff="Text MSG Disabled"
+        android:layout_below="@+id/toggleButton5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton7"
+        android:textSize="50sp"
+        android:checked="false"
+        android:textOn="Phone Alarm Enabled"
+        android:textOff="Phone Alarm Disabled"
+        android:layout_below="@+id/toggleButton6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
