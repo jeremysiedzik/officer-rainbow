@@ -12,6 +12,8 @@
     <string name="sms_address">Text reminder list:</string>
     <string name="color_website">Choose your website(s):</string>
     <string name="phone_alarm">Set off your phone alarm if you need to report?</string>
+    <string name="phone_alarm_enabled">Alarm Enabled</string>
+    <string name="phone_alarm_disabled">Alarm Disabled</string>
     <string name="probation_reminder">Next probation meeting reminder:</string>
     <string name="next">Save</string>
     <string name="contact_button">Contact</string>
@@ -21,11 +23,11 @@
     <string name="onsite_button">Onsite Testing</string>
     <string name="jams_button">JAMS Enterprises</string>
     <string name="nova_button">Nova Testing</string>
-    <string name="bgreen_button">Bownling Green Testing</string>
+    <string name="bgreen_button">Bowling Green Testing</string>
     <string name="jams_toggle">jams</string>
     <string name="nova_toggle">nova</string>
     <string name="onsite_toggle">onsite</string>
-    <string name="bgreen_toggle">onsite</string>
+    <string name="bgreen_toggle">bgreen</string>
     <string name="jams_enterprises">JAMS Enterprises</string>
     <string name="nova_testing">Nova Testing</string>
     <string name="onsite_testing">Onsite Testing</string>
