@@ -29,7 +29,7 @@ public class Main7Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_7);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String txtdate = sharedpreferences.getString("probation_meeting_date", "");
+        String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
 
