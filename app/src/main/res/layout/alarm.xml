@@ -11,66 +11,30 @@
     tools:context="com.robotagrex.or.officerrainbow.MainActivity"
     android:background="#6b6b6b">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/what_is_your_first_name"
-        android:textSize="40sp"
-        android:textIsSelectable="false"
-        android:textColor="#000000"
-        android:id="@+id/textView"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/abby"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:textSize="34sp"
-        android:selectAllOnFocus="true"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/what_is_your_last_name"
-        android:textSize="40sp"
-        android:textIsSelectable="true"
-        android:textColor="#000000"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/sconder"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:textSize="34sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true" />
-
     <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_start"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        android:id="@+id/buttonlast"
-        android:clickable="false"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/my_toolbar"
-        android:layout_alignEnd="@+id/my_toolbar"
-        android:textSize="50sp" />
+        android:layout_gravity="center"
+        android:textColor="#FF8A80"
+        android:textSize="100sp"
+        android:id="@+id/msg1"/>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_stop"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#4CAF50"
+        android:textSize="50sp"
+        android:id="@+id/msg2"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"

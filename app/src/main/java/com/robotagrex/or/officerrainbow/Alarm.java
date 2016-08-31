@@ -1,63 +1,86 @@
 package com.robotagrex.or.officerrainbow;
 
-import android.content.Context;
+import java.util.Calendar;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-
-public class Alarm extends AppCompatActivity {
-
-    EditText ed1,ed2;
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String FirstName = "firstnameKey";
-    public static final String LastName = "lastnameKey";
-    SharedPreferences sharedpreferences;
-
-
+import android.widget.TextView;
+public class MainActivity extends FragmentActivity{
+    private static int timeHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+    private static int timeMinute = Calendar.getInstance().get(Calendar.MINUTE);
+    TextView textView1;
+    private static TextView textView2;
+    public static TextView getTextView2() {
+        return textView2;
+    }
+    AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.alarm);
+        textView1 = (TextView)findViewById(R.id.msg1);
+        textView1.setText(timeHour + ":" + timeMinute);
+        textView2 = (TextView)findViewById(R.id.msg2);
 
-        ed1=(EditText)findViewById(R.id.editText);
-        ed2=(EditText)findViewById(R.id.editText2);
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent myIntent = new Intent(MainActivity.this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-
-        Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
-        assert buttonfirstlast != null;
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-
-        String fillfirst = sharedpreferences.getString("firstnameKey", "");
-        String filllast = sharedpreferences.getString("lastnameKey", "");
-
-        if((fillfirst.length() != 0) && (filllast.length() != 0)) {
-            ed1.setText(fillfirst);
-            ed2.setText(filllast);
-        }
-
-        buttonfirstlast.setOnClickListener(new View.OnClickListener() {
-            @Override
+        OnClickListener listener1 = new OnClickListener() {
             public void onClick(View view) {
-                String firstname  = ed1.getText().toString();
-                String lastname  = ed2.getText().toString();
-
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                editor.putString(FirstName, firstname);
-                editor.putString(LastName, lastname);
-                editor.apply();
-                Intent qoneintent = new Intent(Alarm.this, Main2Activity.class);
-                startActivity(qoneintent);
+                textView2.setText("");
+                Bundle bundle = new Bundle();
+                bundle.putInt(MyConstants.HOUR, timeHour);
+                bundle.putInt(MyConstants.MINUTE, timeMinute);
+                MyDialogFragment fragment = new MyDialogFragment(new MyHandler());
+                fragment.setArguments(bundle);
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.add(fragment, MyConstants.TIME_PICKER);
+                transaction.commit();
             }
-        });
+        };
+
+        Button btn1 = (Button)findViewById(R.id.button1);
+        btn1.setOnClickListener(listener1);
+        OnClickListener listener2 = new OnClickListener() {
+            public void onClick(View view) {
+                textView2.setText("");
+                cancelAlarm();
+            }
+        };
+        Button btn2 = (Button)findViewById(R.id.button2);
+        btn2.setOnClickListener(listener2);
+    }
+    class MyHandler extends Handler {
+        @Override
+        public void handleMessage (Message msg){
+            Bundle bundle = msg.getData();
+            timeHour = bundle.getInt(MyConstants.HOUR);
+            timeMinute = bundle.getInt(MyConstants.MINUTE);
+            textView1.setText(timeHour + ":" + timeMinute);
+            setAlarm();
+        }
+    }
+    private void setAlarm(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, timeHour);
+        calendar.set(Calendar.MINUTE, timeMinute);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+    }
+    private void cancelAlarm() {
+        if (alarmManager!= null) {
+            alarmManager.cancel(pendingIntent);
+        }
     }
 }

@@ -36,4 +36,6 @@
     <string name="choose_date">Choose Date</string>
     <string name="date_field">No date selected yet</string>
     <string name="data_text">No data pulled yet</string>
+    <string name="btn_start"> Start </string>
+    <string name="btn_stop"> Stop </string>
 </resources>
