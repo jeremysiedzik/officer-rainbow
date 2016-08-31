@@ -73,13 +73,13 @@ public class Main7Activity extends AppCompatActivity {
                 if (toggleButton5.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("jams_state", true);
+                    editor.putBoolean("email_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("jams_state", false);
+                    editor.putBoolean("email_state", false);
                     editor.apply();
                 }
             }
@@ -92,13 +92,13 @@ public class Main7Activity extends AppCompatActivity {
                 if (toggleButton6.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("nova_state", true);
+                    editor.putBoolean("sms_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("nova_state", false);
+                    editor.putBoolean("sms_state", false);
                     editor.apply();
                 }
             }
@@ -111,13 +111,13 @@ public class Main7Activity extends AppCompatActivity {
                 if (toggleButton7.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("onsite_state", true);
+                    editor.putBoolean("alarm_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("onsite_state", false);
+                    editor.putBoolean("alarm_state", false);
                     editor.apply();
                 }
             }
