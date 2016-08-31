@@ -88,9 +88,5 @@ public class Main7Activity extends AppCompatActivity {
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
         editor.apply();
-
-        Toast.makeText(Main7Activity.this,new StringBuilder().append(month).append("/")
-                .append(day).append("/").append(year), Toast.LENGTH_SHORT).show();
-
     }
 }
