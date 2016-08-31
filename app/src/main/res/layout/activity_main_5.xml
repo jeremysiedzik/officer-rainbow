@@ -56,7 +56,7 @@
         android:id="@+id/titletxt"
         android:textSize="50sp"
         android:gravity="center_vertical"
-        android:text="test" />
+        android:text="@string/data_text" />
     </ScrollView>
 
     <Button

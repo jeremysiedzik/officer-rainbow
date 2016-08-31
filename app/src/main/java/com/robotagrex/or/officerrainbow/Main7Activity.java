@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -26,6 +27,10 @@ public class Main7Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_7);
+
+        String txtdate = sharedpreferences.getString("probation_meeting_date", "");
+        TextView txtdate_view=(TextView)findViewById(R.id.textView1);
+        txtdate_view.setText(txtdate);
 
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -77,8 +82,9 @@ public class Main7Activity extends AppCompatActivity {
 
     private void showDate(int year, int month, int day) {
 
-        Toast.makeText(Main7Activity.this,new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year), Toast.LENGTH_LONG).show();
+        Toast.makeText(Main7Activity.this,new StringBuilder().append(month).append("/")
+                .append(day).append("/").append(year), Toast.LENGTH_SHORT).show();
+
 
     }
 }

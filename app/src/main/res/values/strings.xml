@@ -33,4 +33,5 @@
     <string name="pick_date">Choose Date</string>
     <string name="choose_date">Choose Date</string>
     <string name="date_field">No date selected yet</string>
+    <string name="data_text">No data pulled yet</string>
 </resources>

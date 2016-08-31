@@ -60,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Probation Meeting Reminder"
+        android:text="@string/probation_reminder"
         android:id="@+id/textView7"
         android:textSize="50sp"
         android:layout_below="@+id/my_toolbar"
