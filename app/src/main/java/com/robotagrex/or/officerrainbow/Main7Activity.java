@@ -83,6 +83,10 @@ public class Main7Activity extends AppCompatActivity {
                 day + "/" + year;
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(probation_date, date_string);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
+        TextView txtdate_view=(TextView)findViewById(R.id.textView1);
+        txtdate_view.setText(txtdate);
         editor.apply();
 
         Toast.makeText(Main7Activity.this,new StringBuilder().append(month).append("/")
