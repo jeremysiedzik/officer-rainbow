@@ -28,8 +28,8 @@ public class Main7Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_7);
-
-        String txtdate = sharedpreferences.getString(probation_date, "");
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String txtdate = sharedpreferences.getString("probation_meeting_date", "");
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
 
@@ -45,9 +45,6 @@ public class Main7Activity extends AppCompatActivity {
 
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
-
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
                 buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
