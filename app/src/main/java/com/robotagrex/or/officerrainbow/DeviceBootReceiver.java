@@ -7,13 +7,6 @@ package com.robotagrex.or.officerrainbow;
         import android.content.Intent;
         import android.widget.Toast;
 
-
-/**
- * @author Neel
- *         <p/>
- *         Broadcast reciever, starts when the device gets starts.
- *         Start your repeating alarm here.
- */
 public class DeviceBootReceiver extends BroadcastReceiver {
 
     @Override
