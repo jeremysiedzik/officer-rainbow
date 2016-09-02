@@ -74,7 +74,7 @@ public class MyActivity extends Activity {
 
     public void startAt10() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval = 1000 * 60 * 2;
+        int interval = 1000 * 60 * 5;
 
         /* Set the alarm to start at 10:30 AM */
         Calendar calendar = Calendar.getInstance();
@@ -84,7 +84,7 @@ public class MyActivity extends Activity {
 
         /* Repeating on every 20 minutes interval */
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                1000 * 60 * 2, pendingIntent);
+                1000 * 60 * 5, pendingIntent);
     }
 
 }
