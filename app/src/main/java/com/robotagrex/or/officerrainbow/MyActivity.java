@@ -11,10 +11,10 @@ import android.widget.Button;
 import android.widget.Toast;
 import java.util.Calendar;
 
-//https://developer.android.com/training/scheduling/alarms.html
 public class MyActivity extends Activity {
 
     private PendingIntent pendingIntent;
+    NotifyAlarmReceiver alarm = new NotifyAlarmReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
