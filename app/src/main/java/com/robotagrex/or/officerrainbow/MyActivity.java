@@ -59,7 +59,7 @@ public class MyActivity extends Activity {
 
     public void startUser() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval2 = 1000 * 60 * 2;
+        int interval2 = 8000;
         /* last int is minutes */
 
         /* Set the alarm to start at 10:30 AM */
