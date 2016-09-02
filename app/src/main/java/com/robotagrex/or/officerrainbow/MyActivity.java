@@ -66,7 +66,7 @@ public class MyActivity extends Activity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 6);
+        calendar.set(Calendar.MINUTE, 29);
 
         /* Repeating on every x minutes interval */
         manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
