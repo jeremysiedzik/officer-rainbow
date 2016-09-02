@@ -79,8 +79,8 @@ public class MyActivity extends Activity {
         /* Set the alarm to start at 10:30 AM */
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 9);
-        calendar.set(Calendar.MINUTE, 55);
+        calendar.set(Calendar.HOUR_OF_DAY, 10);
+        calendar.set(Calendar.MINUTE, 25);
 
         /* Repeating on every 20 minutes interval */
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
