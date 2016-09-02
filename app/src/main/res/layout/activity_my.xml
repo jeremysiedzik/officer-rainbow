@@ -11,39 +11,23 @@
     tools:context="com.robotagrex.or.officerrainbow.MainActivity"
     android:background="#6b6b6b">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="@string/hint"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <Button
         android:id="@+id/startAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView"
-        android:layout_marginBottom="20dp"
-        android:text="Start Alarm Service" />
+        android:text="Start Alarm Service"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/stopAlarm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/startAlarm"
-        android:layout_marginBottom="20dp"
-        android:text="Stop Alarm" />
-
-
-    <Button
-        android:id="@+id/stopAlarmAt10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/stopAlarm"
-        android:text="Stop Alarm at 11:38" />
+        android:text="Stop Alarm Service"
+        android:textSize="50sp" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -52,7 +36,9 @@
         android:background="#000000"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"

@@ -36,13 +36,6 @@ public class MyActivity extends Activity {
         Intent alarmIntent = new Intent(MyActivity.this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MyActivity.this, 0, alarmIntent, 0);
 
-        findViewById(R.id.startAlarm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                start();
-            }
-        });
-
         findViewById(R.id.stopAlarm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,20 +43,12 @@ public class MyActivity extends Activity {
             }
         });
 
-        findViewById(R.id.stopAlarmAt10).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.startAlarm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAt10();
+                startUser();
             }
         });
-    }
-
-    public void start() {
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval = 8000;
-
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingIntent);
-        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
 
     public void cancel() {
@@ -72,20 +57,22 @@ public class MyActivity extends Activity {
         Toast.makeText(this, "Alarm Canceled", Toast.LENGTH_SHORT).show();
     }
 
-    public void startAt10() {
+    public void startUser() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval2 = 1000 * 60 * 20;
+        int interval2 = 1000 * 60 * 5;
         /* last int is minutes */
 
         /* Set the alarm to start at 10:30 AM */
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 11);
-        calendar.set(Calendar.MINUTE, 38);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 00);
 
         /* Repeating on every x minutes interval */
         manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 interval2, pendingIntent);
+
+        Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
 
 }
