@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/stopAlarm"
-        android:text="Stop Alarm at 10:30" />
+        android:text="Stop Alarm at 10:29" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
