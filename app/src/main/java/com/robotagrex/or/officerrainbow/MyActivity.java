@@ -59,14 +59,14 @@ public class MyActivity extends Activity {
 
     public void startUser() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval2 = 1000 * 60 * 5;
+        int interval2 = 1000 * 60 * 2;
         /* last int is minutes */
 
         /* Set the alarm to start at 10:30 AM */
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.MINUTE, 4);
 
         /* Repeating on every x minutes interval */
         manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
