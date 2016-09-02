@@ -59,18 +59,19 @@ public class MyActivity extends Activity {
 
     public void startUser() {
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        int interval2 = 8000;
-        /* last int is minutes */
+        int interval_set = 8000;
 
-        /* Set the alarm to start at 10:30 AM */
+        /* Set the alarm to start at plus one minute from now*/
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 37);
+        int sethourofday = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int setminuteofday = Calendar.getInstance().get(Calendar.MINUTE);
+        calendar.set(Calendar.HOUR_OF_DAY, sethourofday);
+        calendar.set(Calendar.MINUTE, setminuteofday + 1);
 
         /* Repeating on every x minutes interval */
         manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                interval2, pendingIntent);
+                interval_set, pendingIntent);
 
         Toast.makeText(this, "Alarm Set", Toast.LENGTH_SHORT).show();
     }
