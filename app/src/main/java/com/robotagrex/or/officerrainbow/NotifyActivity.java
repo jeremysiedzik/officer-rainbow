@@ -2,6 +2,7 @@ package com.robotagrex.or.officerrainbow;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +15,7 @@ import android.view.MenuItem;
  * checks it for the search string "doodle". If it finds this string, that indicates 
  * that the page contains a custom doodle instead of the standard Google logo.
  */
-public class NotifyActivity extends Activity {
+public class NotifyActivity extends AppCompatActivity {
     NotifyAlarmReceiver alarm = new NotifyAlarmReceiver();
     
     @Override
