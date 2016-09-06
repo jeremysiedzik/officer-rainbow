@@ -6,16 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-
-/**
- * This sample demonstrates how to schedule an alarm that causes a service to
- * be started. This is useful when you want to schedule alarms that initiate
- * long-running operations, such as retrieving a daily forecast.
- * This particular sample retrieves content from the Google home page once a day and  
- * checks it for the search string "doodle". If it finds this string, that indicates 
- * that the page contains a custom doodle instead of the standard Google logo.
- */
 public class NotifyActivity extends AppCompatActivity {
     NotifyAlarmReceiver alarm = new NotifyAlarmReceiver();
     
@@ -42,6 +34,7 @@ public class NotifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alarm.cancelAlarm(getApplicationContext());
+                Toast.makeText(getApplicationContext(), "Alarm Canceled", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -49,6 +42,7 @@ public class NotifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alarm.setAlarm(getApplicationContext());
+                Toast.makeText(getApplicationContext(), "Alarm Set", Toast.LENGTH_SHORT).show();
             }
         });
     }

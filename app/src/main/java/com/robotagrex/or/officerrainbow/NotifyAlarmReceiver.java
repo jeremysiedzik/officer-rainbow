@@ -50,6 +50,8 @@ public class NotifyAlarmReceiver extends WakefulBroadcastReceiver {
         Intent intent = new Intent(context, NotifyAlarmReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
+        int interval_time = 8000;
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         int sethourofday = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
@@ -91,7 +93,7 @@ public class NotifyAlarmReceiver extends WakefulBroadcastReceiver {
         // Set the alarm to fire at approximately 8:30 a.m., according to the device's
         // clock, and to repeat once a day.
         alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,  
-                calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+                calendar.getTimeInMillis(), interval_time, alarmIntent);
         
         // Enable {@code com.robotagrex.or.alarm.SampleBootReceiver} to automatically restart the alarm when the
         // device is rebooted.
