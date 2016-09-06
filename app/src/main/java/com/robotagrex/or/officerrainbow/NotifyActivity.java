@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,27 +37,19 @@ public class NotifyActivity extends AppCompatActivity {
                 startActivity(qoneintent);
             }
         });
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+        findViewById(R.id.stopAlarm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alarm.cancelAlarm(getApplicationContext());
+            }
+        });
 
-    // Menu options to set and cancel the alarm.
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // When the user clicks START ALARM, set the alarm.
-            case R.id.start_action:
-                alarm.setAlarm(this);
-                return true;
-            // When the user clicks CANCEL ALARM, cancel the alarm. 
-            case R.id.cancel_action:
-                alarm.cancelAlarm(this);
-                return true;
-        }
-        return false;
+        findViewById(R.id.startAlarm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alarm.setAlarm(getApplicationContext());
+            }
+        });
     }
 }
