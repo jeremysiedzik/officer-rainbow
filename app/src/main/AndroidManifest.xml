@@ -27,7 +27,6 @@
         <activity android:name=".Main5Activity"/>
         <activity android:name=".Main6Activity"/>
         <activity android:name=".Main7Activity"/>
-        <activity android:name=".MyActivity"/>
         <activity android:name=".NotifyActivity"/>
 
         <receiver android:name=".NotifyAlarmReceiver"/>

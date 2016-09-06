@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.robotagrex.or.officerrainbow.NotifyAlarmReceiver;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
