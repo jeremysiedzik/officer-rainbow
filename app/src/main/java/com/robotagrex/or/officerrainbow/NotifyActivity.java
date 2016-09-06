@@ -33,7 +33,7 @@ public class NotifyActivity extends AppCompatActivity {
         findViewById(R.id.stopAlarm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alarm.cancelAlarm(getApplicationContext());
+                alarm.cancelAlarm(NotifyActivity.this);
                 Toast.makeText(getApplicationContext(), "Alarm Canceled", Toast.LENGTH_SHORT).show();
             }
         });
@@ -41,7 +41,7 @@ public class NotifyActivity extends AppCompatActivity {
         findViewById(R.id.startAlarm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alarm.setAlarm(getApplicationContext());
+                alarm.setAlarm(NotifyActivity.this);
                 Toast.makeText(getApplicationContext(), "Alarm Set", Toast.LENGTH_SHORT).show();
             }
         });

@@ -50,7 +50,7 @@ public class NotifyAlarmReceiver extends WakefulBroadcastReceiver {
         Intent intent = new Intent(context, NotifyAlarmReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-        int interval_time = 8000;
+        int interval_time = 10000;
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
