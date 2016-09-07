@@ -62,7 +62,7 @@ public class Main7Activity extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(Main7Activity.this, NotifyActivity.class);
+                Intent qoneintent = new Intent(Main7Activity.this, MainActivity.class);
                 startActivity(qoneintent);
             }
         });
