@@ -33,7 +33,7 @@ public class NotifyActivity extends AppCompatActivity {
         findViewById(R.id.stopAlarm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alarm.cancelAlarm(getApplicationContext());
+                alarm.cancelAlarm(getApplication());
                 Toast.makeText(getApplicationContext(), "Alarm Canceled", Toast.LENGTH_SHORT).show();
             }
         });
