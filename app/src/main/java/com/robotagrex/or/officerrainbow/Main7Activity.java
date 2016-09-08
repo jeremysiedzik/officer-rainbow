@@ -155,6 +155,6 @@ public class Main7Activity extends AppCompatActivity {
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
-        editor.apply();
+        editor.commit();
     }
 }
