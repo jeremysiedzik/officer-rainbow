@@ -27,10 +27,9 @@ public class JobSchedulerService extends JobService {
             //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-            String prefix = "android.resource://com.robotagrex.or.officerrainbow/";
             try {
                 mPlayer.setDataSource(getApplicationContext(),
-                        Uri.parse(prefix + R.raw.beep));
+                        Uri.parse("android.resource://com.robotagrex.or.officerrainbow/" + R.raw.beep));
             } catch (IOException e) {
                 e.printStackTrace();
             }
