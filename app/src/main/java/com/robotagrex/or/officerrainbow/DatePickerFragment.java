@@ -37,11 +37,11 @@ public class DatePickerFragment extends DialogFragment
                 day + "/" + year;
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(probation_date, date_string);
+        editor.apply();
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
         TextView txtdate_view=(TextView)getActivity().findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
-        editor.putString(probation_date, date_string);
-        editor.apply();
     }
 }
 
