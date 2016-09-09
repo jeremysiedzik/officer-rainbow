@@ -43,6 +43,7 @@ public class Main7Activity extends AppCompatActivity {
                         new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
 
                 builder.setPeriodic(10000);
+                builder.setPersisted(true);
 
 
                 if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
