@@ -4,9 +4,13 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
+
+import java.io.FileDescriptor;
+import java.io.IOException;
 
 public class JobSchedulerService extends JobService {
 
@@ -19,9 +23,17 @@ public class JobSchedulerService extends JobService {
             final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-            //final MediaPlayer mPlayer = new MediaPlayer();
-            final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
+            final MediaPlayer mPlayer = new MediaPlayer();
+            //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+            String prefix = "android.resource://com.robotagrex.or.officerrainbow/";
+            try {
+                mPlayer.setDataSource(getApplicationContext(),
+                        Uri.parse(prefix + R.raw.beep));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             mPlayer.setOnPreparedListener(
                     new MediaPlayer.OnPreparedListener() {
