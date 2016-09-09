@@ -35,8 +35,8 @@ public class DatePickerFragment extends DialogFragment
     public void onDateSet(DatePicker view, int year, int month, int day) {
         String date_string = String.valueOf(month) + "/" +
                 day + "/" + year;
-        SharedPreferences.Editor editor = sharedpreferences.edit();
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
         TextView txtdate_view=(TextView)getActivity().findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
