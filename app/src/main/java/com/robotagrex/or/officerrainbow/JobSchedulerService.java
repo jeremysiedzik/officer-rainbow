@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 public class JobSchedulerService extends JobService {
 
     private Handler mJobHandler = new Handler( new Handler.Callback() {
@@ -21,6 +23,12 @@ public class JobSchedulerService extends JobService {
 
             MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.beep);
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            String beep = "android.resource://com.robotagrex.or.officerrainbow/res/raw/beep";
+            try {
+                mPlayer.setDataSource(beep);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             mPlayer.start();
 
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
