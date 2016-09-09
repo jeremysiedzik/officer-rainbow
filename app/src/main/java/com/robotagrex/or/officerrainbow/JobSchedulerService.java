@@ -8,8 +8,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 public class JobSchedulerService extends JobService {
 
     private Handler mJobHandler = new Handler( new Handler.Callback() {
