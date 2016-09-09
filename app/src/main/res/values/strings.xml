@@ -52,4 +52,6 @@
     <string name="doodle_found">You need to drop today!!</string>
     <string name="no_doodle">You do not need to drop today!!</string>
     <string name="connection_error">Connection error.</string>
+    <string name="schedule_job">Schedule Job</string>
+    <string name="cancel_all">Cancel All</string>
 </resources>
