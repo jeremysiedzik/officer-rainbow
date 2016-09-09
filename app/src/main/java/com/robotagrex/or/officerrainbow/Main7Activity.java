@@ -16,8 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import java.util.Calendar;
-
 public class Main7Activity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
