@@ -124,17 +124,23 @@ public class Main7Activity extends AppCompatActivity {
         });
     }
 
-    public void setDate(View view) {
-        showDialog(999);
+    public DatePickerDialog setDate() {
+
+        return new DatePickerDialog(this, myDateListener, year, month, day);
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
-        }
-        return null;
-    }
+//    public DatePickerDialog setDate(View view) {
+
+//        return new DatePickerDialog(this, myDateListener, year, month, day);
+//    }
+
+//    @Override
+//    protected Dialog onCreateDialog(int id) {
+//        if (id == 999) {
+//            return new DatePickerDialog(this, myDateListener, year, month, day);
+//        }
+//        return null;
+//    }
 
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -150,12 +156,12 @@ public class Main7Activity extends AppCompatActivity {
         String date_string = String.valueOf(month) + "/" +
                 day + "/" + year;
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(probation_date, date_string);
-        editor.commit();
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
+        editor.putString(probation_date, date_string);
+        editor.apply();
 
     }
 }
