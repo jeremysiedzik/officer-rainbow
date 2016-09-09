@@ -29,6 +29,11 @@ public class JobSchedulerService extends JobService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            try {
+                mPlayer.prepare();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             mPlayer.start();
 
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
