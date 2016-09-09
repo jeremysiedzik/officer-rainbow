@@ -20,10 +20,10 @@ public class JobSchedulerService extends JobService {
             Calendar c = Calendar.getInstance();
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
             Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "JobService ping");
+            Log.i(TAG, "JobService running - waiting for 5am");
 
-            if (alarm_time == 17) {
-
+            if (alarm_time == 16) {
+                Log.i(TAG, "JobService running - it's 5am");
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
