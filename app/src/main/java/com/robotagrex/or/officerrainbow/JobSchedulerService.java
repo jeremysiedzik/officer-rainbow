@@ -53,7 +53,7 @@ public class JobSchedulerService extends JobService {
                 jobFinished((JobParameters) msg.obj, false);
                 return true;
             }
-            return false;
+            return true;
         }
 
     } );
