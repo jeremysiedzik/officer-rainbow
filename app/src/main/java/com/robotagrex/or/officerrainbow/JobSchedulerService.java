@@ -4,53 +4,55 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
-
-import java.io.FileDescriptor;
-import java.io.IOException;
+import java.util.Calendar;
 
 public class JobSchedulerService extends JobService {
 
     private Handler mJobHandler = new Handler( new Handler.Callback() {
         @Override
-        public boolean handleMessage( Message msg ) {
-            Toast.makeText( getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT ).show();
+        public boolean handleMessage(Message msg) {
+            Calendar c = Calendar.getInstance();
+            int alarm_time = c.get(Calendar.HOUR_OF_DAY);
 
-            final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-            final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+            if (alarm_time == 16) {
 
-            //final MediaPlayer mPlayer = new MediaPlayer();
-            final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
-            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
 
-            mPlayer.setOnPreparedListener(
-                    new MediaPlayer.OnPreparedListener() {
-                        public void onPrepared(MediaPlayer player)
-                        {
-                            mPlayer.start();
+                final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                //final MediaPlayer mPlayer = new MediaPlayer();
+                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                mPlayer.setOnPreparedListener(
+                        new MediaPlayer.OnPreparedListener() {
+                            public void onPrepared(MediaPlayer player) {
+                                mPlayer.start();
+                            }
+                        });
+
+
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        if (mp != null) {
+                            mp.release();
                         }
-                    });
-
-
-            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
-            {
-                @Override
-                public void onCompletion(MediaPlayer mp)
-                {
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                    if (mp != null) {
-                        mp.release();
                     }
-                }
-            });
+                });
 
-            jobFinished( (JobParameters) msg.obj, false );
-            return true;
+                jobFinished((JobParameters) msg.obj, false);
+                return true;
+            }
+            return false;
         }
+
     } );
 
     @Override

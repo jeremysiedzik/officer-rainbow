@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.Calendar;
+
 public class Main7Activity extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -112,7 +114,7 @@ public class Main7Activity extends AppCompatActivity {
                     JobInfo.Builder builder = new JobInfo.Builder( 1,
                             new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
 
-                    builder.setPeriodic(10000);
+                    builder.setPeriodic(20000);
                     builder.setPersisted(true);
                     Toast.makeText( getApplicationContext(), "JobService Set", Toast.LENGTH_SHORT ).show();
 
