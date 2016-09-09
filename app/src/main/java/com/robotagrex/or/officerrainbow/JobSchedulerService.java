@@ -21,7 +21,7 @@ public class JobSchedulerService extends JobService {
             final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-            MediaPlayer mPlayer = new MediaPlayer();
+            final MediaPlayer mPlayer = new MediaPlayer();
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             String beep = "android.resource://" + getApplicationContext().getPackageName() + "/raw/beep";
             try {
@@ -34,7 +34,15 @@ public class JobSchedulerService extends JobService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mPlayer.start();
+
+            mPlayer.setOnPreparedListener(
+                    new MediaPlayer.OnPreparedListener() {
+                        public void onPrepared(MediaPlayer player)
+                        {
+                            mPlayer.start();
+                        }
+                    });
+
 
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
             {
