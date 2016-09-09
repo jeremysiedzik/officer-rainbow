@@ -21,7 +21,7 @@ public class JobSchedulerService extends JobService {
             final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-            MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.beep);
+            MediaPlayer mPlayer = new MediaPlayer();
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             String beep = "android.resource://com.robotagrex.or.officerrainbow/res/raw/beep";
             try {
