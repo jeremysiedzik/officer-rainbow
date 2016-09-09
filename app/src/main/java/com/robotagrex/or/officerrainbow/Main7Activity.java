@@ -35,31 +35,6 @@ public class Main7Activity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         mJobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
-        Button mScheduleJobButton = (Button) findViewById(R.id.schedule_job);
-        Button mCancelAllJobsButton = (Button) findViewById(R.id.cancel_all);
-
-        mScheduleJobButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JobInfo.Builder builder = new JobInfo.Builder( 1,
-                        new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
-
-                builder.setPeriodic(10000);
-                builder.setPersisted(true);
-
-
-                if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
-                    Toast.makeText( getApplicationContext(), "JobService task broken", Toast.LENGTH_SHORT ).show();
-                }
-            }
-        });
-
-        mCancelAllJobsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick( View v ) {
-                mJobScheduler.cancelAll();
-            }
-        });
 
         boolean toggle1state = sharedpreferences.getBoolean("email_state", false);
         toggleButton5.setChecked(toggle1state);

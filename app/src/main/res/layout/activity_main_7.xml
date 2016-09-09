@@ -36,8 +36,7 @@
         android:onClick="showDatePickerDialog"
         android:text="@string/choose_date"
         android:textSize="20sp"
-        android:layout_below="@+id/cancel_all"
-        android:layout_alignEnd="@+id/schedule_job" />
+        android:layout_below="@+id/toggleButton5" />
 
     <Button
         android:layout_width="wrap_content"
@@ -46,8 +45,8 @@
         android:id="@+id/buttonnext"
         android:clickable="false"
         android:textSize="20sp"
-        android:layout_below="@+id/schedule_job"
-        android:layout_alignStart="@+id/toggleButton7" />
+        android:layout_below="@+id/textView1"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -68,7 +67,7 @@
         android:textOn="Email Enabled"
         android:textOff="Email Disabled"
         android:layout_below="@+id/toggleButton6"
-        android:layout_alignStart="@+id/cancel_all" />
+        android:layout_alignStart="@+id/buttondate" />
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -89,25 +88,7 @@
         android:checked="false"
         android:textOn="Alarm Enabled"
         android:textOff="Alarm Disabled"
-        android:layout_below="@+id/buttonnext"
-        android:layout_alignStart="@+id/textView7" />
-
-    <Button
-        android:id="@+id/schedule_job"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/schedule_job"
-        android:textSize="20sp"
         android:layout_below="@+id/textView7"
-        android:layout_alignStart="@+id/toggleButton7" />
-
-    <Button
-        android:id="@+id/cancel_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cancel_all"
-        android:textSize="20sp"
-        android:layout_below="@+id/toggleButton5"
-        android:layout_alignStart="@+id/buttondate" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
