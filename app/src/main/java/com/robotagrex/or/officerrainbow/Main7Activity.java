@@ -1,7 +1,9 @@
 package com.robotagrex.or.officerrainbow;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +25,7 @@ public class Main7Activity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     ToggleButton toggleButton5, toggleButton6, toggleButton7;
     private int year, month, day;
+    private JobScheduler mJobScheduler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,32 @@ public class Main7Activity extends AppCompatActivity {
         toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
         toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        mJobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
+        Button mScheduleJobButton = (Button) findViewById(R.id.schedule_job);
+        Button mCancelAllJobsButton = (Button) findViewById(R.id.cancel_all);
+
+        mScheduleJobButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JobInfo.Builder builder = new JobInfo.Builder( 1,
+                        new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
+
+                builder.setPeriodic( 3000 );
+
+
+                if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
+                    //If something goes wrong
+                }
+            }
+        });
+
+        mCancelAllJobsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                mJobScheduler.cancelAll();
+            }
+        });
 
         boolean toggle1state = sharedpreferences.getBoolean("email_state", false);
         toggleButton5.setChecked(toggle1state);
@@ -58,6 +87,9 @@ public class Main7Activity extends AppCompatActivity {
 
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
+
+        Button buttondate = (Button) findViewById(R.id.buttondate);
+        assert buttondate != null;
 
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,17 +154,14 @@ public class Main7Activity extends AppCompatActivity {
                 }
             }
         });
+
+        buttondate.setOnClickListener(view);
     }
 
     public DatePickerDialog setDate() {
 
         return new DatePickerDialog(this, myDateListener, year, month, day);
     }
-
-//    public DatePickerDialog setDate(View view) {
-
-//        return new DatePickerDialog(this, myDateListener, year, month, day);
-//    }
 
 //    @Override
 //    protected Dialog onCreateDialog(int id) {
