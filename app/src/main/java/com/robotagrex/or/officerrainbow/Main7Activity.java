@@ -134,12 +134,26 @@ public class Main7Activity extends AppCompatActivity {
             {
                 if (toggleButton7.isChecked())
                 {
+                    JobInfo.Builder builder = new JobInfo.Builder( 1,
+                            new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
+
+                    builder.setPeriodic(10000);
+                    builder.setPersisted(true);
+                    Toast.makeText( getApplicationContext(), "JobService Set", Toast.LENGTH_SHORT ).show();
+
+
+                    if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
+                        Toast.makeText( getApplicationContext(), "JobService task broken", Toast.LENGTH_SHORT ).show();
+                    }
+
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("alarm_state", true);
                     editor.apply();
                 }
                 else
                 {
+                    mJobScheduler.cancelAll();
+                    Toast.makeText( getApplicationContext(), "JobService Cancelled", Toast.LENGTH_SHORT ).show();
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("alarm_state", false);
                     editor.apply();

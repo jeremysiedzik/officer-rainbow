@@ -87,8 +87,8 @@
         android:id="@+id/toggleButton7"
         android:textSize="20sp"
         android:checked="false"
-        android:textOn="Phone Alarm Enabled"
-        android:textOff="Phone Alarm Disabled"
+        android:textOn="Alarm Enabled"
+        android:textOff="Alarm Disabled"
         android:layout_below="@+id/buttonnext"
         android:layout_alignStart="@+id/textView7" />
 
