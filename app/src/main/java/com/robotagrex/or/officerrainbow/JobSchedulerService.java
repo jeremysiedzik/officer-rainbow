@@ -20,7 +20,7 @@ public class JobSchedulerService extends JobService {
             Calendar c = Calendar.getInstance();
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
             Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "JobService running - waiting for 5am");
+            Log.i(TAG, "JobService idling");
 
             if (alarm_time == 16) {
                 Log.i(TAG, "JobService running - it's 5am");
