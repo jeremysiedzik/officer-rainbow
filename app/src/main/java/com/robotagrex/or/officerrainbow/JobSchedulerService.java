@@ -23,16 +23,9 @@ public class JobSchedulerService extends JobService {
             final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-            final MediaPlayer mPlayer = new MediaPlayer();
-            //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
+            //final MediaPlayer mPlayer = new MediaPlayer();
+            final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-            try {
-                mPlayer.setDataSource(getApplicationContext(),
-                        Uri.parse("android.resource://com.robotagrex.or.officerrainbow/" + R.raw.beep));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             mPlayer.setOnPreparedListener(
                     new MediaPlayer.OnPreparedListener() {
