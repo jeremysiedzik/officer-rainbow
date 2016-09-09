@@ -17,7 +17,7 @@ public class JobSchedulerService extends JobService {
             Calendar c = Calendar.getInstance();
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
 
-            if (alarm_time == 16) {
+            if (alarm_time == 17) {
 
                 Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
 
