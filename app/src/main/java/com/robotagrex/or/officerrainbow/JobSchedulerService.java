@@ -25,12 +25,6 @@ public class JobSchedulerService extends JobService {
             final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-            try {
-                mPlayer.prepare();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             mPlayer.setOnPreparedListener(
                     new MediaPlayer.OnPreparedListener() {
                         public void onPrepared(MediaPlayer player)
