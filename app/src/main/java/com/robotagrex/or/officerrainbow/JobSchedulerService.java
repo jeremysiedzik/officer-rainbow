@@ -16,10 +16,9 @@ public class JobSchedulerService extends JobService {
         public boolean handleMessage(Message msg) {
             Calendar c = Calendar.getInstance();
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
+            Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
 
             if (alarm_time == 17) {
-
-                Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
