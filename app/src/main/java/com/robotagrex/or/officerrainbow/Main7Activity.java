@@ -23,6 +23,8 @@ public class Main7Activity extends AppCompatActivity {
     ToggleButton toggleButton5, toggleButton6, toggleButton7;
     private JobScheduler mJobScheduler;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

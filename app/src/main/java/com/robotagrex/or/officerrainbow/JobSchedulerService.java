@@ -2,6 +2,8 @@ package com.robotagrex.or.officerrainbow;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
@@ -12,6 +14,24 @@ public class JobSchedulerService extends JobService {
         @Override
         public boolean handleMessage( Message msg ) {
             Toast.makeText( getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT ).show();
+
+            final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+            final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+            MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), R.raw.beep);
+            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mPlayer.start();
+
+            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener()
+            {
+                @Override
+                public void onCompletion(MediaPlayer mp)
+                {
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                }
+            });
+
             jobFinished( (JobParameters) msg.obj, false );
             return true;
         }
