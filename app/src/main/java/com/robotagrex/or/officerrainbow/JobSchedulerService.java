@@ -6,17 +6,21 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 import java.util.Calendar;
 
 public class JobSchedulerService extends JobService {
 
     private Handler mJobHandler = new Handler( new Handler.Callback() {
+        public static final String TAG = "Officer Rainbow";
         @Override
         public boolean handleMessage(Message msg) {
+
             Calendar c = Calendar.getInstance();
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
             Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "JobService ping");
 
             if (alarm_time == 17) {
 
