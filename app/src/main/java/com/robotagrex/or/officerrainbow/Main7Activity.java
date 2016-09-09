@@ -114,7 +114,7 @@ public class Main7Activity extends AppCompatActivity {
                     JobInfo.Builder builder = new JobInfo.Builder( 1,
                             new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
 
-                    builder.setPeriodic(20000);
+                    builder.setPeriodic(1000 * 20);
                     builder.setPersisted(true);
                     Toast.makeText( getApplicationContext(), "JobService Set", Toast.LENGTH_SHORT ).show();
 
