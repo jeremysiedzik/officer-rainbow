@@ -42,6 +42,9 @@ public class JobSchedulerService extends JobService {
                 public void onCompletion(MediaPlayer mp)
                 {
                     mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                    if (mp != null) {
+                        mp.release();
+                    }
                 }
             });
 
