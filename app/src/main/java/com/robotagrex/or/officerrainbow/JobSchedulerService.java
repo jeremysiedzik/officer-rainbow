@@ -2,7 +2,6 @@ package com.robotagrex.or.officerrainbow;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
-import android.content.res.Resources;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -22,14 +21,10 @@ public class JobSchedulerService extends JobService {
             final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-            final MediaPlayer mPlayer = new MediaPlayer();
+            //final MediaPlayer mPlayer = new MediaPlayer();
+            final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep","raw",getPackageName()));
             mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            String beep = "android.resource://" + getApplicationContext().getPackageName() + "/res/raw/beep";
-            try {
-                mPlayer.setDataSource(beep);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             try {
                 mPlayer.prepare();
             } catch (IOException e) {
