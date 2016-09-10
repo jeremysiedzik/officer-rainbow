@@ -33,8 +33,8 @@ public class CountdownActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
-        TextView raw_probation_date=(TextView)findViewById(R.id.raw_probation_date);
         raw_probation_date.setText(raw_probation_txt);
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
