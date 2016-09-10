@@ -15,6 +15,7 @@ public class CountdownActivity extends AppCompatActivity {
     CountDownTimer mCountDownTimer;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
+
     long mInitialTime = DateUtils.DAY_IN_MILLIS * 2 +
             DateUtils.HOUR_IN_MILLIS * 9 +
             DateUtils.MINUTE_IN_MILLIS * 3 +
