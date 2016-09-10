@@ -46,4 +46,5 @@
     <string name="connection_error">Connection error.</string>
     <string name="schedule_job">Schedule Job</string>
     <string name="cancel_all">Cancel All</string>
+    <string name="count_down_date">Count Down Date</string>
 </resources>

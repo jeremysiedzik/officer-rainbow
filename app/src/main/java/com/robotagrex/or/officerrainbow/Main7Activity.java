@@ -52,19 +52,20 @@ public class Main7Activity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        Button buttonnext = (Button)findViewById(R.id.buttonnext);
-        assert buttonnext != null;
-
         Button buttondate = (Button)findViewById(R.id.buttondate);
         assert buttondate != null;
+
+        Button buttonnext = (Button)findViewById(R.id.buttonnext);
+        assert buttonnext != null;
 
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(Main7Activity.this, MainActivity.class);
+                Intent qoneintent = new Intent(Main7Activity.this, CountdownActivity.class);
                 startActivity(qoneintent);
             }
         });
+
         toggleButton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
