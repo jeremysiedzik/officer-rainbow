@@ -1,5 +1,6 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class CountdownActivity extends AppCompatActivity {
             DateUtils.MINUTE_IN_MILLIS * 3 +
             DateUtils.SECOND_IN_MILLIS * 42;
     TextView mTextView;
+    TextView raw_probation_date;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,11 @@ public class CountdownActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
+        TextView raw_probation_date=(TextView)findViewById(R.id.raw_probation_date);
+        raw_probation_date.setText(raw_probation_txt);
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
@@ -68,6 +75,7 @@ public class CountdownActivity extends AppCompatActivity {
 
                 time.append(DateUtils.formatElapsedTime(Math.round(millisUntilFinished / 1000d)));
                 mTextView.setText(time.toString());
+
             }
         }.start();
     }
