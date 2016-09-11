@@ -81,6 +81,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignStart="@+id/editText"
+        android:text="Toolbar Title"/>
 
 </RelativeLayout>
