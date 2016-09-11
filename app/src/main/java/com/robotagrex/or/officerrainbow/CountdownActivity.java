@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class CountdownActivity extends AppCompatActivity {
@@ -23,10 +23,6 @@ public class CountdownActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    long mInitialTime = DateUtils.DAY_IN_MILLIS * 3 +
-            DateUtils.HOUR_IN_MILLIS * 9 +
-            DateUtils.MINUTE_IN_MILLIS * 3 +
-            DateUtils.SECOND_IN_MILLIS * 42;
     TextView mTextView;
     TextView raw_probation_date;
 
@@ -43,6 +39,23 @@ public class CountdownActivity extends AppCompatActivity {
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
         raw_probation_date.setText(raw_probation_txt);
 
+       // long mInitialTime = DateUtils.DAY_IN_MILLIS * 3 +
+       //         DateUtils.HOUR_IN_MILLIS * 9 +
+       //         DateUtils.MINUTE_IN_MILLIS * 3 +
+       //         DateUtils.SECOND_IN_MILLIS * 42;
+
+        String string_date = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
+
+        SimpleDateFormat f = new SimpleDateFormat("MM.dd.yyyy", Locale.US);
+        Date d = null;
+        try {
+            d = f.parse(string_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        assert d != null;
+        long mInitialTime = d.getTime();
+
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
 
@@ -57,16 +70,7 @@ public class CountdownActivity extends AppCompatActivity {
 
         mTextView = (TextView) findViewById(R.id.counter);
 
-        String string_date = "12-December-2012";
 
-        SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
-        Date d = null;
-        try {
-            d = f.parse(string_date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        long milliseconds = d.getTime();
 
         mCountDownTimer = new CountDownTimer(mInitialTime, 1000) {
             StringBuilder time = new StringBuilder();
