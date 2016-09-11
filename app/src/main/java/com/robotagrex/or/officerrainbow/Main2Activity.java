@@ -43,7 +43,6 @@ public class Main2Activity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
 
@@ -104,7 +103,6 @@ public class Main2Activity extends AppCompatActivity {
                 startActivityForResult(pickContactIntent3, PICK_CONTACT_REQUEST);
             }
         });
-
 
 
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
