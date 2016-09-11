@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -39,22 +40,27 @@ public class CountdownActivity extends AppCompatActivity {
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
         raw_probation_date.setText(raw_probation_txt);
 
-       // long mInitialTime = DateUtils.DAY_IN_MILLIS * 3 +
-       //         DateUtils.HOUR_IN_MILLIS * 9 +
-       //         DateUtils.MINUTE_IN_MILLIS * 3 +
-       //         DateUtils.SECOND_IN_MILLIS * 42;
-
-        String string_date = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
+        String string_end_date = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
 
         SimpleDateFormat f = new SimpleDateFormat("MM.dd.yyyy", Locale.US);
         Date d = null;
         try {
-            d = f.parse(string_date);
+            d = f.parse(string_end_date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         assert d != null;
-        long mInitialTime = d.getTime();
+        long mEndingTime = d.getTime();
+
+        long millisStart = Calendar.getInstance().getTimeInMillis();
+
+        long mInitialTime = mEndingTime - millisStart;
+
+        // long mInitialTime = DateUtils.DAY_IN_MILLIS * 3 +
+        //         DateUtils.HOUR_IN_MILLIS * 9 +
+        //         DateUtils.MINUTE_IN_MILLIS * 3 +
+        //         DateUtils.SECOND_IN_MILLIS * 42;
+
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
