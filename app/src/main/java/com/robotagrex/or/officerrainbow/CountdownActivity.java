@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -75,6 +77,12 @@ public class CountdownActivity extends AppCompatActivity {
 
 
         mTextView = (TextView) findViewById(R.id.counter);
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(50); //You can manage the time of the blink with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        mTextView.startAnimation(anim);
 
 
 
