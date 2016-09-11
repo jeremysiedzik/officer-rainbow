@@ -12,12 +12,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+
 public class CountdownActivity extends AppCompatActivity {
     CountDownTimer mCountDownTimer;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    long mInitialTime = DateUtils.DAY_IN_MILLIS * 2 +
+    long mInitialTime = DateUtils.DAY_IN_MILLIS * 3 +
             DateUtils.HOUR_IN_MILLIS * 9 +
             DateUtils.MINUTE_IN_MILLIS * 3 +
             DateUtils.SECOND_IN_MILLIS * 42;
@@ -50,6 +56,17 @@ public class CountdownActivity extends AppCompatActivity {
 
 
         mTextView = (TextView) findViewById(R.id.counter);
+
+        String string_date = "12-December-2012";
+
+        SimpleDateFormat f = new SimpleDateFormat("dd-MMM-yyyy");
+        Date d = null;
+        try {
+            d = f.parse(string_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long milliseconds = d.getTime();
 
         mCountDownTimer = new CountDownTimer(mInitialTime, 1000) {
             StringBuilder time = new StringBuilder();
