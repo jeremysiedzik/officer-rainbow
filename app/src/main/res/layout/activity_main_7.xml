@@ -9,8 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.robotagrex.or.officerrainbow.MainActivity"
-    android:background="#6b6b6b"
-    android:windowSoftInputMode="stateHidden">
+    android:background="#6b6b6b">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
