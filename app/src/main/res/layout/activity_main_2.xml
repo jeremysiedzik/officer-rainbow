@@ -9,50 +9,24 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.robotagrex.or.officerrainbow.Main2Activity"
-    android:background="#6b6b6b"
+    android:background="@color/blanketBackground"
     android:fillViewport="true">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/email_address"
-        android:textSize="26sp"
-        android:textIsSelectable="false"
-        android:textColor="#000000"
-        android:id="@+id/textView"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:text=""
-        android:ems="10"
-        android:id="@+id/editText"
-        android:labelFor="@id/editText"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="false"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sms_address"
+        android:text="@string/probation_office_contact"
         android:textSize="26sp"
         android:textIsSelectable="true"
         android:textColor="#000000"
         android:id="@+id/textView2"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText4"
-        android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/my_toolbar" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,9 +39,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
         android:labelFor="@id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -75,12 +47,10 @@
         android:text="@string/next"
         android:id="@+id/buttonlast"
         android:clickable="false"
-        android:layout_below="@+id/editText6"
-        android:layout_alignRight="@+id/my_toolbar"
-        android:layout_alignEnd="@+id/my_toolbar"
-        android:layout_alignParentLeft="true"
+        android:textSize="50sp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:textSize="50sp" />
+        android:layout_alignParentEnd="true" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -89,97 +59,16 @@
         android:background="#000000"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignParentTop="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:text=""
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:labelFor="@id/editText3"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:ems="10"
-        android:id="@+id/editText4"
-        android:labelFor="@id/editText4"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="true"
-        android:inputType="textEmailAddress"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText5"
-        android:labelFor="@id/editText5"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/editText2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText6"
-        android:labelFor="@id/editText6"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_below="@+id/editText5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_alignEnd="@+id/editText5" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_button"
-        android:id="@+id/buttoncontact1"
-        android:layout_alignTop="@+id/editText2"
-        android:layout_toRightOf="@+id/editText2"
-        android:layout_toEndOf="@+id/editText2" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_button"
-        android:id="@+id/buttoncontact2"
-        android:layout_toRightOf="@+id/editText5"
-        android:layout_toEndOf="@+id/editText2"
-        android:layout_alignTop="@+id/editText5" />
-
-    <Button
+        <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contact_button"
         android:id="@+id/buttoncontact3"
-        android:layout_alignTop="@+id/editText6"
-        android:layout_toRightOf="@+id/editText6"
-        android:layout_toEndOf="@+id/editText6" />
+            android:layout_alignBottom="@+id/editText2"
+            android:layout_toEndOf="@+id/editText2" />
 
 </RelativeLayout>
 
