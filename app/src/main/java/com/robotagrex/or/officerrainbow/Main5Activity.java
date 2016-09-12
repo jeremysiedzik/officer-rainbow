@@ -8,11 +8,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -74,6 +76,9 @@ public class Main5Activity extends AppCompatActivity {
 
         Button buttontest = (Button) findViewById(R.id.buttontest);
         assert buttontest != null;
+
+        TextView titletxt=(TextView)findViewById(R.id.titletxt);
+        titletxt.setMovementMethod(new ScrollingMovementMethod());
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
