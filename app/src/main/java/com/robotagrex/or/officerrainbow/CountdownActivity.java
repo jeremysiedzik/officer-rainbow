@@ -68,7 +68,7 @@ public class CountdownActivity extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(CountdownActivity.this, MainActivity.class);
+                Intent qoneintent = new Intent(CountdownActivity.this, ProbationContact.class);
                 startActivity(qoneintent);
             }
         });
