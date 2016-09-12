@@ -119,7 +119,7 @@ public class Main7Activity extends AppCompatActivity {
 
 
                     if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
-                        Toast.makeText( getApplicationContext(), "JobService task broken", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( getApplicationContext(), "JobService task is broken", Toast.LENGTH_SHORT ).show();
                     }
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
