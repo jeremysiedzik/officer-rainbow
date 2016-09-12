@@ -39,15 +39,13 @@ public class CountdownActivity extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
-        String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
+        String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "07.21.2020");
         raw_probation_date.setText(raw_probation_txt);
-
-        String string_end_date = sharedpreferences.getString("raw_probation_date", "No date pulled from prefs");
 
         SimpleDateFormat f = new SimpleDateFormat("MM.dd.yyyy", Locale.US);
         Date d = null;
         try {
-            d = f.parse(string_end_date);
+            d = f.parse(raw_probation_txt);
         } catch (ParseException e) {
             e.printStackTrace();
         }
