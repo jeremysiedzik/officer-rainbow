@@ -45,9 +45,9 @@ public class ProbationContact extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        String fillcontact_name = sharedpreferences.getString("officername","");
-        String fillcontact_number = sharedpreferences.getString("officernumber","");
-        String fillcontact_notes = sharedpreferences.getString("officernotes","");
+        String fillcontact_name = sharedpreferences.getString("officerName","");
+        String fillcontact_number = sharedpreferences.getString("officerNumber","");
+        String fillcontact_notes = sharedpreferences.getString("officerNotes","");
 
         ed6.setText(fillcontact_name);
         ed11.setText(fillcontact_number);
