@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:text="@string/contact_button"
         android:id="@+id/buttoncontact3"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/editText12"
             android:layout_alignParentStart="true" />
 
         <EditText
@@ -94,7 +94,7 @@
             android:textSize="24sp"
             android:selectAllOnFocus="true"
             android:layout_below="@+id/textView10"
-            android:layout_alignEnd="@+id/editText11" />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:layout_width="wrap_content"
