@@ -40,7 +40,8 @@
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="false"
         android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignEnd="@+id/buttoncontact1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,7 +104,9 @@
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@+id/buttoncontact1"
+        android:layout_alignEnd="@+id/editText" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -117,7 +120,9 @@
         android:layout_alignParentStart="true"
         android:inputType="textEmailAddress"
         android:layout_below="@+id/editText3"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@+id/buttoncontact1"
+        android:layout_alignEnd="@+id/editText3" />
 
     <EditText
         android:layout_width="wrap_content"

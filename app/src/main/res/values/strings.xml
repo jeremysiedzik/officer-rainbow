@@ -16,7 +16,7 @@
     <string name="phone_alarm_disabled">Alarm Disabled</string>
     <string name="probation_reminder">Next probation meeting reminder:</string>
     <string name="next">Save</string>
-    <string name="contact_button">Contact</string>
+    <string name="contact_button">Browse Contacts</string>
     <string name="example_color">Blue</string>
     <string name="checking_network">Network Status:</string>
     <string name="test_button">Test Connection</string>
@@ -49,4 +49,7 @@
     <string name="count_down_date">Count Down Date</string>
     <string name="raw_countown_date">Raw Countdown Date</string>
     <string name="probation_office_contact">Probation Office Contact</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="note">Note</string>
 </resources>
