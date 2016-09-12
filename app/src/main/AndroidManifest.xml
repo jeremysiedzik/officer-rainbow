@@ -35,6 +35,8 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".CountdownActivity"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ProbationContact"
+            android:windowSoftInputMode="stateHidden"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
