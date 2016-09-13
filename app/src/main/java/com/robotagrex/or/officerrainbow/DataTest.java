@@ -23,7 +23,7 @@ public class DataTest extends AppCompatActivity {
     SharedPreferences sharedpreferences;
 
     // URL Address
-    String url = "http://feed.robotagrex.com/sendmail.php?emailaddress=mainphrame@hotmail.com&emailmessage=hellodolly";
+    String url = "http://feed.robotagrex.com/aggregate.txt";
     ProgressDialog mProgressDialog;
 
     @Override
