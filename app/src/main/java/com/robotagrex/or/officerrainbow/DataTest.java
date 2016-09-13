@@ -29,7 +29,7 @@ public class DataTest extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_5);
+        setContentView(R.layout.datatest);
 
         Button titlebutton = (Button) findViewById(R.id.titlebutton);
 

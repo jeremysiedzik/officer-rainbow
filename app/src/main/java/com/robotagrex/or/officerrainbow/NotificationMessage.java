@@ -21,7 +21,7 @@ public class NotificationMessage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_3);
+        setContentView(R.layout.notificationmessage);
 
         ed1=(EditText)findViewById(R.id.editText);
 

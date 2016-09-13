@@ -28,7 +28,7 @@ public class AlarmSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_7);
+        setContentView(R.layout.alarmsettings);
         toggleButton5 = (ToggleButton) findViewById(R.id.toggleButton5);
         toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
         toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);

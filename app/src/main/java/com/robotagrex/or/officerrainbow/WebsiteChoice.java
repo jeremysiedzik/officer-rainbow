@@ -19,7 +19,7 @@ public class WebsiteChoice extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_6);
+        setContentView(R.layout.websitechoice);
 
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         toggleButton2 = (ToggleButton) findViewById(R.id.toggleButton2);
