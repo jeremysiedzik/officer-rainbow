@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class Main7Activity extends AppCompatActivity {
+public class AlarmSettings extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -61,7 +61,7 @@ public class Main7Activity extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(Main7Activity.this, CountdownActivity.class);
+                Intent qoneintent = new Intent(AlarmSettings.this, CountdownActivity.class);
                 startActivity(qoneintent);
             }
         });

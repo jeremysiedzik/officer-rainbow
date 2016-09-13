@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Main3Activity extends AppCompatActivity {
+public class NotificationMessage extends AppCompatActivity {
 
-    EditText ed1,ed2;
+    EditText ed1;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String Message = "messageKey";
     SharedPreferences sharedpreferences;
@@ -49,7 +49,7 @@ public class Main3Activity extends AppCompatActivity {
 
                 editor.putString(Message, messagekey);
                 editor.apply();
-                Intent qoneintent = new Intent(Main3Activity.this, Main4Activity.class);
+                Intent qoneintent = new Intent(NotificationMessage.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
         });

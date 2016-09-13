@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Main4Activity extends AppCompatActivity {
+public class ColorChoice extends AppCompatActivity {
 
     EditText ed1,ed2,ed3,ed4,ed5;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -72,7 +72,7 @@ public class Main4Activity extends AppCompatActivity {
                 editor.putString(Color5, color5);
 
                 editor.apply();
-                Intent qoneintent = new Intent(Main4Activity.this, Main5Activity.class);
+                Intent qoneintent = new Intent(ColorChoice.this, DataTest.class);
                 startActivity(qoneintent);
             }
         });

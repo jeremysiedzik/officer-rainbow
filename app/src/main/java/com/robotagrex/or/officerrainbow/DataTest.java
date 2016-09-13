@@ -14,11 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
-public class Main5Activity extends AppCompatActivity {
+public class DataTest extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -41,7 +40,7 @@ public class Main5Activity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                mProgressDialog = new ProgressDialog(Main5Activity.this);
+                mProgressDialog = new ProgressDialog(DataTest.this);
                 mProgressDialog.setTitle("Officer Rainbow Data Grab");
                 mProgressDialog.setMessage("Loading...");
                 mProgressDialog.setIndeterminate(false);
@@ -95,7 +94,7 @@ public class Main5Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(Main5Activity.this, Main6Activity.class);
+                Intent qoneintent = new Intent(DataTest.this, WebsiteChoice.class);
                 startActivity(qoneintent);
             }
         });

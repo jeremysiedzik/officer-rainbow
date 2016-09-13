@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
 
-public class Main6Activity extends AppCompatActivity {
+public class WebsiteChoice extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -50,7 +50,7 @@ public class Main6Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(Main6Activity.this, Main7Activity.class);
+                Intent qoneintent = new Intent(WebsiteChoice.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });

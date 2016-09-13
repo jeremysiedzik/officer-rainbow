@@ -21,17 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity"
+        <activity android:name=".Notifications"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Main3Activity"
+        <activity android:name=".NotificationMessage"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Main4Activity"
+        <activity android:name=".ColorChoice"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Main5Activity"
+        <activity android:name=".DataTest"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Main6Activity"
+        <activity android:name=".WebsiteChoice"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".Main7Activity"
+        <activity android:name=".AlarmSettings"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".CountdownActivity"
             android:windowSoftInputMode="stateHidden"/>

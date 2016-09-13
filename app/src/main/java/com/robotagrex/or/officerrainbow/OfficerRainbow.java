@@ -55,7 +55,7 @@ public class OfficerRainbow extends AppCompatActivity {
                 editor.putString(FirstName, firstname);
                 editor.putString(LastName, lastname);
                 editor.apply();
-                Intent qoneintent = new Intent(OfficerRainbow.this, Main2Activity.class);
+                Intent qoneintent = new Intent(OfficerRainbow.this, Notifications.class);
                 startActivity(qoneintent);
             }
         });

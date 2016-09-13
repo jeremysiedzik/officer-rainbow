@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Main2Activity extends AppCompatActivity {
+public class Notifications extends AppCompatActivity {
 
     EditText ed1,ed2,ed3,ed4,ed5,ed6,current_ed;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -124,7 +124,7 @@ public class Main2Activity extends AppCompatActivity {
                 editor.putString(smskey2, sms2);
                 editor.putString(smskey3, sms3);
                 editor.apply();
-                Intent qoneintent = new Intent(Main2Activity.this, Main3Activity.class);
+                Intent qoneintent = new Intent(Notifications.this, NotificationMessage.class);
                 startActivity(qoneintent);
             }
         });
