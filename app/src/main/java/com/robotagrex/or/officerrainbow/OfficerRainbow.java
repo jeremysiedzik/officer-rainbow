@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class OfficerRainbow extends AppCompatActivity {
 
     EditText ed1,ed2;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(FirstName, firstname);
                 editor.putString(LastName, lastname);
                 editor.apply();
-                Intent qoneintent = new Intent(MainActivity.this, Main2Activity.class);
+                Intent qoneintent = new Intent(OfficerRainbow.this, Main2Activity.class);
                 startActivity(qoneintent);
             }
         });

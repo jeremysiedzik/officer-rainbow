@@ -79,7 +79,7 @@ public class ProbationContact extends AppCompatActivity {
                 editor.putString(officernotes, form_officer_notes);
 
                 editor.apply();
-                Intent qoneintent = new Intent(ProbationContact.this, MainActivity.class);
+                Intent qoneintent = new Intent(ProbationContact.this, OfficerRainbow.class);
                 startActivity(qoneintent);
             }
         });
