@@ -5,8 +5,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,14 +33,45 @@ public class WebSitechecker extends IntentService {
     // The Google home page URL from which the app fetches content.
     // You can find a list of other Google domains with possible doodles here:
     // http://en.wikipedia.org/wiki/List_of_Google_domains
-    public static final String URL = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/aggregate.txt";
+    public static final String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/aggregate.txt";
     //NotificationCompat.Builder builder;
+
+    // Title AsyncTask
+    class Title extends AsyncTask<Void, Void, Void> {
+        String title;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                // Connect to the web site
+                Document document = Jsoup.connect(url).get();
+                // Get the html document title
+                title = document.title();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // Set title into TextView
+            //TextView txttitle = (TextView) findViewById(R.id.titletxt);
+            //assert txttitle != null;
+            //txttitle.setText(title);
+        }
+    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         // BEGIN_INCLUDE(service_onhandle)
         // The URL from which to fetch content.
-        String urlString = URL;
+        String urlString = url;
     
         String result ="";
         

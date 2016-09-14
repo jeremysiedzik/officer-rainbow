@@ -49,32 +49,16 @@ public class JobSchedulerService extends JobService {
             if (alarm_time == 16) {
                 Log.i(TAG, "JobService running - it's 5am");
 
-                String urlString = URL;
-
-                String result ="";
-
-                // Try to connect to the Google homepage and download content.
-                try {
-                    result = loadFromNetwork(urlString);
-                } catch (IOException e) {
-                    Log.i(TAG, getString(R.string.connection_error));
-                }
-
                 // If the app finds the string "doodle" in the Google home page content, it
                 // indicates the presence of a doodle. Post a "Doodle Alert" notification.
-                if (result.contains(SEARCH_STRING)) {
+
                     sendNotification(getString(R.string.doodle_found));
                     Log.i(TAG, "Found color!!");
-                } else {
-                    sendNotification(getString(R.string.no_doodle));
-                    Log.i(TAG, "No color found. :-(");
-                }
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-                //final MediaPlayer mPlayer = new MediaPlayer();
                 final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
@@ -189,5 +173,4 @@ public class JobSchedulerService extends JobService {
         reader.close();
         return builder.toString();
     }
-
 }
