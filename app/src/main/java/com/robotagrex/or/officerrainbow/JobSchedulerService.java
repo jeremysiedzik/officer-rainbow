@@ -23,7 +23,7 @@ public class JobSchedulerService extends JobService {
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
             Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "JobService idling");
-            Intent i = new Intent(WebSitechecker.class);
+            Intent i = new Intent(JobSchedulerService.this, WebSitechecker.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
 
