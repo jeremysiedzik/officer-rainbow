@@ -32,7 +32,7 @@ public class JobSchedulerService extends JobService {
                 Log.i(TAG, "JobService running - it's 5am");
 
                 Context context = getApplication();
-                Intent service = new Intent(context, TEMPLATEWebSitechecker.class);
+                Intent service = new Intent(context, WebSitechecker.class);
                 context.startService(service);
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
