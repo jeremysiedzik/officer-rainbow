@@ -25,7 +25,7 @@ public class TEMPLATEJobSchedulerService extends JobService {
             Log.i(TAG, "JobService idling");
 
             if (alarm_time == 16) {
-                Log.i(TAG, "JobService running - it's 5am");
+                Log.i(TAG, "JobService running alarm_time variable matches shared prefs");
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
