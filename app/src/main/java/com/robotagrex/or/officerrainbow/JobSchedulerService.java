@@ -25,7 +25,7 @@ public class JobSchedulerService extends JobService {
             Log.i(TAG, "JobService idling");
             Intent i = new Intent(JobSchedulerService.this, WebSitechecker.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
+            startService(i);
 
             if (alarm_time == 16) {
                 Log.i(TAG, "JobService running - it's 5am");
