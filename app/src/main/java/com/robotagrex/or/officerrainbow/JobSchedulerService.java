@@ -2,6 +2,7 @@ package com.robotagrex.or.officerrainbow;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -30,8 +31,9 @@ public class JobSchedulerService extends JobService {
 
                 Log.i(TAG, "JobService running - it's 5am");
 
-                Intent service = new Intent(JobSchedulerService.this, TEMPLATEWebSitechecker.class);
-                startService(service);
+                Context context = getApplication();
+                Intent service = new Intent(context, TEMPLATEWebSitechecker.class);
+                context.startService(service);
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
