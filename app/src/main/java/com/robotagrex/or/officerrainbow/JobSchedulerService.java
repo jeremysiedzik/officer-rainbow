@@ -2,6 +2,7 @@ package com.robotagrex.or.officerrainbow;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -13,8 +14,9 @@ import java.util.Calendar;
 
 public class JobSchedulerService extends JobService {
 
+    public static final String TAG = "Officer Rainbow";
+
     private Handler mJobHandler = new Handler( new Handler.Callback() {
-        public static final String TAG = "Officer Rainbow";
 
         @Override
         public boolean handleMessage(Message msg) {
@@ -25,7 +27,11 @@ public class JobSchedulerService extends JobService {
             Log.i(TAG, "JobService idling");
 
             if (alarm_time == 16) {
+
                 Log.i(TAG, "JobService running - it's 5am");
+
+                Intent service = new Intent(JobSchedulerService.this, TEMPLATEWebSitechecker.class);
+                startService(service);
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -71,5 +77,4 @@ public class JobSchedulerService extends JobService {
         mJobHandler.removeMessages( 1 );
         return false;
     }
-
 }
