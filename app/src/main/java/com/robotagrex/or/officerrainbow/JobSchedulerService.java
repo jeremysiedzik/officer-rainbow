@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat;
@@ -153,19 +154,39 @@ public class JobSchedulerService extends JobService {
      * @return An InputStream retrieved from a successful HttpURLConnection.
      * @throws IOException
      */
+
     private InputStream downloadUrl(String urlString) throws IOException {
 
         URL url = new URL(urlString);
         Log.i(TAG, "Calling HttpURLConnection");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        final HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(10000 /* milliseconds */);
         conn.setConnectTimeout(15000 /* milliseconds */);
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
-        // Start the query
-        Log.i(TAG, "Calling conn.connect()");
-        conn.connect();
-        return conn.getInputStream();
+        // Start the quer
+
+        class fetchurl extends AsyncTask<Void, Void, String> {
+            @Override
+            protected String doInBackground(Void... params) {
+                Log.i(TAG, "Calling conn.connect()");
+                try {
+                    conn.connect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    return String.valueOf(conn.getInputStream());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+        }
+        Log.i(TAG, "Calling fetchurl().execute()");
+        new fetchurl().execute();
+        return null;
     }
 
     /**
