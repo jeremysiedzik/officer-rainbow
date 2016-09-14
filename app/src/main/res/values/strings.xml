@@ -40,7 +40,7 @@
     <string name="btn_stop"> Stop </string>
     <string name="start_text">Start Alarm</string>
     <string name="cancel_text">Cancel Alarm</string>
-    <string name="doodle_alert">Color Alert!!</string>
+    <string name="doodle_alert">Officer Rainbow Notification</string>
     <string name="doodle_found">You need to drop today!!</string>
     <string name="no_doodle">You do not need to drop today!!</string>
     <string name="connection_error">Connection error.</string>

@@ -19,8 +19,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class WebSitechecker extends IntentService {
-    public WebSitechecker() {
+public class TEMPLATEWebSitechecker extends IntentService {
+    public TEMPLATEWebSitechecker() {
         super("SchedulingService");
     }
     
@@ -78,6 +78,7 @@ public class WebSitechecker extends IntentService {
         // Try to connect to the Google homepage and download content.
         try {
             result = loadFromNetwork(urlString);
+            Log.i(TAG, "Calling loadFromNetwork");
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
@@ -123,6 +124,7 @@ public class WebSitechecker extends IntentService {
         String str ="";
       
         try {
+            Log.i(TAG, "About to run downoadUrl");
             stream = downloadUrl(urlString);
             str = readIt(stream);
         } finally {
@@ -143,12 +145,14 @@ public class WebSitechecker extends IntentService {
     private InputStream downloadUrl(String urlString) throws IOException {
     
         URL url = new URL(urlString);
+        Log.i(TAG, "About to run HttpURLConnection");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(10000 /* milliseconds */);
         conn.setConnectTimeout(15000 /* milliseconds */);
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
         // Start the query
+        Log.i(TAG, "About to run HttpURLConnection query via conn.connect");
         conn.connect();
         return conn.getInputStream();
     }

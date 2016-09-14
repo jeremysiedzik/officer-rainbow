@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class WebDataCheck extends JobService {
+public class TEMPLATEJobSchedulerService extends JobService {
 
     private Handler mJobHandler = new Handler( new Handler.Callback() {
         public static final String TAG = "Officer Rainbow";

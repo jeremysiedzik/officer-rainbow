@@ -25,16 +25,9 @@ import java.util.Calendar;
 public class JobSchedulerService extends JobService {
 
     public static final String TAG = "Officer Rainbow";
-    // An ID used to post the notification.
     public static final int NOTIFICATION_ID = 1;
-    // The string the app searches for in the Google home page content. If the app finds
-    // the string, it indicates the presence of a doodle.
     public static final String SEARCH_STRING = "PURPLE";
-    // The Google home page URL from which the app fetches content.
-    // You can find a list of other Google domains with possible doodles here:
-    // http://en.wikipedia.org/wiki/List_of_Google_domains
-    public static final String URL = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/aggregate.txt";
-    //NotificationCompat.Builder builder;
+    public static final String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/aggregate.txt";
 
     private Handler mJobHandler = new Handler( new Handler.Callback() {
 
@@ -49,11 +42,25 @@ public class JobSchedulerService extends JobService {
             if (alarm_time == 16) {
                 Log.i(TAG, "JobService running - it's 5am");
 
-                // If the app finds the string "doodle" in the Google home page content, it
-                // indicates the presence of a doodle. Post a "Doodle Alert" notification.
+                String urlString = url;
 
+                String result ="";
+
+                // Try to connect to the Google homepage and download content.
+                try {
+                    Log.i(TAG, "Calling loadFromNetwork");
+                    result = loadFromNetwork(urlString);
+                } catch (IOException e) {
+                    Log.i(TAG, getString(R.string.connection_error));
+                }
+
+                if (result.contains(SEARCH_STRING)) {
                     sendNotification(getString(R.string.doodle_found));
                     Log.i(TAG, "Found color!!");
+                } else {
+                    sendNotification(getString(R.string.no_doodle));
+                    Log.i(TAG, "No color found. :-(");
+                }
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -128,6 +135,7 @@ public class JobSchedulerService extends JobService {
         String str ="";
 
         try {
+            Log.i(TAG, "Calling downloadUrl");
             stream = downloadUrl(urlString);
             str = readIt(stream);
         } finally {
@@ -148,12 +156,14 @@ public class JobSchedulerService extends JobService {
     private InputStream downloadUrl(String urlString) throws IOException {
 
         URL url = new URL(urlString);
+        Log.i(TAG, "Calling HttpURLConnection");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(10000 /* milliseconds */);
         conn.setConnectTimeout(15000 /* milliseconds */);
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
         // Start the query
+        Log.i(TAG, "Calling conn.connect()");
         conn.connect();
         return conn.getInputStream();
     }
