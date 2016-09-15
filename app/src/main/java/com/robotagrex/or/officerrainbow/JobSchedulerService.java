@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
-
 import java.util.Calendar;
 
 public class JobSchedulerService extends JobService {
@@ -29,10 +28,11 @@ public class JobSchedulerService extends JobService {
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
             Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "JobService idling");
+            int alarm_int = 10;
 
-            if (alarm_time == 16) {
+            if (alarm_time == alarm_int) {
 
-                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int 16");
+                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int - " + Float.toString(alarm_int));
 
                 Context context = getApplication();
                 Intent service = new Intent(context, WebSitechecker.class);
