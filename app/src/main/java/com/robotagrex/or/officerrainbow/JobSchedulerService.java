@@ -32,7 +32,7 @@ public class JobSchedulerService extends JobService {
 
             if (alarm_time == alarm_int) {
 
-                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int - " + Float.toString(alarm_int));
+                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int - " + alarm_int);
 
                 Context context = getApplication();
                 Intent service = new Intent(context, WebSitechecker.class);
