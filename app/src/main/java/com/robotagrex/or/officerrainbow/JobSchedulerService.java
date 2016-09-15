@@ -32,7 +32,7 @@ public class JobSchedulerService extends JobService {
 
             if (alarm_time == 16) {
 
-                Log.i(TAG, "JobService running - it's 5am");
+                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int 16");
 
                 Context context = getApplication();
                 Intent service = new Intent(context, WebSitechecker.class);
@@ -42,7 +42,6 @@ public class JobSchedulerService extends JobService {
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-                //final MediaPlayer mPlayer = new MediaPlayer();
                 final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 

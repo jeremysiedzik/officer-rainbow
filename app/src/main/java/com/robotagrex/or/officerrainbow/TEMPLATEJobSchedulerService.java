@@ -25,7 +25,7 @@ public class TEMPLATEJobSchedulerService extends JobService {
             Log.i(TAG, "JobService idling");
 
             if (alarm_time == 16) {
-                Log.i(TAG, "JobService running alarm_time variable matches shared prefs");
+                Log.i(TAG, "JobService running - alarm_time variable matches shared prefs");
 
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -42,7 +42,6 @@ public class TEMPLATEJobSchedulerService extends JobService {
                             }
                         });
 
-
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
@@ -53,11 +52,9 @@ public class TEMPLATEJobSchedulerService extends JobService {
                     }
                 });
             }
-
                 jobFinished((JobParameters) msg.obj, false);
                 return true;
         }
-
     } );
 
     @Override
@@ -71,5 +68,4 @@ public class TEMPLATEJobSchedulerService extends JobService {
         mJobHandler.removeMessages( 1 );
         return false;
     }
-
 }
