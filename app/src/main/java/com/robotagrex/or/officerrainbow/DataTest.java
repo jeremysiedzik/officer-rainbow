@@ -33,7 +33,7 @@ public class DataTest extends AppCompatActivity {
 
         Button titlebutton = (Button) findViewById(R.id.titlebutton);
 
-        // Title AsyncTask
+        // aynctask
         class Title extends AsyncTask<Void, Void, Void> {
             String title;
 
