@@ -19,10 +19,17 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.google.android.gms:play-services-appindexing:9.6.1'
     compile 'org.jsoup:jsoup:1.9.2'
+    compile 'com.github.HotBitmapGG:RingProgressBar:V1.2.2'
 }
