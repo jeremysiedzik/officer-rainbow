@@ -29,7 +29,7 @@ public class WebSitechecker extends IntentService {
     public static final int NOTIFICATION_ID = 1;
     // The string the app searches for in the Google home page content. If the app finds 
     // the string, it indicates the presence of a doodle.
-    String SEARCH_STRING = sharedpreferences.getString("color1Key", "");
+    //String SEARCH_STRING = sharedpreferences.getString("color1Key", "blue");
     //public static final String SEARCH_STRING = fillcolor1;
     // The Google home page URL from which the app fetches content.
     // You can find a list of other Google domains with possible doodles here:
@@ -54,6 +54,7 @@ public class WebSitechecker extends IntentService {
     
         // If the app finds the string "doodle" in the Google home page content, it
         // indicates the presence of a doodle. Post a "Doodle Alert" notification.
+        String SEARCH_STRING = sharedpreferences.getString("color1Key", "blue");
         if (result.contains(SEARCH_STRING)) {
             sendNotification(getString(R.string.doodle_found));
             Log.i(TAG, "Found color!!");

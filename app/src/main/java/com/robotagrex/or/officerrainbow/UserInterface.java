@@ -44,7 +44,7 @@ public class UserInterface extends AppCompatActivity {
 
         tv1=(TextView)findViewById(R.id.textcolor1);
 
-        String fillcolor1 = sharedpreferences.getString("color1Key", "");
+        String fillcolor1 = sharedpreferences.getString("color1Key", "blue");
 
         tv1.setText(fillcolor1);
 
