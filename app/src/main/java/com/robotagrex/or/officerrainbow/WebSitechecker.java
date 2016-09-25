@@ -28,12 +28,13 @@ public class WebSitechecker extends IntentService {
     // An ID used to post the notification.
     public static final int NOTIFICATION_ID = 1;
     // The string the app searches for in the Google home page content. If the app finds 
-    // the string, it indicates the presence of a doodle.  
-    public static final String SEARCH_STRING = "beige";
+    // the string, it indicates the presence of a doodle.
+    String SEARCH_STRING = sharedpreferences.getString("color1Key", "");
+    //public static final String SEARCH_STRING = fillcolor1;
     // The Google home page URL from which the app fetches content.
     // You can find a list of other Google domains with possible doodles here:
     // http://en.wikipedia.org/wiki/List_of_Google_domains
-    public static final String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/onsite-colors.txt";
+    public static final String url = "http://feed.robotagrex.com/onsite-colors.txt";
 
     @Override
     protected void onHandleIntent(Intent intent) {

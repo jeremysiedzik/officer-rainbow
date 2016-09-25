@@ -85,6 +85,25 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
+        <TextView
+            android:text="Your Color Choices:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/counter"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="54dp"
+            android:id="@+id/textView12"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="Your Color Choices:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textcolor1"
+            android:textSize="24sp"
+            android:layout_below="@+id/textView12"
+            android:layout_alignParentStart="true" />
+
     </RelativeLayout>
 
 </ScrollView>

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
+//import android.widget.EditText;
 import android.widget.TextView;
 //import android.widget.Toast;
 
@@ -29,9 +30,7 @@ public class UserInterface extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    TextView mTextView;
-    TextView raw_probation_date;
-
+    TextView mTextView, raw_probation_date, tv1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +41,12 @@ public class UserInterface extends AppCompatActivity {
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
+
+        tv1=(TextView)findViewById(R.id.textcolor1);
+
+        String fillcolor1 = sharedpreferences.getString("color1Key", "");
+
+        tv1.setText(fillcolor1);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
