@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -16,20 +17,23 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class WebSitechecker extends IntentService {
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
+
     public WebSitechecker() {
         super("SchedulingService");
     }
     
-    public static final String TAG = "Scheduling Demo";
+    public static final String TAG = "Color Check Service";
     // An ID used to post the notification.
     public static final int NOTIFICATION_ID = 1;
     // The string the app searches for in the Google home page content. If the app finds 
     // the string, it indicates the presence of a doodle.  
-    public static final String SEARCH_STRING = "PURPLE";
+    public static final String SEARCH_STRING = "beige";
     // The Google home page URL from which the app fetches content.
     // You can find a list of other Google domains with possible doodles here:
     // http://en.wikipedia.org/wiki/List_of_Google_domains
-    public static final String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/aggregate.txt";
+    public static final String url = "http://ec2-52-42-215-71.us-west-2.compute.amazonaws.com/onsite-colors.txt";
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -94,7 +98,7 @@ public class WebSitechecker extends IntentService {
         } finally {
             if (stream != null) {
                 stream.close();
-            }      
+            }
         }
         return str;
     }

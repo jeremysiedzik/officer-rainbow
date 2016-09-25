@@ -79,7 +79,7 @@
             app:ringProgressColor="@color/colorPrimary"
             app:ringWidth="3dp"
             app:style="STROKE"
-            app:textColor="@color/colorPrimary"
+            app:textColor="@color/colorPrimaryDark"
             app:textIsShow="true"
             app:textSize="24sp"
             android:layout_centerVertical="true"
