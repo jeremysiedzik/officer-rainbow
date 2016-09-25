@@ -54,6 +54,7 @@ public class WebSitechecker extends IntentService {
     
         // If the app finds the string "doodle" in the Google home page content, it
         // indicates the presence of a doodle. Post a "Doodle Alert" notification.
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String SEARCH_STRING = sharedpreferences.getString("color1Key", "blue");
         if (result.contains(SEARCH_STRING)) {
             sendNotification(getString(R.string.doodle_found));

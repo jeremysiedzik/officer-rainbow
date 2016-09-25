@@ -35,20 +35,17 @@ public class UserInterface extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userinterface);
-
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
 
-        tv1=(TextView)findViewById(R.id.textcolor1);
-
+        tv1 = (TextView)findViewById(R.id.textcolor1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "blue");
-
         tv1.setText(fillcolor1);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "07.21.2020");
         raw_probation_date.setText(raw_probation_txt);
