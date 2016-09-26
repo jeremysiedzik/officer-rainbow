@@ -240,14 +240,6 @@ public class UserInterface extends AppCompatActivity {
             }
         });
 
-        buttonnext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, OfficerRainbow.class);
-                startActivity(qoneintent);
-            }
-        });
-
         // Set the progress bar's progress
         int progress = 50;
         progress_bar_2.setProgress(progress);
