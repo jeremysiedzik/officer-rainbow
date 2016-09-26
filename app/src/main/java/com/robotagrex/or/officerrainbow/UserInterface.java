@@ -17,7 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
@@ -47,9 +46,9 @@ public class UserInterface extends AppCompatActivity {
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
         color_choice.setText(fillcolor1);
 
-        String alarm_state = sharedpreferences.getString("alarm_state", "");
+        boolean alarm_state = sharedpreferences.getBoolean("alarm_state", false);
 
-        if (Objects.equals(alarm_state, "true")) {
+        if (alarm_state) {
             alarmstate.setText(R.string.alarm_enabled_text);
         }
         alarmstate.setText(R.string.alarm_disabled_text);
