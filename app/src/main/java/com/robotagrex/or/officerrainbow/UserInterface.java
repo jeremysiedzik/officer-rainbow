@@ -26,7 +26,8 @@ public class UserInterface extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    TextView counter, raw_probation_date, probation_end_text, color_choice_text, color_choice;
+    TextView counter, raw_probation_date, probation_end_date, color_choice_text, color_choice;
+    TextView alarmprompt,alarmstate;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class UserInterface extends AppCompatActivity {
         String fillcolor1 = sharedpreferences.getString("color1Key", "blue");
         color_choice.setText(fillcolor1);
 
-        probation_end_text = (TextView)findViewById(R.id.textView11);
+        probation_end_date = (TextView)findViewById(R.id.probation_end_date);
         color_choice_text = (TextView)findViewById(R.id.textView12);
 
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
@@ -118,7 +119,7 @@ public class UserInterface extends AppCompatActivity {
             }
         });
 
-        probation_end_text.setOnClickListener(new View.OnClickListener() {
+        probation_end_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);

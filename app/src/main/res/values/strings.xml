@@ -54,7 +54,7 @@
     <string name="note">Notes</string>
     <string name="prob_end_date_text">Probation End Date:</string>
     <string name="your_color_choices">Tap here to choose</string>
-    <string name="your_color_choices_prompt">Your Color Choices:</string>
-    <string name="alarm_state">Alarm Setting:</string>
-    <string name="alarm_active">Tap here to choose</string>
+    <string name="your_color_choices_prompt">Color Choices:</string>
+    <string name="alarm_promt">Alarm Setting:</string>
+    <string name="alarm_state">Tap here to choose</string>
 </resources>
