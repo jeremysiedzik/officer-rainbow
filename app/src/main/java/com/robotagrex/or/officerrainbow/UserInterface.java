@@ -51,7 +51,7 @@ public class UserInterface extends AppCompatActivity {
         }
 
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
-        String daily_colors_string_data = sharedpreferences.getString("data_push", "");
+        String daily_colors_string_data = sharedpreferences.getString("data_result", "");
         if((daily_colors_string_data.length() != 0)) {
             daily_colors_string.setText(daily_colors_string_data);
         }
