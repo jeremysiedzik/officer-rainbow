@@ -28,7 +28,7 @@ public class ProbationMeetingAlarmSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarmsettings);
+        setContentView(R.layout.probationmeetingalarmsettings);
         toggleButton5 = (ToggleButton) findViewById(R.id.toggleButton5);
         toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
         toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);
