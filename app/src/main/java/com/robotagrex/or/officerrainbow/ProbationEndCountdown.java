@@ -39,7 +39,7 @@ public class ProbationEndCountdown extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
+        raw_probation_date = (TextView) findViewById(R.id.raw_end_probation_date);
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "07.21.2020");
         raw_probation_date.setText(raw_probation_txt);
 

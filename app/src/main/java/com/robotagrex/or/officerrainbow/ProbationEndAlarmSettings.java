@@ -36,16 +36,16 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
 
         mJobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
 
-        boolean toggle1state = sharedpreferences.getBoolean("email_state", false);
+        boolean toggle1state = sharedpreferences.getBoolean("probation_end_email_state", false);
         toggleButton5.setChecked(toggle1state);
 
-        boolean toggle2state = sharedpreferences.getBoolean("sms_state", false);
+        boolean toggle2state = sharedpreferences.getBoolean("probation_end_sms_state", false);
         toggleButton6.setChecked(toggle2state);
 
-        boolean toggle3state = sharedpreferences.getBoolean("alarm_state", false);
+        boolean toggle3state = sharedpreferences.getBoolean("probation_end_alarm_state", false);
         toggleButton7.setChecked(toggle3state);
 
-        String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
+        String txtdate = sharedpreferences.getString("probation_end_date", "No date chosen yet");
         TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
 
@@ -73,13 +73,13 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
                 if (toggleButton5.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("email_state", true);
+                    editor.putBoolean("probation_end_email_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("email_state", false);
+                    editor.putBoolean("probation_end_email_state", false);
                     editor.apply();
                 }
             }
@@ -92,13 +92,13 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
                 if (toggleButton6.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("sms_state", true);
+                    editor.putBoolean("probation_end_sms_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("sms_state", false);
+                    editor.putBoolean("probation_end_sms_state", false);
                     editor.apply();
                 }
             }
@@ -123,7 +123,7 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
                     }
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("alarm_state", true);
+                    editor.putBoolean("probation_end_alarm_state", true);
                     editor.apply();
                 }
                 else
@@ -131,7 +131,7 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
                     mJobScheduler.cancelAll();
                     Toast.makeText( getApplicationContext(), "JobService Cancelled", Toast.LENGTH_SHORT ).show();
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("alarm_state", false);
+                    editor.putBoolean("probation_end_alarm_state", false);
                     editor.apply();
                 }
             }
@@ -139,7 +139,7 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
     }
 
     public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
+        DialogFragment newFragment = new ProbationEndDatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }

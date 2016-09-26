@@ -41,7 +41,7 @@
             android:text="@string/prob_end_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/probation_end_date"
+            android:id="@+id/probation_end_date_heading"
             tools:text="@string/prob_end_date_text"
             android:textSize="30sp"
             android:layout_below="@+id/my_toolbar"
@@ -55,8 +55,8 @@
             android:textSize="24sp"
             android:textIsSelectable="false"
             android:textColor="#000000"
-            android:id="@+id/raw_probation_date"
-            android:layout_below="@+id/probation_end_date"
+            android:id="@+id/raw_end_probation_date"
+            android:layout_below="@+id/probation_meeting_date_heading"
             android:layout_alignParentStart="true" />
 
         <TextView
@@ -66,8 +66,8 @@
             android:textSize="24sp"
             android:textIsSelectable="false"
             android:textColor="#000000"
-            android:id="@+id/counter"
-            android:layout_below="@+id/raw_probation_date"
+            android:id="@+id/probation_end_counter"
+            android:layout_below="@+id/raw_end_probation_date"
             android:layout_alignParentStart="true" />
 
         <io.netopen.hotbitmapgg.library.view.RingProgressBar
@@ -89,33 +89,36 @@
             android:clickable="false"/>
 
         <TextView
-            android:text="@string/alarm_state"
+            android:text="@string/probation_meeting_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/alarmstate"
+            android:id="@+id/probation_meeting_date_heading"
+            android:textSize="30sp"
+            android:layout_alignBaseline="@+id/probation_end_date_heading"
+            android:layout_alignBottom="@+id/probation_end_date_heading"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/raw_countown_date"
             android:textSize="24sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/progress_bar_2"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="39dp" />
+            android:textIsSelectable="false"
+            android:textColor="#000000"
+            android:id="@+id/raw_meeting_probation_date"
+            android:layout_below="@+id/probation_meeting_date_heading"
+            android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/alarm_promt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/alarmprompt"
-            android:textSize="30sp"
-            android:layout_below="@+id/progress_bar_2"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:text="@string/your_color_choices_prompt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/color_choice_prompt"
-            android:textSize="30sp"
-            android:layout_above="@+id/progress_bar_2"
-            android:layout_alignParentStart="true" />
+            android:text="@string/count_down_date"
+            android:textSize="24sp"
+            android:textIsSelectable="false"
+            android:textColor="#000000"
+            android:id="@+id/probation_meeting_counter"
+            android:layout_below="@+id/raw_meeting_probation_date"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:text="@string/your_color_choices"
@@ -124,8 +127,37 @@
             android:id="@+id/textcolor1"
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/color_choice_prompt"
+            android:layout_below="@+id/color_choice_heading"
             android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="@string/your_color_choices_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/color_choice_heading"
+            android:textSize="30sp"
+            android:layout_above="@+id/progress_bar_2"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="@string/alarm_promt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alarmprompt"
+            android:textSize="30sp"
+            android:layout_above="@+id/progress_bar_2"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="@string/alarm_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alarmstate"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/alarmprompt"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="12dp" />
 
     </RelativeLayout>
 

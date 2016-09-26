@@ -55,7 +55,7 @@
     <string name="prob_end_date_text">Probation End Date:</string>
     <string name="your_color_choices">Tap here to choose</string>
     <string name="your_color_choices_prompt">Color Choices:</string>
-    <string name="alarm_promt">Alarm Setting:</string>
+    <string name="alarm_promt">Probation Meeting Alarm:</string>
     <string name="alarm_state">Tap here to choose</string>
     <string name="alarm_enabled_text">Enabled</string>
     <string name="alarm_disabled_text">Disabled</string>
@@ -65,4 +65,6 @@
     <string name="text_msg_disabled">Text MSG Disabled</string>
     <string name="alarm_enabled">Alarm Enabled</string>
     <string name="alarm_disabled">Alarm Disabled</string>
+    <string name="probation_meeting_date">Probation Meeting Date:</string>
+    <string name="probation_end_date">Probation End Date:</string>
 </resources>
