@@ -35,8 +35,8 @@ public class ProbationEndDatePickerFragment extends DialogFragment
 
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        String date_string = String.valueOf(month + 1) + "/" +
-                day + "/" + year;
+        String date_string = String.valueOf(month + 1) + "." +
+                day + "." + year;
         String raw_date_string = String.valueOf(month + 1) + "." +
                 day + "." + year;
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
