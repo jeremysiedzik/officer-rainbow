@@ -56,7 +56,7 @@ public class UserInterface extends AppCompatActivity {
 
 
         probation_end_date = (TextView)findViewById(R.id.probation_end_date);
-        color_choice_text = (TextView)findViewById(R.id.textView12);
+        color_choice_text = (TextView)findViewById(R.id.color_choice_prompt);
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
         alarmstate = (TextView)findViewById(R.id.alarmstate);
 
