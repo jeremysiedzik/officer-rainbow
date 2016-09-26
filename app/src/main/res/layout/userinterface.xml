@@ -83,7 +83,9 @@
             app:textIsShow="true"
             app:textSize="24sp"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:scaleX="3"
+            android:scaleY="3" />
 
         <TextView
             android:text="Your Color Choices:"
