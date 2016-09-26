@@ -47,11 +47,13 @@ public class UserInterface extends AppCompatActivity {
         color_choice.setText(fillcolor1);
 
         boolean alarm_state = sharedpreferences.getBoolean("alarm_state", false);
+        String alarmtextenabled = getString(R.string.alarm_enabled_text);
+        String alarmtextdisabled = getString(R.string.alarm_enabled_text);
 
         if (alarm_state) {
-            alarmstate.setText(R.string.alarm_enabled_text);
+            alarmstate.setText(alarmtextenabled);
         }
-        alarmstate.setText(R.string.alarm_disabled_text);
+        alarmstate.setText(alarmtextdisabled);
 
 
         probation_end_date = (TextView)findViewById(R.id.probation_end_date);
