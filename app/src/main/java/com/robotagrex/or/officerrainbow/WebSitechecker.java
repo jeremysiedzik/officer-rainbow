@@ -153,7 +153,8 @@ public class WebSitechecker extends IntentService {
 
         StringBuilder builder = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        for(String line = reader.readLine(); line != null; line = reader.readLine()) {
+        String line;
+        while ((line = reader.readLine()) != null) {
             System.out.println(line);
             builder.append(line);
         }
