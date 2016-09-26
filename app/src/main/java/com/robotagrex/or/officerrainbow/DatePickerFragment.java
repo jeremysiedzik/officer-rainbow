@@ -44,7 +44,7 @@ public class DatePickerFragment extends DialogFragment
         editor.putString(raw_date, raw_date_string);
         editor.apply();
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)getActivity().findViewById(R.id.textView1);
+        TextView txtdate_view=(TextView)getActivity().findViewById(R.id.probation_meet_date);
         txtdate_view.setText(txtdate);
     }
 }

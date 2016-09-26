@@ -22,7 +22,7 @@ import java.util.Locale;
 //import android.view.animation.Animation;
 
 
-public class ProbationMeeting extends AppCompatActivity {
+public class ProbationEndCountdown extends AppCompatActivity {
     CountDownTimer mCountDownTimer;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -69,7 +69,7 @@ public class ProbationMeeting extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(ProbationMeeting.this, UserInterface.class);
+                Intent qoneintent = new Intent(ProbationEndCountdown.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

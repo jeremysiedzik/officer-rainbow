@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class AlarmSettings extends AppCompatActivity {
+public class ProbationMeetingAlarmSettings extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -46,7 +46,7 @@ public class AlarmSettings extends AppCompatActivity {
         toggleButton7.setChecked(toggle3state);
 
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)findViewById(R.id.probation_meet_date);
+        TextView txtdate_view=(TextView)findViewById(R.id.textView1);
         txtdate_view.setText(txtdate);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
@@ -61,7 +61,7 @@ public class AlarmSettings extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(AlarmSettings.this, UserInterface.class);
+                Intent qoneintent = new Intent(ProbationMeetingAlarmSettings.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

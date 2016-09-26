@@ -25,7 +25,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <TextView
-        android:id="@+id/probation_meet_date"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/date_field"
@@ -53,38 +53,38 @@
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentStart="true" />
 
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton5"
-        android:textSize="20sp"
-        android:checked="false"
-        android:textOn="@string/email_enabled"
-        android:textOff="@string/email_disabled"
-        android:layout_below="@+id/toggleButton6"
-        android:layout_alignStart="@+id/buttondate" />
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton5"
+            android:textSize="20sp"
+            android:checked="false"
+            android:textOn="@string/email_enabled"
+            android:textOff="@string/email_disabled"
+            android:layout_below="@+id/toggleButton6"
+            android:layout_alignStart="@+id/buttondate" />
 
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton6"
-        android:textSize="20sp"
-        android:checked="false"
-        android:textOn="@string/text_msg_enabled"
-        android:textOff="@string/text_msg_disabled"
-        android:layout_below="@+id/toggleButton7"
-        android:layout_alignStart="@+id/toggleButton5" />
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton6"
+            android:textSize="20sp"
+            android:checked="false"
+            android:textOn="@string/text_msg_enabled"
+            android:textOff="@string/text_msg_disabled"
+            android:layout_below="@+id/toggleButton7"
+            android:layout_alignStart="@+id/toggleButton5" />
 
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton7"
-        android:textSize="20sp"
-        android:checked="false"
-        android:textOn="@string/alarm_enabled"
-        android:textOff="@string/alarm_disabled"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentStart="true" />
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton7"
+            android:textSize="20sp"
+            android:checked="false"
+            android:textOn="@string/alarm_enabled"
+            android:textOff="@string/alarm_disabled"
+            android:layout_below="@+id/textView7"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:layout_width="wrap_content"
