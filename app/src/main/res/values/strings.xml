@@ -14,7 +14,7 @@
     <string name="phone_alarm">Set off your phone alarm if you need to report?</string>
     <string name="phone_alarm_enabled">Alarm Enabled</string>
     <string name="phone_alarm_disabled">Alarm Disabled</string>
-    <string name="probation_reminder">Next probation meeting reminder:</string>
+    <string name="probation_reminder">Next probation meeting:</string>
     <string name="next">Save</string>
     <string name="contact_button">Browse Contacts</string>
     <string name="example_color">Blue</string>
@@ -59,4 +59,10 @@
     <string name="alarm_state">Tap here to choose</string>
     <string name="alarm_enabled_text">Enabled</string>
     <string name="alarm_disabled_text">Disabled</string>
+    <string name="email_enabled">Email Enabled</string>
+    <string name="email_disabled">Email Disabled</string>
+    <string name="text_msg_enabled">Text MSG Enabled</string>
+    <string name="text_msg_disabled">Text MSG Disabled</string>
+    <string name="alarm_enabled">Alarm Enabled</string>
+    <string name="alarm_disabled">Alarm Disabled</string>
 </resources>

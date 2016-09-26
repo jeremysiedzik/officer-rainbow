@@ -23,8 +23,6 @@ public class AlarmSettings extends AppCompatActivity {
     ToggleButton toggleButton5, toggleButton6, toggleButton7;
     private JobScheduler mJobScheduler;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +43,8 @@ public class AlarmSettings extends AppCompatActivity {
         boolean toggle3state = sharedpreferences.getBoolean("alarm_state", false);
         toggleButton7.setChecked(toggle3state);
 
-        String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)findViewById(R.id.textView1);
-        txtdate_view.setText(txtdate);
-
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
-        Button buttondate = (Button)findViewById(R.id.buttondate);
-        assert buttondate != null;
 
         Button buttonnext = (Button)findViewById(R.id.buttonnext);
         assert buttonnext != null;
@@ -136,10 +127,5 @@ public class AlarmSettings extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }

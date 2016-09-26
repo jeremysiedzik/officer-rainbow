@@ -56,12 +56,9 @@ public class UserInterface extends AppCompatActivity {
                 alarmstate.setText(getString(R.string.alarm_disabled_text));
             }
 
-
-
         probation_end_date = (TextView)findViewById(R.id.probation_end_date);
         color_choice_text = (TextView)findViewById(R.id.color_choice_prompt);
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
-        alarmstate = (TextView)findViewById(R.id.alarmstate);
 
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "07.21.2020");
