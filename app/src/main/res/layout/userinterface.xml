@@ -96,7 +96,8 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="54dp"
             android:id="@+id/textView12"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            tools:text="Color Choices:" />
 
         <TextView
             android:text="@string/your_color_choices"
@@ -106,7 +107,29 @@
             android:textSize="24sp"
             android:layout_below="@+id/textView12"
             android:layout_alignParentStart="true"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark"
+            tools:text="blue" />
+
+        <TextView
+            android:text="@string/alarm_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView13"
+            android:textSize="30sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            tools:text="Alarm Setting:" />
+
+        <TextView
+            android:text="@string/alarm_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView14"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/textView13"
+            android:layout_alignParentStart="true"
+            tools:text="disabled" />
 
     </RelativeLayout>
 
