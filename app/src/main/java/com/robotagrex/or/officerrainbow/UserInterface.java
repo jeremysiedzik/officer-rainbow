@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
@@ -43,11 +44,21 @@ public class UserInterface extends AppCompatActivity {
         assert progress_bar_2 != null;
 
         color_choice = (TextView)findViewById(R.id.textcolor1);
-        String fillcolor1 = sharedpreferences.getString("color1Key", "blue");
+        String fillcolor1 = sharedpreferences.getString("color1Key", "");
         color_choice.setText(fillcolor1);
+
+        String alarm_state = sharedpreferences.getString("alarm_state", "");
+
+        if (Objects.equals(alarm_state, "true")) {
+            alarmstate.setText(R.string.alarm_enabled_text);
+        }
+        alarmstate.setText(R.string.alarm_disabled_text);
+
 
         probation_end_date = (TextView)findViewById(R.id.probation_end_date);
         color_choice_text = (TextView)findViewById(R.id.textView12);
+        alarmprompt = (TextView)findViewById(R.id.alarmprompt);
+        alarmstate = (TextView)findViewById(R.id.alarmstate);
 
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "07.21.2020");
@@ -115,6 +126,22 @@ public class UserInterface extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent qoneintent = new Intent(UserInterface.this, ColorChoice.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        alarmstate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        alarmprompt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
