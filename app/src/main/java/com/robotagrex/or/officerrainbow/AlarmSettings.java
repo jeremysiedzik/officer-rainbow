@@ -61,7 +61,7 @@ public class AlarmSettings extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(AlarmSettings.this, CountdownActivity.class);
+                Intent qoneintent = new Intent(AlarmSettings.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

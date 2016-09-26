@@ -72,7 +72,7 @@ public class ColorChoice extends AppCompatActivity {
                 editor.putString(Color5, color5);
 
                 editor.apply();
-                Intent qoneintent = new Intent(ColorChoice.this, DataTest.class);
+                Intent qoneintent = new Intent(ColorChoice.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

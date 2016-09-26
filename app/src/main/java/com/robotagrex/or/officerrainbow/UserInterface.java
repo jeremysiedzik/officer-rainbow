@@ -26,7 +26,7 @@ public class UserInterface extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    TextView mTextView, raw_probation_date, tv1;
+    TextView counter, raw_probation_date, tv1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +69,7 @@ public class UserInterface extends AppCompatActivity {
         //         DateUtils.SECOND_IN_MILLIS * 42;
 
 
-        mTextView = (TextView) findViewById(R.id.counter);
+        counter = (TextView) findViewById(R.id.counter);
         //Animation anim = new AlphaAnimation(0.0f, 1.0f);
         //anim.setDuration(50); //You can manage the time of the blink with this parameter
         //anim.setStartOffset(20);
@@ -83,7 +83,7 @@ public class UserInterface extends AppCompatActivity {
             StringBuilder time = new StringBuilder();
             @Override
             public void onFinish() {
-                mTextView.setText(DateUtils.formatElapsedTime(0));
+                counter.setText(DateUtils.formatElapsedTime(0));
                 //mTextView.setText("Times Up!");
             }
 
@@ -102,10 +102,18 @@ public class UserInterface extends AppCompatActivity {
                 }
 
                 time.append(DateUtils.formatElapsedTime(Math.round(millisUntilFinished / 1000d)));
-                mTextView.setText(time.toString());
+                counter.setText(time.toString());
 
             }
         }.start();
+
+        counter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, CountdownActivity.class);
+                startActivity(qoneintent);
+            }
+        });
 
         progress_bar_2.setOnClickListener(new View.OnClickListener() {
             @Override
