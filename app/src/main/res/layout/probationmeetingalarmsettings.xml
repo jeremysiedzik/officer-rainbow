@@ -24,67 +24,26 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <TextView
-        android:id="@+id/probation_meet_date_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/date_field"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="50sp"
-        android:layout_below="@+id/buttondate"
-        android:layout_alignStart="@+id/buttondate" />
-
-    <Button
-        android:id="@+id/buttondate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="showDatePickerDialog"
-        android:text="@string/choose_date"
-        android:textSize="20sp"
-        android:layout_below="@+id/toggleButton5" />
-
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/probation_meeting_date_heading"
         android:id="@+id/textView7"
         android:textSize="50sp"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentStart="true" />
+            android:layout_below="@+id/my_toolbar"
+            android:layout_centerHorizontal="true" />
 
-        <ToggleButton
+        <TextView
+            android:id="@+id/probation_meet_date_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/toggleButton5"
-            android:textSize="20sp"
-            android:checked="false"
-            android:textOn="@string/email_enabled"
-            android:textOff="@string/email_disabled"
-            android:layout_below="@+id/toggleButton6"
-            android:layout_alignStart="@+id/buttondate" />
-
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/toggleButton6"
-            android:textSize="20sp"
-            android:checked="false"
-            android:textOn="@string/text_msg_enabled"
-            android:textOff="@string/text_msg_disabled"
-            android:layout_below="@+id/toggleButton7"
-            android:layout_alignStart="@+id/toggleButton5" />
-
-        <ToggleButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/toggleButton7"
-            android:textSize="20sp"
-            android:checked="false"
-            android:textOn="@string/alarm_enabled"
-            android:textOff="@string/alarm_disabled"
-            android:layout_below="@+id/textView7"
-            android:layout_alignParentStart="true" />
+            android:text="@string/date_field"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="50sp"
+            android:layout_above="@+id/buttondate"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="87dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -94,8 +53,18 @@
             android:clickable="false"
             android:textSize="50sp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/buttondate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="showDatePickerDialog"
+            android:text="@string/choose_date"
+            android:textSize="36sp"
+            android:layout_marginBottom="158dp"
+            android:layout_above="@+id/buttonnext"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
