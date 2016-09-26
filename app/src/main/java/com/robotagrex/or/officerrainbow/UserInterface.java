@@ -171,7 +171,7 @@ public class UserInterface extends AppCompatActivity {
         alarmstate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationMeetingAlarmSettings.class);
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -179,7 +179,7 @@ public class UserInterface extends AppCompatActivity {
         alarmprompt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationMeetingAlarmSettings.class);
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
