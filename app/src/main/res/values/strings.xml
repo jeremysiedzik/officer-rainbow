@@ -57,8 +57,8 @@
     <string name="your_color_choices_prompt">Color Choices:</string>
     <string name="alarm_prompt">Notification Alarm:</string>
     <string name="alarm_state">Tap here to choose</string>
-    <string name="alarm_enabled_text">Enabled</string>
-    <string name="alarm_disabled_text">Disabled</string>
+    <string name="alarm_enabled_text">Alarm Enabled</string>
+    <string name="alarm_disabled_text">Alarm Disabled</string>
     <string name="email_enabled">Email Enabled</string>
     <string name="email_disabled">Email Disabled</string>
     <string name="text_msg_enabled">Text MSG Enabled</string>
@@ -69,4 +69,11 @@
     <string name="probation_end_date">Probation End Date:</string>
     <string name="probation_meeting_date_heading">Probation Meeting Date:</string>
     <string name="testing_alarm">Testing Alarm:</string>
+    <string name="sms_enabled_text">Text MSG Enabled</string>
+    <string name="sms_disabled_text">Text MSG Disabled</string>
+    <string name="email_enabled_text">Email MSG Enabled</string>
+    <string name="email_disabled_text">Email MSG Disabled</string>
+    <string name="alarm_state_notify">Tap to enable alert</string>
+    <string name="alarm_state_sms">Tap to enable text</string>
+    <string name="alarm_state_email">Tap to enable email</string>
 </resources>

@@ -26,7 +26,8 @@ public class UserInterface extends AppCompatActivity {
     SharedPreferences sharedpreferences;
 
     TextView color_choice_heading,color_choice;
-    TextView alarmprompt,alarmstate,probation_end_date_heading,probation_meeting_date_heading;
+    TextView alarm_state_notify,alarm_state_email,alarm_state_sms;
+    TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +51,30 @@ public class UserInterface extends AppCompatActivity {
         }
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
-        alarmstate = (TextView)findViewById(R.id.alarmstate);
-        boolean alarm_state = sharedpreferences.getBoolean("probation_meeting_alarm_state", false);
-        if (alarm_state) {
-            alarmstate.setText(getString(R.string.alarm_enabled_text));}
+
+        alarm_state_notify = (TextView)findViewById(R.id.alarm_state_notify);
+        boolean alarm_set_nofity = sharedpreferences.getBoolean("probation_meeting_alarm_state", false);
+        if (alarm_set_nofity) {
+            alarm_state_notify.setText(getString(R.string.alarm_enabled_text));}
             else {
-                alarmstate.setText(getString(R.string.alarm_disabled_text));
+                alarm_state_notify.setText(getString(R.string.alarm_disabled_text));
             }
+
+        alarm_state_sms = (TextView)findViewById(R.id.alarm_state_sms);
+        boolean alarm_set_sms = sharedpreferences.getBoolean("probation_meeting_sms_state", false);
+        if (alarm_set_sms) {
+            alarm_state_sms.setText(getString(R.string.sms_enabled_text));}
+        else {
+            alarm_state_sms.setText(getString(R.string.sms_disabled_text));
+        }
+
+        alarm_state_email = (TextView)findViewById(R.id.alarm_state_email);
+        boolean alarm_set_email = sharedpreferences.getBoolean("probation_meeting_email_state", false);
+        if (alarm_set_email) {
+            alarm_state_email.setText(getString(R.string.email_enabled_text));}
+        else {
+            alarm_state_email.setText(getString(R.string.email_disabled_text));
+        }
 
         probation_meeting_date_heading = (TextView)findViewById(R.id.probation_meeting_date_heading);
         probation_end_date_heading = (TextView)findViewById(R.id.probation_end_date_heading);
@@ -168,7 +186,23 @@ public class UserInterface extends AppCompatActivity {
             }
         });
 
-        alarmstate.setOnClickListener(new View.OnClickListener() {
+        alarm_state_notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        alarm_state_sms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        alarm_state_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
