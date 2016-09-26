@@ -67,4 +67,5 @@
     <string name="alarm_disabled">Alarm Disabled</string>
     <string name="probation_meeting_date">Probation Meeting Date:</string>
     <string name="probation_end_date">Probation End Date:</string>
+    <string name="probation_meeting_date_heading">Probation Meeting Date:</string>
 </resources>
