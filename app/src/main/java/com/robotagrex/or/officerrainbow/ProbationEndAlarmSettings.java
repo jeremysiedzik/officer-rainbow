@@ -44,7 +44,7 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
         toggleButton7.setChecked(toggle3state);
 
         String txtdate = sharedpreferences.getString("probation_end_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)findViewById(R.id.textView1);
+        TextView txtdate_view=(TextView)findViewById(R.id.probation_end_date_id);
         txtdate_view.setText(txtdate);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
