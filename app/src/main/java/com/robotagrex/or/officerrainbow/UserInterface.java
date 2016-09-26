@@ -53,7 +53,7 @@ public class UserInterface extends AppCompatActivity {
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
 
         alarm_state_notify = (TextView)findViewById(R.id.alarm_state_notify);
-        boolean alarm_set_nofity = sharedpreferences.getBoolean("probation_meeting_alarm_state", false);
+        boolean alarm_set_nofity = sharedpreferences.getBoolean("droptest_alarm_state", false);
         if (alarm_set_nofity) {
             alarm_state_notify.setText(getString(R.string.alarm_enabled_text));}
             else {
@@ -61,7 +61,7 @@ public class UserInterface extends AppCompatActivity {
             }
 
         alarm_state_sms = (TextView)findViewById(R.id.alarm_state_sms);
-        boolean alarm_set_sms = sharedpreferences.getBoolean("probation_meeting_sms_state", false);
+        boolean alarm_set_sms = sharedpreferences.getBoolean("droptest_sms_state", false);
         if (alarm_set_sms) {
             alarm_state_sms.setText(getString(R.string.sms_enabled_text));}
         else {
@@ -69,7 +69,7 @@ public class UserInterface extends AppCompatActivity {
         }
 
         alarm_state_email = (TextView)findViewById(R.id.alarm_state_email);
-        boolean alarm_set_email = sharedpreferences.getBoolean("probation_meeting_email_state", false);
+        boolean alarm_set_email = sharedpreferences.getBoolean("droptest_email_state", false);
         if (alarm_set_email) {
             alarm_state_email.setText(getString(R.string.email_enabled_text));}
         else {

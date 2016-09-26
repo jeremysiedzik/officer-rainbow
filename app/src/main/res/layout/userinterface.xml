@@ -146,8 +146,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarmprompt"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"
-            tools:text="Tap to enable notification" />
+            android:layout_marginEnd="12dp" />
 
         <TextView
             android:text="@string/alarm_state_sms"
@@ -157,8 +156,7 @@
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarm_state_notify"
-            android:layout_alignParentEnd="true"
-            tools:text="Tap to enable text" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:text="@string/alarm_state_email"
@@ -168,8 +166,7 @@
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarm_state_sms"
-            android:layout_alignParentEnd="true"
-            tools:text="Tap to enable email" />
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

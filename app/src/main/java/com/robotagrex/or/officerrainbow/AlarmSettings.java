@@ -38,7 +38,7 @@ public class AlarmSettings extends AppCompatActivity {
         boolean toggle2state = sharedpreferences.getBoolean("droptest_sms_state", false);
         toggleButton6.setChecked(toggle2state);
 
-        boolean toggle3state = sharedpreferences.getBoolean("alarm_state", false);
+        boolean toggle3state = sharedpreferences.getBoolean("droptest_alarm_state", false);
         toggleButton7.setChecked(toggle3state);
 
         //String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
@@ -64,13 +64,13 @@ public class AlarmSettings extends AppCompatActivity {
                 if (toggleButton5.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("email_state", true);
+                    editor.putBoolean("droptest_email_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("email_state", false);
+                    editor.putBoolean("droptest_email_state", false);
                     editor.apply();
                 }
             }
@@ -83,13 +83,13 @@ public class AlarmSettings extends AppCompatActivity {
                 if (toggleButton6.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("sms_state", true);
+                    editor.putBoolean("droptest_sms_state", true);
                     editor.apply();
                 }
                 else
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("sms_state", false);
+                    editor.putBoolean("droptest_sms_state", false);
                     editor.apply();
                 }
             }
@@ -114,7 +114,7 @@ public class AlarmSettings extends AppCompatActivity {
                     }
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("alarm_state", true);
+                    editor.putBoolean("droptest_alarm_state", true);
                     editor.apply();
                 }
                 else
@@ -122,7 +122,7 @@ public class AlarmSettings extends AppCompatActivity {
                     mJobScheduler.cancelAll();
                     Toast.makeText( getApplicationContext(), "JobService Cancelled", Toast.LENGTH_SHORT ).show();
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
-                    editor.putBoolean("alarm_state", false);
+                    editor.putBoolean("droptest_alarm_state", false);
                     editor.apply();
                 }
             }
