@@ -44,7 +44,10 @@ public class UserInterface extends AppCompatActivity {
 
         color_choice = (TextView)findViewById(R.id.textcolor1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
-        color_choice.setText(fillcolor1);
+
+        if((fillcolor1.length() != 0)) {
+            color_choice.setText(fillcolor1);
+        }
 
         alarmstate = (TextView)findViewById(R.id.alarmstate);
 
