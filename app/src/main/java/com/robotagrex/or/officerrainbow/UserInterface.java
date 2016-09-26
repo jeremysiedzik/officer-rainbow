@@ -26,7 +26,7 @@ public class UserInterface extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    TextView counter, raw_probation_date, tv1;
+    TextView counter, raw_probation_date, probation_end_text, color_choice_text, color_choice;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +41,12 @@ public class UserInterface extends AppCompatActivity {
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
-        tv1 = (TextView)findViewById(R.id.textcolor1);
+        color_choice = (TextView)findViewById(R.id.textcolor1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "blue");
-        tv1.setText(fillcolor1);
+        color_choice.setText(fillcolor1);
+
+        probation_end_text = (TextView)findViewById(R.id.textView11);
+        color_choice_text = (TextView)findViewById(R.id.textView12);
 
         raw_probation_date = (TextView) findViewById(R.id.raw_probation_date);
         String raw_probation_txt = sharedpreferences.getString("raw_probation_date", "07.21.2020");
@@ -106,6 +109,39 @@ public class UserInterface extends AppCompatActivity {
 
             }
         }.start();
+
+        color_choice_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, ColorChoice.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        probation_end_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, CountdownActivity.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        color_choice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, ColorChoice.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        raw_probation_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, CountdownActivity.class);
+                startActivity(qoneintent);
+            }
+        });
+
 
         counter.setOnClickListener(new View.OnClickListener() {
             @Override
