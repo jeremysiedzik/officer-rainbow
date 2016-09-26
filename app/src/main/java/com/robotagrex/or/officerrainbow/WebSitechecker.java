@@ -102,7 +102,7 @@ public class WebSitechecker extends IntentService {
         try {
             Log.i(TAG, "About to run downoadUrl");
             stream = downloadUrl(urlString);
-            str = readIt(stream);
+            str = readIt_again(stream);
         } finally {
             if (stream != null) {
                 stream.close();
@@ -139,12 +139,24 @@ public class WebSitechecker extends IntentService {
      * @return String version of InputStream.
      * @throws IOException
      */
-    private String readIt(InputStream stream) throws IOException {
+   // private String readIt(InputStream stream) throws IOException {
       
+     //   StringBuilder builder = new StringBuilder();
+     //   BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+     //   for(String line = reader.readLine(); line != null; line = reader.readLine())
+     //       builder.append(line);
+     //   reader.close();
+     //   return builder.toString();
+    //}
+
+    private String readIt_again(InputStream stream) throws IOException {
+
         StringBuilder builder = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        for(String line = reader.readLine(); line != null; line = reader.readLine()) 
+        for(String line = reader.readLine(); line != null; line = reader.readLine()) {
+            System.out.println(line);
             builder.append(line);
+        }
         reader.close();
         return builder.toString();
     }
