@@ -85,10 +85,11 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:scaleX="3"
-            android:scaleY="3" />
+            android:scaleY="3"
+            android:clickable="false"/>
 
         <TextView
-            android:text="Your Color Choices:"
+            android:text="@string/your_color_choices_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/counter"
@@ -98,7 +99,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:text="Your Color Choices:"
+            android:text="@string/your_color_choices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textcolor1"

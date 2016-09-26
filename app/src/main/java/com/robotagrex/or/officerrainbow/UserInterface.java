@@ -38,6 +38,9 @@ public class UserInterface extends AppCompatActivity {
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
 
+        RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
+        assert progress_bar_2 != null;
+
         tv1 = (TextView)findViewById(R.id.textcolor1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "blue");
         tv1.setText(fillcolor1);
@@ -104,6 +107,14 @@ public class UserInterface extends AppCompatActivity {
             }
         }.start();
 
+        progress_bar_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(UserInterface.this, DataTest.class);
+                startActivity(qoneintent);
+            }
+        });
+
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,11 +123,9 @@ public class UserInterface extends AppCompatActivity {
             }
         });
 
-        RingProgressBar mRingProgressBar = (RingProgressBar) findViewById(R.id.progress_bar_2);
-
         // Set the progress bar's progress
         int progress = 40;
-        mRingProgressBar.setProgress(progress);
+        progress_bar_2.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
 
           //  @Override

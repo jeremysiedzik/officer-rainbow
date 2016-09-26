@@ -53,4 +53,6 @@
     <string name="phone_number">Phone Number</string>
     <string name="note">Notes</string>
     <string name="prob_end_date_text">Probation End Date:</string>
+    <string name="your_color_choices">Your Color Choices:</string>
+    <string name="your_color_choices_prompt">Your Color Choices:</string>
 </resources>
