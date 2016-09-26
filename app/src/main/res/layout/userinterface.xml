@@ -93,7 +93,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginTop="54dp"
             android:id="@+id/textView12"
-            android:textSize="24sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:text="Your Color Choices:"
@@ -102,7 +102,8 @@
             android:id="@+id/textcolor1"
             android:textSize="24sp"
             android:layout_below="@+id/textView12"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="@color/colorPrimaryDark" />
 
     </RelativeLayout>
 

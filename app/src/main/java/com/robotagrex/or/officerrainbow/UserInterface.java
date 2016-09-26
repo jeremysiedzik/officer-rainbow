@@ -10,9 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
-//import android.widget.EditText;
 import android.widget.TextView;
-//import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,8 +19,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
-
-//import static android.R.id.progress;
 
 public class UserInterface extends AppCompatActivity {
 
