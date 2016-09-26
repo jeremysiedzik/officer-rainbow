@@ -23,12 +23,10 @@ public class ProbationEndAlarmSettings extends AppCompatActivity {
     ToggleButton toggleButton5, toggleButton6, toggleButton7;
     private JobScheduler mJobScheduler;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alarmsettings);
+        setContentView(R.layout.probationendalarmsettings);
         toggleButton5 = (ToggleButton) findViewById(R.id.toggleButton5);
         toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
         toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);
