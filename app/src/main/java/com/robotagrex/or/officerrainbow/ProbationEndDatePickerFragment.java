@@ -16,8 +16,8 @@ public class ProbationEndDatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String probation_date = "probation_meeting_date" ;
-    public static final String raw_date = "raw_probation_date" ;
+    public static final String probation_end_date = "probation_end_date" ;
+    public static final String raw_probation_end_date = "raw_probation_end_date" ;
     SharedPreferences sharedpreferences;
 
     @NonNull
@@ -41,11 +41,11 @@ public class ProbationEndDatePickerFragment extends DialogFragment
                 day + "." + year;
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(probation_date, date_string);
-        editor.putString(raw_date, raw_date_string);
+        editor.putString(probation_end_date, date_string);
+        editor.putString(raw_probation_end_date, raw_date_string);
         editor.apply();
-        String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)getActivity().findViewById(R.id.probation_meet_date);
+        String txtdate = sharedpreferences.getString("probation_end_date", "No date chosen yet");
+        TextView txtdate_view=(TextView)getActivity().findViewById(R.id.probation_end_date_id);
         txtdate_view.setText(txtdate);
     }
 }
