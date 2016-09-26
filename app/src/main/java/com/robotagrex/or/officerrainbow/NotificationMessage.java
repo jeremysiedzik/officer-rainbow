@@ -49,7 +49,7 @@ public class NotificationMessage extends AppCompatActivity {
 
                 editor.putString(Message, messagekey);
                 editor.apply();
-                Intent qoneintent = new Intent(NotificationMessage.this, ColorChoice.class);
+                Intent qoneintent = new Intent(NotificationMessage.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

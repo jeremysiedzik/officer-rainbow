@@ -35,7 +35,7 @@ public class DataTest extends AppCompatActivity {
 
         // aynctask
         class Title extends AsyncTask<Void, Void, Void> {
-            String title;
+            private String title;
 
             @Override
             protected void onPreExecute() {
@@ -94,7 +94,7 @@ public class DataTest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(DataTest.this, WebsiteChoice.class);
+                Intent qoneintent = new Intent(DataTest.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

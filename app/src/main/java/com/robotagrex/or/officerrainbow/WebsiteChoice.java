@@ -50,7 +50,7 @@ public class WebsiteChoice extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(WebsiteChoice.this, AlarmSettings.class);
+                Intent qoneintent = new Intent(WebsiteChoice.this, UserInterface.class);
                 startActivity(qoneintent);
             }
         });

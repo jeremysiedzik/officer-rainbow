@@ -121,7 +121,7 @@ public class UserInterface extends AppCompatActivity {
         probation_end_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, CountdownActivity.class);
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -137,7 +137,7 @@ public class UserInterface extends AppCompatActivity {
         raw_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, CountdownActivity.class);
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -146,7 +146,7 @@ public class UserInterface extends AppCompatActivity {
         counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, CountdownActivity.class);
+                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
