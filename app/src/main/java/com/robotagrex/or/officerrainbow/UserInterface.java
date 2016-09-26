@@ -51,7 +51,7 @@ public class UserInterface extends AppCompatActivity {
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
         alarmstate = (TextView)findViewById(R.id.alarmstate);
-        boolean alarm_state = sharedpreferences.getBoolean("alarm_state", false);
+        boolean alarm_state = sharedpreferences.getBoolean("probation_meeting_alarm_state", false);
         if (alarm_state) {
             alarmstate.setText(getString(R.string.alarm_enabled_text));}
             else {
