@@ -16,8 +16,8 @@ public class ProbationMeetingDatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String probation_date = "probation_meeting_date" ;
-    public static final String raw_date = "raw_probation_date" ;
+    public static final String probation_meeting_date = "probation_meeting_date" ;
+    public static final String raw_probationg_meeting_date = "raw_probation_meeting_date" ;
     SharedPreferences sharedpreferences;
 
     @NonNull
@@ -35,17 +35,17 @@ public class ProbationMeetingDatePickerFragment extends DialogFragment
 
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        String date_string = String.valueOf(month + 1) + "/" +
-                day + "/" + year;
+        String date_string = String.valueOf(month + 1) + "." +
+                day + "." + year;
         String raw_date_string = String.valueOf(month + 1) + "." +
                 day + "." + year;
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(probation_date, date_string);
-        editor.putString(raw_date, raw_date_string);
+        editor.putString(probation_meeting_date, date_string);
+        editor.putString(raw_probationg_meeting_date, raw_date_string);
         editor.apply();
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)getActivity().findViewById(R.id.probation_meet_date);
+        TextView txtdate_view=(TextView)getActivity().findViewById(R.id.probation_meet_date_id);
         txtdate_view.setText(txtdate);
     }
 }

@@ -46,7 +46,7 @@ public class ProbationMeetingAlarmSettings extends AppCompatActivity {
         toggleButton7.setChecked(toggle3state);
 
         String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
-        TextView txtdate_view=(TextView)findViewById(R.id.textView1);
+        TextView txtdate_view=(TextView)findViewById(R.id.probation_meet_date_id);
         txtdate_view.setText(txtdate);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
