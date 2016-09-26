@@ -36,17 +36,19 @@ public class WebSitechecker extends IntentService {
     // http://en.wikipedia.org/wiki/List_of_Google_domains
     public static final String url = "http://feed.robotagrex.com/onsite-colors.txt";
 
+    public static final String data_result_push = "data_result";
+
     @Override
     protected void onHandleIntent(Intent intent) {
         // BEGIN_INCLUDE(service_onhandle)
         // The URL from which to fetch content.
         String urlString = url;
     
-        String result ="";
+        String data_result ="";
         
         // Try to connect to the Google homepage and download content.
         try {
-            result = loadFromNetwork(urlString);
+            data_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork");
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
@@ -56,7 +58,10 @@ public class WebSitechecker extends IntentService {
         // indicates the presence of a doodle. Post a "Doodle Alert" notification.
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String SEARCH_STRING = sharedpreferences.getString("color1Key", "blue");
-        if (result.contains(SEARCH_STRING)) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(data_result_push, data_result);
+        editor.apply();
+        if (data_result.contains(SEARCH_STRING)) {
             sendNotification(getString(R.string.doodle_found));
             Log.i(TAG, "Found color!!");
         } else {

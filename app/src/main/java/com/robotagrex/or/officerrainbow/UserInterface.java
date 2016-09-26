@@ -26,7 +26,7 @@ public class UserInterface extends AppCompatActivity {
     SharedPreferences sharedpreferences;
 
     TextView color_choice_heading,color_choice;
-    TextView alarm_state_notify,alarm_state_email,alarm_state_sms;
+    TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
 
@@ -48,6 +48,12 @@ public class UserInterface extends AppCompatActivity {
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
         if((fillcolor1.length() != 0)) {
             color_choice.setText(fillcolor1);
+        }
+
+        daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
+        String daily_colors_string_data = sharedpreferences.getString("data_push", "");
+        if((daily_colors_string_data.length() != 0)) {
+            daily_colors_string.setText(daily_colors_string_data);
         }
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
