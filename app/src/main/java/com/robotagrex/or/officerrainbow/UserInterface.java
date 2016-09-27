@@ -174,8 +174,8 @@ public class UserInterface extends AppCompatActivity {
                 probation_meeting_counter.setText(time.toString());
                 if((daily_colors_string_data.length() != 0)) {
                     daily_colors_string.setText(daily_colors_string_data);
-                    System.out.println(daily_colors_string_data);
                 }
+                System.out.println(daily_colors_string_data);
 
             }
         }.start();
