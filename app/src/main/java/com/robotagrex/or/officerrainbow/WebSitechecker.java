@@ -156,8 +156,8 @@ public class WebSitechecker extends IntentService {
         String line;
         while ((line = reader.readLine()) != null) {
             System.out.println(line);
-            builder.append(newliner);
             builder.append(line);
+            builder.append(newliner);
         }
         reader.close();
         return builder.toString();
