@@ -51,12 +51,12 @@ public class UserInterface extends AppCompatActivity {
             color_choice.setText(fillcolor1);
         }
 
-        daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
-        final String daily_colors_string_data = sharedpreferences.getString("data_result", "");
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                String runnable_log = "About to run dail_colors_string.setText";
+                daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
+                String daily_colors_string_data = sharedpreferences.getString("data_result", "");
+                String runnable_log = "About to run daily_colors_string.setText";
                     System.out.println(runnable_log);
                     if((daily_colors_string_data.length() != 0)) {
                         daily_colors_string.setText(daily_colors_string_data);
