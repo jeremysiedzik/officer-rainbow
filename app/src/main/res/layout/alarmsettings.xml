@@ -31,40 +31,41 @@
         android:text="@string/alarm_prompt"
         android:id="@+id/textView7"
         android:textSize="50sp"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentStart="true" />
+            android:layout_below="@+id/my_toolbar"
+            android:layout_centerHorizontal="true" />
 
-    <ToggleButton
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton6"
+            android:textSize="36sp"
+            android:checked="false"
+            android:textOn="@string/text_msg_enabled"
+            android:textOff="@string/text_msg_disabled"
+            android:layout_above="@+id/toggleButton5"
+            android:layout_centerHorizontal="true" />
+
+        <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/toggleButton5"
-        android:textSize="20sp"
+        android:textSize="36sp"
         android:checked="false"
         android:textOn="@string/email_enabled"
         android:textOff="@string/email_disabled"
-        android:layout_below="@+id/toggleButton6" />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
 
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton6"
-        android:textSize="20sp"
-        android:checked="false"
-        android:textOn="@string/text_msg_enabled"
-        android:textOff="@string/text_msg_disabled"
-        android:layout_below="@+id/toggleButton7"
-        android:layout_alignStart="@+id/toggleButton5" />
-
-    <ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/toggleButton7"
-        android:textSize="20sp"
-        android:checked="false"
-        android:textOn="@string/alarm_enabled"
-        android:textOff="@string/alarm_disabled"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentStart="true" />
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton7"
+            android:textSize="36sp"
+            android:checked="false"
+            android:textOn="@string/alarm_enabled"
+            android:textOff="@string/alarm_disabled"
+            android:layout_above="@+id/toggleButton6"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -74,8 +75,8 @@
             android:clickable="false"
             android:textSize="50sp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp" />
 
     </RelativeLayout>
 
