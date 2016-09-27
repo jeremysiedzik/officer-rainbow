@@ -172,7 +172,9 @@ public class UserInterface extends AppCompatActivity {
 
                 time.append(DateUtils.formatElapsedTime(Math.round(millisUntilFinished / 1000d)));
                 probation_meeting_counter.setText(time.toString());
-                daily_colors_string.setText(daily_colors_string_data);
+                if((daily_colors_string_data.length() != 0)) {
+                    daily_colors_string.setText(daily_colors_string_data);
+                }
 
             }
         }.start();
