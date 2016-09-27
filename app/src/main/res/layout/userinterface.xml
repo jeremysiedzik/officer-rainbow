@@ -162,14 +162,13 @@
             android:maxLines="10" />
 
         <TextView
-            android:text="@string/your_color_choices_prompt"
+            android:text="@string/daily_colors_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/color_choice_heading"
+            android:id="@+id/daily_colors_heading"
             android:textSize="30sp"
-            android:layout_above="@+id/alarmprompt"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="19dp" />
+            android:layout_above="@+id/alarm_state_email"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:text="@string/your_color_choices"
@@ -178,16 +177,16 @@
             android:id="@+id/textcolor1"
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_above="@+id/alarmprompt"
+            android:layout_alignTop="@+id/alarmprompt"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="@string/daily_colors_heading"
+            android:text="@string/your_color_choices_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/daily_colors_heading"
+            android:id="@+id/color_choice_heading"
             android:textSize="30sp"
-            android:layout_above="@+id/alarm_state_email"
+            android:layout_above="@+id/textcolor1"
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>

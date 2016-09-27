@@ -150,12 +150,13 @@ public class WebSitechecker extends IntentService {
     //}
 
     private String readIt_again(InputStream stream) throws IOException {
-
+        String newliner = System.getProperty("line.separator");
         StringBuilder builder = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         String line;
         while ((line = reader.readLine()) != null) {
             System.out.println(line);
+            builder.append(newliner);
             builder.append(line);
         }
         reader.close();
