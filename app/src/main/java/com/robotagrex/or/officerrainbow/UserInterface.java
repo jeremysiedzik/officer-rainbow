@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
@@ -24,7 +25,7 @@ public class UserInterface extends AppCompatActivity {
     CountDownTimer probation_meet;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
-
+    Handler mHandler = new Handler();
     TextView color_choice_heading,color_choice;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
@@ -52,9 +53,18 @@ public class UserInterface extends AppCompatActivity {
 
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         final String daily_colors_string_data = sharedpreferences.getString("data_result", "");
-        if((daily_colors_string_data.length() != 0)) {
-            daily_colors_string.setText(daily_colors_string_data);
-        }
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                String runnable_log = "About to run dail_colors_string.setText";
+                    System.out.println(runnable_log);
+                    if((daily_colors_string_data.length() != 0)) {
+                        daily_colors_string.setText(daily_colors_string_data);
+                    }
+                        mHandler.postDelayed(this, 5000);
+            }
+        };
+        mHandler.post(runnable);
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
 
@@ -172,11 +182,6 @@ public class UserInterface extends AppCompatActivity {
 
                 time.append(DateUtils.formatElapsedTime(Math.round(millisUntilFinished / 1000d)));
                 probation_meeting_counter.setText(time.toString());
-                if((daily_colors_string_data.length() != 0)) {
-                    daily_colors_string.setText(daily_colors_string_data);
-                }
-                System.out.println(daily_colors_string_data);
-
             }
         }.start();
 
