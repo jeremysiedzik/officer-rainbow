@@ -61,6 +61,7 @@ public class WebSitechecker extends IntentService {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(data_result_push, data_result);
         editor.apply();
+
         if (data_result.contains(SEARCH_STRING)) {
             sendNotification(getString(R.string.doodle_found));
             Log.i(TAG, "Found color!!");
