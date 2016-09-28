@@ -39,15 +39,19 @@ public class UserInterface extends AppCompatActivity {
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     private MediaPlayer mediaPlayer;
-    public final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-    public final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userinterface);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
@@ -258,7 +262,7 @@ public class UserInterface extends AppCompatActivity {
             protected Void doInBackground(Void... params) {
                     //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                     //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    //mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
                     Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
                     //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
