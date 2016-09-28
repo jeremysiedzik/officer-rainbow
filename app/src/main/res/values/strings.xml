@@ -77,5 +77,8 @@
     <string name="alarm_state_sms">Tap to enable text</string>
     <string name="alarm_state_email">Tap to enable email</string>
     <string name="daily_colors_heading">Colors For Today:</string>
-    <string name="no_data_pulled">No data pulled</string>
+    <string name="no_data_pulled">Tap to pull daily colors</string>
+    <string name="listen_to_the_daily_colors">Listen To The Daily Colors:</string>
+    <string name="play_recording">Play Recording</string>
+    <string name="confidence">Confidence</string>
 </resources>

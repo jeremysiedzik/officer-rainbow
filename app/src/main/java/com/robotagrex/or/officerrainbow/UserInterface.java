@@ -3,6 +3,8 @@ package com.robotagrex.or.officerrainbow;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -12,6 +14,8 @@ import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,6 +45,9 @@ public class UserInterface extends AppCompatActivity {
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
 
+        Button buttonaudio = (Button)findViewById(R.id.audio_button);
+        assert buttonaudio != null;
+
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
@@ -56,8 +63,8 @@ public class UserInterface extends AppCompatActivity {
             public void run() {
                 daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
-                String runnable_log = "About to run daily_colors_string.setText";
-                    System.out.println(runnable_log);
+//                String runnable_log = "About to run daily_colors_string.setText";
+//                System.out.println(runnable_log);
                     if((daily_colors_string_data.length() != 0)) {
                         daily_colors_string.setText(daily_colors_string_data);
                     }
@@ -185,6 +192,8 @@ public class UserInterface extends AppCompatActivity {
             }
         }.start();
 
+        daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
+
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -286,6 +295,46 @@ public class UserInterface extends AppCompatActivity {
             public void onClick(View view) {
                 Intent qoneintent = new Intent(UserInterface.this, DataTest.class);
                 startActivity(qoneintent);
+            }
+        });
+
+        daily_colors_string.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "You should receive a notification and notice the colors list populate.", Toast.LENGTH_LONG).show();
+                Context context = getApplication();
+                Intent service = new Intent(context, WebSitechecker.class);
+                context.startService(service);
+            }
+        });
+
+        buttonaudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                mPlayer.setOnPreparedListener(
+                        new MediaPlayer.OnPreparedListener() {
+                            public void onPrepared(MediaPlayer player) {
+                                mPlayer.start();
+                            }
+                        });
+
+
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        if (mp != null) {
+                            mp.release();
+                        }
+                    }
+                });
             }
         });
 

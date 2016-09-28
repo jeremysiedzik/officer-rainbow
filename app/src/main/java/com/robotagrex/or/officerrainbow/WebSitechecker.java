@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,22 +39,17 @@ public class WebSitechecker extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // BEGIN_INCLUDE(service_onhandle)
-        // The URL from which to fetch content.
         String urlString = url;
     
         String data_result ="";
-        
-        // Try to connect to the Google homepage and download content.
+
         try {
             data_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork");
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
-    
-        // If the app finds the string "doodle" in the Google home page content, it
-        // indicates the presence of a doodle. Post a "Doodle Alert" notification.
+
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String SEARCH_STRING = sharedpreferences.getString("color1Key", "blue");
         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -99,12 +93,14 @@ public class WebSitechecker extends IntentService {
     private String loadFromNetwork(String urlString) throws IOException {
         InputStream stream = null;
         String str ="";
-      
+
         try {
             Log.i(TAG, "About to run downoadUrl");
             stream = downloadUrl(urlString);
             str = readIt_again(stream);
-        } finally {
+        }
+
+        finally {
             if (stream != null) {
                 stream.close();
             }
