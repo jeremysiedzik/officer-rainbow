@@ -75,8 +75,7 @@ public class WebSitechecker extends IntentService {
 //
 // The methods below this line fetch content from the specified URL and return the
 // content as a string.
-//
-    /** Given a URL string, initiate a fetch operation. */
+/** Given a URL string, initiate a fetch operation. */
     private String loadFromNetwork(String urlString) throws IOException {
         InputStream stream = null;
         String str ="";

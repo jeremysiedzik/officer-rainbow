@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -17,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -197,6 +197,68 @@ public class UserInterface extends AppCompatActivity {
                 probation_meeting_counter.setText(time.toString());
             }
         }.start();
+
+        class asyncAudioURL extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //mProgressDialog = new ProgressDialog(DataTest.this);
+                //mProgressDialog.setTitle("Officer Rainbow Data Grab");
+                //mProgressDialog.setMessage("Loading...");
+                //mProgressDialog.setIndeterminate(false);
+                //mProgressDialog.show();
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                    final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                    final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                    Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
+                    //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
+                    try {
+                        mediaPlayer = new MediaPlayer();
+                        mediaPlayer.setDataSource(getApplicationContext(), myUri);
+                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        mediaPlayer.prepare(); //don't use prepareAsync for mp3 playback
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                    mediaPlayer.setOnPreparedListener(
+                            new MediaPlayer.OnPreparedListener() {
+                                public void onPrepared(MediaPlayer player) {
+                                    mediaPlayer.start();
+                                }
+                            });
+
+
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                            if (mp != null) {
+                                mp.release();
+                            }
+                        }
+                    });
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                // Set title into TextView
+                //TextView txttitle = (TextView) findViewById(R.id.titletxt);
+                //assert txttitle != null;
+                //txttitle.setText(title);
+                //mProgressDialog.dismiss();
+            }
+        }
 
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -385,42 +447,7 @@ public class UserInterface extends AppCompatActivity {
                         "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-
-                final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-                Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
-                //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
-                try {
-                    mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setDataSource(getApplicationContext(), myUri);
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mediaPlayer.prepare(); //don't use prepareAsync for mp3 playback
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                mediaPlayer.setOnPreparedListener(
-                        new MediaPlayer.OnPreparedListener() {
-                            public void onPrepared(MediaPlayer player) {
-                                mediaPlayer.start();
-                            }
-                        });
-
-
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mp != null) {
-                            mp.release();
-                        }
-                    }
-                });
+                new asyncAudioURL().execute();
             }
         });
 
