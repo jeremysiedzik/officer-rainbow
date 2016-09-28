@@ -16,6 +16,7 @@ import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
@@ -48,6 +49,9 @@ public class UserInterface extends AppCompatActivity {
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
+
+        final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
+        assert listen_star != null;
 
         Button buttonaudio = (Button)findViewById(R.id.audio_button);
         assert buttonaudio != null;
@@ -253,6 +257,7 @@ public class UserInterface extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void result) {
+                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
                 // Set title into TextView
                 //TextView txttitle = (TextView) findViewById(R.id.titletxt);
                 //assert txttitle != null;
@@ -444,6 +449,18 @@ public class UserInterface extends AppCompatActivity {
         buttonaudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+                new asyncAudioURL().execute();
+            }
+        });
+
+        listen_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
                 Toast toast= Toast.makeText(getApplicationContext(),
                         "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
