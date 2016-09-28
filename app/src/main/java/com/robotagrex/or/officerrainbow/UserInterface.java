@@ -331,7 +331,7 @@ public class UserInterface extends AppCompatActivity {
                 }
 
                 //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//apk copy test
+
                 mediaPlayer.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
                             public void onPrepared(MediaPlayer player) {

@@ -18,31 +18,18 @@ import java.net.URL;
 public class WebSitechecker extends IntentService {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
-
     public WebSitechecker() {
         super("SchedulingService");
     }
-    
     public static final String TAG = "Color Check Service";
-    // An ID used to post the notification.
     public static final int NOTIFICATION_ID = 1;
-    // The string the app searches for in the Google home page content. If the app finds 
-    // the string, it indicates the presence of a doodle.
-    //String SEARCH_STRING = sharedpreferences.getString("color1Key", "blue");
-    //public static final String SEARCH_STRING = fillcolor1;
-    // The Google home page URL from which the app fetches content.
-    // You can find a list of other Google domains with possible doodles here:
-    // http://en.wikipedia.org/wiki/List_of_Google_domains
     public static final String url = "http://feed.robotagrex.com/onsite-colors.txt";
-
     public static final String data_result_push = "data_result";
 
     @Override
     protected void onHandleIntent(Intent intent) {
         String urlString = url;
-    
         String data_result ="";
-
         try {
             data_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork");
@@ -93,18 +80,20 @@ public class WebSitechecker extends IntentService {
     private String loadFromNetwork(String urlString) throws IOException {
         InputStream stream = null;
         String str ="";
-
         try {
             Log.i(TAG, "About to run downoadUrl");
             stream = downloadUrl(urlString);
             str = readIt_again(stream);
         }
-
-        finally {
+        catch(IOException e) {
+            System.err.println("ERROR");
+            e.printStackTrace();
+        }
+//        finally {
             if (stream != null) {
                 stream.close();
             }
-        }
+//       }
         return str;
     }
 
