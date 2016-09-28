@@ -352,7 +352,6 @@ public class UserInterface extends AppCompatActivity {
             }
         });
 
-        // Set the progress bar's progress
         int progress = 50;
         progress_bar_2.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
