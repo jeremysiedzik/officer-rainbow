@@ -71,7 +71,7 @@ public class UserInterface extends AppCompatActivity {
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
 //                String runnable_log = "About to run daily_colors_string.setText";
 //                System.out.println(runnable_log);
-                String loaded_ok_string = "Loaded Successfully";
+                String loaded_ok_string = "<----->";
                     if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
                         daily_colors_string.setText(daily_colors_string_data);
                     }
