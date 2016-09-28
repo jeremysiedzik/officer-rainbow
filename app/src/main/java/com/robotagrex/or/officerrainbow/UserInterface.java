@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,6 +36,7 @@ public class UserInterface extends AppCompatActivity {
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
+    private MediaPlayer mediaPlayer;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,18 +318,30 @@ public class UserInterface extends AppCompatActivity {
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-                mPlayer.setOnPreparedListener(
+                Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
+                //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
+                try {
+                    mediaPlayer = new MediaPlayer();
+                    mediaPlayer.setDataSource(getApplicationContext(), myUri);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.prepare(); //don't use prepareAsync for mp3 playback
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                mediaPlayer.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
                             public void onPrepared(MediaPlayer player) {
-                                mPlayer.start();
+                                mediaPlayer.start();
                             }
                         });
 
 
-                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
