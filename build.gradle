@@ -22,11 +22,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-task copyFiles(type: Copy)
-
-copyFiles {
-    description = 'Copies apk to z:/automation'
-    from 'build/outputs/apk/'
-    into 'z:/automation/'
-    include('**/*.apk')
-}
+    task copyFiles(type: Copy) {
+        doLast {
+            description = 'Copies apk to z:/automation'
+            from 'build/outputs/apk/'
+            into 'z:/automation/'
+            include('**/*.apk')
+            println "copied files"
+        }
+    }
