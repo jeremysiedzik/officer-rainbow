@@ -305,9 +305,9 @@ public class UserInterface extends AppCompatActivity {
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
+                mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
                 final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -322,7 +322,7 @@ public class UserInterface extends AppCompatActivity {
                 mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mp != null) {
                             mp.release();
                         }
