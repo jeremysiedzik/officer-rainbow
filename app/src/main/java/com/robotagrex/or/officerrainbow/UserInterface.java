@@ -249,6 +249,7 @@ public class UserInterface extends AppCompatActivity {
                             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                             if (mp != null) {
                                 mp.release();
+                                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
                             }
                         }
                     });
@@ -257,7 +258,6 @@ public class UserInterface extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void result) {
-                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
                 // Set title into TextView
                 //TextView txttitle = (TextView) findViewById(R.id.titletxt);
                 //assert txttitle != null;
