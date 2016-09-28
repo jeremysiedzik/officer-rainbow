@@ -33,7 +33,7 @@ public class UserInterface extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
-    TextView color_choice_heading,color_choice;
+    TextView color_choice_heading,color_choice,daily_colors_string_heading;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
@@ -55,6 +55,8 @@ public class UserInterface extends AppCompatActivity {
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
+        daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
+        daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
         color_choice = (TextView)findViewById(R.id.textcolor1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
@@ -196,8 +198,6 @@ public class UserInterface extends AppCompatActivity {
             }
         }.start();
 
-        daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
-
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -299,6 +299,44 @@ public class UserInterface extends AppCompatActivity {
             public void onClick(View view) {
                 Intent qoneintent = new Intent(UserInterface.this, DataTest.class);
                 startActivity(qoneintent);
+            }
+        });
+
+        daily_colors_string_heading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
+                mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                System.out.println("beep should play");
+                mPlayer.setOnPreparedListener(
+                        new MediaPlayer.OnPreparedListener() {
+                            public void onPrepared(MediaPlayer player) {
+                                mPlayer.start();
+                            }
+                        });
+
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        if (mp != null) {
+                            mp.release();
+                        }
+                    }
+                });
+
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "The daily colors have been checked!", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+
+                Context context = getApplication();
+                Intent service = new Intent(context, WebSitechecker.class);
+                context.startService(service);
             }
         });
 
