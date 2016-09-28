@@ -71,7 +71,8 @@ public class UserInterface extends AppCompatActivity {
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
 //                String runnable_log = "About to run daily_colors_string.setText";
 //                System.out.println(runnable_log);
-                    if((daily_colors_string_data.length() != 0)) {
+                String loaded_ok_string = "Loaded Successfully";
+                    if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
                         daily_colors_string.setText(daily_colors_string_data);
                     }
                         mHandler.postDelayed(this, 5000);
@@ -451,7 +452,7 @@ public class UserInterface extends AppCompatActivity {
             }
         });
 
-        int progress = 50;
+        int progress = 60;
         progress_bar_2.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
 
