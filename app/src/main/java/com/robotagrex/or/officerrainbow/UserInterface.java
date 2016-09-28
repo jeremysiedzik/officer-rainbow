@@ -318,7 +318,6 @@ public class UserInterface extends AppCompatActivity {
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-
                 Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
                 //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
