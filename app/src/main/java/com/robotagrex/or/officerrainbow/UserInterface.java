@@ -305,6 +305,30 @@ public class UserInterface extends AppCompatActivity {
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                System.out.println("beep should play");
+                mPlayer.setOnPreparedListener(
+                        new MediaPlayer.OnPreparedListener() {
+                            public void onPrepared(MediaPlayer player) {
+                                mPlayer.start();
+                            }
+                        });
+
+                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        if (mp != null) {
+                            mp.release();
+                        }
+                    }
+                });
+
                 Toast toast= Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);

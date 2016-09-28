@@ -38,6 +38,7 @@ public class JobSchedulerService extends JobService {
                 Intent service = new Intent(context, WebSitechecker.class);
                 context.startService(service);
 
+                // code block above for heartbeat 'beep'
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -62,6 +63,7 @@ public class JobSchedulerService extends JobService {
                         }
                     }
                 });
+                // code block above for heartbeat 'beep'
             }
                 jobFinished((JobParameters) msg.obj, false);
                 return true;
