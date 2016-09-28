@@ -39,6 +39,8 @@ public class UserInterface extends AppCompatActivity {
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     private MediaPlayer mediaPlayer;
+    public final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+    public final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,9 @@ public class UserInterface extends AppCompatActivity {
 
         final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
+
+        final ImageButton stop_star = (ImageButton)findViewById(R.id.stop_star);
+        assert stop_star != null;
 
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
@@ -200,6 +205,43 @@ public class UserInterface extends AppCompatActivity {
             }
         }.start();
 
+        class asyncAudioURLstop extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                //mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                //mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    //@Override
+                    //public void onCompletion(MediaPlayer mp) {
+                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        if (mediaPlayer != null) {
+                            mediaPlayer.stop();
+                            mediaPlayer.release();
+                        }
+                  //  }
+                //});
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                stop_star.setImageResource(android.R.drawable.star_off);
+                // Set title into TextView
+                //TextView txttitle = (TextView) findViewById(R.id.titletxt);
+                //assert txttitle != null;
+                //txttitle.setText(title);
+                //mProgressDialog.dismiss();
+            }
+        }
+
         class asyncAudioURL extends AsyncTask<Void, Void, Void> {
 
             @Override
@@ -214,9 +256,9 @@ public class UserInterface extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
-                    final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                    final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                    //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+                    //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                    //mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
                     Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
                     //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
@@ -225,7 +267,7 @@ public class UserInterface extends AppCompatActivity {
                         mediaPlayer = new MediaPlayer();
                         mediaPlayer.setDataSource(getApplicationContext(), myUri);
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                        mediaPlayer.prepare(); //don't use prepareAsync for mp3 playback
+                        mediaPlayer.prepare();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -376,7 +418,7 @@ public class UserInterface extends AppCompatActivity {
 
                 final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                System.out.println("beep should play");
+                //debug option - System.out.println("beep should play");
                 mPlayer.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
                             public void onPrepared(MediaPlayer player) {
@@ -414,7 +456,7 @@ public class UserInterface extends AppCompatActivity {
 
                 final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                System.out.println("beep should play");
+                // debug option - System.out.println("beep should play");
                 mPlayer.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
                             public void onPrepared(MediaPlayer player) {
@@ -452,6 +494,19 @@ public class UserInterface extends AppCompatActivity {
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
                 new asyncAudioURL().execute();
+            }
+        });
+
+        stop_star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stop_star.setImageResource(android.R.drawable.star_on);
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "Stopping Daily Recording", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+                new asyncAudioURLstop().execute();
+
             }
         });
 
