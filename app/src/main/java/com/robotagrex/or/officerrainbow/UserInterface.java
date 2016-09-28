@@ -53,9 +53,6 @@ public class UserInterface extends AppCompatActivity {
         final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
 
-        Button buttonaudio = (Button)findViewById(R.id.audio_button);
-        assert buttonaudio != null;
-
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
@@ -443,17 +440,6 @@ public class UserInterface extends AppCompatActivity {
                 Context context = getApplication();
                 Intent service = new Intent(context, WebSitechecker.class);
                 context.startService(service);
-            }
-        });
-
-        buttonaudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast toast= Toast.makeText(getApplicationContext(),
-                        "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
-                new asyncAudioURL().execute();
             }
         });
 
