@@ -238,6 +238,7 @@ public class UserInterface extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void result) {
                 stop_star.setImageResource(android.R.drawable.star_off);
+                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
                 // Set title into TextView
                 //TextView txttitle = (TextView) findViewById(R.id.titletxt);
                 //assert txttitle != null;
