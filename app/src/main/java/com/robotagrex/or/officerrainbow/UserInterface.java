@@ -460,7 +460,7 @@ public class UserInterface extends AppCompatActivity {
         listen_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
+                listen_star.setImageResource(android.R.drawable.btn_star_big_on);
                 Toast toast= Toast.makeText(getApplicationContext(),
                         "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
