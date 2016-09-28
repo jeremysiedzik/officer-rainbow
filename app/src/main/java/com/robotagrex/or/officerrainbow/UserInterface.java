@@ -227,7 +227,7 @@ public class UserInterface extends AppCompatActivity {
                     //public void onCompletion(MediaPlayer mp) {
                         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mediaPlayer != null) {
-                            mediaPlayer.stop();
+                            //mediaPlayer.stop();
                             mediaPlayer.release();
                         }
                   //  }
