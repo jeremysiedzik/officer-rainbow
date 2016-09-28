@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -304,7 +305,11 @@ public class UserInterface extends AppCompatActivity {
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "You should receive a notification and notice the colors list populate.", Toast.LENGTH_LONG).show();
+                Toast toast= Toast.makeText(getApplicationContext(),
+                        "The daily colors have been checked!", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+
                 Context context = getApplication();
                 Intent service = new Intent(context, WebSitechecker.class);
                 context.startService(service);
