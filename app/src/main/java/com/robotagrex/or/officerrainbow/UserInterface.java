@@ -214,6 +214,10 @@ public class UserInterface extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    mediaPlayer.release();
+                }
             }
 
             @Override
@@ -225,14 +229,14 @@ public class UserInterface extends AppCompatActivity {
                 //mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     //@Override
                     //public void onCompletion(MediaPlayer mp) {
-                        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                      //  mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                      //      if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                                 //Toast toast= Toast.makeText(getApplicationContext(),
                                 //        "mediaPlayer not null and is playing - stopping", Toast.LENGTH_LONG);
                                 //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                                 //toast.show();
-                                mediaPlayer.release();
-                            }
+                       //         mediaPlayer.release();
+                       //     }
                   //  }
                 //});
                 return null;
@@ -242,11 +246,6 @@ public class UserInterface extends AppCompatActivity {
             protected void onPostExecute(Void result) {
                 stop_star.setImageResource(android.R.drawable.btn_star_big_off);
                 listen_star.setImageResource(android.R.drawable.star_off);
-                // Set title into TextView
-                //TextView txttitle = (TextView) findViewById(R.id.titletxt);
-                //assert txttitle != null;
-                //txttitle.setText(title);
-                //mProgressDialog.dismiss();
             }
         }
 
