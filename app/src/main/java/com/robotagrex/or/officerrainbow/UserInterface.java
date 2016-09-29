@@ -227,10 +227,10 @@ public class UserInterface extends AppCompatActivity {
                     //public void onCompletion(MediaPlayer mp) {
                         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                             if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                Toast toast= Toast.makeText(getApplicationContext(),
-                                        "mediaPlayer not null and is playing - stopping", Toast.LENGTH_LONG);
-                                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                                toast.show();
+                                //Toast toast= Toast.makeText(getApplicationContext(),
+                                //        "mediaPlayer not null and is playing - stopping", Toast.LENGTH_LONG);
+                                //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                                //toast.show();
                                 mediaPlayer.release();
                             }
                   //  }
