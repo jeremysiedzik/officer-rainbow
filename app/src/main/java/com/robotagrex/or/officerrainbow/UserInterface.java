@@ -254,11 +254,6 @@ public class UserInterface extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                //mProgressDialog = new ProgressDialog(DataTest.this);
-                //mProgressDialog.setTitle("Officer Rainbow Data Grab");
-                //mProgressDialog.setMessage("Loading...");
-                //mProgressDialog.setIndeterminate(false);
-                //mProgressDialog.show();
             }
 
             @Override
@@ -284,7 +279,7 @@ public class UserInterface extends AppCompatActivity {
                     mediaPlayer.setOnPreparedListener(
                             new MediaPlayer.OnPreparedListener() {
                                 public void onPrepared(MediaPlayer player) {
-                                    mediaPlayer.stop();
+                                    mediaPlayer.pause();
                                     mediaPlayer.start();
                                 }
                             });
@@ -292,10 +287,10 @@ public class UserInterface extends AppCompatActivity {
 
                     mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                         @Override
-                        public void onCompletion(MediaPlayer mp) {
+                        public void onCompletion(MediaPlayer mediaPlayer) {
                             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                            if (mp != null) {
-                                mp.release();
+                            if (mediaPlayer != null) {
+                                mediaPlayer.release();
                                 listen_star.setImageResource(android.R.drawable.star_off);
                             }
                         }
