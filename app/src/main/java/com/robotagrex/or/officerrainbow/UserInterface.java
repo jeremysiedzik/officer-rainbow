@@ -226,10 +226,8 @@ public class UserInterface extends AppCompatActivity {
                     //@Override
                     //public void onCompletion(MediaPlayer mp) {
                         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mediaPlayer.isPlaying()) {
                             mediaPlayer.stop();
                             mediaPlayer.release();
-                        }
                   //  }
                 //});
                 return null;
@@ -510,7 +508,7 @@ public class UserInterface extends AppCompatActivity {
             public void onClick(View view) {
                 stop_star.setImageResource(android.R.drawable.btn_star_big_on);
                 Toast toast= Toast.makeText(getApplicationContext(),
-                        "Stopping Daily Recording", Toast.LENGTH_LONG);
+                        "Stopping Daily Recording", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
                 new asyncAudioURLstop().execute();
