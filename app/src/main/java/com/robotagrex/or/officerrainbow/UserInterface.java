@@ -232,7 +232,6 @@ public class UserInterface extends AppCompatActivity {
                                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                                 toast.show();
                                 mediaPlayer.release();
-
                             }
                   //  }
                 //});
@@ -501,10 +500,11 @@ public class UserInterface extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 listen_star.setImageResource(android.R.drawable.star_on);
-                Toast toast= Toast.makeText(getApplicationContext(),
-                        "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
+                //Toast toast= Toast.makeText(getApplicationContext(),
+                //        "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
+                //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                //toast.show();
+                System.out.println("start button pressed - running asyncaudioURL");
                 new asyncAudioURL().execute();
             }
         });
@@ -513,10 +513,11 @@ public class UserInterface extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stop_star.setImageResource(android.R.drawable.btn_star_big_on);
-                Toast toast= Toast.makeText(getApplicationContext(),
-                        "Stopping Daily Recording", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
+                System.out.println("stop button pressed - running asyncaudioURLstop");
+                //Toast toast= Toast.makeText(getApplicationContext(),
+                //        "Stopping Daily Recording", Toast.LENGTH_SHORT);
+                //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                //toast.show();
                 new asyncAudioURLstop().execute();
 
             }
