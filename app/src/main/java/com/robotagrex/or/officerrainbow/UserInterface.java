@@ -41,17 +41,17 @@ public class UserInterface extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userinterface);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        final AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
@@ -253,6 +253,8 @@ public class UserInterface extends AppCompatActivity {
             }
         }
 
+
+
         class asyncAudioURL extends AsyncTask<Void, Void, Void> {
 
             @Override
@@ -262,6 +264,7 @@ public class UserInterface extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
+
                     //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
                     //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                     mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
