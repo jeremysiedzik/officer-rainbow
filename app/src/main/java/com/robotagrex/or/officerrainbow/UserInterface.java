@@ -282,6 +282,9 @@ public class UserInterface extends AppCompatActivity {
                     mediaPlayer.setOnPreparedListener(
                             new MediaPlayer.OnPreparedListener() {
                                 public void onPrepared(MediaPlayer player) {
+                                    if (mediaPlayer.isPlaying()) {
+                                        mediaPlayer.stop();
+                                    }
                                     mediaPlayer.start();
                                 }
                             });
