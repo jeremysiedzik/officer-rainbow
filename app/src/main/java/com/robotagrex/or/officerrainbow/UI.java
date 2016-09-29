@@ -410,6 +410,12 @@ public class UI extends AppCompatActivity {
                         mediaPlayer = new MediaPlayer();
                         mediaPlayer.setDataSource(getApplicationContext(), myUri);
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                        if(mediaPlayer.isPlaying()){
+                            mediaPlayer.stop();
+                            mediaPlayer.release();
+                        }
+
                         mediaPlayer.prepare();
                     } catch (IOException e) {
                         e.printStackTrace();
