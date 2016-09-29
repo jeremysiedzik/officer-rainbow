@@ -6,28 +6,30 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
-public class UserInterface extends AppCompatActivity {
+public class UI extends AppCompatActivity {
 
     CountDownTimer probation_end;
     CountDownTimer probation_meet;
@@ -42,11 +44,11 @@ public class UserInterface extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.userinterface);
+        setContentView(R.layout.ui);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        final AudioManager mAudioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -206,115 +208,10 @@ public class UserInterface extends AppCompatActivity {
             }
         }.start();
 
-        class asyncAudioURLstop extends AsyncTask<Void, Void, Void> {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                if(mediaPlayer!=null) {
-                    if(mediaPlayer.isPlaying())
-                        mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                    mediaPlayer=null;
-                }
-            }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-                //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                //mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-                //mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    //@Override
-                    //public void onCompletion(MediaPlayer mp) {
-                      //  mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                      //      if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                                //Toast toast= Toast.makeText(getApplicationContext(),
-                                //        "mediaPlayer not null and is playing - stopping", Toast.LENGTH_LONG);
-                                //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                                //toast.show();
-                       //         mediaPlayer.release();
-                       //     }
-                  //  }
-                //});
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                stop_star.setImageResource(android.R.drawable.btn_star_big_off);
-                listen_star.setImageResource(android.R.drawable.star_off);
-            }
-        }
-
-
-
-        class asyncAudioURL extends AsyncTask<Void, Void, Void> {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-
-                    //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                    //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-                    Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
-                    //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
-                    try {
-                        mediaPlayer = new MediaPlayer();
-                        mediaPlayer.setDataSource(getApplicationContext(), myUri);
-                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                        mediaPlayer.prepare();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                    mediaPlayer.setOnPreparedListener(
-                            new MediaPlayer.OnPreparedListener() {
-                                public void onPrepared(MediaPlayer player) {
-                                    mediaPlayer.start();
-                                }
-                            });
-
-
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                            if (mediaPlayer != null) {
-                                mediaPlayer.release();
-                                listen_star.setImageResource(android.R.drawable.star_off);
-                            }
-                        }
-                    });
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                // Set title into TextView
-                //TextView txttitle = (TextView) findViewById(R.id.titletxt);
-                //assert txttitle != null;
-                //txttitle.setText(title);
-                //mProgressDialog.dismiss();
-            }
-        }
-
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ColorChoice.class);
+                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
         });
@@ -322,7 +219,7 @@ public class UserInterface extends AppCompatActivity {
         color_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ColorChoice.class);
+                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
         });
@@ -330,7 +227,7 @@ public class UserInterface extends AppCompatActivity {
         alarm_state_notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -338,7 +235,7 @@ public class UserInterface extends AppCompatActivity {
         alarm_state_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -346,7 +243,7 @@ public class UserInterface extends AppCompatActivity {
         alarm_state_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -354,7 +251,7 @@ public class UserInterface extends AppCompatActivity {
         alarmprompt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, AlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -362,7 +259,7 @@ public class UserInterface extends AppCompatActivity {
         probation_end_counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationEndAlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -370,7 +267,7 @@ public class UserInterface extends AppCompatActivity {
         raw_end_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationEndAlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -378,7 +275,7 @@ public class UserInterface extends AppCompatActivity {
         probation_end_date_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationEndAlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -386,7 +283,7 @@ public class UserInterface extends AppCompatActivity {
         probation_meeting_counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationMeetingAlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -394,7 +291,7 @@ public class UserInterface extends AppCompatActivity {
         raw_meeting_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationMeetingAlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -402,7 +299,7 @@ public class UserInterface extends AppCompatActivity {
         probation_meeting_date_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, ProbationMeetingAlarmSettings.class);
+                Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
         });
@@ -410,7 +307,7 @@ public class UserInterface extends AppCompatActivity {
         progress_bar_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(UserInterface.this, DataTest.class);
+                Intent qoneintent = new Intent(UI.this, DataTest.class);
                 startActivity(qoneintent);
             }
         });
@@ -500,7 +397,45 @@ public class UserInterface extends AppCompatActivity {
                 //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 //toast.show();
                 System.out.println("start button pressed - running asyncaudioURL");
-                new asyncAudioURL().execute();
+                boolean gotFocus = requestAudioFocusForMyApp(UI.this);
+                if(gotFocus) {
+                    final AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+                    final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+                    am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+                    Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
+                    //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
+                    try {
+                        mediaPlayer = new MediaPlayer();
+                        mediaPlayer.setDataSource(getApplicationContext(), myUri);
+                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                    mediaPlayer.setOnPreparedListener(
+                            new MediaPlayer.OnPreparedListener() {
+                                public void onPrepared(MediaPlayer player) {
+                                    mediaPlayer.start();
+                                }
+                            });
+
+
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                            if (mediaPlayer != null) {
+                                mediaPlayer.release();
+                                listen_star.setImageResource(android.R.drawable.star_off);
+                            }
+                        }
+                    });
+                }
             }
         });
 
@@ -509,11 +444,17 @@ public class UserInterface extends AppCompatActivity {
             public void onClick(View view) {
                 stop_star.setImageResource(android.R.drawable.btn_star_big_on);
                 System.out.println("stop button pressed - running asyncaudioURLstop");
-                //Toast toast= Toast.makeText(getApplicationContext(),
-                //        "Stopping Daily Recording", Toast.LENGTH_SHORT);
-                //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                //toast.show();
-                new asyncAudioURLstop().execute();
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                if(mediaPlayer!=null) {
+                    if(mediaPlayer.isPlaying())
+                        mediaPlayer.stop();
+                    mediaPlayer.reset();
+                    mediaPlayer.release();
+                    mediaPlayer=null;
+                }
+                releaseAudioFocusForMyApp(UI.this);
+                stop_star.setImageResource(android.R.drawable.btn_star_big_off);
+                listen_star.setImageResource(android.R.drawable.star_off);
 
             }
         });
@@ -528,5 +469,28 @@ public class UserInterface extends AppCompatActivity {
              //   Toast.makeText(UserInterface.this, "complete", Toast.LENGTH_SHORT).show();
             //}
         //});
+    }
+    private boolean requestAudioFocusForMyApp(final Context context) {
+        AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+
+        // Request audio focus for playback
+        int result = am.requestAudioFocus(null,
+                // Use the music stream.
+                AudioManager.STREAM_MUSIC,
+                // Request permanent focus.
+                AudioManager.AUDIOFOCUS_GAIN);
+
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            Log.d("AudioFocus", "Audio focus received");
+            return true;
+        } else {
+            Log.d("AudioFocus", "Audio focus NOT received");
+            return false;
+        }
+    }
+
+    void releaseAudioFocusForMyApp(final Context context) {
+        AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        am.abandonAudioFocus(null);
     }
 }
