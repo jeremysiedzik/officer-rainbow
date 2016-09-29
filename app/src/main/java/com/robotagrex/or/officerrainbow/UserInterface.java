@@ -226,8 +226,8 @@ public class UserInterface extends AppCompatActivity {
                     //@Override
                     //public void onCompletion(MediaPlayer mp) {
                         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mediaPlayer != null) {
-                            //mediaPlayer.stop();
+                        if (mediaPlayer.isPlaying()) {
+                            mediaPlayer.stop();
                             mediaPlayer.release();
                         }
                   //  }
@@ -237,8 +237,8 @@ public class UserInterface extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void result) {
-                stop_star.setImageResource(android.R.drawable.star_off);
-                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
+                stop_star.setImageResource(android.R.drawable.btn_star_big_off);
+                listen_star.setImageResource(android.R.drawable.star_off);
                 // Set title into TextView
                 //TextView txttitle = (TextView) findViewById(R.id.titletxt);
                 //assert txttitle != null;
@@ -293,7 +293,7 @@ public class UserInterface extends AppCompatActivity {
                             mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                             if (mp != null) {
                                 mp.release();
-                                listen_star.setImageResource(android.R.drawable.btn_star_big_off);
+                                listen_star.setImageResource(android.R.drawable.star_off);
                             }
                         }
                     });
@@ -493,7 +493,7 @@ public class UserInterface extends AppCompatActivity {
         listen_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listen_star.setImageResource(android.R.drawable.btn_star_big_on);
+                listen_star.setImageResource(android.R.drawable.star_on);
                 Toast toast= Toast.makeText(getApplicationContext(),
                         "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -505,7 +505,7 @@ public class UserInterface extends AppCompatActivity {
         stop_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stop_star.setImageResource(android.R.drawable.star_on);
+                stop_star.setImageResource(android.R.drawable.btn_star_big_on);
                 Toast toast= Toast.makeText(getApplicationContext(),
                         "Stopping Daily Recording", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
