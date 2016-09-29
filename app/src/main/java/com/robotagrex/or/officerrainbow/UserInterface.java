@@ -215,8 +215,12 @@ public class UserInterface extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
+                if(mediaPlayer!=null) {
+                    if(mediaPlayer.isPlaying())
+                        mediaPlayer.stop();
+                    mediaPlayer.reset();
+                    mediaPlayer.release();
+                    mediaPlayer=null;
                 }
             }
 
@@ -279,7 +283,6 @@ public class UserInterface extends AppCompatActivity {
                     mediaPlayer.setOnPreparedListener(
                             new MediaPlayer.OnPreparedListener() {
                                 public void onPrepared(MediaPlayer player) {
-                                    mediaPlayer.pause();
                                     mediaPlayer.start();
                                 }
                             });
