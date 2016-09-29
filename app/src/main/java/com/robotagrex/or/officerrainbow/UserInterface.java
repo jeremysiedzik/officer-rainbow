@@ -216,7 +216,7 @@ public class UserInterface extends AppCompatActivity {
                 super.onPreExecute();
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                 if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                    mediaPlayer.release();
+                    mediaPlayer.stop();
                 }
             }
 
