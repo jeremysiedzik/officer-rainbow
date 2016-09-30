@@ -412,7 +412,7 @@ public class UI extends AppCompatActivity {
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
                         if(mediaPlayer.isPlaying()){
-                            mediaPlayer.stop();
+                            mediaPlayer.pause();
                             mediaPlayer.release();
                         }
 
@@ -426,6 +426,7 @@ public class UI extends AppCompatActivity {
                     mediaPlayer.setOnPreparedListener(
                             new MediaPlayer.OnPreparedListener() {
                                 public void onPrepared(MediaPlayer player) {
+                                    mediaPlayer.pause();
                                     mediaPlayer.start();
                                 }
                             });
