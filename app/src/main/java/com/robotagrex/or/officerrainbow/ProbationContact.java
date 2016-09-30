@@ -79,14 +79,7 @@ public class ProbationContact extends AppCompatActivity {
                 editor.putString(officernotes, form_officer_notes);
 
                 editor.apply();
-                String blanket_save = getResources().getString(R.string.blanket_save);
-                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
-                Intent qoneintent = null;
-                try {
-                    qoneintent = new Intent( ProbationContact.this, Class.forName( blanket_save ) );
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Intent qoneintent = new Intent(ProbationContact.this, UI.class);
                 startActivity(qoneintent);
             }
         });

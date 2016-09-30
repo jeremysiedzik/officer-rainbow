@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
@@ -93,15 +94,7 @@ public class DataTest extends AppCompatActivity {
         buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String blanket_save = getResources().getString(R.string.blanket_save);
-                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
-                Intent qoneintent = null;
-                try {
-                    qoneintent = new Intent( DataTest.this, Class.forName( blanket_save ) );
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Intent qoneintent = new Intent(DataTest.this, UI.class);
                 startActivity(qoneintent);
             }
         });

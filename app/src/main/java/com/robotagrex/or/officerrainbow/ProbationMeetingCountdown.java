@@ -69,14 +69,7 @@ public class ProbationMeetingCountdown extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String blanket_save = getResources().getString(R.string.blanket_save);
-                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
-                Intent qoneintent = null;
-                try {
-                    qoneintent = new Intent( ProbationMeetingCountdown.this, Class.forName( blanket_save ) );
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Intent qoneintent = new Intent(ProbationMeetingCountdown.this, UI.class);
                 startActivity(qoneintent);
             }
         });

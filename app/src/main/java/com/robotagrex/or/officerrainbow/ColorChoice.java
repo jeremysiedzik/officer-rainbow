@@ -72,14 +72,7 @@ public class ColorChoice extends AppCompatActivity {
                 editor.putString(Color5, color5);
 
                 editor.apply();
-                String blanket_save = getResources().getString(R.string.blanket_save);
-                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
-                Intent qoneintent = null;
-                try {
-                    qoneintent = new Intent( ColorChoice.this, Class.forName( blanket_save ) );
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                Intent qoneintent = new Intent(ColorChoice.this, UI.class);
                 startActivity(qoneintent);
             }
         });
