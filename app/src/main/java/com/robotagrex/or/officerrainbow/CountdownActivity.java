@@ -68,7 +68,14 @@ public class CountdownActivity extends AppCompatActivity {
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent qoneintent = new Intent(CountdownActivity.this, UserInterface.class);
+                String blanket_save = getResources().getString(R.string.blanket_save);
+                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
+                Intent qoneintent = null;
+                try {
+                    qoneintent = new Intent( CountdownActivity.this, Class.forName( blanket_save ) );
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 startActivity(qoneintent);
             }
         });

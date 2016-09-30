@@ -55,7 +55,14 @@ public class OfficerRainbow extends AppCompatActivity {
                 editor.putString(FirstName, firstname);
                 editor.putString(LastName, lastname);
                 editor.apply();
-                Intent qoneintent = new Intent(OfficerRainbow.this, UserInterface.class);
+                String blanket_save = getResources().getString(R.string.blanket_save);
+                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
+                Intent qoneintent = null;
+                try {
+                    qoneintent = new Intent( OfficerRainbow.this, Class.forName( blanket_save ) );
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 startActivity(qoneintent);
             }
         });

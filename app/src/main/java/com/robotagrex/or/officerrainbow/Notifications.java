@@ -124,7 +124,14 @@ public class Notifications extends AppCompatActivity {
                 editor.putString(smskey2, sms2);
                 editor.putString(smskey3, sms3);
                 editor.apply();
-                Intent qoneintent = new Intent(Notifications.this, UserInterface.class);
+                String blanket_save = getResources().getString(R.string.blanket_save);
+                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
+                Intent qoneintent = null;
+                try {
+                    qoneintent = new Intent( Notifications.this, Class.forName( blanket_save ) );
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 startActivity(qoneintent);
             }
         });

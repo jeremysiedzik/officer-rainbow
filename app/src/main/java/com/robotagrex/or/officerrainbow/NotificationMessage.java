@@ -49,7 +49,14 @@ public class NotificationMessage extends AppCompatActivity {
 
                 editor.putString(Message, messagekey);
                 editor.apply();
-                Intent qoneintent = new Intent(NotificationMessage.this, UserInterface.class);
+                String blanket_save = getResources().getString(R.string.blanket_save);
+                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
+                Intent qoneintent = null;
+                try {
+                    qoneintent = new Intent( NotificationMessage.this, Class.forName( blanket_save ) );
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 startActivity(qoneintent);
             }
         });

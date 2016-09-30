@@ -50,7 +50,14 @@ public class WebsiteChoice extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent qoneintent = new Intent(WebsiteChoice.this, UserInterface.class);
+                String blanket_save = getResources().getString(R.string.blanket_save);
+                //Intent qoneintent = new Intent(AlarmSettings.this, Class.forName(blanket_save));
+                Intent qoneintent = null;
+                try {
+                    qoneintent = new Intent( WebsiteChoice.this, Class.forName( blanket_save ) );
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
                 startActivity(qoneintent);
             }
         });
