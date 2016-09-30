@@ -82,5 +82,5 @@
     <string name="play_recording">Play Recording</string>
     <string name="confidence">Confidence</string>
     <string name="stop_recording">stop_recording</string>
-    <string name="blanket_save">UI</string>
+    <string name="blanket_save">UI.java</string>
 </resources>
