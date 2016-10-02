@@ -21,10 +21,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,6 +37,7 @@ public class UI extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
+    ImageButton listen_star;
     TextView color_choice_heading,color_choice,daily_colors_string_heading;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
@@ -405,7 +402,7 @@ public class UI extends AppCompatActivity {
                 System.out.println("audio start button pressed - getting focus");
                 boolean gotFocus = requestAudioFocusForMyApp(UI.this);
                 if(gotFocus) {
-                    asyncURLaudio.execute());
+                    new asyncURLaudio().execute();
                 }
             }
         });
@@ -466,7 +463,6 @@ public class UI extends AppCompatActivity {
     }
 
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
-        private String title;
 
         @Override
         protected void onPreExecute() {
@@ -480,7 +476,6 @@ public class UI extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            try {
                 final AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -522,20 +517,17 @@ public class UI extends AppCompatActivity {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mediaPlayer != null) {
                             mediaPlayer.release();
-                            listen_star.setImageResource(android.R.drawable.star_off);
                         }
                     }
                 });
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             mProgressDialog.dismiss();
+            listen_star.setImageResource(android.R.drawable.star_off);
         }
     }
 }
