@@ -37,7 +37,6 @@ public class UI extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
-    ImageButton listen_star;
     TextView color_choice_heading,color_choice,daily_colors_string_heading;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
@@ -404,6 +403,7 @@ public class UI extends AppCompatActivity {
                 if(gotFocus) {
                     new asyncURLaudio().execute();
                 }
+                listen_star.setImageResource(android.R.drawable.star_off);
             }
         });
 
@@ -527,7 +527,7 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             mProgressDialog.dismiss();
-            listen_star.setImageResource(android.R.drawable.star_off);
+
         }
     }
 }
