@@ -1,11 +1,13 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -19,6 +21,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -41,6 +46,7 @@ public class UI extends AppCompatActivity {
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     private MediaPlayer mediaPlayer;
+    ProgressDialog mProgressDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -377,7 +383,7 @@ public class UI extends AppCompatActivity {
                     }
                 });
 
-                Toast toast= Toast.makeText(getApplicationContext(),
+                Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
@@ -396,52 +402,10 @@ public class UI extends AppCompatActivity {
                 //        "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
                 //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 //toast.show();
-                System.out.println("start button pressed - running asyncaudioURL");
+                System.out.println("audio start button pressed - getting focus");
                 boolean gotFocus = requestAudioFocusForMyApp(UI.this);
                 if(gotFocus) {
-                    final AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
-                    final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-                    Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
-                    //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
-                    try {
-                        mediaPlayer = new MediaPlayer();
-                        mediaPlayer.setDataSource(getApplicationContext(), myUri);
-                        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                        if(mediaPlayer.isPlaying()){
-                            mediaPlayer.pause();
-                            mediaPlayer.release();
-                        }
-
-                        mediaPlayer.prepare();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                    mediaPlayer.setOnPreparedListener(
-                            new MediaPlayer.OnPreparedListener() {
-                                public void onPrepared(MediaPlayer player) {
-                                    mediaPlayer.pause();
-                                    mediaPlayer.start();
-                                }
-                            });
-
-
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                            if (mediaPlayer != null) {
-                                mediaPlayer.release();
-                                listen_star.setImageResource(android.R.drawable.star_off);
-                            }
-                        }
-                    });
+                    asyncURLaudio.execute());
                 }
             }
         });
@@ -450,8 +414,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stop_star.setImageResource(android.R.drawable.btn_star_big_on);
-                System.out.println("stop button pressed - running asyncaudioURLstop");
-                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                System.out.println("stop button pressed");
                 if(mediaPlayer!=null) {
                     if(mediaPlayer.isPlaying())
                         mediaPlayer.stop();
@@ -459,6 +422,7 @@ public class UI extends AppCompatActivity {
                     mediaPlayer.release();
                     mediaPlayer=null;
                 }
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                 releaseAudioFocusForMyApp(UI.this);
                 stop_star.setImageResource(android.R.drawable.btn_star_big_off);
                 listen_star.setImageResource(android.R.drawable.star_off);
@@ -499,5 +463,79 @@ public class UI extends AppCompatActivity {
     void releaseAudioFocusForMyApp(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         am.abandonAudioFocus(null);
+    }
+
+    class asyncURLaudio extends AsyncTask<Void, Void, Void> {
+        private String title;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mProgressDialog = new ProgressDialog(UI.this);
+            mProgressDialog.setTitle("Onsite Voice Message");
+            mProgressDialog.setMessage("Downloading...");
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                final AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+                System.out.println("audio start button pressed - GOT FOCUS - ");
+                Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
+                //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+
+                try {
+                    if(mediaPlayer != null){
+                        mediaPlayer.pause();
+                        mediaPlayer.release();
+                        mediaPlayer = null;
+                    }
+
+                    mediaPlayer = MediaPlayer.create(UI.this, myUri);
+                    mediaPlayer = new MediaPlayer();
+                    mediaPlayer.setDataSource(getApplicationContext(), myUri);
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mediaPlayer.prepare();
+                }
+
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+                mediaPlayer.setOnPreparedListener(
+                        new MediaPlayer.OnPreparedListener() {
+                            public void onPrepared(MediaPlayer player) {
+                                mediaPlayer.start();
+                            }
+                        });
+
+
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        if (mediaPlayer != null) {
+                            mediaPlayer.release();
+                            listen_star.setImageResource(android.R.drawable.star_off);
+                        }
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            mProgressDialog.dismiss();
+        }
     }
 }
