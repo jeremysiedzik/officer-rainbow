@@ -467,7 +467,7 @@ Context context = getApplication();
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = new ProgressDialog(getApplication());
+            mProgressDialog = new ProgressDialog(UI.this);
             mProgressDialog.setTitle("Onsite Voice Message");
             mProgressDialog.setMessage("Downloading...");
             mProgressDialog.setIndeterminate(false);
