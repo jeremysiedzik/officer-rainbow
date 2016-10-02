@@ -214,6 +214,7 @@ public class UI extends AppCompatActivity {
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
@@ -222,6 +223,7 @@ public class UI extends AppCompatActivity {
         color_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
@@ -230,6 +232,7 @@ public class UI extends AppCompatActivity {
         alarm_state_notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -238,6 +241,7 @@ public class UI extends AppCompatActivity {
         alarm_state_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -246,6 +250,7 @@ public class UI extends AppCompatActivity {
         alarm_state_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -254,6 +259,7 @@ public class UI extends AppCompatActivity {
         alarmprompt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -262,6 +268,7 @@ public class UI extends AppCompatActivity {
         probation_end_counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -270,6 +277,7 @@ public class UI extends AppCompatActivity {
         raw_end_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -278,6 +286,7 @@ public class UI extends AppCompatActivity {
         probation_end_date_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -286,6 +295,7 @@ public class UI extends AppCompatActivity {
         probation_meeting_counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -294,6 +304,7 @@ public class UI extends AppCompatActivity {
         raw_meeting_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -302,6 +313,7 @@ public class UI extends AppCompatActivity {
         probation_meeting_date_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -310,6 +322,7 @@ public class UI extends AppCompatActivity {
         progress_bar_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, DataTest.class);
                 startActivity(qoneintent);
             }
@@ -318,6 +331,7 @@ public class UI extends AppCompatActivity {
         daily_colors_string_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -355,6 +369,7 @@ public class UI extends AppCompatActivity {
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio(getApplication());
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -430,7 +445,7 @@ public class UI extends AppCompatActivity {
             }
         });
 
-        int progress = 60;
+        int progress = 73;
         progress_bar_2.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
 
