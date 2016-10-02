@@ -50,8 +50,8 @@ public class UI extends AppCompatActivity {
         setContentView(R.layout.ui);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+        //final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        //final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -410,17 +410,20 @@ public class UI extends AppCompatActivity {
         stop_star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stop_star.setImageResource(android.R.drawable.btn_star_big_on);
+                //final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                //final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+                //stop_star.setImageResource(android.R.drawable.btn_star_big_on);
                 System.out.println("stop button pressed");
-                if(mediaPlayer!=null) {
-                    if(mediaPlayer.isPlaying())
-                        mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                    mediaPlayer=null;
-                }
-                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                releaseAudioFocusForMyApp(getApplication());
+                stopaudio(getApplication());
+                //if(mediaPlayer!=null) {
+                //    if(mediaPlayer.isPlaying())
+                //        mediaPlayer.stop();
+                //    mediaPlayer.reset();
+                //    mediaPlayer.release();
+                //    mediaPlayer=null;
+                //}
+                //am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                //releaseAudioFocusForMyApp(getApplication());
                 stop_star.setImageResource(android.R.drawable.btn_star_big_off);
                 listen_star.setImageResource(android.R.drawable.star_off);
 
@@ -462,8 +465,22 @@ public class UI extends AppCompatActivity {
         am.abandonAudioFocus(null);
     }
 
+    void stopaudio(final Context context) {
+        AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+        if(mediaPlayer!=null) {
+            if(mediaPlayer.isPlaying())
+                mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer=null;
+        }
+        am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+        releaseAudioFocusForMyApp(getApplication());
+    }
+
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
-Context context = getApplication();
+    Context context = getApplication();
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
