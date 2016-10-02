@@ -399,7 +399,7 @@ public class UI extends AppCompatActivity {
                 //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 //toast.show();
                 System.out.println("audio start button pressed - getting focus");
-                boolean gotFocus = requestAudioFocusForMyApp(getApplicationContext());
+                boolean gotFocus = requestAudioFocusForMyApp(getApplication());
                 if(gotFocus) {
                     new asyncURLaudio().execute();
                 }
@@ -420,7 +420,7 @@ public class UI extends AppCompatActivity {
                     mediaPlayer=null;
                 }
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                releaseAudioFocusForMyApp(getApplicationContext());
+                releaseAudioFocusForMyApp(getApplication());
                 stop_star.setImageResource(android.R.drawable.btn_star_big_off);
                 listen_star.setImageResource(android.R.drawable.star_off);
 
@@ -463,11 +463,11 @@ public class UI extends AppCompatActivity {
     }
 
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
-
+Context context = getApplication();
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = new ProgressDialog(getApplicationContext());
+            mProgressDialog = new ProgressDialog(getApplication());
             mProgressDialog.setTitle("Onsite Voice Message");
             mProgressDialog.setMessage("Downloading...");
             mProgressDialog.setIndeterminate(false);
