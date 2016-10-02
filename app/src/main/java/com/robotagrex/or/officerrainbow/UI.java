@@ -43,6 +43,7 @@ public class UI extends AppCompatActivity {
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
+    Context context = getApplication();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -346,7 +347,6 @@ public class UI extends AppCompatActivity {
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
-                Context context = getApplication();
                 Intent service = new Intent(context, WebSitechecker.class);
                 context.startService(service);
             }
@@ -399,7 +399,7 @@ public class UI extends AppCompatActivity {
                 //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 //toast.show();
                 System.out.println("audio start button pressed - getting focus");
-                boolean gotFocus = requestAudioFocusForMyApp(UI.this);
+                boolean gotFocus = requestAudioFocusForMyApp(getApplicationContext());
                 if(gotFocus) {
                     new asyncURLaudio().execute();
                 }
@@ -420,7 +420,7 @@ public class UI extends AppCompatActivity {
                     mediaPlayer=null;
                 }
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                releaseAudioFocusForMyApp(UI.this);
+                releaseAudioFocusForMyApp(getApplicationContext());
                 stop_star.setImageResource(android.R.drawable.btn_star_big_off);
                 listen_star.setImageResource(android.R.drawable.star_off);
 
@@ -467,7 +467,7 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = new ProgressDialog(UI.this);
+            mProgressDialog = new ProgressDialog(getApplicationContext());
             mProgressDialog.setTitle("Onsite Voice Message");
             mProgressDialog.setMessage("Downloading...");
             mProgressDialog.setIndeterminate(false);
@@ -490,7 +490,7 @@ public class UI extends AppCompatActivity {
                         mediaPlayer = null;
                     }
 
-                    mediaPlayer = MediaPlayer.create(UI.this, myUri);
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
                     mediaPlayer = new MediaPlayer();
                     mediaPlayer.setDataSource(getApplicationContext(), myUri);
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
