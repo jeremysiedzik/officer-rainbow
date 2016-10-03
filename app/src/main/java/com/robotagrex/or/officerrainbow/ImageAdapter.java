@@ -1,10 +1,10 @@
 package com.robotagrex.or.officerrainbow;
 
-        import android.widget.*;
-        import java.util.*;
-        import android.graphics.*;
-        import android.view.*;
-        import android.content.*;
+import android.widget.*;
+import java.util.*;
+import android.graphics.*;
+import android.view.*;
+import android.content.*;
 
 class ImageAdapter extends BaseAdapter {
 

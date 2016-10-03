@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 public class ImageStore extends AppCompatActivity {
 
+    public GridView imageGrid;
+    public ArrayList<Bitmap> bitmapList;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,9 +23,6 @@ public class ImageStore extends AppCompatActivity {
 
         Button buttonsave = (Button) findViewById(R.id.buttonsave);
         assert buttonsave != null;
-
-        GridView imageGrid = (GridView) findViewById(R.id.gridview);
-        ArrayList<Bitmap> bitmapList = new ArrayList<>();
 
         try {
             for(int i = 0; i < 10; i++) {
