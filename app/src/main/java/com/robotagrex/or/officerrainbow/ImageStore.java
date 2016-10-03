@@ -48,7 +48,7 @@ public class ImageStore extends AppCompatActivity {
                 try {
                     for(int i = 0; i < 10; i++) {
                         System.out.println("iterating http bitmap pull #"+i);
-                        bitmapList.add(urlImageToBitmap("http://robotagrex.byethost3.com/wp-content/themes/singlepage/images/404.png"));
+                        bitmapList.add(urlImageToBitmap("http://feed.robotagrex.com/404.png"));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
