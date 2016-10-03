@@ -44,6 +44,8 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProbationMeetingAlarmSettings"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ImageView"
+            android:windowSoftInputMode="stateHidden"/>
 
 
         <meta-data
