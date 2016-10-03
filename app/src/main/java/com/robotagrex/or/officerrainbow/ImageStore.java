@@ -58,6 +58,8 @@ public class ImageStore extends AppCompatActivity {
 
         thread.start();
 
+        this.imageGrid.setAdapter(new ImageAdapter(this, this.bitmapList));
+
     }
 
     private Bitmap urlImageToBitmap(String imageUrl) throws Exception {
