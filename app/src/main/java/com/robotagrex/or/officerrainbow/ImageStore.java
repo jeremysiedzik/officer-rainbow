@@ -1,13 +1,14 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.graphics.*;
 import java.net.*;
-
-
 import java.util.ArrayList;
 
 public class ImageStore extends AppCompatActivity {
@@ -16,6 +17,9 @@ public class ImageStore extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.imagestore);
+
+        Button buttonsave = (Button) findViewById(R.id.buttonsave);
+        assert buttonsave != null;
 
         GridView imageGrid = (GridView) findViewById(R.id.gridview);
         ArrayList<Bitmap> bitmapList = new ArrayList<>();
@@ -29,6 +33,14 @@ public class ImageStore extends AppCompatActivity {
         }
 
         imageGrid.setAdapter(new ImageAdapter(this, bitmapList));
+
+        buttonsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(ImageStore.this, UI.class);
+                startActivity(qoneintent);
+            }
+        });
 
     }
 

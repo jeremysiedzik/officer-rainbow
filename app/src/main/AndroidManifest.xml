@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name=".Notifications"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotificationMessage"
@@ -42,6 +43,8 @@
         <activity android:name=".ProbationEndAlarmSettings"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProbationMeetingAlarmSettings"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ImageStore"
             android:windowSoftInputMode="stateHidden"/>
 
         <meta-data

@@ -37,7 +37,7 @@ public class UI extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
-    TextView color_choice_heading,color_choice,daily_colors_string_heading;
+    TextView color_choice_heading,color_choice,daily_colors_string_heading,image_store_heading;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
@@ -115,6 +115,8 @@ public class UI extends AppCompatActivity {
         else {
             alarm_state_email.setText(getString(R.string.email_disabled_text));
         }
+
+        image_store_heading = (TextView)findViewById(R.id.image_store_heading);
 
         probation_meeting_date_heading = (TextView)findViewById(R.id.probation_meeting_date_heading);
         probation_end_date_heading = (TextView)findViewById(R.id.probation_end_date_heading);
@@ -312,6 +314,15 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        image_store_heading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, ImageAdapter.class);
                 startActivity(qoneintent);
             }
         });
