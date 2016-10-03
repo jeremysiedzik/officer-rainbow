@@ -24,6 +24,9 @@ public class ImageStore extends AppCompatActivity {
         Button buttonsave = (Button) findViewById(R.id.buttonsave);
         assert buttonsave != null;
 
+        this.imageGrid = (GridView) findViewById(R.id.gridview);
+        this.bitmapList = new ArrayList<>();
+
         try {
             for(int i = 0; i < 10; i++) {
                 bitmapList.add(urlImageToBitmap("http://placehold.it/150x150"));
