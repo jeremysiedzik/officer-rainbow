@@ -54,8 +54,6 @@ public class ImageStore extends AppCompatActivity {
 
     }
 
-
-
     private Bitmap urlImageToBitmap(String imageUrl) throws Exception {
         Bitmap result;
         URL url = new URL(imageUrl);
