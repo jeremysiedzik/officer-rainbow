@@ -27,14 +27,6 @@ public class ImageStore extends AppCompatActivity {
         this.imageGrid = (GridView) findViewById(R.id.gridview);
         this.bitmapList = new ArrayList<>();
 
-        try {
-            for(int i = 0; i < 10; i++) {
-                bitmapList.add(urlImageToBitmap("http://placehold.it/150x150"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         imageGrid.setAdapter(new ImageAdapter(this, bitmapList));
 
         buttonsave.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +37,24 @@ public class ImageStore extends AppCompatActivity {
             }
         });
 
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    for(int i = 0; i < 10; i++) {
+                        bitmapList.add(urlImageToBitmap("http://placehold.it/150x150"));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+
     }
+
+
 
     private Bitmap urlImageToBitmap(String imageUrl) throws Exception {
         Bitmap result;
