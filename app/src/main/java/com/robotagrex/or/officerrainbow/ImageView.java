@@ -1,10 +1,12 @@
 package com.robotagrex.or.officerrainbow;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 
 public class ImageView extends AppCompatActivity {
@@ -14,7 +16,7 @@ public class ImageView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.imageview);
 
-        GridView gridView = (GridView)findViewById(R.id.gridview);
+        GridView gridView = (GridView) findViewById(R.id.gridview);
         final ImageViewAdapter booksAdapter = new ImageViewAdapter(this, books);
         gridView.setAdapter(booksAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -29,6 +31,16 @@ public class ImageView extends AppCompatActivity {
             }
         });
 
+        Button buttontest = (Button) findViewById(R.id.buttontest);
+        assert buttontest != null;
+
+        buttontest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent qoneintent = new Intent(ImageView.this, UI.class);
+                startActivity(qoneintent);
+            }
+        });
     }
 
     private Book[] books = {
@@ -53,6 +65,4 @@ public class ImageView extends AppCompatActivity {
             new Book(R.string.one_fish_two_fish_red_fish_blue_fish, R.string.dr_seuss, R.drawable.onefish,
                     "http://www.raywenderlich.com/wp-content/uploads/2016/03/onefish.jpg")
     };
-
-
 }
