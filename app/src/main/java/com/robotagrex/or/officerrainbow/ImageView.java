@@ -31,10 +31,10 @@ public class ImageView extends AppCompatActivity {
             }
         });
 
-        Button buttontest = (Button) findViewById(R.id.buttontest);
-        assert buttontest != null;
+        Button buttonsave = (Button) findViewById(R.id.buttonsave);
+        assert buttonsave != null;
 
-        buttontest.setOnClickListener(new View.OnClickListener() {
+        buttonsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent qoneintent = new Intent(ImageView.this, UI.class);
