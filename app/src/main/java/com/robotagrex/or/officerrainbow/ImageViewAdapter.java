@@ -20,7 +20,7 @@ class ImageViewAdapter extends BaseAdapter {
         this.books = books;
     }
 
-    // 2
+    // 2 test
     @Override
     public int getCount() {
         return books.length;
