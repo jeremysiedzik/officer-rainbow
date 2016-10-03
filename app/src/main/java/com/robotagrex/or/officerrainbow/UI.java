@@ -50,9 +50,6 @@ public class UI extends AppCompatActivity {
         setContentView(R.layout.ui);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        //final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        //final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
