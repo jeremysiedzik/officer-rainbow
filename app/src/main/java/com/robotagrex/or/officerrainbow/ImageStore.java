@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.graphics.*;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
 import java.util.ArrayList;
 
@@ -57,6 +60,26 @@ public class ImageStore extends AppCompatActivity {
 
 
     private Bitmap urlImageToBitmap(String imageUrl) throws Exception {
+        String urlStr = params[0];
+        Bitmap img = null;
+
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(urlStr);
+        HttpResponse response;
+        try {
+            response = (HttpResponse)client.execute(request);
+            HttpEntity entity = response.getEntity();
+            BufferedHttpEntity bufferedEntity = new BufferedHttpEntity(entity);
+            InputStream inputStream = bufferedEntity.getContent();
+            img = BitmapFactory.decodeStream(inputStream);
+        } catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return img;
         Bitmap result;
         URL url = new URL(imageUrl);
         result = BitmapFactory.decodeStream(url.openConnection().getInputStream());
