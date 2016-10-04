@@ -414,9 +414,19 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 listen_star.setImageResource(android.R.drawable.star_on);
-                if(mediaPlayer.isPlaying()) {
-                    stopaudio(getApplication());
-                } else {
+                AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+                int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+                if(mediaPlayer!=null) {
+                    if(mediaPlayer.isPlaying())
+                        mediaPlayer.stop();
+                        mediaPlayer.reset();
+                        mediaPlayer.release();
+                        mediaPlayer=null;
+                        am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                        listen_star.setImageResource(android.R.drawable.star_off);
+                }
+
+                else {
                     System.out.println("audio start button pressed - getting focus");
                     boolean gotFocus = requestAudioFocusForMyApp(getApplication());
                     if (gotFocus) {
