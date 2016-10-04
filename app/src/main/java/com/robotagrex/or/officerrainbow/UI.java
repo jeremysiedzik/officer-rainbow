@@ -471,6 +471,9 @@ public class UI extends AppCompatActivity {
     void releaseAudioFocusForMyApp(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         am.abandonAudioFocus(null);
+        ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
+        assert listen_star != null;
+        listen_star.setImageResource(android.R.drawable.star_off);
     }
 
     void stopaudio(final Context context) {
