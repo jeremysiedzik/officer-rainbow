@@ -59,9 +59,6 @@ public class UI extends AppCompatActivity {
         final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
 
-        final ImageButton stop_star = (ImageButton)findViewById(R.id.stop_star);
-        assert stop_star != null;
-
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
@@ -417,41 +414,19 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 listen_star.setImageResource(android.R.drawable.star_on);
-                //Toast toast= Toast.makeText(getApplicationContext(),
-                //        "Retrieving and Playing Daily Recording", Toast.LENGTH_LONG);
-                //toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                //toast.show();
-                System.out.println("audio start button pressed - getting focus");
-                boolean gotFocus = requestAudioFocusForMyApp(getApplication());
-                if(gotFocus) {
-                    new asyncURLaudio().execute();
+                if(mediaPlayer.isPlaying()) {
+                    stopaudio(getApplication());
+                } else {
+                    System.out.println("audio start button pressed - getting focus");
+                    boolean gotFocus = requestAudioFocusForMyApp(getApplication());
+                    if (gotFocus) {
+                        new asyncURLaudio().execute();
+                    }
+                    listen_star.setImageResource(android.R.drawable.star_off);
                 }
-                listen_star.setImageResource(android.R.drawable.star_off);
             }
         });
 
-        stop_star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //final AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-                //final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-                //stop_star.setImageResource(android.R.drawable.btn_star_big_on);
-                System.out.println("stop button pressed");
-                stopaudio(getApplication());
-                //if(mediaPlayer!=null) {
-                //    if(mediaPlayer.isPlaying())
-                //        mediaPlayer.stop();
-                //    mediaPlayer.reset();
-                //    mediaPlayer.release();
-                //    mediaPlayer=null;
-                //}
-                //am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                //releaseAudioFocusForMyApp(getApplication());
-                stop_star.setImageResource(android.R.drawable.btn_star_big_off);
-                listen_star.setImageResource(android.R.drawable.star_off);
-
-            }
-        });
 
         int progress = 73;
         progress_bar_2.setProgress(progress);

@@ -207,29 +207,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="103dp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/star_big_off"
-        android:id="@+id/stop_star"
-        android:contentDescription="@string/play_recording"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:layout_below="@+id/listen_colors_heading"
-        android:layout_alignStart="@+id/listen_colors_heading"
-        android:layout_marginTop="21dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/star_off"
-        android:id="@+id/listen_star"
-        android:contentDescription="@string/stop_recording"
-        android:scaleX="2.5"
-        android:scaleY="2.5"
-        android:layout_alignTop="@+id/stop_star"
-        android:layout_alignEnd="@+id/listen_colors_heading" />
-
         <TextView
             android:text="@string/record_receipt_image"
             android:layout_width="wrap_content"
@@ -238,5 +215,17 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/image_store_heading"
             android:textSize="30sp" />
+
+        <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/star_off"
+        android:id="@+id/listen_star"
+        android:contentDescription="@string/stop_recording"
+        android:scaleX="2.5"
+        android:scaleY="2.5"
+            android:layout_below="@+id/listen_colors_heading"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="37dp" />
 
 </RelativeLayout>
