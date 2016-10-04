@@ -414,6 +414,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 listen_star.setImageResource(android.R.drawable.star_on);
+                Context context = getApplication();
                 AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
                 int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 if(mediaPlayer!=null) {
@@ -501,7 +502,7 @@ public class UI extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-                final AudioManager am = (AudioManager) getSystemService(AUDIO_SERVICE);
+                final AudioManager am = (AudioManager)context.getSystemService(AUDIO_SERVICE);
                 final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 System.out.println("audio start button pressed - GOT FOCUS - ");
