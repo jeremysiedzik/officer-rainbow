@@ -419,7 +419,7 @@ public class UI extends AppCompatActivity {
                 int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 if(mediaPlayer!=null) {
                     if(mediaPlayer.isPlaying())
-                        mediaPlayer.stop();
+                        mediaPlayer.pause();
                         mediaPlayer.reset();
                         mediaPlayer.release();
                         mediaPlayer=null;
@@ -478,7 +478,7 @@ public class UI extends AppCompatActivity {
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         if(mediaPlayer!=null) {
             if(mediaPlayer.isPlaying())
-                mediaPlayer.stop();
+                mediaPlayer.pause();
             mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer=null;
