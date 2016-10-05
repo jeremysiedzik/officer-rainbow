@@ -502,6 +502,16 @@ public class UI extends AppCompatActivity {
     }
 
     private void dialContactPhone(final String phoneNumber) {
+        try {
+            startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
+        } catch (Exception e) {
+            Toast toast= Toast.makeText(getApplicationContext(),
+                    "Telephone service not found. Please make sure this device can make calls.", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+        }
+
+
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
 
