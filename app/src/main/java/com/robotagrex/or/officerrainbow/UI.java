@@ -494,7 +494,7 @@ public class UI extends AppCompatActivity {
         });
 
 
-        int progress = 73;
+        int progress = 78;
         progress_bar_2.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
 

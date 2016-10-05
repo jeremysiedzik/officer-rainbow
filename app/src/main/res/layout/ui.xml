@@ -244,7 +244,8 @@
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/call_probation_heading"
-            android:layout_alignStart="@+id/alarm_state_email" />
+            android:layout_alignStart="@+id/alarm_state_email"
+            android:textAlignment="textEnd" />
 
         <Button
             android:text="@string/call_now"
