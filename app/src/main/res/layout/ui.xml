@@ -236,17 +236,6 @@
             android:layout_below="@+id/alarmprompt"
             android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:text="@string/tap_here_to_choose_probation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/probation_officer_name"
-            android:textSize="24sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/call_probation_heading"
-            android:layout_alignStart="@+id/alarm_state_email"
-            android:textAlignment="textEnd" />
-
         <Button
             android:text="@string/call_now"
             android:layout_width="wrap_content"
@@ -256,5 +245,16 @@
             android:layout_alignTop="@+id/listen_colors_heading"
             android:layout_alignParentEnd="true"
             android:layout_alignStart="@+id/probation_officer_name" />
+
+        <TextView
+            android:text="@string/tap_here_to_choose_probation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/probation_officer_name"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAlignment="textEnd"
+            android:layout_below="@+id/call_probation_heading"
+            android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
