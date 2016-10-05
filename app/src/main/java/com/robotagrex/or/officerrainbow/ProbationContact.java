@@ -9,14 +9,16 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class ProbationContact extends AppCompatActivity {
 
-    EditText ed6,ed11,ed12,current_ed;
+    EditText etPhoneNumber,ed6,ed12,current_ed;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String officername = "officerName";
     public static final String officernumber = "officerNumber";
@@ -31,8 +33,8 @@ public class ProbationContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.probationcontact);
 
+        etPhoneNumber=(EditText)findViewById(R.id.etPhoneNumber);
         ed6=(EditText)findViewById(R.id.editText6);
-        ed11=(EditText)findViewById(R.id.editText11);
         ed12=(EditText)findViewById(R.id.editText12);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -49,18 +51,43 @@ public class ProbationContact extends AppCompatActivity {
         String fillcontact_name = sharedpreferences.getString("officerName","");
         String fillcontact_number = sharedpreferences.getString("officerNumber","");
         String fillcontact_notes = sharedpreferences.getString("officerNotes","");
+        final String[] lastChar = {" "};
 
         ed6.setText(fillcontact_name);
-        ed11.setText(fillcontact_number);
+        etPhoneNumber.setText(fillcontact_number);
         ed12.setText(fillcontact_notes);
-        ed11.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+        etPhoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int digits = etPhoneNumber.getText().toString().length();
+                if (digits > 1)
+                    lastChar[0] = etPhoneNumber.getText().toString().substring(digits-1);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int digits = etPhoneNumber.getText().toString().length();
+                Log.d("LENGTH",""+digits);
+                if (!lastChar[0].equals("-")) {
+                    if (digits == 3 || digits == 7) {
+                        etPhoneNumber.append("-");
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         contactbutton3.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View view) {
-                current_ed=(EditText)findViewById(R.id.editText11);
+                current_ed=(EditText)findViewById(R.id.etPhoneNumber);
                 Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent1, PICK_CONTACT_REQUEST);
@@ -71,7 +98,7 @@ public class ProbationContact extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String form_officer_name  = ed6.getText().toString();
-                String form_officer_number  = ed11.getText().toString();
+                String form_officer_number  = etPhoneNumber.getText().toString();
                 String form_officer_notes  = ed12.getText().toString();
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -124,9 +151,34 @@ public class ProbationContact extends AppCompatActivity {
 
 
             // Do something with the phone number...
-            ed11.setText(final_number);
+            etPhoneNumber.setText(final_number);
             ed6.setText(final_name);
-            ed11.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+            etPhoneNumber.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    int digits = etPhoneNumber.getText().toString().length();
+                    String lastChar = " ";
+                    if (digits > 1)
+                        lastChar = etPhoneNumber.getText().toString().substring(digits-1);
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    int digits = etPhoneNumber.getText().toString().length();
+                    Log.d("LENGTH",""+digits);
+                    String lastChar = " ";
+                    if (!lastChar.equals("-")) {
+                        if (digits == 3 || digits == 7) {
+                            etPhoneNumber.append("-");
+                        }
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         }
     }
 }
