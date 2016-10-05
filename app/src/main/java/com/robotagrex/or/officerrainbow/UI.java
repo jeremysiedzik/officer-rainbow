@@ -40,7 +40,7 @@ public class UI extends AppCompatActivity {
     Handler mHandler = new Handler();
     TextView color_choice_heading,color_choice,daily_colors_string_heading,image_store_heading;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
-    TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading;
+    TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
@@ -64,6 +64,7 @@ public class UI extends AppCompatActivity {
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
+        call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
@@ -208,6 +209,14 @@ public class UI extends AppCompatActivity {
                 probation_meeting_counter.setText(time.toString());
             }
         }.start();
+
+        call_probation_heading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                dialContactPhone("2489398620");
+            }
+        });
 
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -490,6 +499,10 @@ public class UI extends AppCompatActivity {
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp(getApplication());
+    }
+
+    private void dialContactPhone(final String phoneNumber) {
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
 
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {

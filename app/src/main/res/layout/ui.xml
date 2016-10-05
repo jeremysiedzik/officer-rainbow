@@ -107,17 +107,6 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/alarm_state_notify"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/alarm_state_notify"
-            android:textSize="24sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/alarmprompt"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp" />
-
-        <TextView
             android:text="@string/alarm_state_sms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -227,5 +216,24 @@
             android:layout_below="@+id/listen_colors_heading"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="37dp" />
+
+        <TextView
+            android:text="@string/call_probation_office"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/call_probation_heading"
+            android:textSize="30sp"
+            android:layout_below="@+id/progress_bar_2"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="@string/alarm_state_notify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/alarm_state_notify"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/alarmprompt"
+            android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
