@@ -58,7 +58,7 @@ public class UI extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         marquee = (TextView) this.findViewById(R.id.mywidget);
-        marquee.setSelected(true);  // Set focus to the textview
+        marquee.setSelected(true);
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
