@@ -510,9 +510,6 @@ public class UI extends AppCompatActivity {
             toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
         }
-
-
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null)));
     }
 
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
