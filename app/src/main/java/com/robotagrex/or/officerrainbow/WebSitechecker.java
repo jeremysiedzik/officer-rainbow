@@ -23,7 +23,7 @@ public class WebSitechecker extends IntentService {
     }
     public static final String TAG = "Color Check Service";
     public static final int NOTIFICATION_ID = 1;
-    public static final String url = "http://feed.robotagrex.com/onsite-colors.txt";
+    public static final String url = "http://data.robotagrex.com/onsite-colors.txt";
     public static final String data_result_push = "data_result";
 
     @Override

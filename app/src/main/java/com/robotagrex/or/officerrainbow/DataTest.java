@@ -24,7 +24,7 @@ public class DataTest extends AppCompatActivity {
     SharedPreferences sharedpreferences;
 
     // URL Address
-    String url = "http://feed.robotagrex.com/aggregate.html";
+    String url = "http://data.robotagrex.com/aggregate.html";
     ProgressDialog mProgressDialog;
 
     @Override
