@@ -72,14 +72,15 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/editText11"
             android:labelFor="@id/editText11"
             android:textSize="24sp"
             android:selectAllOnFocus="true"
             android:layout_below="@+id/textView9"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:inputType="phone"
+            android:maxLength="12"/>
 
         <EditText
             android:layout_width="wrap_content"
