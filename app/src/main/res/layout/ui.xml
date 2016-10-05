@@ -244,7 +244,7 @@
             android:textSize="30sp"
             android:layout_alignTop="@+id/listen_colors_heading"
             android:layout_alignParentEnd="true"
-            android:layout_alignStart="@+id/probation_officer_name" />
+            android:layout_alignStart="@+id/probation_meeting_date_heading" />
 
         <TextView
             android:text="@string/tap_here_to_choose_probation"
