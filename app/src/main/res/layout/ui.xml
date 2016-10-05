@@ -257,4 +257,23 @@
             android:layout_below="@+id/call_probation_heading"
             android:layout_alignParentEnd="true" />
 
+        <TextView
+            android:id="@+id/mywidget"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:textColor="#ff0000"
+            android:text="@string/marquee_contents"
+            android:textSize="30sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

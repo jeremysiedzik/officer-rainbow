@@ -40,7 +40,7 @@ public class UI extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
-    TextView color_choice_heading,color_choice,daily_colors_string_heading,image_store_heading;
+    TextView color_choice_heading,color_choice,daily_colors_string_heading,image_store_heading,marquee;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
@@ -56,6 +56,9 @@ public class UI extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        marquee = (TextView) this.findViewById(R.id.mywidget);
+        marquee.setSelected(true);  // Set focus to the textview
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
