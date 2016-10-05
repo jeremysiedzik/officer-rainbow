@@ -151,7 +151,7 @@
             android:text="@string/your_color_choices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textcolor1"
+            android:id="@+id/probation_officer_name"
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/color_choice_heading"
@@ -193,7 +193,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/confidence_header"
             android:textSize="30sp"
-            android:layout_alignTop="@+id/textcolor1"
+            android:layout_alignTop="@+id/probation_officer_name"
             android:layout_centerHorizontal="true" />
 
         <TextView

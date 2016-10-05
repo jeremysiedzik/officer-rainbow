@@ -66,7 +66,7 @@ public class UserInterface extends AppCompatActivity {
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
-        color_choice = (TextView)findViewById(R.id.textcolor1);
+        color_choice = (TextView)findViewById(R.id.probation_officer_name);
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
         if((fillcolor1.length() != 0)) {
             color_choice.setText(fillcolor1);

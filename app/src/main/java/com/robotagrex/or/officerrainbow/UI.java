@@ -41,7 +41,7 @@ public class UI extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
     TextView color_choice_heading,color_choice,daily_colors_string_heading,image_store_heading;
-    TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string;
+    TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     private MediaPlayer mediaPlayer;
@@ -60,17 +60,27 @@ public class UI extends AppCompatActivity {
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
 
+        Button button_call_probation = (Button)findViewById(R.id.button_call_probation);
+        assert button_call_probation != null;
+
         final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
 
         RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
         assert progress_bar_2 != null;
 
+        probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
+        final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
+        if((probation_officer_name_stored.length() != 0)) {
+            probation_officer_name.setText(probation_officer_name_stored);
+        }
+
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
-        color_choice = (TextView)findViewById(R.id.textcolor1);
+
+        color_choice = (TextView)findViewById(R.id.color_choice);
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
         if((fillcolor1.length() != 0)) {
             color_choice.setText(fillcolor1);
@@ -216,6 +226,24 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, ProbationContact.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        probation_officer_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, ProbationContact.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        button_call_probation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
 
                 String probation_officer_number = sharedpreferences.getString("officerNumber","");
 
@@ -231,6 +259,7 @@ public class UI extends AppCompatActivity {
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setRepeatCount(20);
                 call_probation_heading.startAnimation(anim);
+                probation_officer_name.startAnimation(anim);
             }
         });
 

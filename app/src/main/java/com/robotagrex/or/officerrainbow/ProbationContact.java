@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,7 @@ public class ProbationContact extends AppCompatActivity {
         ed6.setText(fillcontact_name);
         ed11.setText(fillcontact_number);
         ed12.setText(fillcontact_notes);
+        ed11.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
 
         contactbutton3.setOnClickListener(new View.OnClickListener()
@@ -84,6 +86,8 @@ public class ProbationContact extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -122,6 +126,7 @@ public class ProbationContact extends AppCompatActivity {
             // Do something with the phone number...
             ed11.setText(final_number);
             ed6.setText(final_name);
+            ed11.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         }
     }
 }

@@ -106,4 +106,6 @@
     <string name="cover_art">cover art</string>
     <string name="favorite_star">favorite star</string>
     <string name="call_probation_office">Probation Office Contact</string>
+    <string name="call_now">Call Now</string>
+    <string name="tap_here_to_choose_probation">Tap here to choose</string>
 </resources>

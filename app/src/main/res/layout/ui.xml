@@ -140,7 +140,7 @@
             android:text="@string/your_color_choices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textcolor1"
+            android:id="@+id/color_choice"
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/color_choice_heading"
@@ -175,15 +175,6 @@
             android:textSize="30sp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
-
-        <TextView
-            android:text="@string/confidence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/confidence_header"
-            android:textSize="30sp"
-            android:layout_alignTop="@+id/textcolor1"
-            android:layout_centerHorizontal="true" />
 
         <TextView
             android:text="@string/listen_to_the_daily_colors"
@@ -235,5 +226,34 @@
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarmprompt"
             android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="@string/confidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/confidence_header"
+            android:textSize="30sp"
+            android:layout_below="@+id/alarmprompt"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="@string/tap_here_to_choose_probation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/probation_officer_name"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/call_probation_heading"
+            android:layout_alignStart="@+id/alarm_state_email" />
+
+        <Button
+            android:text="@string/call_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_call_probation"
+            android:textSize="30sp"
+            android:layout_alignTop="@+id/listen_colors_heading"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/probation_officer_name" />
 
 </RelativeLayout>
