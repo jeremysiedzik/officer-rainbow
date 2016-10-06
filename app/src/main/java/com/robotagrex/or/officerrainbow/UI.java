@@ -69,8 +69,8 @@ public class UI extends AppCompatActivity {
         final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
 
-        RingProgressBar progress_bar_2 = (RingProgressBar)findViewById(R.id.progress_bar_2);
-        assert progress_bar_2 != null;
+        RingProgressBar progress_bar_ring = (RingProgressBar)findViewById(R.id.progress_bar_ring);
+        assert progress_bar_ring != null;
 
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
@@ -383,7 +383,7 @@ public class UI extends AppCompatActivity {
             }
         });
 
-        progress_bar_2.setOnClickListener(new View.OnClickListener() {
+        progress_bar_ring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
@@ -498,7 +498,7 @@ public class UI extends AppCompatActivity {
 
 
         int progress = 78;
-        progress_bar_2.setProgress(progress);
+        progress_bar_ring.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
 
           //  @Override

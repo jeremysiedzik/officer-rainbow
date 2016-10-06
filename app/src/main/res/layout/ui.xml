@@ -57,7 +57,7 @@
             android:layout_alignParentStart="true" />
 
         <io.netopen.hotbitmapgg.library.view.RingProgressBar
-            android:id="@+id/progress_bar_2"
+            android:id="@+id/progress_bar_ring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:max="100"
@@ -183,7 +183,7 @@
             android:id="@+id/listen_colors_heading"
             android:textSize="30sp"
             android:elevation="1dp"
-            android:layout_below="@+id/progress_bar_2"
+            android:layout_below="@+id/progress_bar_ring"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="103dp" />
 
@@ -214,7 +214,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/call_probation_heading"
             android:textSize="30sp"
-            android:layout_below="@+id/progress_bar_2"
+            android:layout_below="@+id/progress_bar_ring"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -272,6 +272,6 @@
         android:text="@string/marquee_contents"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/progress_bar_2" />
+        android:layout_toStartOf="@+id/progress_bar_ring" />
 
 </RelativeLayout>
