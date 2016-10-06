@@ -259,12 +259,6 @@
 
     <TextView
         android:id="@+id/mywidget"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:scrollHorizontally="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:freezesText="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -275,6 +269,7 @@
         android:text="@string/marquee_contents"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/progress_bar_ring" />
+        android:layout_toStartOf="@+id/progress_bar_ring"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

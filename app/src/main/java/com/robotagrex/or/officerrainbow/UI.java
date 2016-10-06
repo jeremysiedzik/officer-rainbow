@@ -57,8 +57,7 @@ public class UI extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        marquee = (TextView) this.findViewById(R.id.mywidget);
-        marquee.setSelected(true);
+        marquee = (TextView)findViewById(R.id.mywidget);
 
         Button buttonnext = (Button)findViewById(R.id.buttonlast);
         assert buttonnext != null;
