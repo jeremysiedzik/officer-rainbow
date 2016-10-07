@@ -71,6 +71,8 @@ public class UI extends AppCompatActivity {
         RingProgressBar progress_bar_ring = (RingProgressBar)findViewById(R.id.progress_bar_ring);
         assert progress_bar_ring != null;
 
+        checkdailycolors(getApplicationContext());
+
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
         if((probation_officer_name_stored.length() != 0)) {
