@@ -130,8 +130,9 @@ public class UI extends AppCompatActivity {
                 while(true) {
                     if (!(obj.parsingComplete)) break;
                 }
-                String marquee_text = obj.getDescription();
-                if (marquee_text.contains("Click for more info")) {
+                String marquee_key = obj.getTitle();
+                //String marquee_text = obj.getDescription();
+                if (marquee_key.contains("321654987")) {
                     marquee.setText(obj.getDescription());
                 } else {
                     marquee.setText("");

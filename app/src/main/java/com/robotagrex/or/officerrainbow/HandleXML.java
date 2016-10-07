@@ -8,7 +8,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 class HandleXML {
-   // private String title = "title";
+    private String title = "title";
     private String link = "link";
     private String description = "description";
     private String urlString = null;
@@ -19,9 +19,9 @@ class HandleXML {
         this.urlString = url;
     }
 
-    //public String getTitle(){
-      //  return title;
-    //}
+    public String getTitle(){
+        return title;
+    }
 
     String getLink(){
         return link;
@@ -52,9 +52,9 @@ class HandleXML {
                     case XmlPullParser.END_TAG:
 
                         switch (name) {
-                            //case "title":
-                            //    title = text;
-                            //    break;
+                            case "title":
+                                title = text;
+                                break;
                             case "link":
                                 link = text;
                                 break;
