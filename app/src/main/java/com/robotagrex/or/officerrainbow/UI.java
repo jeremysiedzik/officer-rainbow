@@ -424,8 +424,7 @@ public class UI extends AppCompatActivity {
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
-                Intent service = new Intent(context, WebSitechecker.class);
-                context.startService(service);
+                checkdailycolors(getApplicationContext());
             }
         });
 
@@ -462,9 +461,10 @@ public class UI extends AppCompatActivity {
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
-                Context context = getApplication();
-                Intent service = new Intent(context, WebSitechecker.class);
-                context.startService(service);
+                //Context context = getApplication();
+                //Intent service = new Intent(context, WebSitechecker.class);
+                //context.startService(service);
+                checkdailycolors(getApplicationContext());
             }
         });
 
@@ -532,6 +532,11 @@ public class UI extends AppCompatActivity {
         ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
         listen_star.setImageResource(android.R.drawable.star_off);
+    }
+
+    void checkdailycolors(final Context uicontext) {
+        Intent service = new Intent(uicontext, WebSitechecker.class);
+        uicontext.startService(service);
     }
 
     void stopaudio(final Context context) {
