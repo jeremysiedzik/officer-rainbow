@@ -53,7 +53,7 @@
     <string name="phone_number">Phone Number</string>
     <string name="note">Notes</string>
     <string name="prob_end_date_text">Probation End Date:</string>
-    <string name="your_color_choices">Tap here to choose</string>
+    <string name="your_color_choices">Tap here to add</string>
     <string name="your_color_choices_prompt">Color Choices:</string>
     <string name="alarm_prompt">Notification Alarm:</string>
     <string name="alarm_state">Tap here to choose</string>
@@ -107,7 +107,7 @@
     <string name="favorite_star">favorite star</string>
     <string name="call_probation_office">Probation Office Contact</string>
     <string name="call_now">Call Now</string>
-    <string name="tap_here_to_choose_probation">Tap here to choose</string>
+    <string name="tap_here_to_choose_probation">Tap here to add</string>
     <string name="marquee_contents">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaSimple application that shows how to</string>
-    <string name="tap_here_to_choose">Tap here to choose</string>
+    <string name="tap_here_to_choose">Tap here to add</string>
 </resources>
