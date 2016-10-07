@@ -32,27 +32,29 @@ public class WebSitechecker extends IntentService {
         String data_result ="";
         try {
             data_result = loadFromNetwork(urlString);
-            Log.i(TAG, "Calling loadFromNetwork");
+            Log.i(TAG, "Calling loadFromNetwork via WebSitechecker.java");
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String SEARCH_STRING = sharedpreferences.getString("color1Key", "");
+        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "ORMSG-1001");
+        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "ORMSG-1002");
+        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "ORMSG-1003");
+
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(data_result_push, data_result);
         editor.apply();
 
-        if (data_result.contains(SEARCH_STRING)) {
-            sendNotification(getString(R.string.doodle_found));
+        if (data_result.contains(SEARCH_STRING1) || data_result.contains(SEARCH_STRING2) || data_result.contains(SEARCH_STRING3)) {
+            sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
         } else {
-            sendNotification(getString(R.string.no_doodle));
+            sendNotification(getString(R.string.notify_unfound));
             Log.i(TAG, "No color found. :-(");
         }
     }
-    
-    // Post a notification indicating whether a doodle was found.
+
     private void sendNotification(String msg) {
         NotificationManager mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -63,7 +65,7 @@ public class WebSitechecker extends IntentService {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
         .setSmallIcon(R.drawable.ic_launcher)
-        .setContentTitle(getString(R.string.doodle_alert))
+        .setContentTitle(getString(R.string.notify_alert))
         .setStyle(new NotificationCompat.BigTextStyle()
         .bigText(msg))
         .setContentText(msg);
