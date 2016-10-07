@@ -140,7 +140,7 @@
             android:text="@string/your_color_choices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/color_choice"
+            android:id="@+id/color_choice_1"
             android:textSize="24sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/color_choice_heading"
@@ -268,5 +268,25 @@
         android:contentDescription="@string/stop_recording"
             android:layout_below="@+id/button_call_probation"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="@string/your_color_choices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/color_choice_2"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_above="@+id/progress_bar_ring"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="@string/your_color_choices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/color_choice_3"
+            android:textSize="24sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/color_choice_2"
+            android:layout_alignParentStart="true" />
 
 </RelativeLayout>

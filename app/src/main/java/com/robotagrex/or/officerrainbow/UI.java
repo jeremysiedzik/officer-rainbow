@@ -40,10 +40,11 @@ public class UI extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
-    TextView color_choice_heading,color_choice,daily_colors_string_heading,image_store_heading,marquee;
+    TextView color_choice_heading,color_choice_1,daily_colors_string_heading,image_store_heading,marquee;
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
+    TextView color_choice_2,color_choice_3;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
     Context context = getApplication();
@@ -84,10 +85,22 @@ public class UI extends AppCompatActivity {
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
 
-        color_choice = (TextView)findViewById(R.id.color_choice);
+        color_choice_1 = (TextView)findViewById(R.id.color_choice_1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
         if((fillcolor1.length() != 0)) {
-            color_choice.setText(fillcolor1);
+            color_choice_1.setText(fillcolor1);
+        }
+
+        color_choice_2 = (TextView)findViewById(R.id.color_choice_2);
+        String fillcolor2 = sharedpreferences.getString("color1Key", "");
+        if((fillcolor2.length() != 0)) {
+            color_choice_2.setText(fillcolor1);
+        }
+
+        color_choice_3 = (TextView)findViewById(R.id.color_choice_3);
+        String fillcolor3 = sharedpreferences.getString("color1Key", "");
+        if((fillcolor3.length() != 0)) {
+            color_choice_3.setText(fillcolor1);
         }
 
         Runnable runnable = new Runnable() {
@@ -275,7 +288,25 @@ public class UI extends AppCompatActivity {
             }
         });
 
-        color_choice.setOnClickListener(new View.OnClickListener() {
+        color_choice_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        color_choice_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        color_choice_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
