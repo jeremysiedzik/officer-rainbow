@@ -37,9 +37,9 @@ public class ColorChoice extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        String fillcolor1 = sharedpreferences.getString("color1Key", "Tap here");
-        String fillcolor2 = sharedpreferences.getString("color2Key", "Tap here");
-        String fillcolor3 = sharedpreferences.getString("color3Key", "Tap here");
+        String fillcolor1 = sharedpreferences.getString("color1Key", "Tap to choose");
+        String fillcolor2 = sharedpreferences.getString("color2Key", "Tap to choose");
+        String fillcolor3 = sharedpreferences.getString("color3Key", "Tap to choose");
 
         ed1.setText(fillcolor1);
         ed2.setText(fillcolor2);
