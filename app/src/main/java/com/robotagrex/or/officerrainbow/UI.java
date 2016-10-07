@@ -95,7 +95,6 @@ public class UI extends AppCompatActivity {
             public void run() {
                 daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
-//                String runnable_log = "About to run daily_colors_string.setText";
 //                System.out.println(runnable_log);
                 String loaded_ok_string = "<----->";
                     if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
@@ -537,7 +536,7 @@ public class UI extends AppCompatActivity {
     }
 
     void checkdailycolors(final Context uicontext) {
-        System.out.println("About to run WebSitechecker.class");
+        System.out.println("About to run WebSitechecker.class within checkdailycolors method");
         Intent service = new Intent(uicontext, WebSitechecker.class);
         uicontext.startService(service);
     }
