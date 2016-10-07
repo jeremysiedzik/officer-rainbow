@@ -48,6 +48,8 @@ public class UI extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
     Context context = getApplication();
+    private String finalUrl="http://tutorialspoint.com/android/sampleXML.xml";
+    private HandleXML obj;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +105,7 @@ public class UI extends AppCompatActivity {
             color_choice_3.setText(fillcolor1);
         }
 
-        Runnable runnable = new Runnable() {
+        Runnable colors_from_prefs = new Runnable() {
             @Override
             public void run() {
                 daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
@@ -116,7 +118,23 @@ public class UI extends AppCompatActivity {
                         mHandler.postDelayed(this, 5000);
             }
         };
-        mHandler.post(runnable);
+        mHandler.post(colors_from_prefs);
+
+        Runnable rss_setter = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Fetching XML");
+                obj = new HandleXML(finalUrl);
+                obj.fetchXML();
+
+                while(true) {
+                    if (!(obj.parsingComplete)) break;
+                }
+                marquee.setText(obj.getDescription());
+                mHandler.postDelayed(this, 10000);
+            }
+        };
+        mHandler.post(rss_setter);
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
 
