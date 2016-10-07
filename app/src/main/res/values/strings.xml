@@ -109,4 +109,5 @@
     <string name="call_now">Call Now</string>
     <string name="tap_here_to_choose_probation">Tap here to choose</string>
     <string name="marquee_contents">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaSimple application that shows how to</string>
+    <string name="tap_here_to_choose">Tap here to choose</string>
 </resources>

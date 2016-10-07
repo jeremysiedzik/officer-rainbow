@@ -37,20 +37,26 @@ public class ColorChoice extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        String fillcolor1 = sharedpreferences.getString("color1Key", "Tap here to choose");
-        String fillcolor2 = sharedpreferences.getString("color2Key", "Tap here to choose");
-        String fillcolor3 = sharedpreferences.getString("color3Key", "Tap here to choose");
+        String fillcolor1 = sharedpreferences.getString("color1Key", "");
+        String fillcolor2 = sharedpreferences.getString("color2Key", "");
+        String fillcolor3 = sharedpreferences.getString("color3Key", "");
 
         if((fillcolor1.length() != 0)) {
             ed1.setText(fillcolor1);
+        } else {
+            ed1.setText(R.string.tap_here_to_choose);
         }
 
         if((fillcolor2.length() != 0)) {
             ed2.setText(fillcolor2);
+        } else {
+            ed2.setText(R.string.tap_here_to_choose);
         }
 
         if((fillcolor3.length() != 0)) {
             ed3.setText(fillcolor3);
+        } else {
+            ed3.setText(R.string.tap_here_to_choose);
         }
 
         buttoncolor.setOnClickListener(new View.OnClickListener() {
