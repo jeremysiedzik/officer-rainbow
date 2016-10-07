@@ -38,9 +38,9 @@ public class WebSitechecker extends IntentService {
         }
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "ORMSG-1001");
-        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "ORMSG-1002");
-        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "ORMSG-1003");
+        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "Tap Here");
+        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "Tap Here");
+        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "Tap Here");
 
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(data_result_push, data_result);

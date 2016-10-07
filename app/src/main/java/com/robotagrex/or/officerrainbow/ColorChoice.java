@@ -32,15 +32,14 @@ public class ColorChoice extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-
         Button buttoncolor = (Button) findViewById(R.id.buttoncolor);
         assert buttoncolor != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        String fillcolor1 = sharedpreferences.getString("color1Key", "ORMSG-1001");
-        String fillcolor2 = sharedpreferences.getString("color2Key", "ORMSG-1002");
-        String fillcolor3 = sharedpreferences.getString("color3Key", "ORMSG-1003");
+        String fillcolor1 = sharedpreferences.getString("color1Key", "Tap here");
+        String fillcolor2 = sharedpreferences.getString("color2Key", "Tap here");
+        String fillcolor3 = sharedpreferences.getString("color3Key", "Tap here");
 
         ed1.setText(fillcolor1);
         ed2.setText(fillcolor2);
@@ -58,8 +57,8 @@ public class ColorChoice extends AppCompatActivity {
                 editor.putString(Color1, color1);
                 editor.putString(Color2, color2);
                 editor.putString(Color3, color3);
-
                 editor.apply();
+
                 Intent qoneintent = new Intent(ColorChoice.this, UI.class);
                 startActivity(qoneintent);
             }
