@@ -131,8 +131,11 @@ public class UI extends AppCompatActivity {
                     if (!(obj.parsingComplete)) break;
                 }
                 String marquee_text = obj.getDescription();
-
-                marquee.setText(obj.getDescription());
+                if (marquee_text.contains("Click for more info")) {
+                    marquee.setText(obj.getDescription());
+                } else {
+                    marquee.setText("");
+                }
                 mHandler.postDelayed(this, 10000);
             }
         };
@@ -257,6 +260,19 @@ public class UI extends AppCompatActivity {
                 probation_meeting_counter.setText(time.toString());
             }
         }.start();
+
+        marquee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                String marquee_link = obj.getLink();
+                if (marquee_link.length() != 0){
+                    Uri uri = Uri.parse(marquee_link);
+                    Intent browse_to_ad = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(browse_to_ad);
+                }
+            }
+        });
 
         call_probation_heading.setOnClickListener(new View.OnClickListener() {
             @Override

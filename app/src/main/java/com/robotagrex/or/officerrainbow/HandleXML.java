@@ -9,7 +9,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 class HandleXML {
    // private String title = "title";
-   // private String link = "link";
+    private String link = "link";
     private String description = "description";
     private String urlString = null;
     private XmlPullParserFactory xmlFactoryObject;
@@ -23,9 +23,9 @@ class HandleXML {
       //  return title;
     //}
 
-    //public String getLink(){
-      //  return link;
-    //}
+    String getLink(){
+        return link;
+    }
 
     String getDescription(){
         return description;
@@ -55,9 +55,9 @@ class HandleXML {
                             //case "title":
                             //    title = text;
                             //    break;
-                            //case "link":
-                            //    link = text;
-                            //    break;
+                            case "link":
+                                link = text;
+                                break;
                             case "description":
                                 description = text;
                                 break;
