@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/probation_end_date_heading"
             tools:text="@string/prob_end_date_text"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:layout_below="@+id/my_toolbar"
             android:layout_alignParentStart="true"
             android:layout_marginTop="13dp" />
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/raw_countown_date"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textIsSelectable="false"
             android:textColor="#000000"
             android:id="@+id/raw_end_probation_date"
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/count_down_date"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textIsSelectable="false"
             android:textColor="#000000"
             android:id="@+id/probation_end_counter"
@@ -67,7 +67,7 @@
             app:style="STROKE"
             app:textColor="@color/colorPrimaryDark"
             app:textIsShow="true"
-            app:textSize="24sp"
+            app:textSize="16sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:scaleX="3"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/probation_meeting_date_heading"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:layout_alignBaseline="@+id/probation_end_date_heading"
             android:layout_alignBottom="@+id/probation_end_date_heading"
             android:layout_alignParentEnd="true" />
@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/raw_countown_date"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textIsSelectable="false"
             android:textColor="#000000"
             android:id="@+id/raw_meeting_probation_date"
@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/count_down_date"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textIsSelectable="false"
             android:textColor="#000000"
             android:id="@+id/probation_meeting_counter"
@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_sms"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarm_state_notify"
             android:layout_alignParentEnd="true" />
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_email"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarm_state_sms"
             android:layout_alignParentEnd="true" />
@@ -131,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_heading"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:layout_alignBaseline="@+id/alarmprompt"
             android:layout_alignBottom="@+id/alarmprompt"
             android:layout_alignParentStart="true" />
@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_1"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/color_choice_heading"
             android:layout_alignParentStart="true" />
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarmprompt"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:layout_below="@+id/probation_meeting_counter"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="37dp" />
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/daily_colors_string"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:maxLines="10"
             android:layout_below="@+id/daily_colors_heading"
@@ -172,20 +172,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/daily_colors_heading"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true" />
-
-        <TextView
-            android:text="@string/listen_to_the_daily_colors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/listen_colors_heading"
-            android:textSize="30sp"
-            android:elevation="1dp"
-            android:layout_below="@+id/progress_bar_ring"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="103dp" />
 
         <TextView
             android:text="@string/record_receipt_image"
@@ -194,33 +183,24 @@
             android:layout_alignBottom="@+id/probation_meeting_date_heading"
             android:layout_centerHorizontal="true"
             android:id="@+id/image_store_heading"
-            android:textSize="24sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:text="@string/alarm_state_notify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_notify"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/alarmprompt"
             android:layout_alignParentEnd="true" />
-
-        <TextView
-            android:text="@string/confidence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/confidence_header"
-            android:textSize="30sp"
-            android:layout_below="@+id/alarmprompt"
-            android:layout_centerHorizontal="true" />
 
         <TextView
         android:id="@+id/mywidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:clickable="true"
         android:maxLines="2"
         android:textColor="#ff0000"
@@ -235,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_3"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/color_choice_2"
             android:layout_alignParentStart="true" />
@@ -245,41 +225,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_2"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/color_choice_1"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:text="@string/call_now"
+        <TextView
+            android:text="@string/confidence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_call_probation"
+            android:id="@+id/confidence_header"
             android:textSize="30sp"
-            android:layout_below="@+id/progress_bar_ring"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="30dp"
-            android:layout_alignStart="@+id/call_probation_heading" />
-
-        <TextView
-            android:text="@string/tap_here_to_choose_probation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/probation_officer_name"
-            android:textSize="24sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textAlignment="textEnd"
-            android:layout_above="@+id/listen_colors_heading"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
-            android:text="@string/call_probation_office"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/call_probation_heading"
-            android:textSize="24sp"
-            android:layout_above="@+id/probation_officer_name"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/alarm_state_email"
+            android:layout_alignEnd="@+id/image_store_heading" />
 
         <ImageButton
         android:layout_width="wrap_content"
@@ -287,7 +245,48 @@
         app:srcCompat="@android:drawable/star_off"
         android:id="@+id/listen_star"
         android:contentDescription="@string/stop_recording"
-            android:layout_below="@+id/listen_colors_heading"
+            android:layout_above="@+id/mywidget"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="@string/listen_to_the_daily_colors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listen_colors_heading"
+            android:textSize="24sp"
+            android:elevation="1dp"
+            android:layout_above="@+id/listen_star"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="@string/call_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_call_probation"
+            android:textSize="30sp"
+            android:layout_above="@+id/listen_colors_heading"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@+id/raw_meeting_probation_date" />
+
+        <TextView
+            android:text="@string/tap_here_to_choose_probation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/probation_officer_name"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textAlignment="textEnd"
+            android:layout_marginBottom="24dp"
+            android:layout_above="@+id/button_call_probation"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="@string/call_probation_office"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/call_probation_heading"
+            android:textSize="14sp"
+            android:layout_above="@+id/probation_officer_name"
+            android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
