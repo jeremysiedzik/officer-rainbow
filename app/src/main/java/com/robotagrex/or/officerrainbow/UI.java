@@ -48,7 +48,7 @@ public class UI extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
     Context context = getApplication();
-    private String finalUrl="http://tutorialspoint.com/android/sampleXML.xml";
+    private String finalUrl="http://data.robotagrex.com/onsite-ads.xml";
     private HandleXML obj;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +130,8 @@ public class UI extends AppCompatActivity {
                 while(true) {
                     if (!(obj.parsingComplete)) break;
                 }
+                String marquee_text = obj.getDescription();
+
                 marquee.setText(obj.getDescription());
                 mHandler.postDelayed(this, 10000);
             }
