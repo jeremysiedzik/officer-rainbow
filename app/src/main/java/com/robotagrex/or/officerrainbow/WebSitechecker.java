@@ -46,6 +46,10 @@ public class WebSitechecker extends IntentService {
         editor.putString(data_result_push, data_result);
         editor.apply();
 
+        System.out.println("Search String 1 is "+SEARCH_STRING1);
+        System.out.println("Search String 2 is "+SEARCH_STRING2);
+        System.out.println("Search String 3 is "+SEARCH_STRING3);
+
         if (data_result.contains(SEARCH_STRING1) || data_result.contains(SEARCH_STRING2) || data_result.contains(SEARCH_STRING3)) {
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
