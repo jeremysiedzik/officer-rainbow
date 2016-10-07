@@ -535,6 +535,7 @@ public class UI extends AppCompatActivity {
     }
 
     void checkdailycolors(final Context uicontext) {
+        System.out.println("About to run WebSitechecker.class");
         Intent service = new Intent(uicontext, WebSitechecker.class);
         uicontext.startService(service);
     }
