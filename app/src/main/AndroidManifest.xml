@@ -28,8 +28,7 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotificationMessage"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ColorChoice"
-            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ColorChoice"/>
         <activity android:name=".DataTest"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".WebsiteChoice"
