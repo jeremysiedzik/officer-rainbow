@@ -59,6 +59,27 @@ public class ColorChoice extends AppCompatActivity {
             ed3.setText(R.string.tap_here_to_choose);
         }
 
+        ed1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ed1.setSelectAllOnFocus(true);
+            }
+        });
+
+        ed2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ed2.setSelectAllOnFocus(true);
+            }
+        });
+
+        ed3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ed3.setSelectAllOnFocus(true);
+            }
+        });
+
         buttoncolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
