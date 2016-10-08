@@ -269,7 +269,8 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudio(getApplication());
                 String marquee_link = obj.getLink();
-                if (marquee_link.length() != 0){
+                String marquee_key = obj.getTitle();
+                if (marquee_link.length() != 0 && marquee_key.contains("321654987")) {
                     Uri uri = Uri.parse(marquee_link);
                     Intent browse_to_ad = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(browse_to_ad);
