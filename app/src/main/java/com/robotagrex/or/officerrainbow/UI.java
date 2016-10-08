@@ -636,8 +636,6 @@ public class UI extends AppCompatActivity {
         }
     }
 
-
-
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
     Context context = getApplication();
         @Override
