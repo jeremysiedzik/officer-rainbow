@@ -95,13 +95,13 @@ public class UI extends AppCompatActivity {
         }
 
         color_choice_2 = (TextView)findViewById(R.id.color_choice_2);
-        String fillcolor2 = sharedpreferences.getString("color1Key", "");
+        String fillcolor2 = sharedpreferences.getString("color2Key", "");
         if((fillcolor2.length() != 0)) {
             color_choice_2.setText(fillcolor1);
         }
 
         color_choice_3 = (TextView)findViewById(R.id.color_choice_3);
-        String fillcolor3 = sharedpreferences.getString("color1Key", "");
+        String fillcolor3 = sharedpreferences.getString("color3Key", "");
         if((fillcolor3.length() != 0)) {
             color_choice_3.setText(fillcolor1);
         }
