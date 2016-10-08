@@ -1,13 +1,16 @@
 package com.robotagrex.or.officerrainbow;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-class HandleXML {
+class HandleXML  {
+
     private String title = "title";
     private String link = "link";
     private String description = "description";
@@ -30,6 +33,7 @@ class HandleXML {
     String getDescription(){
         return description;
     }
+
 
     private void parseXMLAndStoreIt(XmlPullParser myParser) {
         int event;
@@ -107,10 +111,12 @@ class HandleXML {
                     stream.close();
                 }
 
-                catch (Exception ignored) {
+                catch (XmlPullParserException | IOException a) {
+                    a.printStackTrace();
                 }
             }
         });
         thread.start();
     }
+
 }

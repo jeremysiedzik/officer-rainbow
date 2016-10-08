@@ -33,6 +33,7 @@ import java.util.Locale;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
+
 public class UI extends AppCompatActivity {
 
     CountDownTimer probation_end;
@@ -130,8 +131,9 @@ public class UI extends AppCompatActivity {
                 while(true) {
                     if (!(obj.parsingComplete)) break;
                 }
+
                 String marquee_key = obj.getTitle();
-                //String marquee_text = obj.getDescription();
+
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(obj.getDescription());
                 } else {
@@ -633,6 +635,8 @@ public class UI extends AppCompatActivity {
             toast.show();
         }
     }
+
+
 
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
     Context context = getApplication();
