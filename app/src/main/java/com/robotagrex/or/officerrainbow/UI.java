@@ -72,7 +72,7 @@ public class UI extends AppCompatActivity {
         final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
 
-        RingProgressBar progress_bar_ring = (RingProgressBar)findViewById(R.id.progress_bar_ring);
+        final RingProgressBar progress_bar_ring = (RingProgressBar)findViewById(R.id.progress_bar_ring);
         assert progress_bar_ring != null;
 
         checkdailycolors(getApplicationContext());
@@ -120,6 +120,18 @@ public class UI extends AppCompatActivity {
             }
         };
         mHandler.post(colors_from_prefs);
+
+        Runnable confidence_from_prefs = new Runnable() {
+            @Override
+            public void run() {
+                int daily_confidence_string_data = sharedpreferences.getInt("confidence_result", 0);
+                if(daily_confidence_string_data > 0) {
+                    progress_bar_ring.setProgress(daily_confidence_string_data);
+                }
+                mHandler.postDelayed(this, 5000);
+            }
+        };
+        mHandler.post(confidence_from_prefs);
 
         Runnable rss_setter = new Runnable() {
             @Override
@@ -458,8 +470,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
-                Intent qoneintent = new Intent(UI.this, DataTest.class);
-                startActivity(qoneintent);
+                checkdailycolors(getApplicationContext());
             }
         });
 
@@ -567,9 +578,6 @@ public class UI extends AppCompatActivity {
             }
         });
 
-
-        int progress = 78;
-        progress_bar_ring.setProgress(progress);
         //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
 
           //  @Override
@@ -607,9 +615,13 @@ public class UI extends AppCompatActivity {
     }
 
     void checkdailycolors(final Context uicontext) {
+        System.out.println("About to run Confidence.class within checkdailycolors method");
+        Intent confservice = new Intent(uicontext, Confidence.class);
+        uicontext.startService(confservice);
+
         System.out.println("About to run WebSitechecker.class within checkdailycolors method");
-        Intent service = new Intent(uicontext, WebSitechecker.class);
-        uicontext.startService(service);
+        Intent webservice = new Intent(uicontext, WebSitechecker.class);
+        uicontext.startService(webservice);
     }
 
     void stopaudio(final Context context) {

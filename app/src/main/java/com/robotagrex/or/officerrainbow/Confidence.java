@@ -1,12 +1,8 @@
 package com.robotagrex.or.officerrainbow;
 
 import android.app.IntentService;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -23,7 +19,7 @@ public class Confidence extends IntentService {
         super("SchedulingService");
     }
     public static final String TAG = "Confidence Check";
-    public static final int NOTIFICATION_ID = 1;
+    //public static final int NOTIFICATION_ID = 1;
     public static final String url = "http://data.robotagrex.com/onsite-confidence.txt";
     public static final String confidence_result_push = "confidence_result";
 
@@ -33,17 +29,17 @@ public class Confidence extends IntentService {
         String confidence_result ="";
         try {
             confidence_result = loadFromNetwork(urlString);
-            Log.i(TAG, "Calling loadFromNetwork via WebSitechecker.java");
+            Log.i(TAG, "Calling loadFromNetwork via Confidence.java");
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
 
-        String CONFIDENCE_RESULT =
         SharedPreferences.Editor editor = sharedpreferences.edit();
+        String CONFIDENCE_STRING = sharedpreferences.getString("confidence_result", "0");
         editor.putString(confidence_result_push, confidence_result);
         editor.apply();
 
-        System.out.println("Confidence Number is "+SEARCH_STRING1);
+        System.out.println("Confidence Number is "+CONFIDENCE_STRING);
 
         //if (data_result.contains(SEARCH_STRING1) || data_result.contains(SEARCH_STRING2) || data_result.contains(SEARCH_STRING3)) {
         //    sendNotification(getString(R.string.notify_found));
@@ -51,27 +47,27 @@ public class Confidence extends IntentService {
         //} else {
         //    sendNotification(getString(R.string.notify_unfound));
         //    Log.i(TAG, "No color found. :-(");
-        }
+        //}
     }
 
-    private void sendNotification(String msg) {
-        NotificationManager mNotificationManager = (NotificationManager)
-                this.getSystemService(Context.NOTIFICATION_SERVICE);
+    //private void sendNotification(String msg) {
+    //    NotificationManager mNotificationManager = (NotificationManager)
+    //            this.getSystemService(Context.NOTIFICATION_SERVICE);
     
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-            new Intent(this, UI.class), 0);
+    //    PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+    //        new Intent(this, UI.class), 0);
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-        .setSmallIcon(R.drawable.ic_launcher)
-        .setContentTitle(getString(R.string.notify_alert))
-        .setStyle(new NotificationCompat.BigTextStyle()
-        .bigText(msg))
-        .setContentText(msg);
+      //  NotificationCompat.Builder mBuilder =
+        //        new NotificationCompat.Builder(this)
+       // .setSmallIcon(R.drawable.ic_launcher)
+       // .setContentTitle(getString(R.string.notify_alert))
+       // .setStyle(new NotificationCompat.BigTextStyle()
+       // .bigText(msg))
+       // .setContentText(msg);
 
-        mBuilder.setContentIntent(contentIntent);
-        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
-    }
+        //mBuilder.setContentIntent(contentIntent);
+        //mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    //}
  
 //
 // The methods below this line fetch content from the specified URL and return the
