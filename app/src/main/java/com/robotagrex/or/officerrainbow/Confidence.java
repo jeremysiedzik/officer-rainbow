@@ -27,7 +27,7 @@ public class Confidence extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         String urlString = url;
-        String confidence_result ="";
+        String confidence_result = "";
         try {
             confidence_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork via Confidence.java");
@@ -78,7 +78,7 @@ public class Confidence extends IntentService {
 /** Given a URL string, initiate a fetch operation. */
     private String loadFromNetwork(String urlString) throws IOException {
         InputStream stream = null;
-        String str ="";
+        String str = "";
         try {
             Log.i(TAG, "About to run downoadUrl");
             stream = downloadUrl(urlString);

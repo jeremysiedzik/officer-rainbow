@@ -124,7 +124,8 @@ public class UI extends AppCompatActivity {
         Runnable confidence_from_prefs = new Runnable() {
             @Override
             public void run() {
-                int daily_confidence_string_data = sharedpreferences.getInt("confidence_result", 0);
+                String daily_confidence_string_to_int = sharedpreferences.getString("confidence_result", "0");
+                int daily_confidence_string_data = Integer.parseInt(daily_confidence_string_to_int);
                 if(daily_confidence_string_data > 0) {
                     progress_bar_ring.setProgress(daily_confidence_string_data);
                 }
