@@ -45,7 +45,7 @@ public class UI extends AppCompatActivity {
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
-    TextView color_choice_2,color_choice_3;
+    TextView color_choice_2,color_choice_3,confidence_header;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
     Context context = getApplication();
@@ -74,6 +74,7 @@ public class UI extends AppCompatActivity {
 
         final RingProgressBar progress_bar_ring = (RingProgressBar)findViewById(R.id.progress_bar_ring);
         assert progress_bar_ring != null;
+        confidence_header = (TextView)findViewById(R.id.confidence_header);
 
         checkdailycolors(getApplicationContext());
 
@@ -473,6 +474,12 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudio(getApplication());
                 checkdailycolors(getApplicationContext());
+                Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                anim.setDuration(50); //You can manage the time of the blink with this parameter
+                anim.setStartOffset(20);
+                anim.setRepeatMode(Animation.REVERSE);
+                anim.setRepeatCount(20);
+                confidence_header.startAnimation(anim);
             }
         });
 
