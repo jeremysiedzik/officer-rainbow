@@ -1,6 +1,7 @@
 package com.robotagrex.or.officerrainbow;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -34,8 +35,10 @@ public class Confidence extends IntentService {
             Log.i(TAG, getString(R.string.connection_error));
         }
 
-        SharedPreferences.Editor editor = sharedpreferences.edit();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String CONFIDENCE_STRING = sharedpreferences.getString("confidence_result", "0");
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(confidence_result_push, confidence_result);
         editor.apply();
 
