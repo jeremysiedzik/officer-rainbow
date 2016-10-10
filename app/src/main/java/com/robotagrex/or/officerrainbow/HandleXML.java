@@ -1,5 +1,7 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.os.AsyncTask;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -85,38 +87,56 @@ class HandleXML  {
 
     void fetchXML(){
         Thread thread = new Thread(new Runnable(){
+
             @Override
             public void run() {
+                new asyncgetxml().execute();
+            }
 
-                try {
-                    URL url = new URL(urlString);
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                    conn.setReadTimeout(10000 /* milliseconds */);
-                    conn.setConnectTimeout(15000 /* milliseconds */);
-                    conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
-
-                    // Starts the query
-                    conn.connect();
-                    InputStream stream = conn.getInputStream();
-
-                    xmlFactoryObject = XmlPullParserFactory.newInstance();
-                    XmlPullParser myparser = xmlFactoryObject.newPullParser();
-
-                    myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                    myparser.setInput(stream, null);
-
-                    parseXMLAndStoreIt(myparser);
-                    stream.close();
+            class asyncgetxml extends AsyncTask<Object, Object, Void> {
+                @Override
+                protected void onPreExecute() {
+                    super.onPreExecute();
                 }
 
-                catch (XmlPullParserException | IOException a) {
-                    a.printStackTrace();
+                @Override
+                protected Void doInBackground(Object... params) {
+                    try {
+                        URL url = new URL(urlString);
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                        conn.setReadTimeout(10000 /* milliseconds */);
+                        conn.setConnectTimeout(15000 /* milliseconds */);
+                        conn.setRequestMethod("GET");
+                        conn.setDoInput(true);
+
+                        // Starts the query
+                        conn.connect();
+                        InputStream stream = conn.getInputStream();
+
+                        xmlFactoryObject = XmlPullParserFactory.newInstance();
+                        XmlPullParser myparser = xmlFactoryObject.newPullParser();
+
+                        myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                        myparser.setInput(stream, null);
+
+                        parseXMLAndStoreIt(myparser);
+                        stream.close();
+                    }
+
+                    catch (XmlPullParserException | IOException a) {
+                        a.printStackTrace();
+                    }
+
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(Void result) {
+
                 }
             }
         });
         thread.start();
     }
-
 }
