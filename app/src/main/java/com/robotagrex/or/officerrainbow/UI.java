@@ -8,7 +8,6 @@ import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -35,7 +34,6 @@ import java.util.Locale;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
-
 public class UI extends AppCompatActivity {
 
     CountDownTimer probation_end;
@@ -50,6 +48,7 @@ public class UI extends AppCompatActivity {
     TextView color_choice_2,color_choice_3,confidence_header;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
+
     Context context = getApplication();
     public static final String marquee_link_push = "marquee_link";
     public static final String marquee_key_push = "marquee_key";
@@ -79,10 +78,7 @@ public class UI extends AppCompatActivity {
         assert progress_bar_ring != null;
         confidence_header = (TextView)findViewById(R.id.confidence_header);
 
-        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-        if (isConnected) {
+        if (checkInternetConnection()) {
             checkdailycolors(getApplicationContext());
         }
 
@@ -733,6 +729,12 @@ public class UI extends AppCompatActivity {
             mProgressDialog.dismiss();
 
         }
+    }
+
+    public boolean checkInternetConnection() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
 
     class asyncxml extends AsyncTask<Void, Void, Void> {
