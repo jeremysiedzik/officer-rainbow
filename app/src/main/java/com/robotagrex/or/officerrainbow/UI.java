@@ -592,8 +592,13 @@ public class UI extends AppCompatActivity {
                 else {
                     System.out.println("audio start button pressed - getting focus");
                     boolean gotFocus = requestAudioFocusForMyApp(getApplication());
-                    if (gotFocus) {
+                    if ((gotFocus) && checkInternetConnection()) {
                         new asyncURLaudio().execute();
+                    } else if (!checkInternetConnection()) {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Check your internet connection.", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
                     }
                 }
             }
