@@ -299,10 +299,13 @@ public class UI extends AppCompatActivity {
                 String marquee_link = sharedpreferences.getString("marquee_link", "");
 
 
-                if (marquee_link.length() != 0 && marquee_key.contains("321654987")) {
+                if (marquee_link.length() != 0 && marquee_key.contains("321654987") && checkInternetConnection()) {
                     Uri uri = Uri.parse(marquee_link);
                     Intent browse_to_ad = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(browse_to_ad);
+                }
+                else {
+                    toast_internet_down();
                 }
             }
         });
@@ -540,7 +543,7 @@ public class UI extends AppCompatActivity {
 
                 checkdailycolors(getApplicationContext());
             } else {
-                    toast_internet_down(getApplicationContext());
+                    toast_internet_down();
                 }
             }
         });
@@ -582,7 +585,7 @@ public class UI extends AppCompatActivity {
                 checkdailycolors(getApplicationContext());
 
             } else {
-                    toast_internet_down(getApplicationContext());
+                    toast_internet_down();
             }
             }
         });
@@ -611,7 +614,7 @@ public class UI extends AppCompatActivity {
                         new asyncURLaudio().execute();
                     } else if (!checkInternetConnection()) {
                         listen_star.setImageResource(android.R.drawable.star_off);
-                        toast_internet_down(getApplicationContext());
+                        toast_internet_down();
                     }
                 }
             }
@@ -636,7 +639,7 @@ public class UI extends AppCompatActivity {
         }
     }
 
-    void toast_internet_down(final Context context) {
+    void toast_internet_down() {
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Check your internet connection.", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -662,7 +665,7 @@ public class UI extends AppCompatActivity {
         uicontext.startService(webservice);
         }
         else {
-            toast_internet_down(getApplicationContext());
+            toast_internet_down();
         }
     }
 
