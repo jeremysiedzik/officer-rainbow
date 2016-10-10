@@ -732,8 +732,8 @@ public class UI extends AppCompatActivity {
     }
 
     public boolean checkInternetConnection() {
+        Context context = getApplication();
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
 
