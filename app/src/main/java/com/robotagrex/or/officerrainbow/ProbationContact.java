@@ -52,7 +52,6 @@ public class ProbationContact extends AppCompatActivity {
         String fillcontact_number = sharedpreferences.getString("officerNumber","");
         String fillcontact_notes = sharedpreferences.getString("officerNotes","");
         final String[] lastChar = {" "};
-
         ed6.setText(fillcontact_name);
         etPhoneNumber.setText(fillcontact_number);
         ed12.setText(fillcontact_notes);

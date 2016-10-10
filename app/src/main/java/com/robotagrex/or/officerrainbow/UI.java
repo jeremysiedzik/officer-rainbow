@@ -336,11 +336,13 @@ public class UI extends AppCompatActivity {
                 String probation_officer_number = sharedpreferences.getString("officerNumber","");
 
                 if (probation_officer_number.length() != 0) {
+                    System.out.println(probation_officer_number);
                     dialContactPhone(probation_officer_number);
                 } else { Toast toast= Toast.makeText(getApplicationContext(),
                         "Please set probation officer contact info.", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show(); }
+
                 Animation anim = new AlphaAnimation(0.0f, 1.0f);
                 anim.setDuration(50); //You can manage the time of the blink with this parameter
                 anim.setStartOffset(20);
