@@ -120,7 +120,15 @@ public class WebSitechecker extends IntentService {
         conn.setDoInput(true);
         // Start the query
         Log.i(TAG, "About to run HttpURLConnection query via conn.connect");
-        conn.connect();
+        try {
+            conn.connect();
+        }
+
+        catch(IOException e) {
+            System.err.println("ERROR - HttpURLConnection failed");
+            e.printStackTrace();
+        }
+
         return conn.getInputStream();
     }
 
