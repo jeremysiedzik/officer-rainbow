@@ -138,7 +138,7 @@ public class UI extends AppCompatActivity {
                 }
 
                 catch(NumberFormatException e) {
-                    System.out.print("Crashed in runnable - confidence from prefs integer");
+                    System.out.println("Crashed in runnable - confidence from prefs integer");
                     e.printStackTrace();
                 }
 
