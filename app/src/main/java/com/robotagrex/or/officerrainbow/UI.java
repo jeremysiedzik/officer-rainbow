@@ -333,7 +333,8 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudio(getApplication());
 
-                String probation_officer_number = sharedpreferences.getString("officerNumber","");
+                String raw_officer_number = sharedpreferences.getString("officerNumber","");
+                String probation_officer_number = raw_officer_number.replace("-", "");
 
                 if (probation_officer_number.length() != 0) {
                     System.out.println(probation_officer_number);
