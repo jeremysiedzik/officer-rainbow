@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,7 +51,6 @@ public class UI extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
     Context context = getApplication();
-    private HandleXML obj;
     public static final String marquee_link_push = "marquee_link";
     public static final String marquee_key_push = "marquee_key";
     public static final String marquee_description_push = "marquee_description";
@@ -78,7 +79,12 @@ public class UI extends AppCompatActivity {
         assert progress_bar_ring != null;
         confidence_header = (TextView)findViewById(R.id.confidence_header);
 
-        checkdailycolors(getApplicationContext());
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        if (isConnected) {
+            checkdailycolors(getApplicationContext());
+        }
 
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
@@ -143,9 +149,10 @@ public class UI extends AppCompatActivity {
                 new asyncxml().execute();
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
+                String marquee_description = sharedpreferences.getString("marquee_description", "");
 
                 if (marquee_key.contains("321654987")) {
-                    marquee.setText(obj.getDescription());
+                    marquee.setText(marquee_description);
                 } else {
                     marquee.setText("");
                 }
@@ -739,7 +746,7 @@ public class UI extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             System.out.println("Fetching XML");
             String finalUrl = "http://data.robotagrex.com/onsite-ads.xml";
-            obj = new HandleXML(finalUrl);
+            HandleXML obj = new HandleXML(finalUrl);
             obj.fetchXML();
 
             while(true) {
