@@ -150,7 +150,7 @@ public class ProbationContact extends AppCompatActivity {
             raw_number = raw_number.replace(")", "");
             raw_number = raw_number.replace("-", "");
             raw_number = raw_number.replace("+", "");
-            if (raw_number.length() > 10) {
+            if (raw_number.length() >= 10) {
                 try {
                     String final_number = raw_number.substring(raw_number.length() - 10);
                     etPhoneNumber.setText(final_number);
