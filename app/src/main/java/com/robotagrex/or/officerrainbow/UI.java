@@ -142,7 +142,10 @@ public class UI extends AppCompatActivity {
         Runnable rss_setter = new Runnable() {
             @Override
             public void run() {
-                new asyncxml().execute();
+                if (checkInternetConnection()) {
+                    new asyncxml().execute();
+                }
+
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
                 String marquee_description = sharedpreferences.getString("marquee_description", "");
