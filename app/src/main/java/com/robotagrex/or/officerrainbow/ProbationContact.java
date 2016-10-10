@@ -144,14 +144,29 @@ public class ProbationContact extends AppCompatActivity {
 
             // Retrieve the phone number from the NUMBER column
             int column_number = cursor_number.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-            String final_number = cursor_number.getString(column_number);
+            String raw_number = cursor_number.getString(column_number);
+            raw_number = raw_number.replace(" ", "");
+            raw_number = raw_number.replace("(", "");
+            raw_number = raw_number.replace(")", "");
+            raw_number = raw_number.replace("-", "");
+            raw_number = raw_number.replace("+", "");
+            if (raw_number.length() > 10) {
+                try {
+                    String final_number = raw_number.substring(raw_number.length() - 10);
+                    etPhoneNumber.setText(final_number);
+                }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                }
+            }
+
 
             int column_name = cursor_name.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
             String final_name = cursor_name.getString(column_name);
 
 
             // Do something with the phone number...
-            etPhoneNumber.setText(final_number);
+
             ed6.setText(final_name);
             etPhoneNumber.addTextChangedListener(new TextWatcher() {
                 @Override
