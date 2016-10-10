@@ -1,7 +1,5 @@
 package com.robotagrex.or.officerrainbow;
 
-import android.os.AsyncTask;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -85,58 +83,38 @@ class HandleXML  {
         }
     }
 
-    //void fetchXML(){
-        //Thread thread = new Thread(new Runnable(){
+    void fetchXML(){
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+    try {
+        URL url = new URL(urlString);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            //@Override
-            //public void run() {
-            //}
+        conn.setReadTimeout(10000 /* milliseconds */);
+        conn.setConnectTimeout(15000 /* milliseconds */);
+        conn.setRequestMethod("GET");
+        conn.setDoInput(true);
 
-    class asyncxml extends AsyncTask<Void, Void, Void> {
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                }
+        // Starts the query
+        conn.connect();
+        InputStream stream = conn.getInputStream();
 
-                @Override
-                protected Void doInBackground(Void... params) {
-                    try {
-                        URL url = new URL(urlString);
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        xmlFactoryObject = XmlPullParserFactory.newInstance();
+        XmlPullParser myparser = xmlFactoryObject.newPullParser();
 
-                        conn.setReadTimeout(10000 /* milliseconds */);
-                        conn.setConnectTimeout(15000 /* milliseconds */);
-                        conn.setRequestMethod("GET");
-                        conn.setDoInput(true);
+        myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+        myparser.setInput(stream, null);
 
-                        // Starts the query
-                        conn.connect();
-                        InputStream stream = conn.getInputStream();
+        parseXMLAndStoreIt(myparser);
+        stream.close();
+    }
 
-                        xmlFactoryObject = XmlPullParserFactory.newInstance();
-                        XmlPullParser myparser = xmlFactoryObject.newPullParser();
-
-                        myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-                        myparser.setInput(stream, null);
-
-                        parseXMLAndStoreIt(myparser);
-                        stream.close();
-                    }
-
-                    catch (XmlPullParserException | IOException a) {
-                        a.printStackTrace();
-                    }
-
-                    return null;
-                }
-
-                @Override
-                protected void onPostExecute(Void result) {
-
+    catch (XmlPullParserException | IOException a) {
+        a.printStackTrace();
                 }
             }
-      //  });
-      //  thread.start();
-    //}
-
+        });
+      thread.start();
+    }
 }

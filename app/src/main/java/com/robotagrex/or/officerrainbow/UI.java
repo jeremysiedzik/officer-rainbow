@@ -112,7 +112,6 @@ public class UI extends AppCompatActivity {
             public void run() {
                 daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
-//                System.out.println(runnable_log);
                 String loaded_ok_string = "<----->";
                     if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
                         daily_colors_string.setText(daily_colors_string_data);
