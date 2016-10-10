@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -84,6 +85,7 @@ public class UI extends AppCompatActivity {
         if (checkInternetConnection()) {
             checkdailycolors(getApplicationContext());
         }
+
 
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
@@ -168,7 +170,7 @@ public class UI extends AppCompatActivity {
                 } else {
                     marquee.setText("");
                 }
-                mHandler.postDelayed(this, 10000);
+                mHandler.postDelayed(this, 20000);
             }
         };
         mHandler.post(rss_setter);

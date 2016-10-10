@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permision.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -46,6 +47,8 @@
         <activity android:name=".ProbationMeetingAlarmSettings"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ImageView"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".Confirm"
             android:windowSoftInputMode="stateHidden"/>
 
         <meta-data
