@@ -50,6 +50,9 @@ public class UI extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     Context context = getApplication();
     private HandleXML obj;
+    public static final String marquee_link_push = "marquee_link";
+    public static final String marquee_key_push = "marquee_key";
+    public static final String marquee_description_push = "marquee_description";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +141,8 @@ public class UI extends AppCompatActivity {
             @Override
             public void run() {
                 new asyncxml().execute();
-                String marquee_key = obj.getTitle();
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                String marquee_key = sharedpreferences.getString("marquee_key", "");
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(obj.getDescription());
@@ -274,8 +278,11 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
-                String marquee_link = obj.getLink();
-                String marquee_key = obj.getTitle();
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                String marquee_key = sharedpreferences.getString("marquee_key", "");
+                String marquee_link = sharedpreferences.getString("marquee_link", "");
+
+
                 if (marquee_link.length() != 0 && marquee_key.contains("321654987")) {
                     Uri uri = Uri.parse(marquee_link);
                     Intent browse_to_ad = new Intent(Intent.ACTION_VIEW, uri);
@@ -738,6 +745,17 @@ public class UI extends AppCompatActivity {
             while(true) {
                 if (!(obj.parsingComplete)) break;
             }
+
+            String marquee_link = obj.getLink();
+            String marquee_key = obj.getTitle();
+            String marquee_description = obj.getDescription();
+
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(marquee_description_push, marquee_description);
+            editor.putString(marquee_link_push, marquee_link);
+            editor.putString(marquee_key_push, marquee_key);
+            editor.apply();
 
             return null;
         }
