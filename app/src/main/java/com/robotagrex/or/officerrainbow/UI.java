@@ -130,10 +130,18 @@ public class UI extends AppCompatActivity {
             public void run() {
                 String daily_confidence_raw = sharedpreferences.getString("confidence_result", "0");
                 String daily_confidence_string_to_int = daily_confidence_raw.replaceAll("\\s+","");
-                int daily_confidence_string_data = Integer.parseInt(daily_confidence_string_to_int);
-                if(daily_confidence_string_data > 0) {
-                    progress_bar_ring.setProgress(daily_confidence_string_data);
+                try {
+                    int daily_confidence_string_data = Integer.parseInt(daily_confidence_string_to_int);
+                    if(daily_confidence_string_data > 0) {
+                        progress_bar_ring.setProgress(daily_confidence_string_data);
+                    }
                 }
+
+                catch(NumberFormatException e) {
+                    System.out.print("Crashed in runnable - confidence from prefs integer");
+                    e.printStackTrace();
+                }
+
                 mHandler.postDelayed(this, 5000);
             }
         };
