@@ -501,6 +501,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
+                if (checkInternetConnection()) {
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -525,12 +526,22 @@ public class UI extends AppCompatActivity {
                     }
                 });
 
-                Toast toast= Toast.makeText(getApplicationContext(),
+                Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                anim.setDuration(50); //You can manage the time of the blink with this parameter
+                anim.setStartOffset(20);
+                anim.setRepeatMode(Animation.REVERSE);
+                anim.setRepeatCount(20);
+                daily_colors_string_heading.startAnimation(anim);
+
+                Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
                 checkdailycolors(getApplicationContext());
+            } else {
+                    toast_internet_down(getApplicationContext());
+                }
             }
         });
 
@@ -538,6 +549,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
+                if (checkInternetConnection()) {
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -567,10 +579,11 @@ public class UI extends AppCompatActivity {
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
-                //Context context = getApplication();
-                //Intent service = new Intent(context, WebSitechecker.class);
-                //context.startService(service);
                 checkdailycolors(getApplicationContext());
+
+            } else {
+                    toast_internet_down(getApplicationContext());
+            }
             }
         });
 
@@ -598,23 +611,11 @@ public class UI extends AppCompatActivity {
                         new asyncURLaudio().execute();
                     } else if (!checkInternetConnection()) {
                         listen_star.setImageResource(android.R.drawable.star_off);
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "Check your internet connection.", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                        toast.show();
+                        toast_internet_down(getApplicationContext());
                     }
                 }
             }
         });
-
-        //mRingProgressBar.setOnProgressListener(new RingProgressBar.OnProgressListener() {
-
-          //  @Override
-           // public void progressToComplete() {
-                // Progress reaches the maximum callback default Max value is 100
-             //   Toast.makeText(UserInterface.this, "complete", Toast.LENGTH_SHORT).show();
-            //}
-        //});
     }
     private boolean requestAudioFocusForMyApp(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
@@ -635,6 +636,13 @@ public class UI extends AppCompatActivity {
         }
     }
 
+    void toast_internet_down(final Context context) {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Check your internet connection.", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
+    }
+
     void releaseAudioFocusForMyApp(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         am.abandonAudioFocus(null);
@@ -644,6 +652,7 @@ public class UI extends AppCompatActivity {
     }
 
     void checkdailycolors(final Context uicontext) {
+        if (checkInternetConnection()) {
         System.out.println("About to run Confidence.class within checkdailycolors method");
         Intent confservice = new Intent(uicontext, Confidence.class);
         uicontext.startService(confservice);
@@ -651,6 +660,10 @@ public class UI extends AppCompatActivity {
         System.out.println("About to run WebSitechecker.class within checkdailycolors method");
         Intent webservice = new Intent(uicontext, WebSitechecker.class);
         uicontext.startService(webservice);
+        }
+        else {
+            toast_internet_down(getApplicationContext());
+        }
     }
 
     void stopaudio(final Context context) {
