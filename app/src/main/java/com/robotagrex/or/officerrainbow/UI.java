@@ -130,16 +130,18 @@ public class UI extends AppCompatActivity {
             public void run() {
                 String daily_confidence_raw = sharedpreferences.getString("confidence_result", "0");
                 String daily_confidence_string_to_int = daily_confidence_raw.replaceAll("\\s+","");
-                try {
-                    int daily_confidence_string_data = Integer.parseInt(daily_confidence_string_to_int);
-                    if(daily_confidence_string_data > 0) {
-                        progress_bar_ring.setProgress(daily_confidence_string_data);
+                if (checkInternetConnection()) {
+                    try {
+                        int daily_confidence_string_data = Integer.parseInt(daily_confidence_string_to_int);
+                        if(daily_confidence_string_data > 0) {
+                            progress_bar_ring.setProgress(daily_confidence_string_data);
+                        }
                     }
-                }
 
-                catch(NumberFormatException e) {
-                    System.out.println("Crashed in runnable - confidence from prefs integer");
-                    e.printStackTrace();
+                    catch(NumberFormatException e) {
+                        System.out.println("Crashed in runnable - confidence from prefs integer");
+                        e.printStackTrace();
+                    }
                 }
 
                 mHandler.postDelayed(this, 5000);
@@ -595,6 +597,7 @@ public class UI extends AppCompatActivity {
                     if ((gotFocus) && checkInternetConnection()) {
                         new asyncURLaudio().execute();
                     } else if (!checkInternetConnection()) {
+                        listen_star.setImageResource(android.R.drawable.star_off);
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Check your internet connection.", Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
