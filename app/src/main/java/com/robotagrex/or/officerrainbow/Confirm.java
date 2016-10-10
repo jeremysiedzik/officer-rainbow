@@ -1,93 +1,31 @@
 package com.robotagrex.or.officerrainbow;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import java.io.IOException;
-
 public class Confirm extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
-    public static final String pulled_user_number = "user_number";
-    public static final String pulled_user_imei = "user_imei";
-    public static final String pulled_user_simSerialNumber = "user_simSerialNumber";
-
-    ProgressDialog mProgressDialog;
+    Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm);
 
-        TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        final String user_number = tm.getLine1Number();
-        final String user_imei = tm.getDeviceId();
-        final String user_simSerialNumber = tm.getSimSerialNumber();
-
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(pulled_user_number, user_number);
-        editor.putString(pulled_user_imei, user_imei);
-        editor.putString(pulled_user_simSerialNumber, user_simSerialNumber);
-        editor.apply();
 
-        Button titlebutton = (Button) findViewById(R.id.titlebutton);
-
-        // aynctask
-        class Title extends AsyncTask<Void, Void, Void> {
-            private String title;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                mProgressDialog = new ProgressDialog(Confirm.this);
-                mProgressDialog.setTitle("Confirming receipt");
-                mProgressDialog.setMessage("Sending...");
-                mProgressDialog.setIndeterminate(false);
-                mProgressDialog.show();
-            }
-
-            @Override
-            protected Void doInBackground(Void... params) {
-                try {
-                    // Connect to the web site
-                    String divider = "##";
-                    String message = divider + user_imei + divider + user_number + divider + user_simSerialNumber;
-                    String web_url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
-                    String url = web_url + message;
-                    Document document = Jsoup.connect(url).get();
-                    // Get the html document title
-                    title = document.data();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                // Set title into TextView
-                TextView txttitle = (TextView) findViewById(R.id.titletxt);
-                assert txttitle != null;
-                txttitle.setText(title);
-                mProgressDialog.dismiss();
-            }
-        }
+        final Button titlebutton = (Button) findViewById(R.id.titlebutton);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -95,18 +33,34 @@ public class Confirm extends AppCompatActivity {
         Button buttontest = (Button) findViewById(R.id.buttontest);
         assert buttontest != null;
 
-        TextView titletxt=(TextView)findViewById(R.id.titletxt);
+        final TextView titletxt=(TextView)findViewById(R.id.titletxt);
         titletxt.setMovementMethod(new ScrollingMovementMethod());
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        Runnable confirmation_msg = new Runnable() {
+            @Override
+            public void run() {
+                String confirmation_result = sharedpreferences.getString("confirmation_result", "No data yet");
+                String loaded_ok_string = "Sent email test";
+                if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
+                    titletxt.setText(confirmation_result);
+                }
+                mHandler.postDelayed(this, 5000);
+            }
+        };
+        mHandler.post(confirmation_msg);
+
 
         // Capture button click
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                // Execute Title AsyncTask
-                new Title().execute();
-            }
+                Intent qoneintent = new Intent(Confirm.this, Confirmation.class);
+                startActivity(qoneintent);
+                String confirmation_result = sharedpreferences.getString("confirmation_result", "No data yet");
+                titletxt.setText(confirmation_result);
+                }
         });
 
         buttontest.setOnClickListener(new View.OnClickListener() {
