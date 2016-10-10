@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OfficerRainbow"
     android:background="@color/blanketBackground"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:id="@+id/ui">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/my_toolbar"

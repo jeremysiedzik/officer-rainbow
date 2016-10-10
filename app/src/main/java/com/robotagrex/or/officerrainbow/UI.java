@@ -23,6 +23,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.IOException;
@@ -59,6 +60,8 @@ public class UI extends AppCompatActivity {
         setContentView(R.layout.ui);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        RelativeLayout rlayout = (RelativeLayout)findViewById(R.id.ui);
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -289,6 +292,13 @@ public class UI extends AppCompatActivity {
                 probation_meeting_counter.setText(time.toString());
             }
         }.start();
+
+        rlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+            }
+        });
 
         marquee.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -557,6 +567,7 @@ public class UI extends AppCompatActivity {
                 }
             }
         });
+
 
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
