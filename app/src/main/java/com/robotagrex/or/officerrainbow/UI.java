@@ -49,7 +49,6 @@ public class UI extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
     Context context = getApplication();
-    private String finalUrl="http://data.robotagrex.com/onsite-ads.xml";
     private HandleXML obj;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,14 +137,7 @@ public class UI extends AppCompatActivity {
         Runnable rss_setter = new Runnable() {
             @Override
             public void run() {
-                System.out.println("Fetching XML");
-                obj = new HandleXML(finalUrl);
-                obj.fetchXML();
-
-                while(true) {
-                    if (!(obj.parsingComplete)) break;
-                }
-
+                new asyncxml().execute();
                 String marquee_key = obj.getTitle();
 
                 if (marquee_key.contains("321654987")) {
@@ -725,6 +717,33 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             mProgressDialog.dismiss();
+
+        }
+    }
+
+    class asyncxml extends AsyncTask<Void, Void, Void> {
+        Context context = getApplication();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            System.out.println("Fetching XML");
+            String finalUrl = "http://data.robotagrex.com/onsite-ads.xml";
+            obj = new HandleXML(finalUrl);
+            obj.fetchXML();
+
+            while(true) {
+                if (!(obj.parsingComplete)) break;
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
 
         }
     }
