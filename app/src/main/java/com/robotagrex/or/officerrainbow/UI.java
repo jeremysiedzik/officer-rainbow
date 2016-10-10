@@ -144,7 +144,7 @@ public class UI extends AppCompatActivity {
                     }
                 }
 
-                mHandler.postDelayed(this, 5000);
+                mHandler.postDelayed(this, 10000);
             }
         };
         mHandler.post(confidence_from_prefs);
