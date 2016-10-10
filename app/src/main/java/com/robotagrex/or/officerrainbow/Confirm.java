@@ -27,8 +27,6 @@ public class Confirm extends AppCompatActivity {
     public static final String pulled_user_imei = "user_imei";
     public static final String pulled_user_simSerialNumber = "user_simSerialNumber";
 
-    TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-
     ProgressDialog mProgressDialog;
 
     @Override
@@ -36,6 +34,7 @@ public class Confirm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm);
 
+        TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
         String user_number = tm.getLine1Number();
         String user_imei = tm.getDeviceId();
         String user_simSerialNumber = tm.getSimSerialNumber();
