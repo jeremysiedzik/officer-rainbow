@@ -85,22 +85,21 @@ class HandleXML  {
         }
     }
 
-    void fetchXML(){
-        Thread thread = new Thread(new Runnable(){
+    //void fetchXML(){
+        //Thread thread = new Thread(new Runnable(){
 
-            @Override
-            public void run() {
-                new asyncgetxml().execute();
-            }
+            //@Override
+            //public void run() {
+            //}
 
-            class asyncgetxml extends AsyncTask<Object, Object, Void> {
+    class asyncxml extends AsyncTask<Void, Void, Void> {
                 @Override
                 protected void onPreExecute() {
                     super.onPreExecute();
                 }
 
                 @Override
-                protected Void doInBackground(Object... params) {
+                protected Void doInBackground(Void... params) {
                     try {
                         URL url = new URL(urlString);
                         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -136,7 +135,8 @@ class HandleXML  {
 
                 }
             }
-        });
-        thread.start();
-    }
+      //  });
+      //  thread.start();
+    //}
+
 }
