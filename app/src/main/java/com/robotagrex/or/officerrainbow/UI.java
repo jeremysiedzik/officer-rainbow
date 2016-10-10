@@ -529,12 +529,7 @@ public class UI extends AppCompatActivity {
                     }
                 });
 
-                Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                anim.setDuration(50); //You can manage the time of the blink with this parameter
-                anim.setStartOffset(20);
-                anim.setRepeatMode(Animation.REVERSE);
-                anim.setRepeatCount(20);
-                daily_colors_string_heading.startAnimation(anim);
+
 
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
@@ -542,8 +537,20 @@ public class UI extends AppCompatActivity {
                 toast.show();
 
                 checkdailycolors(getApplicationContext());
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(50); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(20);
+                    daily_colors_string_heading.startAnimation(anim);
             } else {
                     toast_internet_down();
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(50); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(20);
+                    daily_colors_string_heading.startAnimation(anim);
                 }
             }
         });
@@ -577,15 +584,28 @@ public class UI extends AppCompatActivity {
                     }
                 });
 
+
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
 
                 checkdailycolors(getApplicationContext());
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(50); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(20);
+                    daily_colors_string.startAnimation(anim);
 
             } else {
                     toast_internet_down();
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(50); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(20);
+                    daily_colors_string.startAnimation(anim);
             }
             }
         });
