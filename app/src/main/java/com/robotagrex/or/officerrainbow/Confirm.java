@@ -56,10 +56,7 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                Intent qoneintent = new Intent(Confirm.this, Confirmation.class);
-                startActivity(qoneintent);
-                String confirmation_result = sharedpreferences.getString("confirmation_result", "No data yet");
-                titletxt.setText(confirmation_result);
+                sendconfirmation(getApplicationContext());
                 }
         });
 
@@ -71,4 +68,14 @@ public class Confirm extends AppCompatActivity {
             }
         });
     }
+    void sendconfirmation(final Context uicontext) {
+       // if (checkInternetConnection()) {
+            System.out.println("About to run Confirmation.clss within sendconfirmation method");
+            Intent confirmationservice = new Intent(uicontext, Confirmation.class);
+            uicontext.startService(confirmationservice);
+        }
+        //else {
+        //    toast_internet_down();
+       // }
+   // }
 }
