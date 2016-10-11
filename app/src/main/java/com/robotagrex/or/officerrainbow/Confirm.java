@@ -1,9 +1,11 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -44,7 +46,7 @@ public class Confirm extends AppCompatActivity {
         Runnable confirmation_msg = new Runnable() {
             @Override
             public void run() {
-                String confirmation_result = sharedpreferences.getString("confirmation_result", "No data yet");
+                String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
                 String loaded_ok_string = "Alarm Confirmed";
                 if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
                     titletxt.setText(confirmation_result);
@@ -59,7 +61,7 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                sendconfirmation(getApplicationContext());
+                new confirmation_task().execute();
                 }
         });
 
@@ -93,5 +95,30 @@ public class Confirm extends AppCompatActivity {
         Context context = getApplication();
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    class confirmation_task extends AsyncTask<Void, Void, Void> {
+        Context context = getApplicationContext();
+        private ProgressDialog mProgressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            mProgressDialog = new ProgressDialog(Confirm.this);
+            mProgressDialog.setTitle("Confirming Notification");
+            mProgressDialog.setMessage("Confirming...");
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            sendconfirmation(getApplicationContext());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            mProgressDialog.dismiss();
+        }
     }
 }
