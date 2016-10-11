@@ -15,7 +15,9 @@ import android.widget.EditText;
 
 public class Notifications extends AppCompatActivity {
 
-    EditText ed1,ed2,ed3,ed4,ed5,ed6,current_ed;
+    EditText current_ed;
+    EditText email_edit1,email_edit2,email_edit3;
+    EditText sms_contact_number_1,sms_contact_number_2,sms_contact_number_3;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String emailkey1 = "email1Key";
     public static final String emailkey2 = "email2Key";
@@ -33,12 +35,12 @@ public class Notifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notifications);
 
-        ed1=(EditText)findViewById(R.id.editText);
-        ed2=(EditText)findViewById(R.id.editText3);
-        ed3=(EditText)findViewById(R.id.editText4);
-        ed4=(EditText)findViewById(R.id.editText2);
-        ed5=(EditText)findViewById(R.id.editText5);
-        ed6=(EditText)findViewById(R.id.editText6);
+        email_edit1=(EditText)findViewById(R.id.email1);
+        email_edit2=(EditText)findViewById(R.id.email2);
+        email_edit3=(EditText)findViewById(R.id.email3);
+        sms_contact_number_1=(EditText)findViewById(R.id.sms_contact1);
+        sms_contact_number_2=(EditText)findViewById(R.id.sms_contact2);
+        sms_contact_number_3=(EditText)findViewById(R.id.sms_contact3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -64,18 +66,18 @@ public class Notifications extends AppCompatActivity {
         String fillsms2 = sharedpreferences.getString("sms2Key", "");
         String fillsms3 = sharedpreferences.getString("sms3Key", "");
 
-        ed1.setText(fillemail1);
-        ed2.setText(fillemail2);
-        ed3.setText(fillemail3);
-        ed4.setText(fillsms1);
-        ed5.setText(fillsms2);
-        ed6.setText(fillsms3);
+        email_edit1.setText(fillemail1);
+        email_edit2.setText(fillemail2);
+        email_edit3.setText(fillemail3);
+        sms_contact_number_1.setText(fillsms1);
+        sms_contact_number_2.setText(fillsms2);
+        sms_contact_number_3.setText(fillsms3);
 
         contactbutton1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View view) {
-                current_ed=(EditText)findViewById(R.id.editText2);
+                current_ed=(EditText)findViewById(R.id.sms_contact1);
                 Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent1, PICK_CONTACT_REQUEST);
@@ -86,7 +88,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_ed=(EditText)findViewById(R.id.editText5);
+                current_ed=(EditText)findViewById(R.id.sms_contact2);
                 Intent pickContactIntent2 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent2.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent2, PICK_CONTACT_REQUEST);
@@ -97,7 +99,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_ed=(EditText)findViewById(R.id.editText6);
+                current_ed=(EditText)findViewById(R.id.sms_contact3);
                 Intent pickContactIntent3 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent3.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
                 startActivityForResult(pickContactIntent3, PICK_CONTACT_REQUEST);
@@ -107,12 +109,12 @@ public class Notifications extends AppCompatActivity {
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email1  = ed1.getText().toString();
-                String email2  = ed2.getText().toString();
-                String email3  = ed3.getText().toString();
-                String sms1  = ed4.getText().toString();
-                String sms2  = ed5.getText().toString();
-                String sms3  = ed6.getText().toString();
+                String email1  = email_edit1.getText().toString();
+                String email2  = email_edit2.getText().toString();
+                String email3  = email_edit3.getText().toString();
+                String sms1  = sms_contact_number_1.getText().toString();
+                String sms2  = sms_contact_number_2.getText().toString();
+                String sms3  = sms_contact_number_3.getText().toString();
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(emailkey1, email1);
@@ -137,6 +139,7 @@ public class Notifications extends AppCompatActivity {
             Uri contactUri = data.getData();
             // We only need the NUMBER column, because there will be only one row in the result
             String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
+            String[] contact_name = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME};
 
             // Perform the query on the contact to get the NUMBER column
             // We don't need a selection or sort order (there's only one result for the given URI)
@@ -147,6 +150,11 @@ public class Notifications extends AppCompatActivity {
                     .query(contactUri, projection, null, null, null);
             assert cursor != null;
             cursor.moveToFirst();
+
+            Cursor cursor_name = getContentResolver()
+                    .query(contactUri, contact_name, null, null, null);
+            assert cursor_name != null;
+            cursor_name.moveToFirst();
 
             // Retrieve the phone number from the NUMBER column
             int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
@@ -166,6 +174,10 @@ public class Notifications extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
+            //int column_name = cursor_name.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            //String final_name = cursor_name.getString(column_name);
+            //.setText(final_name);
         }
     }
 }

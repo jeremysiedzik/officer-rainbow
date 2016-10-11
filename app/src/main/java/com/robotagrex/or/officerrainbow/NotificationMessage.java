@@ -23,7 +23,7 @@ public class NotificationMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notificationmessage);
 
-        ed1=(EditText)findViewById(R.id.editText);
+        ed1=(EditText)findViewById(R.id.email1);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

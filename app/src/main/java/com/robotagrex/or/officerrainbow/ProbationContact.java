@@ -34,7 +34,7 @@ public class ProbationContact extends AppCompatActivity {
         setContentView(R.layout.probationcontact);
 
         etPhoneNumber=(EditText)findViewById(R.id.etPhoneNumber);
-        ed6=(EditText)findViewById(R.id.editText6);
+        ed6=(EditText)findViewById(R.id.sms_contact3);
         ed12=(EditText)findViewById(R.id.editText12);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -159,14 +159,10 @@ public class ProbationContact extends AppCompatActivity {
                 }
             }
 
-
             int column_name = cursor_name.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
             String final_name = cursor_name.getString(column_name);
-
-
-            // Do something with the phone number...
-
             ed6.setText(final_name);
+
             etPhoneNumber.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

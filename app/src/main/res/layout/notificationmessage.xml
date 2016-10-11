@@ -23,7 +23,7 @@
         android:textSize="40sp"
         android:textIsSelectable="false"
         android:textColor="#000000"
-        android:id="@+id/textView"
+        android:id="@+id/notification_message_heading"
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -33,11 +33,11 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:text="@string/notification_exampe"
+        android:id="@id/notification_message"
         android:ems="10"
-        android:id="@+id/editText"
-        android:labelFor="@id/editText"
+        android:labelFor="@id/notification_message"
         android:selectAllOnFocus="true"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/notification_message_heading"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/buttonmessage"
@@ -62,9 +62,7 @@
         android:background="#000000"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
 </ScrollView>
