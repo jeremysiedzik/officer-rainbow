@@ -56,6 +56,8 @@ public class Confirmation extends IntentService {
         editor.apply();
 
         System.out.println("Confirmation message is "+message);
+        System.out.println("urlString is"+urlString);
+
     }
 
     private String loadFromNetwork(String urlString) throws IOException {
