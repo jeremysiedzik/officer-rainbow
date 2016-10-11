@@ -335,7 +335,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
-                Intent qoneintent = new Intent(UI.this, NotificationMessage.class);
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
         });
