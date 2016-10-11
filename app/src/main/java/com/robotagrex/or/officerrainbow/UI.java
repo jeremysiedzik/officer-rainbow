@@ -169,7 +169,7 @@ public class UI extends AppCompatActivity {
                 } else {
                     marquee.setText("");
                 }
-                mHandler.postDelayed(this, 20000);
+                mHandler.postDelayed(this, 30000);
             }
         };
         mHandler.post(rss_setter);
