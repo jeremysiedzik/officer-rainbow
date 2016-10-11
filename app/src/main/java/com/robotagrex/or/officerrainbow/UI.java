@@ -13,7 +13,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
@@ -154,31 +153,10 @@ public class UI extends AppCompatActivity {
         };
         mHandler.post(confidence_from_prefs);
 
-       // Runnable rss_setter = new Runnable() {
-         //   @Override
-          //  public void run() {
-         //       if (checkInternetConnection()) {
-           //         new asyncxml().execute();
-             //   }
-
-               // sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                //String marquee_key = sharedpreferences.getString("marquee_key", "");
-                //String marquee_description = sharedpreferences.getString("marquee_description", "");
-
-                //if (marquee_key.contains("321654987")) {
-               //     marquee.setText(marquee_description);
-              //  } else {
-             //       marquee.setText("");
-           //     }
-         //       mHandler.postDelayed(this, 30000);
-       //     }
-       // };
-       // mHandler.post(rss_setter);
-
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+       Runnable rss_setter = new Runnable() {
             @Override
             public void run() {
-                if (checkInternetConnection()) {
+               if (checkInternetConnection()) {
                     new asyncxml().execute();
                 }
 
@@ -189,10 +167,12 @@ public class UI extends AppCompatActivity {
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
                 } else {
-                    marquee.setText("");
+                   marquee.setText("");
                 }
+                mHandler.postDelayed(this, 20000);
             }
-        }, 30000);
+        };
+        mHandler.post(rss_setter);
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
 
