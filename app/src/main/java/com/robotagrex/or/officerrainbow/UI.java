@@ -46,7 +46,7 @@ public class UI extends AppCompatActivity {
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
-    TextView color_choice_2,color_choice_3,confidence_header;
+    TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
 
@@ -93,6 +93,7 @@ public class UI extends AppCompatActivity {
         }
 
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
+        notification_message_heading = (TextView)findViewById(R.id.notification_message_heading);
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
@@ -326,6 +327,15 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudio(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationContact.class);
+                startActivity(qoneintent);
+            }
+        });
+
+        notification_message_heading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, NotificationMessage.class);
                 startActivity(qoneintent);
             }
         });

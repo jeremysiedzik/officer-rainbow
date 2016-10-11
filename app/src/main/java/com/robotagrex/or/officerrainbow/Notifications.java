@@ -116,6 +116,50 @@ public class Notifications extends AppCompatActivity {
                 String sms3  = ed6.getText().toString();
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
+                sms1 = sms1.replace(" ", "");
+                sms1 = sms1.replace("(", "");
+                sms1 = sms1.replace(")", "");
+                sms1 = sms1.replace("-", "");
+                sms1 = sms1.replace("+", "");
+                if (sms1.length() >= 10) {
+                    try {
+                        String final_number = sms1.substring(sms1.length() - 10);
+                        ed4.setText(final_number);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                sms2 = sms2.replace(" ", "");
+                sms2 = sms2.replace("(", "");
+                sms2 = sms2.replace(")", "");
+                sms2 = sms2.replace("-", "");
+                sms2 = sms2.replace("+", "");
+                if (sms2.length() >= 10) {
+                    try {
+                        String final_number = sms2.substring(sms2.length() - 10);
+                        ed5.setText(final_number);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                sms3 = sms3.replace(" ", "");
+                sms3 = sms3.replace("(", "");
+                sms3 = sms3.replace(")", "");
+                sms3 = sms3.replace("-", "");
+                sms3 = sms3.replace("+", "");
+                if (sms3.length() >= 10) {
+                    try {
+                        String final_number = sms3.substring(sms3.length() - 10);
+                        ed6.setText(final_number);
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
                 editor.putString(emailkey1, email1);
                 editor.putString(emailkey2, email2);
