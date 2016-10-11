@@ -108,6 +108,11 @@ public class Confirm extends AppCompatActivity {
             mProgressDialog.setMessage("Confirming...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
