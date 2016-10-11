@@ -22,6 +22,7 @@ public class Confirm extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
+    TextView titletxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class Confirm extends AppCompatActivity {
             }
         });
     }
+
     void sendconfirmation(final Context uicontext) {
        if (checkInternetConnection()) {
             System.out.println("About to run Confirmation.clss within sendconfirmation method");
@@ -108,11 +110,6 @@ public class Confirm extends AppCompatActivity {
             mProgressDialog.setMessage("Confirming...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
 
         @Override
@@ -123,6 +120,12 @@ public class Confirm extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+            String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
+            String loaded_ok_string = "Alarm Confirmed";
+            if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
+                titletxt.setText(confirmation_result);
+            }
+
             mProgressDialog.dismiss();
         }
     }
