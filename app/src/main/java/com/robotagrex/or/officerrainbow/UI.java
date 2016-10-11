@@ -504,13 +504,18 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());
-                checkdailycolors(getApplicationContext());
-                Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                anim.setDuration(50); //You can manage the time of the blink with this parameter
-                anim.setStartOffset(20);
-                anim.setRepeatMode(Animation.REVERSE);
-                anim.setRepeatCount(20);
-                confidence_header.startAnimation(anim);
+                if (checkInternetConnection()) {
+                    checkdailycolors(getApplicationContext());
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(50); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(20);
+                    confidence_header.startAnimation(anim);
+                } else {
+                    toast_internet_down();
+                }
+
             }
         });
 
