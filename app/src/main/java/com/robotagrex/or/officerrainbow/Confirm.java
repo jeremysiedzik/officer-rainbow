@@ -42,7 +42,7 @@ public class Confirm extends AppCompatActivity {
             @Override
             public void run() {
                 String confirmation_result = sharedpreferences.getString("confirmation_result", "No data yet");
-                String loaded_ok_string = "Sent email test";
+                String loaded_ok_string = "Alarm Confirmed";
                 if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
                     titletxt.setText(confirmation_result);
                 }
