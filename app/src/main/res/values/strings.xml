@@ -111,4 +111,5 @@
     <string name="marquee_contents">RSS Feed Reader - Customer Branded Backend for Ads - Messages - Branding</string>
     <string name="tap_here_to_choose">Tap here to add</string>
     <string name="confirm_notification">Confirm Notification</string>
+    <string name="notification_message_heading">Notification Message:</string>
 </resources>

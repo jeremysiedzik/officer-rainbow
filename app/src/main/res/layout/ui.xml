@@ -283,7 +283,7 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/notification_message"
+            android:text="@string/notification_message_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/notification_message_heading"

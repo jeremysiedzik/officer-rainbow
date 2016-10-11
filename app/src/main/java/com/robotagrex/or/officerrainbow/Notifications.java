@@ -104,7 +104,6 @@ public class Notifications extends AppCompatActivity {
             }
         });
 
-
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
