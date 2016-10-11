@@ -3,14 +3,17 @@ package com.robotagrex.or.officerrainbow;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Confirm extends AppCompatActivity {
 
@@ -69,13 +72,26 @@ public class Confirm extends AppCompatActivity {
         });
     }
     void sendconfirmation(final Context uicontext) {
-       // if (checkInternetConnection()) {
+       if (checkInternetConnection()) {
             System.out.println("About to run Confirmation.clss within sendconfirmation method");
             Intent confirmationservice = new Intent(uicontext, Confirmation.class);
             uicontext.startService(confirmationservice);
         }
-        //else {
-        //    toast_internet_down();
-       // }
-   // }
+        else {
+            toast_internet_down();
+       }
+   }
+
+    void toast_internet_down() {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Check your internet connection.", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
+    }
+
+    public boolean checkInternetConnection() {
+        Context context = getApplication();
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    }
 }

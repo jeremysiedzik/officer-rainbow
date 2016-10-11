@@ -548,8 +548,6 @@ public class UI extends AppCompatActivity {
                     }
                 });
 
-
-
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -573,7 +571,6 @@ public class UI extends AppCompatActivity {
                 }
             }
         });
-
 
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -603,7 +600,6 @@ public class UI extends AppCompatActivity {
                         }
                     }
                 });
-
 
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
