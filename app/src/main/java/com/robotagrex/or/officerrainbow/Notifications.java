@@ -122,8 +122,8 @@ public class Notifications extends AppCompatActivity {
                 sms1 = sms1.replace("+", "");
                 if (sms1.length() >= 10) {
                     try {
-                        String final_number = sms1.substring(sms1.length() - 10);
-                        ed4.setText(final_number);
+                        sms1 = sms1.substring(sms1.length() - 10);
+                        ed4.setText(sms1);
                     }
                     catch (Exception e) {
                         e.printStackTrace();
@@ -137,8 +137,8 @@ public class Notifications extends AppCompatActivity {
                 sms2 = sms2.replace("+", "");
                 if (sms2.length() >= 10) {
                     try {
-                        String final_number = sms2.substring(sms2.length() - 10);
-                        ed5.setText(final_number);
+                        sms2 = sms2.substring(sms2.length() - 10);
+                        ed5.setText(sms2);
                     }
                     catch (Exception e) {
                         e.printStackTrace();
@@ -152,8 +152,8 @@ public class Notifications extends AppCompatActivity {
                 sms3 = sms3.replace("+", "");
                 if (sms3.length() >= 10) {
                     try {
-                        String final_number = sms3.substring(sms3.length() - 10);
-                        ed6.setText(final_number);
+                        sms3 = sms3.substring(sms3.length() - 10);
+                        ed6.setText(sms3);
                     }
                     catch (Exception e) {
                         e.printStackTrace();

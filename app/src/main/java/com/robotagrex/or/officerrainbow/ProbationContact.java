@@ -43,8 +43,8 @@ public class ProbationContact extends AppCompatActivity {
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
 
-        Button contactbutton3 = (Button) findViewById(R.id.buttoncontact3);
-        assert contactbutton3 != null;
+        Button contactbutton = (Button) findViewById(R.id.buttoncontact3);
+        assert contactbutton != null;
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -82,7 +82,7 @@ public class ProbationContact extends AppCompatActivity {
         });
 
 
-        contactbutton3.setOnClickListener(new View.OnClickListener()
+        contactbutton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View view) {
