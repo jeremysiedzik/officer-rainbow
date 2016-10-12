@@ -48,7 +48,7 @@ public class UI extends AppCompatActivity {
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading;
     TextView sms_notification1,sms_notification2,sms_notification3,email_msg_header,sms_msg_header;
-    TextView email_notification1,email_notification2,email_notification3;
+    TextView email_notification1,email_notification2,email_notification3,listen_colors_heading;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
 
@@ -140,10 +140,7 @@ public class UI extends AppCompatActivity {
             sms_notification3.setText(fillname3 + " - " + fillnotify6);
         }
 
-
-
-
-
+        listen_colors_heading = (TextView)findViewById(R.id.listen_colors_heading);
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         notification_message_heading = (TextView)findViewById(R.id.notification_message_heading);
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
@@ -752,10 +749,10 @@ public class UI extends AppCompatActivity {
             }
         });
 
-        listen_star.setOnClickListener(new View.OnClickListener() {
+        listen_colors_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listen_star.setImageResource(android.R.drawable.star_on);
+                //listen_star.setImageResource(android.R.drawable.star_on);
                 Context context = getApplication();
                 AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
                 int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -766,7 +763,7 @@ public class UI extends AppCompatActivity {
                         mediaPlayer.release();
                         mediaPlayer=null;
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        listen_star.setImageResource(android.R.drawable.star_off);
+                        //listen_star.setImageResource(android.R.drawable.star_off);
                 }
 
                 else {
@@ -775,7 +772,7 @@ public class UI extends AppCompatActivity {
                     if ((gotFocus) && checkInternetConnection()) {
                         new asyncURLaudio().execute();
                     } else if (!checkInternetConnection()) {
-                        listen_star.setImageResource(android.R.drawable.star_off);
+                        //listen_star.setImageResource(android.R.drawable.star_off);
                         toast_internet_down();
                     }
                 }
@@ -813,7 +810,7 @@ public class UI extends AppCompatActivity {
         am.abandonAudioFocus(null);
         ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
         assert listen_star != null;
-        listen_star.setImageResource(android.R.drawable.star_off);
+        //listen_star.setImageResource(android.R.drawable.star_off);
     }
 
     void checkdailycolors(final Context uicontext) {
@@ -914,7 +911,7 @@ public class UI extends AppCompatActivity {
                         }
                         ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
                         assert listen_star != null;
-                        listen_star.setImageResource(android.R.drawable.star_off);
+                        //listen_star.setImageResource(android.R.drawable.star_off);
                     }
                 });
 
