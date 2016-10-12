@@ -214,14 +214,19 @@ public class UI extends AppCompatActivity {
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
                 String marquee_description = sharedpreferences.getString("marquee_description", "");
-                String app_title = sharedpreferences.getString("app_title", "");
+                String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
-                    setTitle(app_title);
                 } else {
                    marquee.setText("");
                 }
+
+                if(getSupportActionBar() != null){
+                    System.out.println(app_title);
+                    getSupportActionBar().setTitle(app_title);
+                }
+
                 mHandler.postDelayed(this, 20000);
             }
         };
