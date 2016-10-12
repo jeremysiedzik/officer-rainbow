@@ -63,10 +63,9 @@ public class Notifications extends AppCompatActivity {
         sms_msg2=(EditText)findViewById(R.id.notify_msg_5);
         sms_msg3=(EditText)findViewById(R.id.notify_msg_6);
 
-        contact_name_1=(TextView)findViewById(R.id.contact_name_1);
-        contact_name_2=(TextView)findViewById(R.id.contact_name_2);
-        contact_name_3=(TextView)findViewById(R.id.contact_name_3);
-
+        contact_name_1=(EditText)findViewById(R.id.contact_name_1);
+        contact_name_2=(EditText)findViewById(R.id.contact_name_2);
+        contact_name_3=(EditText)findViewById(R.id.contact_name_3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

@@ -23,7 +23,7 @@
             android:text="@string/email_address"
             android:textSize="26sp"
             android:textIsSelectable="false"
-            android:textColor="#000000"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/email_reminder_header"
             android:layout_below="@+id/my_toolbar"
             android:layout_alignParentLeft="true"
@@ -39,9 +39,9 @@
         android:textSize="26sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="false"
-        android:layout_below="@+id/notification_message"
+        android:layout_below="@+id/contact_name_heading"
         android:layout_alignParentLeft="true"
-            android:layout_alignEnd="@+id/email_reminder_header" />
+            android:text="@string/tap_here_to_choose" />
 
         <Button
         android:layout_width="wrap_content"
@@ -78,7 +78,8 @@
         android:layout_below="@+id/mail1"
         android:layout_alignParentLeft="true"
         android:layout_toStartOf="@+id/buttoncontact1"
-        android:layout_alignEnd="@+id/mail1" />
+        android:layout_alignEnd="@+id/mail1"
+        android:text="@string/tap_here_to_choose" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -93,7 +94,8 @@
         android:layout_below="@+id/mail2"
         android:layout_alignParentLeft="true"
         android:layout_toStartOf="@+id/buttoncontact1"
-        android:layout_alignEnd="@+id/mail2" />
+        android:layout_alignEnd="@+id/mail2"
+        android:text="@string/tap_here_to_choose" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -104,7 +106,8 @@
             android:labelFor="@id/notify_msg_2"
             android:textSize="26sp"
             android:layout_below="@+id/notify_msg_1"
-            android:layout_toEndOf="@+id/sms_contact1" />
+            android:layout_toEndOf="@+id/sms_contact1"
+            android:text="@string/tap_here_to_choose" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -114,8 +117,9 @@
             android:id="@+id/notify_msg_1"
             android:labelFor="@id/notify_msg_1"
             android:textSize="26sp"
-            android:layout_below="@+id/notification_message"
-            android:layout_alignStart="@+id/notify_msg_2" />
+            android:layout_below="@+id/contact_name_heading"
+            android:layout_alignStart="@+id/notify_msg_2"
+            android:text="@string/tap_here_to_choose" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -126,7 +130,8 @@
             android:labelFor="@id/notify_msg_3"
             android:textSize="26sp"
             android:layout_below="@+id/notify_msg_2"
-            android:layout_alignStart="@+id/notify_msg_2" />
+            android:layout_alignStart="@+id/notify_msg_2"
+            android:text="@string/tap_here_to_choose" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -138,7 +143,8 @@
             android:textSize="26sp"
             android:layout_alignBaseline="@+id/sms_contact3"
             android:layout_alignBottom="@+id/sms_contact3"
-            android:layout_toEndOf="@+id/sms_contact3" />
+            android:layout_toEndOf="@+id/sms_contact3"
+            android:text="@string/tap_here_to_choose" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -150,7 +156,8 @@
             android:textSize="26sp"
             android:layout_above="@+id/notify_msg_6"
             android:layout_toEndOf="@+id/sms_contact2"
-            android:layout_alignTop="@+id/sms_contact2" />
+            android:layout_alignTop="@+id/sms_contact2"
+            android:text="@string/tap_here_to_choose" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -162,7 +169,8 @@
             android:textSize="26sp"
             android:layout_toEndOf="@+id/sms_contact2"
             android:layout_above="@+id/sms_contact2"
-            android:layout_alignTop="@+id/sms_contact1" />
+            android:layout_alignTop="@+id/sms_contact1"
+            android:text="@string/tap_here_to_choose" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -200,7 +208,7 @@
             android:text="@string/sms_address"
             android:textSize="26sp"
             android:textIsSelectable="true"
-            android:textColor="#000000"
+            android:textColor="@android:color/holo_blue_dark"
             android:id="@+id/text_message_header"
             android:layout_below="@+id/mail3"
             android:layout_alignParentStart="true" />
@@ -237,8 +245,8 @@
             android:text="@string/notification_message_email_sms"
             android:textSize="26sp"
             android:textIsSelectable="false"
-            android:textColor="#000000"
-            android:id="@+id/notification_message"
+            android:textColor="@android:color/holo_blue_dark"
+            android:id="@+id/textView"
             android:layout_below="@+id/my_toolbar"
             android:layout_alignStart="@+id/notify_msg_1" />
 
@@ -255,35 +263,52 @@
             android:layout_below="@+id/text_message_header"
             android:layout_toEndOf="@+id/mail3" />
 
-        <TextView
-            android:text="@string/empty_string"
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/contact_name_2"
-            android:textSize="26sp"
-            android:layout_above="@+id/notify_msg_6"
-            android:layout_toEndOf="@+id/notify_msg_6"
-            android:layout_below="@+id/notify_msg_4" />
-
-        <TextView
-            android:text="@string/empty_string"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/contact_name_3"
-            android:textSize="26sp"
-            android:layout_alignBottom="@+id/notify_msg_6"
-            android:layout_toEndOf="@+id/notify_msg_6"
-            android:layout_below="@+id/notify_msg_5" />
-
-        <TextView
-            android:text="@string/empty_string"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/contact_name_1"
-            android:textSize="26sp"
+            android:inputType="textPersonName"
+            android:text="@string/tap_here_to_choose"
+            android:ems="10"
+            android:labelFor="@id/contact_name_1"
             android:layout_above="@+id/notify_msg_5"
             android:layout_toEndOf="@+id/notify_msg_5"
-            android:layout_alignTop="@+id/notify_msg_4" />
+            android:id="@+id/contact_name_1"
+            android:textSize="26sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/tap_here_to_choose"
+            android:ems="10"
+            android:layout_above="@+id/notify_msg_6"
+            android:layout_toEndOf="@+id/notify_msg_6"
+            android:id="@+id/contact_name_2"
+            android:labelFor="@id/contact_name_2"
+            android:textSize="26sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@string/tap_here_to_choose"
+            android:ems="10"
+            android:layout_alignBottom="@+id/notify_msg_6"
+            android:layout_toEndOf="@+id/notify_msg_6"
+            android:id="@+id/contact_name_3"
+            android:labelFor="@id/contact_name_3"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_name_notify"
+            android:textSize="26sp"
+            android:textIsSelectable="false"
+            android:textColor="@android:color/holo_blue_dark"
+            android:id="@+id/contact_name_heading"
+            android:layout_below="@+id/my_toolbar"
+            android:layout_toEndOf="@+id/notify_msg_1" />
 
     </RelativeLayout>
 
