@@ -33,7 +33,8 @@
             android:textSize="16sp"
             android:layout_below="@+id/my_toolbar"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="13dp" />
+            android:layout_marginTop="13dp"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -83,7 +84,8 @@
             android:textSize="16sp"
             android:layout_alignBaseline="@+id/probation_end_date_heading"
             android:layout_alignBottom="@+id/probation_end_date_heading"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,7 +137,8 @@
             android:textSize="16sp"
             android:layout_alignBaseline="@+id/alarmprompt"
             android:layout_alignBottom="@+id/alarmprompt"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/your_color_choices"
@@ -155,7 +158,8 @@
             android:textSize="16sp"
             android:layout_below="@+id/probation_meeting_counter"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="37dp" />
+            android:layout_marginTop="37dp"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/no_data_pulled"
@@ -175,7 +179,8 @@
             android:id="@+id/daily_colors_heading"
             android:textSize="16sp"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/record_receipt_image"
@@ -184,7 +189,8 @@
             android:layout_alignBottom="@+id/probation_meeting_date_heading"
             android:layout_centerHorizontal="true"
             android:id="@+id/image_store_heading"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/alarm_state_notify"
@@ -249,7 +255,8 @@
             android:textSize="24sp"
             android:elevation="1dp"
             android:layout_above="@+id/listen_star"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/tap_here_to_choose_probation"
@@ -270,7 +277,8 @@
             android:id="@+id/call_probation_heading"
             android:textSize="14sp"
             android:layout_above="@+id/probation_officer_name"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/notification_message_heading"
@@ -280,7 +288,8 @@
             android:textSize="16sp"
             android:layout_below="@+id/confidence_header"
             android:layout_alignParentEnd="true"
-            tools:text="Notification Message:" />
+            tools:text="Notification Message:"
+            android:textColor="@color/heading_colors" />
 
         <TextView
             android:text="@string/confidence"
@@ -289,7 +298,8 @@
             android:id="@+id/confidence_header"
             android:textSize="18sp"
             android:layout_above="@+id/progress_bar_ring"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/heading_colors" />
 
         <Button
             android:text="@string/call_now"
@@ -366,9 +376,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_msg_header"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/heading_colors"
             android:layout_below="@+id/notification_message_heading"
-            android:layout_alignStart="@+id/notification_message_heading" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:text="@string/text_msg_header"
@@ -376,8 +386,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/sms_msg_header"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/heading_colors"
             android:layout_below="@+id/email_notification3"
-            android:layout_alignStart="@+id/email_msg_header" />
+            android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
