@@ -81,12 +81,12 @@ public class Notifications extends AppCompatActivity {
         String fillsms2 = sharedpreferences.getString("sms2Key", "");
         String fillsms3 = sharedpreferences.getString("sms3Key", "");
 
-        String fillnotify1 = sharedpreferences.getString("notifymsg1", "");
-        String fillnotify2 = sharedpreferences.getString("notifymsg2", "");
-        String fillnotify3 = sharedpreferences.getString("notifymsg3", "");
-        String fillnotify4 = sharedpreferences.getString("notifymsg4", "");
-        String fillnotify5 = sharedpreferences.getString("notifymsg5", "");
-        String fillnotify6 = sharedpreferences.getString("notifymsg6", "");
+        String fillnotify1 = sharedpreferences.getString("email_MSG1", "");
+        String fillnotify2 = sharedpreferences.getString("email_MSG2", "");
+        String fillnotify3 = sharedpreferences.getString("email_MSG3", "");
+        String fillnotify4 = sharedpreferences.getString("sms_MSG1", "");
+        String fillnotify5 = sharedpreferences.getString("sms_MSG2", "");
+        String fillnotify6 = sharedpreferences.getString("sms_MSG3", "");
 
         email_edit1.setText(fillemail1);
         email_edit2.setText(fillemail2);
