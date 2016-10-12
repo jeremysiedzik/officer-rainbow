@@ -269,10 +269,10 @@
             android:inputType="textPersonName"
             android:text="@string/tap_here_to_choose"
             android:ems="10"
-            android:labelFor="@id/contact_name_1"
             android:layout_above="@+id/notify_msg_5"
             android:layout_toEndOf="@+id/notify_msg_5"
             android:id="@+id/contact_name_1"
+            android:labelFor="@id/contact_name_1"
             android:textSize="26sp" />
 
         <EditText
