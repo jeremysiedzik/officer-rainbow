@@ -318,17 +318,6 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/daily_colors_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily_colors_heading"
-            android:textSize="16sp"
-            android:textColor="@color/heading_colors"
-            android:layout_alignBaseline="@+id/sms_notification3"
-            android:layout_alignBottom="@+id/sms_notification3"
-            android:layout_alignParentStart="true" />
-
-        <TextView
             android:text="@string/no_data_pulled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -340,6 +329,17 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+            android:text="@string/call_probation_office"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/call_probation_heading"
+            android:textSize="16sp"
+            android:textColor="@color/heading_colors"
+            android:textAlignment="viewStart"
+            android:layout_above="@+id/progress_bar_ring"
+            android:layout_alignParentStart="true" />
+
+        <TextView
             android:text="@string/tap_here_to_choose_probation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -347,20 +347,19 @@
             android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
             android:textAlignment="viewStart"
-            android:layout_alignBaseline="@+id/email_notification1"
-            android:layout_alignBottom="@+id/email_notification1"
+            android:layout_below="@+id/call_probation_heading"
             android:layout_alignParentStart="true" />
 
         <TextView
-            android:text="@string/call_probation_office"
+            android:text="@string/daily_colors_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/call_probation_heading"
+            android:id="@+id/daily_colors_heading"
             android:textSize="16sp"
             android:textColor="@color/heading_colors"
-            android:layout_above="@+id/probation_officer_name"
-            android:layout_alignParentStart="true"
-            android:textAlignment="viewStart" />
+            android:layout_alignBaseline="@+id/sms_notification1"
+            android:layout_alignBottom="@+id/sms_notification1"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:text="@string/call_now"
@@ -368,8 +367,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_call_probation"
             android:textSize="30sp"
-            android:layout_alignBaseline="@+id/sms_msg_header"
-            android:layout_alignBottom="@+id/sms_msg_header"
+            android:layout_alignBaseline="@+id/email_notification2"
+            android:layout_alignBottom="@+id/email_notification2"
             android:layout_alignParentStart="true" />
 
         <TextView
@@ -380,7 +379,7 @@
             android:textSize="24sp"
             android:elevation="1dp"
             android:textColor="@color/heading_colors"
-            android:layout_below="@+id/daily_colors_string"
+            android:layout_below="@+id/sms_notification3"
             android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
