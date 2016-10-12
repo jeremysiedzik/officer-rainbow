@@ -99,9 +99,9 @@ public class Notifications extends AppCompatActivity {
         String fillnotify5 = sharedpreferences.getString("sms_MSG2", "");
         String fillnotify6 = sharedpreferences.getString("sms_MSG3", "");
 
-        final String fillname1 = sharedpreferences.getString("contact_name_1", "");
-        final String fillname2 = sharedpreferences.getString("contact_name_2", "");
-        final String fillname3 = sharedpreferences.getString("contact_name_3", "");
+        String fillname1 = sharedpreferences.getString("contact_name_1", "");
+        String fillname2 = sharedpreferences.getString("contact_name_2", "");
+        String fillname3 = sharedpreferences.getString("contact_name_3", "");
 
         email_edit1.setText(fillemail1);
         email_edit2.setText(fillemail2);
@@ -176,6 +176,9 @@ public class Notifications extends AppCompatActivity {
                 String notify4=sms_msg1.getText().toString();
                 String notify5=sms_msg2.getText().toString();
                 String notify6=sms_msg3.getText().toString();
+                String fillname1=contact_name_1.getText().toString();
+                String fillname2=contact_name_2.getText().toString();
+                String fillname3=contact_name_3.getText().toString();
 
                 editor.putString(notifymsg1, notify1);
                 editor.putString(notifymsg2, notify2);
@@ -191,9 +194,9 @@ public class Notifications extends AppCompatActivity {
                 editor.putString(smskey2, sms2);
                 editor.putString(smskey3, sms3);
 
-                editor.putString(fillname1, contactname1);
-                editor.putString(fillname2, contactname2);
-                editor.putString(fillname3, contactname3);
+                editor.putString(contactname1, fillname1);
+                editor.putString(contactname2, fillname2);
+                editor.putString(contactname3, fillname3);
 
                 editor.apply();
                 Intent qoneintent = new Intent(Notifications.this, UI.class);
