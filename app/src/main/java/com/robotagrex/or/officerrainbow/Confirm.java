@@ -57,8 +57,6 @@ public class Confirm extends AppCompatActivity {
         };
         mHandler.post(confirmation_msg);
 
-
-        // Capture button click
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
@@ -77,7 +75,7 @@ public class Confirm extends AppCompatActivity {
 
     void sendconfirmation(final Context uicontext) {
        if (checkInternetConnection()) {
-            System.out.println("About to run Confirmation.clss within sendconfirmation method");
+            System.out.println("About to run Confirmation.class within sendconfirmation method");
             Intent confirmationservice = new Intent(uicontext, Confirmation.class);
             uicontext.startService(confirmationservice);
         }
