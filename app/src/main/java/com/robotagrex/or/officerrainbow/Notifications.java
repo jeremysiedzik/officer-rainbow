@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class Notifications extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class Notifications extends AppCompatActivity {
     EditText sms_msg1,sms_msg2,sms_msg3;
     EditText email_edit1,email_edit2,email_edit3;
     EditText sms_contact_number_1,sms_contact_number_2,sms_contact_number_3;
+    TextView current_name,contact_name_1,contact_name_2,contact_name_3;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String emailkey1 = "email1Key";
     public static final String emailkey2 = "email2Key";
@@ -33,10 +35,14 @@ public class Notifications extends AppCompatActivity {
     public static final String notifymsg4 = "sms_MSG1";
     public static final String notifymsg5 = "sms_MSG2";
     public static final String notifymsg6 = "sms_MSG3";
+
+    public static final String contactname1 = "contact_name_1";
+    public static final String contactname2 = "contact_name_2";
+    public static final String contactname3 = "contact_name_3";
+
     SharedPreferences sharedpreferences;
 
     static final int PICK_CONTACT_REQUEST = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,11 @@ public class Notifications extends AppCompatActivity {
         sms_msg1=(EditText)findViewById(R.id.notify_msg_4);
         sms_msg2=(EditText)findViewById(R.id.notify_msg_5);
         sms_msg3=(EditText)findViewById(R.id.notify_msg_6);
+
+        contact_name_1=(TextView)findViewById(R.id.contact_name_1);
+        contact_name_2=(TextView)findViewById(R.id.contact_name_2);
+        contact_name_3=(TextView)findViewById(R.id.contact_name_3);
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -88,6 +99,10 @@ public class Notifications extends AppCompatActivity {
         String fillnotify5 = sharedpreferences.getString("sms_MSG2", "");
         String fillnotify6 = sharedpreferences.getString("sms_MSG3", "");
 
+        final String fillname1 = sharedpreferences.getString("contact_name_1", "");
+        final String fillname2 = sharedpreferences.getString("contact_name_2", "");
+        final String fillname3 = sharedpreferences.getString("contact_name_3", "");
+
         email_edit1.setText(fillemail1);
         email_edit2.setText(fillemail2);
         email_edit3.setText(fillemail3);
@@ -102,11 +117,15 @@ public class Notifications extends AppCompatActivity {
         sms_msg2.setText(fillnotify5);
         sms_msg3.setText(fillnotify6);
 
+        contact_name_1.setText(fillname1);
+        contact_name_2.setText(fillname2);
+        contact_name_3.setText(fillname3);
 
         contactbutton1.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick (View view) {
+                current_name=(TextView)findViewById(R.id.contact_name_1);
                 current_ed=(EditText)findViewById(R.id.sms_contact1);
                 Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -118,6 +137,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
+                current_name=(TextView)findViewById(R.id.contact_name_2);
                 current_ed=(EditText)findViewById(R.id.sms_contact2);
                 Intent pickContactIntent2 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent2.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -129,6 +149,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
+                current_name=(TextView)findViewById(R.id.contact_name_3);
                 current_ed=(EditText)findViewById(R.id.sms_contact3);
                 Intent pickContactIntent3 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent3.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -139,6 +160,9 @@ public class Notifications extends AppCompatActivity {
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+
                 String email1=email_edit1.getText().toString();
                 String email2=email_edit2.getText().toString();
                 String email3=email_edit3.getText().toString();
@@ -153,8 +177,6 @@ public class Notifications extends AppCompatActivity {
                 String notify5=sms_msg2.getText().toString();
                 String notify6=sms_msg3.getText().toString();
 
-
-                SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(notifymsg1, notify1);
                 editor.putString(notifymsg2, notify2);
                 editor.putString(notifymsg3, notify3);
@@ -162,13 +184,17 @@ public class Notifications extends AppCompatActivity {
                 editor.putString(notifymsg5, notify5);
                 editor.putString(notifymsg6, notify6);
 
-
                 editor.putString(emailkey1, email1);
                 editor.putString(emailkey2, email2);
                 editor.putString(emailkey3, email3);
                 editor.putString(smskey1, sms1);
                 editor.putString(smskey2, sms2);
                 editor.putString(smskey3, sms3);
+
+                editor.putString(fillname1, contactname1);
+                editor.putString(fillname2, contactname2);
+                editor.putString(fillname3, contactname3);
+
                 editor.apply();
                 Intent qoneintent = new Intent(Notifications.this, UI.class);
                 startActivity(qoneintent);
@@ -221,9 +247,9 @@ public class Notifications extends AppCompatActivity {
                 }
             }
 
-            //int column_name = cursor_name.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-            //String final_name = cursor_name.getString(column_name);
-            //.setText(final_name);
+            int column_name = cursor_name.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            String final_name = cursor_name.getString(column_name);
+            current_name.setText(final_name);
         }
     }
 }

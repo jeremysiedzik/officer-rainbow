@@ -113,4 +113,6 @@
     <string name="confirm_notification">Confirm Notification</string>
     <string name="notification_message_heading">Notification Message:</string>
     <string name="notification_message_email_sms">Notification Message:</string>
+    <string name="contact_name">Contact:</string>
+    <string name="empty_string">TextView</string>
 </resources>

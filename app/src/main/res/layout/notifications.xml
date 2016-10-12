@@ -14,7 +14,8 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,42 +36,14 @@
         android:ems="10"
         android:id="@+id/mail1"
         android:labelFor="@id/mail1"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="false"
         android:layout_below="@+id/notification_message"
         android:layout_alignParentLeft="true"
-        android:layout_alignEnd="@+id/buttoncontact1" />
+            android:layout_alignEnd="@+id/email_reminder_header" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sms_address"
-        android:textSize="26sp"
-        android:textIsSelectable="true"
-        android:textColor="#000000"
-        android:id="@+id/text_message_header"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/mail3"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/sms_contact1"
-        android:maxLength="11"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/text_message_header"
-        android:labelFor="@id/sms_contact1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/notification_message"
-        android:layout_alignEnd="@+id/notification_message" />
-
-    <Button
+        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
@@ -99,7 +72,7 @@
         android:ems="10"
         android:id="@+id/mail2"
         android:labelFor="@id/mail2"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/mail1"
@@ -114,7 +87,7 @@
         android:inputType="textPersonName"
         android:id="@+id/mail3"
         android:labelFor="@id/mail3"
-        android:textSize="24sp"
+        android:textSize="26sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/mail2"
@@ -122,57 +95,74 @@
         android:layout_toStartOf="@+id/buttoncontact1"
         android:layout_alignEnd="@+id/mail2" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/sms_contact2"
-        android:labelFor="@id/sms_contact2"
-        android:maxLength="11"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/sms_contact1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/sms_contact1"
-        android:layout_alignEnd="@+id/sms_contact1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_2"
+            android:labelFor="@id/notify_msg_2"
+            android:textSize="26sp"
+            android:layout_below="@+id/notify_msg_1"
+            android:layout_toEndOf="@+id/sms_contact1" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/sms_contact3"
-        android:labelFor="@id/sms_contact3"
-        android:maxLength="11"
-        android:textSize="24sp"
-        android:selectAllOnFocus="true"
-        android:layout_below="@+id/sms_contact2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/sms_contact2"
-        android:layout_alignEnd="@+id/sms_contact2" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_1"
+            android:labelFor="@id/notify_msg_1"
+            android:textSize="26sp"
+            android:layout_below="@+id/notification_message"
+            android:layout_alignStart="@+id/notify_msg_2" />
 
-        <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_button"
-        android:id="@+id/buttoncontact2"
-        android:layout_toRightOf="@+id/sms_contact2"
-        android:layout_toEndOf="@+id/sms_contact1"
-        android:layout_alignTop="@+id/sms_contact2" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_3"
+            android:labelFor="@id/notify_msg_3"
+            android:textSize="26sp"
+            android:layout_below="@+id/notify_msg_2"
+            android:layout_alignStart="@+id/notify_msg_2" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_button"
-        android:id="@+id/buttoncontact3"
-        android:layout_alignTop="@+id/sms_contact3"
-        android:layout_toRightOf="@+id/sms_contact3"
-        android:layout_toEndOf="@+id/sms_contact3" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_6"
+            android:labelFor="@id/notify_msg_6"
+            android:textSize="26sp"
+            android:layout_alignBaseline="@+id/sms_contact3"
+            android:layout_alignBottom="@+id/sms_contact3"
+            android:layout_toEndOf="@+id/sms_contact3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_5"
+            android:labelFor="@id/notify_msg_5"
+            android:textSize="26sp"
+            android:layout_above="@+id/notify_msg_6"
+            android:layout_toEndOf="@+id/sms_contact2"
+            android:layout_alignTop="@+id/sms_contact2" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_4"
+            android:labelFor="@id/notify_msg_4"
+            android:textSize="26sp"
+            android:layout_toEndOf="@+id/sms_contact2"
+            android:layout_above="@+id/sms_contact2"
+            android:layout_alignTop="@+id/sms_contact1" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -180,8 +170,66 @@
             android:layout_height="wrap_content"
             android:text="@string/contact_button"
             android:id="@+id/buttoncontact1"
-            android:layout_alignTop="@+id/sms_contact1"
-            android:layout_toEndOf="@+id/sms_contact1" />
+            android:layout_below="@+id/text_message_header"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/buttoncontact2" />
+
+        <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contact_button"
+        android:id="@+id/buttoncontact2"
+            android:layout_alignBottom="@+id/sms_contact2"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sms_contact1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contact_button"
+            android:id="@+id/buttoncontact3"
+            android:layout_alignBottom="@+id/sms_contact3"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/buttoncontact2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sms_address"
+            android:textSize="26sp"
+            android:textIsSelectable="true"
+            android:textColor="#000000"
+            android:id="@+id/text_message_header"
+            android:layout_below="@+id/mail3"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/sms_contact2"
+            android:labelFor="@id/sms_contact2"
+            android:maxLength="11"
+            android:textSize="26sp"
+            android:selectAllOnFocus="true"
+            android:layout_below="@+id/sms_contact1"
+            android:layout_alignStart="@+id/sms_contact1" />
+
+        <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/sms_contact3"
+        android:labelFor="@id/sms_contact3"
+        android:maxLength="11"
+        android:textSize="26sp"
+        android:selectAllOnFocus="true"
+            android:layout_below="@+id/sms_contact2"
+            android:layout_alignStart="@+id/sms_contact2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -192,75 +240,50 @@
             android:textColor="#000000"
             android:id="@+id/notification_message"
             android:layout_below="@+id/my_toolbar"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignStart="@+id/notify_msg_1" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/notify_msg_1"
-            android:labelFor="@id/notify_msg_1"
-            android:textSize="24sp"
-            android:layout_below="@+id/notification_message"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/sms_contact1"
+            android:maxLength="11"
+            android:textSize="26sp"
+            android:selectAllOnFocus="true"
+            android:labelFor="@id/sms_contact1"
+            android:layout_below="@+id/text_message_header"
+            android:layout_toEndOf="@+id/mail3" />
 
-        <EditText
+        <TextView
+            android:text="@string/empty_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/notify_msg_2"
-            android:labelFor="@id/notify_msg_2"
-            android:textSize="24sp"
-            android:layout_alignBaseline="@+id/mail2"
-            android:layout_alignBottom="@+id/mail2"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/contact_name_2"
+            android:textSize="26sp"
+            android:layout_above="@+id/notify_msg_6"
+            android:layout_toEndOf="@+id/notify_msg_6"
+            android:layout_below="@+id/notify_msg_4" />
 
-        <EditText
+        <TextView
+            android:text="@string/empty_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/notify_msg_3"
-            android:labelFor="@id/notify_msg_3"
-            android:textSize="24sp"
-            android:layout_alignBaseline="@+id/mail3"
-            android:layout_alignBottom="@+id/mail3"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/contact_name_3"
+            android:textSize="26sp"
+            android:layout_alignBottom="@+id/notify_msg_6"
+            android:layout_toEndOf="@+id/notify_msg_6"
+            android:layout_below="@+id/notify_msg_5" />
 
-        <EditText
+        <TextView
+            android:text="@string/empty_string"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/notify_msg_4"
-            android:labelFor="@id/notify_msg_4"
-            android:textSize="24sp"
-            android:layout_alignBottom="@+id/buttoncontact1"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/notify_msg_5"
-            android:labelFor="@id/notify_msg_5"
-            android:textSize="24sp"
-            android:layout_alignTop="@+id/buttoncontact2"
-            android:layout_centerHorizontal="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/notify_msg_6"
-            android:labelFor="@id/notify_msg_6"
-            android:textSize="24sp"
-            android:layout_below="@+id/notify_msg_5"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/contact_name_1"
+            android:textSize="26sp"
+            android:layout_above="@+id/notify_msg_5"
+            android:layout_toEndOf="@+id/notify_msg_5"
+            android:layout_alignTop="@+id/notify_msg_4" />
 
     </RelativeLayout>
 
