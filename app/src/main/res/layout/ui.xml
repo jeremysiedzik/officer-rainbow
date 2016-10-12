@@ -318,17 +318,6 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/no_data_pulled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily_colors_string"
-            android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:maxLines="10"
-            android:layout_below="@+id/daily_colors_heading"
-            android:layout_alignParentStart="true" />
-
-        <TextView
             android:text="@string/listen_to_the_daily_colors"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -378,7 +367,19 @@
             android:id="@+id/daily_colors_heading"
             android:textSize="16sp"
             android:textColor="@color/heading_colors"
+            android:textAlignment="viewStart"
             android:layout_alignTop="@+id/progress_bar_ring"
-            android:layout_alignEnd="@+id/probation_end_counter" />
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="@string/no_data_pulled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/daily_colors_string"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:maxLines="10"
+            android:layout_below="@+id/daily_colors_heading"
+            android:layout_alignParentStart="true" />
 
 </RelativeLayout>
