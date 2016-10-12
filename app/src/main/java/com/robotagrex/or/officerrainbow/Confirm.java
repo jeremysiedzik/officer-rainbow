@@ -126,7 +126,15 @@ public class Confirm extends AppCompatActivity {
                 titletxt.setText(confirmation_result);
             }
 
-            mProgressDialog.dismiss();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mProgressDialog.dismiss();
+                }
+            }, 5000);
+
+
         }
     }
 }
