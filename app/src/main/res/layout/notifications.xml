@@ -191,6 +191,74 @@
             android:layout_below="@+id/my_toolbar"
             android:layout_centerHorizontal="true" />
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_1"
+            android:labelFor="@id/notify_msg_1"
+            android:textSize="24sp"
+            android:layout_below="@+id/notification_message"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_2"
+            android:labelFor="@id/notify_msg_2"
+            android:textSize="24sp"
+            android:layout_alignBaseline="@+id/mail2"
+            android:layout_alignBottom="@+id/mail2"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_3"
+            android:labelFor="@id/notify_msg_3"
+            android:textSize="24sp"
+            android:layout_alignBaseline="@+id/mail3"
+            android:layout_alignBottom="@+id/mail3"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_4"
+            android:labelFor="@id/notify_msg_4"
+            android:textSize="24sp"
+            android:layout_alignBottom="@+id/buttoncontact1"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_5"
+            android:labelFor="@id/notify_msg_5"
+            android:textSize="24sp"
+            android:layout_alignTop="@+id/buttoncontact2"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/notify_msg_6"
+            android:labelFor="@id/notify_msg_6"
+            android:textSize="24sp"
+            android:layout_below="@+id/notify_msg_5"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
 
 
