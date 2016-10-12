@@ -275,7 +275,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/call_probation_heading"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:layout_above="@+id/probation_officer_name"
             android:layout_alignParentEnd="true"
             android:textColor="@color/heading_colors" />
