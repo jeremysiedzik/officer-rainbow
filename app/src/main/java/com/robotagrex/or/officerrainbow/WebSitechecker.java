@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import java.io.BufferedReader;
@@ -62,9 +63,10 @@ public class WebSitechecker extends IntentService {
     private void sendNotification(String msg) {
         NotificationManager mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
-    
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-            new Intent(this, Confirm.class), 0);
+
+            PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+                    new Intent(this, Confirm.class), 0);
+
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
@@ -160,5 +162,10 @@ public class WebSitechecker extends IntentService {
         }
         reader.close();
         return builder.toString();
+    }
+    public boolean checkInternetConnection() {
+        Context context = getApplication();
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
 }

@@ -57,6 +57,12 @@ public class Confirm extends AppCompatActivity {
         };
         mHandler.post(confirmation_msg);
 
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
+
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
