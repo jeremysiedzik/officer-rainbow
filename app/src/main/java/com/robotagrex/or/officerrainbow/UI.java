@@ -116,12 +116,33 @@ public class UI extends AppCompatActivity {
         String fillemail2 = sharedpreferences.getString("email2Key", "");
         String fillemail3 = sharedpreferences.getString("email3Key", "");
 
-        email_notification1.setText(fillemail1 + " - " + fillnotify1);
-        email_notification2.setText(fillemail2 + " - " + fillnotify2);
-        email_notification3.setText(fillemail3 + " - " + fillnotify3);
-        sms_notification1.setText(fillname1 + " - " + fillnotify4);
-        sms_notification2.setText(fillname2 + " - " + fillnotify5);
-        sms_notification3.setText(fillname3 + " - " + fillnotify6);
+        if (fillemail1.length()!=0 && fillnotify1.length()!=0) {
+            email_notification1.setText(fillemail1 + " - " + fillnotify1);
+        }
+
+        if (fillemail2.length()!=0 && fillnotify2.length()!=0) {
+            email_notification2.setText(fillemail2 + " - " + fillnotify2);
+        }
+
+        if (fillemail3.length()!=0 && fillnotify3.length()!=0) {
+            email_notification3.setText(fillemail3 + " - " + fillnotify3);
+        }
+
+        if (fillname1.length()!=0 && fillnotify4.length()!=0) {
+            sms_notification1.setText(fillname1 + " - " + fillnotify4);
+        }
+
+        if (fillname2.length()!=0 && fillnotify5.length()!=0) {
+            sms_notification2.setText(fillname2 + " - " + fillnotify5);
+        }
+
+        if (fillname3.length()!=0 && fillnotify6.length()!= 0) {
+            sms_notification3.setText(fillname3 + " - " + fillnotify6);
+        }
+
+
+
+
 
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         notification_message_heading = (TextView)findViewById(R.id.notification_message_heading);
