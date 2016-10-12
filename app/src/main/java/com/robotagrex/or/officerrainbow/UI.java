@@ -47,7 +47,7 @@ public class UI extends AppCompatActivity {
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading;
-    TextView sms_notification1,sms_notification2,sms_notification3;
+    TextView sms_notification1,sms_notification2,sms_notification3,email_msg_header,sms_msg_header;
     TextView email_notification1,email_notification2,email_notification3;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
@@ -100,12 +100,12 @@ public class UI extends AppCompatActivity {
         sms_notification2 = (TextView)findViewById(R.id.sms_notification2);
         sms_notification3 = (TextView)findViewById(R.id.sms_notification3);
 
-        String fillnotify1 = sharedpreferences.getString("email_MSG1", "");
-        String fillnotify2 = sharedpreferences.getString("email_MSG2", "");
-        String fillnotify3 = sharedpreferences.getString("email_MSG3", "");
-        String fillnotify4 = sharedpreferences.getString("sms_MSG1", "");
-        String fillnotify5 = sharedpreferences.getString("sms_MSG2", "");
-        String fillnotify6 = sharedpreferences.getString("sms_MSG3", "");
+        String fillnotify1 = sharedpreferences.getString("email_MSG1", "Tap here to add");
+        String fillnotify2 = sharedpreferences.getString("email_MSG2", "Tap here to add");
+        String fillnotify3 = sharedpreferences.getString("email_MSG3", "Tap here to add");
+        String fillnotify4 = sharedpreferences.getString("sms_MSG1", "Tap here to add");
+        String fillnotify5 = sharedpreferences.getString("sms_MSG2", "Tap here to add");
+        String fillnotify6 = sharedpreferences.getString("sms_MSG3", "Tap here to add");
 
         String fillname1 = sharedpreferences.getString("contact_name_1", "");
         String fillname2 = sharedpreferences.getString("contact_name_2", "");
@@ -361,6 +361,70 @@ public class UI extends AppCompatActivity {
         });
 
         notification_message_heading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        sms_notification1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        sms_notification2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        sms_notification3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        email_notification1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        email_notification2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        email_notification3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        email_msg_header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudio(getApplication());
+                Intent qoneintent = new Intent(UI.this, Notifications.class);
+                startActivity(qoneintent);
+            }
+        });
+        sms_msg_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 stopaudio(getApplication());

@@ -307,7 +307,7 @@
             android:id="@+id/email_notification1"
             android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/textView12"
+            android:layout_below="@+id/email_msg_header"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -327,7 +327,7 @@
             android:id="@+id/sms_notification1"
             android:textSize="16sp"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_below="@+id/textView15"
+            android:layout_below="@+id/sms_msg_header"
             android:layout_alignParentEnd="true" />
 
         <TextView
@@ -361,25 +361,23 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/notification_message_heading"
+            android:text="@string/email_msg_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView12"
+            android:id="@+id/email_msg_header"
             android:textSize="16sp"
-            tools:text="Email:"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/notification_message_heading"
             android:layout_alignStart="@+id/notification_message_heading" />
 
         <TextView
-            android:text="@string/notification_message_heading"
+            android:text="@string/text_msg_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView15"
+            android:id="@+id/sms_msg_header"
             android:textSize="16sp"
-            tools:text="Text:"
             android:textColor="@color/colorPrimaryDark"
             android:layout_below="@+id/email_notification3"
-            android:layout_alignStart="@+id/textView12" />
+            android:layout_alignStart="@+id/email_msg_header" />
 
 </RelativeLayout>

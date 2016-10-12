@@ -115,4 +115,6 @@
     <string name="notification_message_email_sms">Notification Message:</string>
     <string name="contact_name">Contact:</string>
     <string name="empty_string"> </string>
+    <string name="text_msg_header">Text:</string>
+    <string name="email_msg_header">Email:</string>
 </resources>
