@@ -56,6 +56,7 @@ public class UI extends AppCompatActivity {
     public static final String marquee_link_push = "marquee_link";
     public static final String marquee_key_push = "marquee_key";
     public static final String marquee_description_push = "marquee_description";
+    public static final String app_title_push = "app_title";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -213,9 +214,11 @@ public class UI extends AppCompatActivity {
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
                 String marquee_description = sharedpreferences.getString("marquee_description", "");
+                String app_title = sharedpreferences.getString("app_title", "");
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
+                    setTitle(app_title);
                 } else {
                    marquee.setText("");
                 }
@@ -952,12 +955,14 @@ public class UI extends AppCompatActivity {
             String marquee_link = obj.getLink();
             String marquee_key = obj.getTitle();
             String marquee_description = obj.getDescription();
+            String app_title = obj.getEditor();
 
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(marquee_description_push, marquee_description);
             editor.putString(marquee_link_push, marquee_link);
             editor.putString(marquee_key_push, marquee_key);
+            editor.putString(app_title_push, app_title);
             editor.apply();
 
             return null;

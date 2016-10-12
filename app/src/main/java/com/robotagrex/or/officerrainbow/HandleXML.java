@@ -11,6 +11,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 class HandleXML  {
 
+    private String editor = "editor";
     private String title = "title";
     private String link = "link";
     private String description = "description";
@@ -32,6 +33,10 @@ class HandleXML  {
 
     String getDescription(){
         return description;
+    }
+
+    String getEditor(){
+        return editor;
     }
 
 
@@ -64,6 +69,9 @@ class HandleXML  {
                                 break;
                             case "description":
                                 description = text;
+                                break;
+                            case "editor":
+                                editor = text;
                                 break;
                             default:
                                 break;
