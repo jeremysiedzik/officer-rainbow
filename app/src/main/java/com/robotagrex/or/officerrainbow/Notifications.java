@@ -15,7 +15,8 @@ import android.widget.EditText;
 
 public class Notifications extends AppCompatActivity {
 
-    EditText current_ed;
+    EditText current_ed,email_msg1,email_msg2,email_msg3;
+    EditText sms_msg1,sms_msg2,sms_msg3;
     EditText email_edit1,email_edit2,email_edit3;
     EditText sms_contact_number_1,sms_contact_number_2,sms_contact_number_3;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -25,6 +26,13 @@ public class Notifications extends AppCompatActivity {
     public static final String smskey1 = "sms1Key";
     public static final String smskey2 = "sms2Key";
     public static final String smskey3 = "sms3Key";
+
+    public static final String notifymsg1 = "email_MSG1";
+    public static final String notifymsg2 = "email_MSG2";
+    public static final String notifymsg3 = "email_MSG3";
+    public static final String notifymsg4 = "sms_MSG1";
+    public static final String notifymsg5 = "sms_MSG2";
+    public static final String notifymsg6 = "sms_MSG3";
     SharedPreferences sharedpreferences;
 
     static final int PICK_CONTACT_REQUEST = 1;
@@ -41,6 +49,13 @@ public class Notifications extends AppCompatActivity {
         sms_contact_number_1=(EditText)findViewById(R.id.sms_contact1);
         sms_contact_number_2=(EditText)findViewById(R.id.sms_contact2);
         sms_contact_number_3=(EditText)findViewById(R.id.sms_contact3);
+
+        email_msg1=(EditText)findViewById(R.id.notify_msg_1);
+        email_msg2=(EditText)findViewById(R.id.notify_msg_2);
+        email_msg3=(EditText)findViewById(R.id.notify_msg_3);
+        sms_msg1=(EditText)findViewById(R.id.notify_msg_4);
+        sms_msg2=(EditText)findViewById(R.id.notify_msg_5);
+        sms_msg3=(EditText)findViewById(R.id.notify_msg_6);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -66,12 +81,27 @@ public class Notifications extends AppCompatActivity {
         String fillsms2 = sharedpreferences.getString("sms2Key", "");
         String fillsms3 = sharedpreferences.getString("sms3Key", "");
 
+        String fillnotify1 = sharedpreferences.getString("notifymsg1", "");
+        String fillnotify2 = sharedpreferences.getString("notifymsg2", "");
+        String fillnotify3 = sharedpreferences.getString("notifymsg3", "");
+        String fillnotify4 = sharedpreferences.getString("notifymsg4", "");
+        String fillnotify5 = sharedpreferences.getString("notifymsg5", "");
+        String fillnotify6 = sharedpreferences.getString("notifymsg6", "");
+
         email_edit1.setText(fillemail1);
         email_edit2.setText(fillemail2);
         email_edit3.setText(fillemail3);
         sms_contact_number_1.setText(fillsms1);
         sms_contact_number_2.setText(fillsms2);
         sms_contact_number_3.setText(fillsms3);
+
+        email_msg1.setText(fillnotify1);
+        email_msg2.setText(fillnotify2);
+        email_msg3.setText(fillnotify3);
+        sms_msg1.setText(fillnotify4);
+        sms_msg2.setText(fillnotify5);
+        sms_msg3.setText(fillnotify6);
+
 
         contactbutton1.setOnClickListener(new View.OnClickListener()
         {
@@ -109,14 +139,30 @@ public class Notifications extends AppCompatActivity {
         buttonfirstlast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email1  = email_edit1.getText().toString();
-                String email2  = email_edit2.getText().toString();
-                String email3  = email_edit3.getText().toString();
-                String sms1  = sms_contact_number_1.getText().toString();
-                String sms2  = sms_contact_number_2.getText().toString();
-                String sms3  = sms_contact_number_3.getText().toString();
+                String email1=email_edit1.getText().toString();
+                String email2=email_edit2.getText().toString();
+                String email3=email_edit3.getText().toString();
+                String sms1=sms_contact_number_1.getText().toString();
+                String sms2=sms_contact_number_2.getText().toString();
+                String sms3=sms_contact_number_3.getText().toString();
+
+                String notify1=email_msg1.getText().toString();
+                String notify2=email_msg2.getText().toString();
+                String notify3=email_msg3.getText().toString();
+                String notify4=sms_msg1.getText().toString();
+                String notify5=sms_msg2.getText().toString();
+                String notify6=sms_msg3.getText().toString();
+
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(notifymsg1, notify1);
+                editor.putString(notifymsg2, notify2);
+                editor.putString(notifymsg3, notify3);
+                editor.putString(notifymsg4, notify4);
+                editor.putString(notifymsg5, notify5);
+                editor.putString(notifymsg6, notify6);
+
+
                 editor.putString(emailkey1, email1);
                 editor.putString(emailkey2, email2);
                 editor.putString(emailkey3, email3);
