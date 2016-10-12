@@ -24,7 +24,7 @@ public class OfficerRainbow extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.officerrainbow);
 
-        ed1=(EditText)findViewById(R.id.email1);
+        ed1=(EditText)findViewById(R.id.editText6);
         ed2=(EditText)findViewById(R.id.sms_contact1);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);

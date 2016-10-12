@@ -25,7 +25,7 @@ public class ColorChoice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorchoice);
 
-        ed1=(EditText)findViewById(R.id.email1);
+        ed1=(EditText)findViewById(R.id.editText6);
         ed2=(EditText)findViewById(R.id.editText7);
         ed3=(EditText)findViewById(R.id.editText8);
 

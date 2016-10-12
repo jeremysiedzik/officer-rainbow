@@ -31,11 +31,10 @@
         <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:text=""
+        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/email1"
-        android:labelFor="@id/email1"
+        android:id="@+id/mail1"
+        android:labelFor="@id/mail1"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="false"
@@ -52,13 +51,13 @@
         android:textColor="#000000"
         android:id="@+id/text_message_header"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/email3"
+        android:layout_below="@+id/mail3"
         android:layout_alignParentLeft="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/sms_contact1"
         android:textSize="24sp"
@@ -89,45 +88,43 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/email1"
-        android:layout_alignStart="@+id/email1" />
+        android:layout_alignLeft="@+id/mail1"
+        android:layout_alignStart="@+id/mail1" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:text=""
+        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/email2"
-        android:labelFor="@id/email2"
+        android:id="@+id/mail2"
+        android:labelFor="@id/mail2"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/email1"
+        android:layout_below="@+id/mail1"
         android:layout_alignParentLeft="true"
         android:layout_toStartOf="@+id/buttoncontact1"
-        android:layout_alignEnd="@+id/email1" />
+        android:layout_alignEnd="@+id/mail1" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:ems="10"
-        android:id="@+id/email3"
-        android:labelFor="@id/email3"
+        android:inputType="textPersonName"
+        android:id="@+id/mail3"
+        android:labelFor="@id/mail3"
         android:textSize="24sp"
         android:selectAllOnFocus="true"
         android:layout_alignParentStart="true"
-        android:inputType="text"
-        android:layout_below="@+id/email2"
+        android:layout_below="@+id/mail2"
         android:layout_alignParentLeft="true"
         android:layout_toStartOf="@+id/buttoncontact1"
-        android:layout_alignEnd="@+id/email2" />
+        android:layout_alignEnd="@+id/mail2" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="phone"
         android:ems="10"
         android:id="@+id/sms_contact2"
         android:labelFor="@id/sms_contact2"
@@ -142,7 +139,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="phone"
         android:ems="10"
         android:id="@+id/sms_contact3"
         android:labelFor="@id/sms_contact3"
@@ -174,49 +171,35 @@
         android:layout_toRightOf="@+id/sms_contact3"
         android:layout_toEndOf="@+id/sms_contact3" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/notification_message_email_sms"
-            android:textSize="26sp"
-            android:textIsSelectable="false"
-            android:textColor="#000000"
-            android:id="@+id/notification_message"
-            android:layout_below="@+id/my_toolbar"
-            android:layout_centerHorizontal="true" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:text=""
+            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/notify_msg2"
             android:labelFor="@id/notify_msg2"
             android:textSize="24sp"
             android:selectAllOnFocus="true"
-            android:layout_alignBaseline="@+id/email2"
-            android:layout_alignBottom="@+id/email2"
-            android:layout_toEndOf="@+id/email1" />
+            android:layout_alignBaseline="@+id/mail2"
+            android:layout_alignBottom="@+id/mail2"
+            android:layout_toEndOf="@+id/mail1" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
             android:ems="10"
             android:id="@+id/notify_msg6"
             android:labelFor="@id/notify_msg6"
             android:textSize="24sp"
             android:selectAllOnFocus="true"
-            android:inputType="text"
+            android:inputType="textPersonName"
             android:layout_alignTop="@+id/buttoncontact3"
             android:layout_toEndOf="@+id/buttoncontact3" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:text=""
+            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/notify_msg5"
             android:labelFor="@id/notify_msg5"
@@ -228,8 +211,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:text=""
+            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/notify_msg4"
             android:labelFor="@id/notify_msg4"
@@ -241,31 +223,29 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:text=""
+            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/notify_msg1"
             android:labelFor="@id/notify_msg1"
             android:textSize="24sp"
             android:selectAllOnFocus="true"
-            android:layout_alignBaseline="@+id/email1"
-            android:layout_alignBottom="@+id/email1"
-            android:layout_toEndOf="@+id/email1"
+            android:layout_alignBaseline="@+id/mail1"
+            android:layout_alignBottom="@+id/mail1"
+            android:layout_toEndOf="@+id/mail1"
             android:minWidth="@android:dimen/dialog_min_width_minor" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
             android:ems="10"
             android:id="@+id/notify_msg3"
             android:labelFor="@id/notify_msg3"
             android:textSize="24sp"
             android:selectAllOnFocus="true"
-            android:inputType="textEmailAddress"
-            android:layout_alignBaseline="@+id/email3"
-            android:layout_alignBottom="@+id/email3"
-            android:layout_toEndOf="@+id/email2" />
+            android:inputType="textPersonName"
+            android:layout_alignBaseline="@+id/mail3"
+            android:layout_alignBottom="@+id/mail3"
+            android:layout_toEndOf="@+id/mail2" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -275,6 +255,17 @@
             android:id="@+id/buttoncontact1"
             android:layout_alignTop="@+id/sms_contact1"
             android:layout_toEndOf="@+id/sms_contact1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notification_message_email_sms"
+            android:textSize="26sp"
+            android:textIsSelectable="false"
+            android:textColor="#000000"
+            android:id="@+id/notification_message"
+            android:layout_below="@+id/my_toolbar"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

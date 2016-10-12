@@ -35,9 +35,9 @@ public class Notifications extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notifications);
 
-        email_edit1=(EditText)findViewById(R.id.email1);
-        email_edit2=(EditText)findViewById(R.id.email2);
-        email_edit3=(EditText)findViewById(R.id.email3);
+        email_edit1=(EditText)findViewById(R.id.mail1);
+        email_edit2=(EditText)findViewById(R.id.mail2);
+        email_edit3=(EditText)findViewById(R.id.mail3);
         sms_contact_number_1=(EditText)findViewById(R.id.sms_contact1);
         sms_contact_number_2=(EditText)findViewById(R.id.sms_contact2);
         sms_contact_number_3=(EditText)findViewById(R.id.sms_contact3);
