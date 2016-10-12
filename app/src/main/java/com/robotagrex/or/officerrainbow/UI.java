@@ -99,6 +99,8 @@ public class UI extends AppCompatActivity {
         sms_notification1 = (TextView)findViewById(R.id.sms_notification1);
         sms_notification2 = (TextView)findViewById(R.id.sms_notification2);
         sms_notification3 = (TextView)findViewById(R.id.sms_notification3);
+        email_msg_header = (TextView)findViewById(R.id.email_msg_header);
+        sms_msg_header = (TextView)findViewById(R.id.sms_msg_header);
 
         String fillnotify1 = sharedpreferences.getString("email_MSG1", "Tap here to add");
         String fillnotify2 = sharedpreferences.getString("email_MSG2", "Tap here to add");
