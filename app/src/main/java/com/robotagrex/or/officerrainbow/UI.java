@@ -47,6 +47,8 @@ public class UI extends AppCompatActivity {
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
     TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading;
+    TextView sms_notification1,sms_notification2,sms_notification3;
+    TextView email_notification1,email_notification2,email_notification3;
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
 
@@ -85,12 +87,39 @@ public class UI extends AppCompatActivity {
             checkdailycolors(getApplicationContext());
         }
 
-
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
         if((probation_officer_name_stored.length() != 0)) {
             probation_officer_name.setText(probation_officer_name_stored);
         }
+
+        email_notification1 = (TextView)findViewById(R.id.email_notification1);
+        email_notification2 = (TextView)findViewById(R.id.email_notification2);
+        email_notification3 = (TextView)findViewById(R.id.email_notification3);
+        sms_notification1 = (TextView)findViewById(R.id.sms_notification1);
+        sms_notification2 = (TextView)findViewById(R.id.sms_notification2);
+        sms_notification3 = (TextView)findViewById(R.id.sms_notification3);
+
+        String fillnotify1 = sharedpreferences.getString("email_MSG1", "");
+        String fillnotify2 = sharedpreferences.getString("email_MSG2", "");
+        String fillnotify3 = sharedpreferences.getString("email_MSG3", "");
+        String fillnotify4 = sharedpreferences.getString("sms_MSG1", "");
+        String fillnotify5 = sharedpreferences.getString("sms_MSG2", "");
+        String fillnotify6 = sharedpreferences.getString("sms_MSG3", "");
+
+        String fillname1 = sharedpreferences.getString("contact_name_1", "");
+        String fillname2 = sharedpreferences.getString("contact_name_2", "");
+        String fillname3 = sharedpreferences.getString("contact_name_3", "");
+        String fillemail1 = sharedpreferences.getString("email1Key", "");
+        String fillemail2 = sharedpreferences.getString("email2Key", "");
+        String fillemail3 = sharedpreferences.getString("email3Key", "");
+
+        email_notification1.setText(fillemail1 + " - " + fillnotify1);
+        email_notification2.setText(fillemail2 + " - " + fillnotify2);
+        email_notification3.setText(fillemail3 + " - " + fillnotify3);
+        sms_notification1.setText(fillname1 + " - " + fillnotify4);
+        sms_notification2.setText(fillname2 + " - " + fillnotify5);
+        sms_notification3.setText(fillname3 + " - " + fillnotify6);
 
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         notification_message_heading = (TextView)findViewById(R.id.notification_message_heading);
