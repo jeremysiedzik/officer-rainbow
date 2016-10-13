@@ -77,6 +77,7 @@ public class Confirm extends AppCompatActivity {
         buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                titletxt.setText("");
                 Intent qoneintent = new Intent(Confirm.this, UI.class);
                 startActivity(qoneintent);
             }
