@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -87,6 +88,9 @@ public class UI extends AppCompatActivity {
         if (checkInternetConnection()) {
             checkdailycolors(getApplicationContext());
         }
+
+        String device_id_number = getDeviceId(getApplicationContext());
+        System.out.println("--------------------" + device_id_number + "-----------------------");
 
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");
@@ -930,6 +934,15 @@ public class UI extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             mProgressDialog.dismiss();
 
+        }
+    }
+
+    public static String getDeviceId(Context context) {
+        final String deviceId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        if (deviceId != null) {
+            return deviceId;
+        } else {
+            return android.os.Build.SERIAL;
         }
     }
 
