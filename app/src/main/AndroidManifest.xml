@@ -26,29 +26,42 @@
         </activity>
 
         <activity android:name=".Notifications"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotificationMessage"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ColorChoice"/>
+        <activity android:name=".ColorChoice"
+            android:screenOrientation="landscape"/>
         <activity android:name=".DataTest"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".WebsiteChoice"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".AlarmSettings"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".CountdownActivity"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProbationContact"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".OfficerRainbow"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ProbationEndAlarmSettings"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProbationMeetingAlarmSettings"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ImageView"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".Confirm"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
 
         <meta-data

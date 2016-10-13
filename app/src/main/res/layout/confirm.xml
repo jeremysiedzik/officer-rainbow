@@ -55,7 +55,8 @@
         android:layout_below="@+id/titlebutton"
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/buttontest"
-        android:maxLines="20" />
+        android:maxLines="20"
+        android:textColor="@color/heading_colors" />
 
         <Button
             android:layout_width="wrap_content"
