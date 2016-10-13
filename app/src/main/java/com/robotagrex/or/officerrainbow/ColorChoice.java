@@ -31,6 +31,11 @@ public class ColorChoice extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         Button buttoncolor = (Button) findViewById(R.id.buttoncolor);
         assert buttoncolor != null;

@@ -62,7 +62,9 @@
         android:background="#000000"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        app:title="Officer Rainbow"
+        app:titleTextColor="@android:color/holo_red_dark"/>
 
 </RelativeLayout>
 </ScrollView>

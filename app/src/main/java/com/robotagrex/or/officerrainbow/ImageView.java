@@ -1,9 +1,12 @@
 package com.robotagrex.or.officerrainbow;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,10 +14,22 @@ import android.widget.GridView;
 
 public class ImageView extends AppCompatActivity {
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.imageview);
+
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         GridView gridView = (GridView) findViewById(R.id.gridview);
         final ImageViewAdapter booksAdapter = new ImageViewAdapter(this, books);
@@ -30,6 +45,8 @@ public class ImageView extends AppCompatActivity {
                 booksAdapter.notifyDataSetChanged();
             }
         });
+
+
 
         Button buttonsave = (Button) findViewById(R.id.buttonsave);
         assert buttonsave != null;

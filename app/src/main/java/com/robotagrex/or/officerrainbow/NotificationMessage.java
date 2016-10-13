@@ -25,14 +25,18 @@ public class NotificationMessage extends AppCompatActivity {
 
         ed1=(EditText)findViewById(R.id.editText6);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
 
         Button buttonmessage = (Button) findViewById(R.id.buttonmessage);
         assert buttonmessage != null;
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         String fillmessage = sharedpreferences.getString("messageKey", "");
 

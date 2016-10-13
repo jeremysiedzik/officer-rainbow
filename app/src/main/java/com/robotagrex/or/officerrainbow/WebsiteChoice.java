@@ -20,19 +20,25 @@ public class WebsiteChoice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.websitechoice);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         toggleButton2 = (ToggleButton) findViewById(R.id.toggleButton2);
         toggleButton3 = (ToggleButton) findViewById(R.id.toggleButton3);
         toggleButton4 = (ToggleButton) findViewById(R.id.toggleButton4);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
 
         boolean toggle1state = sharedpreferences.getBoolean("jams_state", false);
             toggleButton.setChecked(toggle1state);

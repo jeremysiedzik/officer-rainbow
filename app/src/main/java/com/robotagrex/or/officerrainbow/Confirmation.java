@@ -4,7 +4,6 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -21,9 +20,6 @@ public class Confirmation extends IntentService {
         super("SchedulingService");
     }
     public static final String TAG = "Confirmation Check";
-    public static final String pulled_user_number = "user_number";
-    public static final String pulled_user_imei = "user_imei";
-    public static final String pulled_user_simSerialNumber = "user_simSerialNumber";
     public static final String confirmation_result_push = "confirmation_result";
 
     @Override
@@ -31,16 +27,9 @@ public class Confirmation extends IntentService {
 
         String confirmation_result = "";
 
-        TelephonyManager tm = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
-        final String user_number = tm.getLine1Number();
-        final String user_imei = tm.getDeviceId();
-        final String user_simSerialNumber = tm.getSimSerialNumber();
-
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         String unique_id = sharedpreferences.getString("unique_id", "");
-        //String divider = "!!";
-        //String message = divider + user_imei + divider + user_number + divider + user_simSerialNumber + divider;
         String web_url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
         String urlString = web_url + unique_id;
 
@@ -50,9 +39,6 @@ public class Confirmation extends IntentService {
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
-        editor.putString(pulled_user_number, user_number);
-        editor.putString(pulled_user_imei, user_imei);
-        editor.putString(pulled_user_simSerialNumber, user_simSerialNumber);
         editor.putString(confirmation_result_push, confirmation_result);
         editor.apply();
 
@@ -73,21 +59,12 @@ public class Confirmation extends IntentService {
             System.err.println("ERROR");
             e.printStackTrace();
         }
-//        finally {
             if (stream != null) {
                 stream.close();
             }
-//       }
         return str;
     }
 
-    /**
-     * Given a string representation of a URL, sets up a connection and gets
-     * an input stream.
-     * @param urlString A string representation of a URL.
-     * @return An InputStream retrieved from a successful HttpURLConnection.
-     * @throws IOException
-     */
     private InputStream downloadUrl(String urlString) throws IOException {
     
         URL url = new URL(urlString);
@@ -109,22 +86,6 @@ public class Confirmation extends IntentService {
         }
         return conn.getInputStream();
     }
-
-    /** 
-     * Reads an InputStream and converts it to a String.
-     * @param stream InputStream containing HTML from www.google.com.
-     * @return String version of InputStream.
-     * @throws IOException
-     */
-   // private String readIt(InputStream stream) throws IOException {
-      
-     //   StringBuilder builder = new StringBuilder();
-     //   BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-     //   for(String line = reader.readLine(); line != null; line = reader.readLine())
-     //       builder.append(line);
-     //   reader.close();
-     //   return builder.toString();
-    //}
 
     private String readIt_again(InputStream stream) throws IOException {
         String newliner = System.getProperty("line.separator");

@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AlarmSettings"
     android:background="@color/blanketBackground"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    >
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -22,7 +23,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#000000"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Officer Rainbow"
+        app:titleTextColor="@android:color/holo_red_dark"/>
 
         <TextView
         android:layout_width="wrap_content"

@@ -67,8 +67,14 @@ public class Notifications extends AppCompatActivity {
         contact_name_2=(EditText)findViewById(R.id.contact_name_2);
         contact_name_3=(EditText)findViewById(R.id.contact_name_3);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
@@ -81,8 +87,6 @@ public class Notifications extends AppCompatActivity {
 
         Button contactbutton3 = (Button) findViewById(R.id.buttoncontact3);
         assert contactbutton3 != null;
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         String fillemail1 = sharedpreferences.getString("email1Key", "");
         String fillemail2 = sharedpreferences.getString("email2Key", "");

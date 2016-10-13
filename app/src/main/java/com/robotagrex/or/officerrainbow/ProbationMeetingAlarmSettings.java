@@ -26,8 +26,13 @@ public class ProbationMeetingAlarmSettings extends AppCompatActivity {
         TextView txtdate_view = (TextView) findViewById(R.id.probation_meet_date_id);
         txtdate_view.setText(txtdate);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         Button buttondate = (Button) findViewById(R.id.buttondate);
         assert buttondate != null;

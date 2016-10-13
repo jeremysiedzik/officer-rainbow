@@ -37,16 +37,20 @@ public class ProbationContact extends AppCompatActivity {
         ed6=(EditText)findViewById(R.id.sms_contact3);
         ed12=(EditText)findViewById(R.id.editText12);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         Button buttonfirstlast = (Button) findViewById(R.id.buttonlast);
         assert buttonfirstlast != null;
 
         Button contactbutton = (Button) findViewById(R.id.buttoncontact3);
         assert contactbutton != null;
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         String fillcontact_name = sharedpreferences.getString("officerName","");
         String fillcontact_number = sharedpreferences.getString("officerNumber","");

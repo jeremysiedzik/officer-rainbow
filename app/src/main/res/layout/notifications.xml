@@ -63,7 +63,9 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/mail1"
-        android:layout_alignStart="@+id/mail1" />
+        android:layout_alignStart="@+id/mail1"
+        app:title="Officer Rainbow"
+        app:titleTextColor="@android:color/holo_red_dark"/>
 
     <EditText
         android:layout_width="wrap_content"

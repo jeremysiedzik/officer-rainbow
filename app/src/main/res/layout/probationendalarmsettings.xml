@@ -22,7 +22,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#000000"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Officer Rainbow"
+        app:titleTextColor="@android:color/holo_red_dark"/>
 
         <TextView
             android:layout_width="wrap_content"
