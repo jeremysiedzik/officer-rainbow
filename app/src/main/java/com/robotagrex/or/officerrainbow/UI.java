@@ -58,6 +58,8 @@ public class UI extends AppCompatActivity {
     public static final String marquee_key_push = "marquee_key";
     public static final String marquee_description_push = "marquee_description";
     public static final String app_title_push = "app_title";
+    public static final String device_ID = "unique_id";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,9 @@ public class UI extends AppCompatActivity {
 
         String device_id_number = getDeviceId(getApplicationContext());
         System.out.println("--------------------" + device_id_number + "-----------------------");
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(device_ID, device_id_number);
+        editor.apply();
 
         probation_officer_name = (TextView)findViewById(R.id.probation_officer_name);
         final String probation_officer_name_stored = sharedpreferences.getString("officerName", "");

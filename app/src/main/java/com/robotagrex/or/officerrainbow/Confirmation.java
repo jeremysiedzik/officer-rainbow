@@ -38,10 +38,11 @@ public class Confirmation extends IntentService {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
-        String divider = "!!";
-        String message = divider + user_imei + divider + user_number + divider + user_simSerialNumber + divider;
+        String unique_id = sharedpreferences.getString("unique_id", "");
+        //String divider = "!!";
+        //String message = divider + user_imei + divider + user_number + divider + user_simSerialNumber + divider;
         String web_url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
-        String urlString = web_url + message;
+        String urlString = web_url + unique_id;
 
         try {
             confirmation_result = loadFromNetwork(urlString);
@@ -55,7 +56,7 @@ public class Confirmation extends IntentService {
         editor.putString(confirmation_result_push, confirmation_result);
         editor.apply();
 
-        System.out.println("Confirmation message is "+message);
+        System.out.println("Confirmation ID is "+unique_id);
         System.out.println("urlString is"+urlString);
 
     }
