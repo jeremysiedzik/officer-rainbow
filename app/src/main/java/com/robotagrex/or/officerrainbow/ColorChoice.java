@@ -24,6 +24,7 @@ public class ColorChoice extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.colorchoice);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         ed1=(EditText)findViewById(R.id.editText6);
         ed2=(EditText)findViewById(R.id.editText7);
@@ -39,8 +40,6 @@ public class ColorChoice extends AppCompatActivity {
 
         Button buttoncolor = (Button) findViewById(R.id.buttoncolor);
         assert buttoncolor != null;
-
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
         String fillcolor2 = sharedpreferences.getString("color2Key", "");

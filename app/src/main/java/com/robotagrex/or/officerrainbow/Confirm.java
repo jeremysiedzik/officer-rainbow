@@ -42,7 +42,6 @@ public class Confirm extends AppCompatActivity {
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
         titletxt.setMovementMethod(new ScrollingMovementMethod());
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         Runnable confirmation_msg = new Runnable() {
             @Override
