@@ -62,7 +62,6 @@ public class WebSitechecker extends IntentService {
 
     private void sendNotification(String msg) {
 
-        if (checkInternetConnection()) {
             NotificationManager mNotificationManager = (NotificationManager)
                     this.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -80,13 +79,8 @@ public class WebSitechecker extends IntentService {
 
             mBuilder.setContentIntent(contentIntent);
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
-        }
     }
- 
-//
-// The methods below this line fetch content from the specified URL and return the
-// content as a string.
-/** Given a URL string, initiate a fetch operation. */
+
     private String loadFromNetwork(String urlString) throws IOException {
         InputStream stream = null;
         String str ="";
@@ -166,9 +160,10 @@ public class WebSitechecker extends IntentService {
         reader.close();
         return builder.toString();
     }
-    public boolean checkInternetConnection() {
-        Context context = getApplication();
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
-    }
+
+    //public boolean checkInternetConnection() {
+    //    Context context = getApplication();
+    //    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    //    return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    //}
 }

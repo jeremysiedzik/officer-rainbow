@@ -66,7 +66,11 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                new confirmation_task().execute();
+                if (checkInternetConnection()) {
+                    new confirmation_task().execute();
+                } else {
+                    toast_internet_down();
+                }
                 }
         });
 
@@ -137,8 +141,6 @@ public class Confirm extends AppCompatActivity {
                     mProgressDialog.dismiss();
                 }
             }, 5000);
-
-
         }
     }
 }
