@@ -131,7 +131,11 @@ public class Confirm extends AppCompatActivity {
             String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
             String loaded_ok_string = "Alarm Confirmed";
             if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
-                titletxt.setText(confirmation_result);
+                try {
+                    titletxt.setText(confirmation_result);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
             final Handler handler = new Handler();
