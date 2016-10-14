@@ -382,7 +382,7 @@ public class UI extends AppCompatActivity {
                 {
                    debug = "on";
                     System.out.println("Debug Enabled - debug string set to "+debug);
-                    clickcount[0] = clickcount[0] -8;
+                    clickcount[0] = 0;
                     System.out.println("Debug Enabled - clickcount set back to "+clickcount[0]);
                     debug_heading.setText(R.string.debug_enabled);
                 }
@@ -797,7 +797,7 @@ public class UI extends AppCompatActivity {
         listen_colors_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //listen_star.setImageResource(android.R.drawable.star_on);
+                clickcount[0] = 0;
                 Context context = getApplication();
                 AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
                 int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);

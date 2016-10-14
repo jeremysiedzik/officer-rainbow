@@ -23,7 +23,8 @@ public class Confirm extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
     TextView titletxt;
-    String debug = "on";
+    String debug;
+    public static final String confirmation_result_push = "confirmation_result";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public class Confirm extends AppCompatActivity {
 
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
         titletxt.setMovementMethod(new ScrollingMovementMethod());
-
 
         Runnable confirmation_msg = new Runnable() {
             @Override
@@ -78,6 +78,12 @@ public class Confirm extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 titletxt.setText("");
+                String confirmation_result = "";
+
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(confirmation_result_push, confirmation_result);
+                editor.apply();
                 Intent qoneintent = new Intent(Confirm.this, UI.class);
                 startActivity(qoneintent);
             }

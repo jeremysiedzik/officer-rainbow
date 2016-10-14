@@ -44,7 +44,6 @@ public class Confirmation extends IntentService {
 
         System.out.println("Confirmation ID is "+unique_id);
         System.out.println("urlString is"+urlString);
-
     }
 
     private String loadFromNetwork(String urlString) throws IOException {

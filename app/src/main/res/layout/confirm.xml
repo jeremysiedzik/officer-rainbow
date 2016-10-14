@@ -50,7 +50,7 @@
         android:overScrollMode="always"
         android:scrollbarStyle="insideInset"
         android:scrollbars="vertical"
-        android:text="@string/data_text"
+        android:text="@string/empty_string"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/titlebutton"
         android:layout_alignParentEnd="true"
