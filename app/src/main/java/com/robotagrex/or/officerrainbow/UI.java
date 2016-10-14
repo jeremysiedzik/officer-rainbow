@@ -50,6 +50,7 @@ public class UI extends AppCompatActivity {
     TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading;
     TextView sms_notification1,sms_notification2,sms_notification3,email_msg_header,sms_msg_header;
     TextView email_notification1,email_notification2,email_notification3,listen_colors_heading;
+    String debug = "off";
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
 
@@ -374,6 +375,11 @@ public class UI extends AppCompatActivity {
                             "About to set Debug Mode", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
+                }
+                if(clickcount[0] == 6)
+                {
+                   debug = "on";
+                    System.out.println("Debug Enabled - debug string set to "+debug);
                 }
 
                 try {
