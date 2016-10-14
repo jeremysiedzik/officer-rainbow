@@ -361,9 +361,21 @@ public class UI extends AppCompatActivity {
             }
         }.start();
 
+        final int[] clickcount = {0};
+
         rlayout.setOnClickListener(new View.OnClickListener() {
-            @Override
+
             public void onClick(View view) {
+                clickcount[0] = clickcount[0] +1;
+                if(clickcount[0] == 5)
+                {
+                    //first time clicked to do this
+                    Toast toast= Toast.makeText(getApplicationContext(),
+                            "About to set Debug Mode", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
+
                 try {
                     stopaudio(getApplication());
                 } catch (IllegalStateException e) {
