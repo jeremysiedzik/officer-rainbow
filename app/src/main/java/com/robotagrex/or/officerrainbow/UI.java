@@ -47,7 +47,7 @@ public class UI extends AppCompatActivity {
     TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
     TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
     TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
-    TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading;
+    TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading,debug_heading;
     TextView sms_notification1,sms_notification2,sms_notification3,email_msg_header,sms_msg_header;
     TextView email_notification1,email_notification2,email_notification3,listen_colors_heading;
     String debug = "off";
@@ -157,6 +157,7 @@ public class UI extends AppCompatActivity {
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
         daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
         color_choice_heading = (TextView)findViewById(R.id.color_choice_heading);
+        debug_heading = (TextView)findViewById(R.id.debug_heading);
 
         color_choice_1 = (TextView)findViewById(R.id.color_choice_1);
         String fillcolor1 = sharedpreferences.getString("color1Key", "");
@@ -363,12 +364,13 @@ public class UI extends AppCompatActivity {
         }.start();
 
         final int[] clickcount = {0};
+        debug_heading.setText("");
 
         rlayout.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 clickcount[0] = clickcount[0] +1;
-                if(clickcount[0] == 5)
+                if(clickcount[0] == 7)
                 {
                     //first time clicked to do this
                     Toast toast= Toast.makeText(getApplicationContext(),
@@ -376,13 +378,13 @@ public class UI extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 }
-                if(clickcount[0] == 6)
+                if(clickcount[0] == 8)
                 {
                    debug = "on";
                     System.out.println("Debug Enabled - debug string set to "+debug);
-                    clickcount[0] = clickcount[0] -6;
-                    System.out.println("Debug Enabled - clickcount set back to"+clickcount[0]);
-
+                    clickcount[0] = clickcount[0] -8;
+                    System.out.println("Debug Enabled - clickcount set back to "+clickcount[0]);
+                    debug_heading.setText(R.string.debug_enabled);
                 }
 
                 try {

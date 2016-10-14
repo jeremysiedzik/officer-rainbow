@@ -382,4 +382,13 @@
             android:layout_below="@+id/daily_colors_heading"
             android:layout_alignParentStart="true" />
 
+        <TextView
+            android:text="@string/debug_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/debug_heading"
+            android:textSize="18sp"
+            android:layout_below="@+id/call_probation_heading"
+            android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
