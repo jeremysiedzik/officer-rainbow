@@ -45,7 +45,7 @@ public class Confirm extends AppCompatActivity {
         Runnable confirmation_msg = new Runnable() {
             @Override
             public void run() {
-                String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
+                String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm");
                 //String loaded_ok_string = "Alarm Confirmed";
                 if((confirmation_result.length() != 0)) {
                     titletxt.setText(confirmation_result);
