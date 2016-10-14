@@ -364,7 +364,12 @@ public class UI extends AppCompatActivity {
         rlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                try {
+                    stopaudio(getApplication());
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 

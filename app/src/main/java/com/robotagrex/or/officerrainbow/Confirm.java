@@ -23,6 +23,7 @@ public class Confirm extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
     TextView titletxt;
+    String debug = "on";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class Confirm extends AppCompatActivity {
 
         String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
         if(getSupportActionBar() != null){
-            System.out.println(app_title);
+            if (debug.contains("on")) {System.out.println(app_title);}
             getSupportActionBar().setTitle(app_title);
         }
 
@@ -85,7 +86,7 @@ public class Confirm extends AppCompatActivity {
 
     void sendconfirmation(final Context uicontext) {
        if (checkInternetConnection()) {
-            System.out.println("About to run Confirmation.class within sendconfirmation method");
+            if (debug.contains("on")) {System.out.println("About to run Confirmation.class within sendconfirmation method");}
             Intent confirmationservice = new Intent(uicontext, Confirmation.class);
             uicontext.startService(confirmationservice);
         }
