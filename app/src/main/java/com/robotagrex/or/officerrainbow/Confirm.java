@@ -23,7 +23,7 @@ public class Confirm extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
     TextView titletxt;
-    String debug;
+    //String debug;
     public static final String confirmation_result_push = "confirmation_result";
 
     @Override
@@ -42,14 +42,13 @@ public class Confirm extends AppCompatActivity {
         assert buttontest != null;
 
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
-        titletxt.setMovementMethod(new ScrollingMovementMethod());
 
         Runnable confirmation_msg = new Runnable() {
             @Override
             public void run() {
                 String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
-                String loaded_ok_string = "Alarm Confirmed";
-                if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
+                //String loaded_ok_string = "Alarm Confirmed";
+                if((confirmation_result.length() != 0)) {
                     titletxt.setText(confirmation_result);
                 }
                 mHandler.postDelayed(this, 5000);
@@ -59,7 +58,7 @@ public class Confirm extends AppCompatActivity {
 
         String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
         if(getSupportActionBar() != null){
-            if (debug.contains("on")) {System.out.println(app_title);}
+            //if (debug.length() != 0 && debug.contains("on")) {System.out.println(app_title);}
             getSupportActionBar().setTitle(app_title);
         }
 
@@ -78,7 +77,7 @@ public class Confirm extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 titletxt.setText("");
-                String confirmation_result = "";
+                String confirmation_result = "Click above to confirm";
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -92,7 +91,7 @@ public class Confirm extends AppCompatActivity {
 
     void sendconfirmation(final Context uicontext) {
        if (checkInternetConnection()) {
-            if (debug.contains("on")) {System.out.println("About to run Confirmation.class within sendconfirmation method");}
+            //if (debug.contains("on")) {System.out.println("About to run Confirmation.class within sendconfirmation method");}
             Intent confirmationservice = new Intent(uicontext, Confirmation.class);
             uicontext.startService(confirmationservice);
         }
@@ -136,13 +135,21 @@ public class Confirm extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
-            String loaded_ok_string = "Alarm Confirmed";
-            if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
+            //String loaded_ok_string = "Alarm Confirmed";
+            if((confirmation_result.length() != 0)) {
                 try {
                     titletxt.setText(confirmation_result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                //String loaded_ok_string = "Alarm Confirmed";
+                //if((confirmation_result.length() != 0) && (confirmation_result.contains(loaded_ok_string))) {
+                //    try {
+                //        titletxt.setText(confirmation_result);
+                //    } catch (Exception e) {
+                 //       e.printStackTrace();
+                 //   }
             }
 
             final Handler handler = new Handler();
