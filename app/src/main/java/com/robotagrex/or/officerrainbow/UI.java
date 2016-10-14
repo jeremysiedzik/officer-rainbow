@@ -380,6 +380,9 @@ public class UI extends AppCompatActivity {
                 {
                    debug = "on";
                     System.out.println("Debug Enabled - debug string set to "+debug);
+                    clickcount[0] = clickcount[0] -6;
+                    System.out.println("Debug Enabled - clickcount set back to"+clickcount[0]);
+
                 }
 
                 try {
