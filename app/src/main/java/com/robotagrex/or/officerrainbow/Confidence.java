@@ -20,25 +20,13 @@ public class Confidence extends IntentService {
         super("SchedulingService");
     }
     public static final String TAG = "Confidence Check";
-    public static final String rawconfurl = "http://data.robotagrex.com/onsite-confidence-raw.txt";
     public static final String confnumberurl = "http://data.robotagrex.com/onsite-confidence.txt";
     public static final String confidence_result_push = "confidence_result";
-    public static final String confidence_string_push = "confidence_string";
-    public static final String confidence_final_push = "confidence_final";
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String urlString = rawconfurl;
         String urlNumber = confnumberurl;
         String confidence_result = "";
-        String confidence_string = "";
-
-        try {
-            confidence_string = loadFromNetwork(urlString);
-            Log.i(TAG, "Calling loadFromNetwork via Confidence.java with URL = " +urlString);
-        } catch (IOException e) {
-            Log.i(TAG, getString(R.string.connection_error));
-        }
 
         try {
             confidence_result = loadFromNetwork(urlNumber);
@@ -48,36 +36,11 @@ public class Confidence extends IntentService {
         }
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        //String CONFIDENCE_STRING = sharedpreferences.getString("confidence_string", "");
-        //String CONFIDENCE_RESULT = sharedpreferences.getString("confidence_result", "0");
-        String ONLINE = "ONLINE";
-        String QUALIFIER = "QUALIFIER MATCH";
-        String DATE = "DATE MATCH";
-        String data_result = sharedpreferences.getString("data_result", "");
-        int FINAL_CONFIDENCE = 0;
-
-        if (confidence_string.contains(ONLINE)) {
-            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
-        }
-
-        if (confidence_string.contains(QUALIFIER)) {
-            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
-        }
-
-        if (confidence_string.contains(DATE)) {
-            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
-        }
-
-
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(confidence_result_push, confidence_result);
-        editor.putString(confidence_string_push, confidence_string);
-        editor.putInt(confidence_final_push, FINAL_CONFIDENCE);
         editor.apply();
 
         System.out.println("Confidence Number from web is " + confidence_result);
-        System.out.println("Confidence Number calculated is " +FINAL_CONFIDENCE);
-        System.out.print("Confidence String is " + confidence_string);
     }
 
 
