@@ -53,10 +53,11 @@ public class Confidence extends IntentService {
         String ONLINE = "ONLINE";
         String QUALIFIER = "QUALIFIER MATCH";
         String DATE = "DATE MATCH";
+        String data_result = sharedpreferences.getString("data_result", "");
         int FINAL_CONFIDENCE = 0;
 
         if (confidence_string.contains(ONLINE)) {
-            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 10;
+            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
         }
 
         if (confidence_string.contains(QUALIFIER)) {
@@ -64,7 +65,7 @@ public class Confidence extends IntentService {
         }
 
         if (confidence_string.contains(DATE)) {
-            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 1000;
+            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
         }
 
 
