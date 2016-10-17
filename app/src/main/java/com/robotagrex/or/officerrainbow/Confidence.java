@@ -48,22 +48,22 @@ public class Confidence extends IntentService {
         }
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String CONFIDENCE_RESULT = sharedpreferences.getString("confidence_string", "");
-        String CONFIDENCE_STRING = sharedpreferences.getString("confidence_result", "0");
+        //String CONFIDENCE_STRING = sharedpreferences.getString("confidence_string", "");
+        //String CONFIDENCE_RESULT = sharedpreferences.getString("confidence_result", "0");
         String ONLINE = "ONLINE";
         String QUALIFIER = "QUALIFIER MATCH";
         String DATE = "DATE MATCH";
         int FINAL_CONFIDENCE = 0;
 
-        if (CONFIDENCE_STRING.contains(ONLINE)) {
+        if (confidence_string.contains(ONLINE)) {
             FINAL_CONFIDENCE = FINAL_CONFIDENCE + 10;
         }
 
-        if (CONFIDENCE_STRING.contains(QUALIFIER)) {
+        if (confidence_string.contains(QUALIFIER)) {
             FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
         }
 
-        if (CONFIDENCE_STRING.contains(DATE)) {
+        if (confidence_string.contains(DATE)) {
             FINAL_CONFIDENCE = FINAL_CONFIDENCE + 1000;
         }
 
@@ -74,9 +74,9 @@ public class Confidence extends IntentService {
         editor.putInt(confidence_final_push, FINAL_CONFIDENCE);
         editor.apply();
 
-        System.out.println("Confidence Number from web is " + CONFIDENCE_RESULT);
+        System.out.println("Confidence Number from web is " + confidence_result);
         System.out.println("Confidence Number calculated is " +FINAL_CONFIDENCE);
-        System.out.print("Confidence String is " + CONFIDENCE_STRING);
+        System.out.print("Confidence String is " + confidence_string);
     }
 
 
