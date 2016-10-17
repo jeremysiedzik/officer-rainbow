@@ -20,62 +20,66 @@ public class Confidence extends IntentService {
         super("SchedulingService");
     }
     public static final String TAG = "Confidence Check";
-    //public static final int NOTIFICATION_ID = 1;
-    public static final String url = "http://data.robotagrex.com/onsite-confidence.txt";
+    public static final String rawconfurl = "http://data.robotagrex.com/onsite-confidence-raw.txt";
+    public static final String confnumberurl = "http://data.robotagrex.com/onsite-confidence.txt";
     public static final String confidence_result_push = "confidence_result";
+    public static final String confidence_string_push = "confidence_string";
+    public static final String confidence_final_push = "confidence_final";
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String urlString = url;
+        String urlString = rawconfurl;
+        String urlNumber = confnumberurl;
         String confidence_result = "";
+        String confidence_string = "";
+
         try {
-            confidence_result = loadFromNetwork(urlString);
-            Log.i(TAG, "Calling loadFromNetwork via Confidence.java");
+            confidence_string = loadFromNetwork(urlString);
+            Log.i(TAG, "Calling loadFromNetwork via Confidence.java with URL = " +urlString);
+        } catch (IOException e) {
+            Log.i(TAG, getString(R.string.connection_error));
+        }
+
+        try {
+            confidence_result = loadFromNetwork(urlNumber);
+            Log.i(TAG, "Calling loadFromNetwork via Confidence.java with URL = " +urlNumber);
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String CONFIDENCE_RESULT = sharedpreferences.getString("confidence_string", "");
         String CONFIDENCE_STRING = sharedpreferences.getString("confidence_result", "0");
+        String ONLINE = "ONLINE";
+        String QUALIFIER = "QUALIFIER MATCH";
+        String DATE = "DATE MATCH";
+        int FINAL_CONFIDENCE = 0;
+
+        if (CONFIDENCE_STRING.contains(ONLINE)) {
+            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 10;
+        }
+
+        if (CONFIDENCE_STRING.contains(QUALIFIER)) {
+            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 100;
+        }
+
+        if (CONFIDENCE_STRING.contains(DATE)) {
+            FINAL_CONFIDENCE = FINAL_CONFIDENCE + 1000;
+        }
+
 
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(confidence_result_push, confidence_result);
+        editor.putString(confidence_string_push, confidence_string);
+        editor.putInt(confidence_final_push, FINAL_CONFIDENCE);
         editor.apply();
 
-        System.out.println("Confidence Number is "+CONFIDENCE_STRING);
-
-        //if (data_result.contains(SEARCH_STRING1) || data_result.contains(SEARCH_STRING2) || data_result.contains(SEARCH_STRING3)) {
-        //    sendNotification(getString(R.string.notify_found));
-        //    Log.i(TAG, "Found color!!");
-        //} else {
-        //    sendNotification(getString(R.string.notify_unfound));
-        //    Log.i(TAG, "No color found. :-(");
-        //}
+        System.out.println("Confidence Number from web is " + CONFIDENCE_RESULT);
+        System.out.println("Confidence Number calculated is " +FINAL_CONFIDENCE);
+        System.out.print("Confidence String is " + CONFIDENCE_STRING);
     }
 
-    //private void sendNotification(String msg) {
-    //    NotificationManager mNotificationManager = (NotificationManager)
-    //            this.getSystemService(Context.NOTIFICATION_SERVICE);
-    
-    //    PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-    //        new Intent(this, UI.class), 0);
 
-      //  NotificationCompat.Builder mBuilder =
-        //        new NotificationCompat.Builder(this)
-       // .setSmallIcon(R.drawable.ic_launcher)
-       // .setContentTitle(getString(R.string.notify_alert))
-       // .setStyle(new NotificationCompat.BigTextStyle()
-       // .bigText(msg))
-       // .setContentText(msg);
-
-        //mBuilder.setContentIntent(contentIntent);
-        //mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
-    //}
- 
-//
-// The methods below this line fetch content from the specified URL and return the
-// content as a string.
-/** Given a URL string, initiate a fetch operation. */
     private String loadFromNetwork(String urlString) throws IOException {
         InputStream stream = null;
         String str = "";
@@ -88,21 +92,12 @@ public class Confidence extends IntentService {
             System.err.println("ERROR");
             e.printStackTrace();
         }
-//        finally {
             if (stream != null) {
                 stream.close();
             }
-//       }
         return str;
     }
 
-    /**
-     * Given a string representation of a URL, sets up a connection and gets
-     * an input stream.
-     * @param urlString A string representation of a URL.
-     * @return An InputStream retrieved from a successful HttpURLConnection.
-     * @throws IOException
-     */
     private InputStream downloadUrl(String urlString) throws IOException {
     
         URL url = new URL(urlString);
@@ -125,21 +120,6 @@ public class Confidence extends IntentService {
         return conn.getInputStream();
     }
 
-    /** 
-     * Reads an InputStream and converts it to a String.
-     * @param stream InputStream containing HTML from www.google.com.
-     * @return String version of InputStream.
-     * @throws IOException
-     */
-   // private String readIt(InputStream stream) throws IOException {
-      
-     //   StringBuilder builder = new StringBuilder();
-     //   BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-     //   for(String line = reader.readLine(); line != null; line = reader.readLine())
-     //       builder.append(line);
-     //   reader.close();
-     //   return builder.toString();
-    //}
 
     private String readIt_again(InputStream stream) throws IOException {
         String newliner = System.getProperty("line.separator");

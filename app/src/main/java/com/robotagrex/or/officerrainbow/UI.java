@@ -860,13 +860,13 @@ public class UI extends AppCompatActivity {
 
     void checkdailycolors(final Context uicontext) {
         if (checkInternetConnection()) {
-        System.out.println("About to run Confidence.class within checkdailycolors method");
-        Intent confservice = new Intent(uicontext, Confidence.class);
-        uicontext.startService(confservice);
+            System.out.println("About to run WebSitechecker.class within checkdailycolors method");
+            Intent webservice = new Intent(uicontext, WebSitechecker.class);
+            uicontext.startService(webservice);
 
-        System.out.println("About to run WebSitechecker.class within checkdailycolors method");
-        Intent webservice = new Intent(uicontext, WebSitechecker.class);
-        uicontext.startService(webservice);
+            System.out.println("About to run Confidence.class within checkdailycolors method");
+            Intent confservice = new Intent(uicontext, Confidence.class);
+            uicontext.startService(confservice);
         }
         else {
             toast_internet_down();
