@@ -32,7 +32,7 @@ public class Confirmation extends IntentService {
         String storedEmail = sharedpreferences.getString("email", "");
         String unique_id = sharedpreferences.getString("unique_id", "");
         String web_url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
-        String urlString = web_url + unique_id + "++" + storedEmail;
+        String urlString = web_url + unique_id + ":" + storedEmail;
 
         try {
             confirmation_result = loadFromNetwork(urlString);
@@ -44,7 +44,7 @@ public class Confirmation extends IntentService {
         editor.apply();
 
         System.out.println("Confirmation ID is "+unique_id);
-        System.out.println("urlString is"+urlString);
+        System.out.println("urlString is "+urlString);
     }
 
     private String loadFromNetwork(String urlString) throws IOException {
