@@ -1,10 +1,14 @@
 package com.robotagrex.or.officerrainbow;
 
+import android.Manifest;
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
@@ -13,11 +17,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -27,12 +33,14 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import io.netopen.hotbitmapgg.library.view.RingProgressBar;
 
@@ -40,16 +48,16 @@ public class UI extends AppCompatActivity {
 
     CountDownTimer probation_end;
     CountDownTimer probation_meet;
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
-    TextView color_choice_heading,color_choice_1,daily_colors_string_heading,image_store_heading,marquee;
-    TextView alarm_state_notify,alarm_state_email,alarm_state_sms,daily_colors_string,probation_officer_name;
-    TextView alarmprompt,probation_end_date_heading,probation_meeting_date_heading,call_probation_heading;
-    TextView probation_end_counter,probation_meeting_counter,raw_end_probation_date,raw_meeting_probation_date;
-    TextView color_choice_2,color_choice_3,confidence_header,notification_message_heading,debug_heading;
-    TextView sms_notification1,sms_notification2,sms_notification3,email_msg_header,sms_msg_header;
-    TextView email_notification1,email_notification2,email_notification3,listen_colors_heading;
+    TextView color_choice_heading, color_choice_1, daily_colors_string_heading, image_store_heading, marquee;
+    TextView alarm_state_notify, alarm_state_email, alarm_state_sms, daily_colors_string, probation_officer_name;
+    TextView alarmprompt, probation_end_date_heading, probation_meeting_date_heading, call_probation_heading;
+    TextView probation_end_counter, probation_meeting_counter, raw_end_probation_date, raw_meeting_probation_date;
+    TextView color_choice_2, color_choice_3, confidence_header, notification_message_heading, debug_heading;
+    TextView sms_notification1, sms_notification2, sms_notification3, email_msg_header, sms_msg_header;
+    TextView email_notification1, email_notification2, email_notification3, listen_colors_heading;
     String debug = "off";
     private MediaPlayer mediaPlayer;
     ProgressDialog mProgressDialog;
@@ -68,28 +76,47 @@ public class UI extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        RelativeLayout rlayout = (RelativeLayout)findViewById(R.id.ui);
+        RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.ui);
 
-        Toolbar myToolbar = (Toolbar)findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        marquee = (TextView)findViewById(R.id.mywidget);
+        marquee = (TextView) findViewById(R.id.mywidget);
 
-        Button buttonnext = (Button)findViewById(R.id.buttonlast);
+        Button buttonnext = (Button) findViewById(R.id.buttonlast);
         assert buttonnext != null;
 
-        Button button_call_probation = (Button)findViewById(R.id.button_call_probation);
+        Button button_call_probation = (Button) findViewById(R.id.button_call_probation);
         assert button_call_probation != null;
 
-        final ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
+        final ImageButton listen_star = (ImageButton) findViewById(R.id.listen_star);
         assert listen_star != null;
 
-        final RingProgressBar progress_bar_ring = (RingProgressBar)findViewById(R.id.progress_bar_ring);
+        final RingProgressBar progress_bar_ring = (RingProgressBar) findViewById(R.id.progress_bar_ring);
         assert progress_bar_ring != null;
-        confidence_header = (TextView)findViewById(R.id.confidence_header);
+        confidence_header = (TextView) findViewById(R.id.confidence_header);
 
         if (checkInternetConnection()) {
             checkdailycolors(getApplicationContext());
+        }
+
+        Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
+            // Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Account[] accounts = AccountManager.get(context).getAccounts();
+        for (Account account : accounts) {
+            if (emailPattern.matcher(account.name).matches()) {
+                String possibleEmail = account.name;
+                System.out.println(possibleEmail);
+            }
         }
 
         String device_id_number = getDeviceId(getApplicationContext());
