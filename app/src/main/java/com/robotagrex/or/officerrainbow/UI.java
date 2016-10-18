@@ -111,6 +111,7 @@ public class UI extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        context = getApplicationContext();
         Account[] accounts = AccountManager.get(context).getAccounts();
         for (Account account : accounts) {
             if (emailPattern.matcher(account.name).matches()) {
