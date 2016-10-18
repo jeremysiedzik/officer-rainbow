@@ -68,7 +68,7 @@ public class UI extends AppCompatActivity {
     public static final String marquee_description_push = "marquee_description";
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
-
+    public static final String device_email = "email";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,15 +100,12 @@ public class UI extends AppCompatActivity {
             checkdailycolors(getApplicationContext());
         }
 
+        String device_id_number = getDeviceId(getApplicationContext());
+        System.out.println("--------------------" + device_id_number + "-----------------------");
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
         Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.GET_ACCOUNTS) != PackageManager.PERMISSION_GRANTED) {
-            // Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
         context = getApplicationContext();
@@ -116,13 +113,13 @@ public class UI extends AppCompatActivity {
         for (Account account : accounts) {
             if (emailPattern.matcher(account.name).matches()) {
                 String possibleEmail = account.name;
-                System.out.println(possibleEmail);
+                editor.putString(device_email, possibleEmail);
+                String storedEmail = sharedpreferences.getString("email", "");
+                System.out.println(storedEmail);
+                editor.apply();
             }
         }
 
-        String device_id_number = getDeviceId(getApplicationContext());
-        System.out.println("--------------------" + device_id_number + "-----------------------");
-        SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(device_ID, device_id_number);
         editor.apply();
 
