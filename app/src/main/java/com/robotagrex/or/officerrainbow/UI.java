@@ -115,8 +115,8 @@ public class UI extends AppCompatActivity {
                 String possibleEmail = account.name;
                 editor.putString(device_email, possibleEmail);
                 String storedEmail = sharedpreferences.getString("email", "");
-                System.out.println(storedEmail);
                 editor.apply();
+                System.out.println("stored email = " +storedEmail);
             }
         }
 
