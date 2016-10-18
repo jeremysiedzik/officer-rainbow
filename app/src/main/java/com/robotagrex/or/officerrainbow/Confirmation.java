@@ -29,9 +29,10 @@ public class Confirmation extends IntentService {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
+        String storedEmail = sharedpreferences.getString("email", "");
         String unique_id = sharedpreferences.getString("unique_id", "");
         String web_url = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
-        String urlString = web_url + unique_id;
+        String urlString = web_url + unique_id + storedEmail;
 
         try {
             confirmation_result = loadFromNetwork(urlString);
