@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -111,11 +112,17 @@ public class AlarmSettings extends AppCompatActivity {
 
                     builder.setPeriodic(1000 * 20);
                     builder.setPersisted(true);
-                    Toast.makeText( getApplicationContext(), "JobService Set", Toast.LENGTH_SHORT ).show();
+                    Toast toast1= Toast.makeText(getApplicationContext(),
+                            "JobService Set", Toast.LENGTH_SHORT);
+                    toast1.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast1.show();
 
 
                     if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
-                        Toast.makeText( getApplicationContext(), "JobService task is broken", Toast.LENGTH_SHORT ).show();
+                        Toast toast2= Toast.makeText(getApplicationContext(),
+                                "JobService task is broken", Toast.LENGTH_SHORT);
+                        toast2.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast2.show();
                     }
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
@@ -125,7 +132,10 @@ public class AlarmSettings extends AppCompatActivity {
                 else
                 {
                     mJobScheduler.cancelAll();
-                    Toast.makeText( getApplicationContext(), "JobService Cancelled", Toast.LENGTH_SHORT ).show();
+                    Toast toast3= Toast.makeText(getApplicationContext(),
+                            "JobService Cancelled", Toast.LENGTH_SHORT);
+                    toast3.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast3.show();
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_alarm_state", false);
                     editor.apply();
