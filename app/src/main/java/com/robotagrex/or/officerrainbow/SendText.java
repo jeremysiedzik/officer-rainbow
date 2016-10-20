@@ -10,12 +10,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class SendText extends IntentService {
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -25,30 +27,66 @@ public class SendText extends IntentService {
     }
     public static final String TAG = "Text Alert";
 
+    private OkHttpClient mClient = new OkHttpClient();
+
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        String text_result = "";
+        Context mContext = getApplicationContext();
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String contact1 = sharedpreferences.getString("sms1Key", "empty_string_contact1");
         String contact2 = sharedpreferences.getString("sms2Key", "empty_string_contact2");
         String contact3 = sharedpreferences.getString("sms3Key", "empty_string_contact3");
 
-        String urlString = "http://data.robotagrex.com/sendemail.php?emailaddress=mainphrame@hotmail.com&emailmessage=";
-
         try {
             sendSMS(contact1);
             sendSMS(contact2);
             sendSMS(contact3);
-            text_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork via Confirmation.java");
-        } catch (IOException e) {
+        } catch (Exception e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
 
-        System.out.println("SMS string is "+text_result);
-        System.out.println("urlString is "+urlString);
+        try {
+            post(mContext.getString(R.string.backend_url), new  Callback(){
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    Toast toast= Toast.makeText(getApplicationContext(),
+                            "SMS NOT Sent - Check Network Connection", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                    e.printStackTrace();
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    Toast toast= Toast.makeText(getApplicationContext(),
+                            "SMS Sent", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    Call post(String url, Callback callback) throws IOException{
+        RequestBody formBody = new FormBody.Builder()
+                .add("To", current_sms_number)
+                .add("Body", current_sms_msg)
+                .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(formBody)
+                .build();
+
+        Call response = mClient.newCall(request);
+        response.enqueue(callback);
+        return response;
+
     }
 
     private void sendSMS(final String phoneNumber) {
@@ -77,8 +115,6 @@ public class SendText extends IntentService {
                 sms3.putExtra(Intent.EXTRA_TEXT, msg3);
                 startActivity(sms3);
             }
-
-
         }
 
         catch (Exception e) {
@@ -86,65 +122,8 @@ public class SendText extends IntentService {
                     "Telephone service not found. Trying to send SMS via network", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
-            if (checkInternetConnection()) {
-
-            }
 
         }
-    }
-
-    private String loadFromNetwork(String urlString) throws IOException {
-        InputStream stream = null;
-        String str = "";
-        try {
-            Log.i(TAG, "About to run downoadUrl");
-            stream = downloadUrl(urlString);
-            str = readIt_again(stream);
-        }
-        catch(IOException e) {
-            System.err.println("ERROR");
-            e.printStackTrace();
-        }
-            if (stream != null) {
-                stream.close();
-            }
-        return str;
-    }
-
-    private InputStream downloadUrl(String urlString) throws IOException {
-    
-        URL url = new URL(urlString);
-        Log.i(TAG, "About to run HttpURLConnection");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(10000 /* milliseconds */);
-        conn.setConnectTimeout(15000 /* milliseconds */);
-        conn.setRequestMethod("GET");
-        conn.setDoInput(true);
-        // Start the query
-        Log.i(TAG, "About to run HttpURLConnection query via conn.connect");
-        try {
-            conn.connect();
-        }
-
-        catch(IOException e) {
-            System.err.println("ERROR - HttpURLConnection failed");
-            e.printStackTrace();
-        }
-        return conn.getInputStream();
-    }
-
-    private String readIt_again(InputStream stream) throws IOException {
-        String newliner = System.getProperty("line.separator");
-        StringBuilder builder = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        String line;
-        while ((line = reader.readLine()) != null) {
-          //  System.out.println(line);
-            builder.append(line);
-            builder.append(newliner);
-        }
-        reader.close();
-        return builder.toString();
     }
 
     public boolean checkInternetConnection() {
@@ -152,4 +131,6 @@ public class SendText extends IntentService {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
+
+
 }
