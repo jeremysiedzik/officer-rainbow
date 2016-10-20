@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 
 
@@ -47,8 +48,8 @@ public class Alarm extends IntentService {
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
 
-            Context context = getApplicationContext();
-            new AlertDialog.Builder(context)
+            //Context context = getApplicationContext();
+            new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.myDialog))
                     .setTitle("Your Test Group/Color Was Selected")
                     .setMessage("Silence Alarm?")
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
