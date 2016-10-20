@@ -62,7 +62,7 @@ public class SendText extends IntentService {
                     System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
                     e.printStackTrace();
                 }
-            } else{
+            }
 
                 try {
                         post(mContext.getString(R.string.backend_url), phoneNumber, smsMSG, new Callback() {
@@ -83,7 +83,6 @@ public class SendText extends IntentService {
                     e.printStackTrace();
                     }
             }
-    }
 
     Call post(String url, String current_sms_number, String current_sms_msg, Callback callback) throws IOException{
         RequestBody formBody = new FormBody.Builder()
