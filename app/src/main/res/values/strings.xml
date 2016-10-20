@@ -119,5 +119,6 @@
     <string name="email_msg_header">Email</string>
     <string name="contact_name_notify">Contact Name:</string>
     <string name="debug_enabled">Debug Enabled</string>
-    <string name="backend_url">http://data.robotagrex.com:8080/sms-text</string>
+    <string name="backend_url_sms">http://data.robotagrex.com:8080/sms-text</string>
+
 </resources>

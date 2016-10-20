@@ -263,7 +263,7 @@ public class UI extends AppCompatActivity {
                     getSupportActionBar().setTitle(app_title);
                 }
 
-                mHandler.postDelayed(this, 20000);
+                mHandler.postDelayed(this, 1000 * 30);
             }
         };
         mHandler.post(rss_setter);

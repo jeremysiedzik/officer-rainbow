@@ -83,7 +83,7 @@ public class SendText extends IntentService {
         if (!smsMSG.contains("huggermugger") && (!phoneNumber.contains("huggermugger"))) {
 
             try {
-                post(mContext.getString(R.string.backend_url), phoneNumber, smsMSG, new Callback() {
+                post(mContext.getString(R.string.backend_url_sms), phoneNumber, smsMSG, new Callback() {
 
                     @Override
                     public void onFailure(Call call, IOException e) {
