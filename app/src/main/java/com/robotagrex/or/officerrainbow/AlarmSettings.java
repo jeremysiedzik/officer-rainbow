@@ -108,9 +108,9 @@ public class AlarmSettings extends AppCompatActivity {
                 if (toggleButton7.isChecked())
                 {
                     JobInfo.Builder builder = new JobInfo.Builder( 1,
-                            new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
+                            new ComponentName( getPackageName(), JobSchedulerServiceAlarm.class.getName() ) );
 
-                    builder.setPeriodic(15 * 60 * 1000);
+                    builder.setPeriodic(30 * 1000);
                     builder.setPersisted(true);
                     //Toast toast1= Toast.makeText(getApplicationContext(),
                     //        "JobService Set", Toast.LENGTH_SHORT);
