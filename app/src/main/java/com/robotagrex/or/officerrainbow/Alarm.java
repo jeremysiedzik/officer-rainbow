@@ -5,12 +5,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 
 
@@ -48,22 +45,6 @@ public class Alarm extends IntentService {
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
 
-            //Context context = getApplicationContext();
-            new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.myDialog))
-                    .setTitle("Your Test Group/Color Was Selected")
-                    .setMessage("Silence Alarm?")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // do nothing
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
         } else {
             sendNotification(getString(R.string.notify_unfound));
             Log.i(TAG, "No color found. :-(");
@@ -90,4 +71,6 @@ public class Alarm extends IntentService {
             mBuilder.setContentIntent(contentIntent);
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
+
+
 }
