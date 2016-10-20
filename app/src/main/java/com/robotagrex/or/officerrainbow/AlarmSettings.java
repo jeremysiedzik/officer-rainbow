@@ -110,7 +110,7 @@ public class AlarmSettings extends AppCompatActivity {
                     JobInfo.Builder builder = new JobInfo.Builder( 1,
                             new ComponentName( getPackageName(), JobSchedulerService.class.getName() ) );
 
-                    builder.setPeriodic(1000 * 20);
+                    builder.setPeriodic(1000 * 30);
                     builder.setPersisted(true);
                     Toast toast1= Toast.makeText(getApplicationContext(),
                             "JobService Set", Toast.LENGTH_SHORT);
@@ -136,6 +136,7 @@ public class AlarmSettings extends AppCompatActivity {
                             "JobService Cancelled", Toast.LENGTH_SHORT);
                     toast3.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast3.show();
+
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_alarm_state", false);
                     editor.apply();

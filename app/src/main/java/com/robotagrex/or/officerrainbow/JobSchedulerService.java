@@ -35,8 +35,20 @@ public class JobSchedulerService extends JobService {
                 Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int - " + alarm_int);
 
                 Context context = getApplication();
-                Intent service = new Intent(context, WebSitechecker.class);
-                context.startService(service);
+                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+                boolean sms_enabled = sharedpreferences.getBoolean("droptest_sms_state", false);
+                boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
+
+                if (sms_enabled) {
+                    Intent sendtext = new Intent(context, SendText.class);
+                    context.startService(sendtext);
+                }
+
+                if (alarm_enabled) {
+                    Intent websitechecker = new Intent(context, WebSitechecker.class);
+                    context.startService(websitechecker);
+                }
 
                 // code block below for heartbeat 'beep'
                 final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
