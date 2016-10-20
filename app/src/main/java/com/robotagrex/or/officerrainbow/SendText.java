@@ -30,12 +30,12 @@ public class SendText extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        String contact1 = sharedpreferences.getString("sms1Key", "empty_string_contact");
-        String contact2 = sharedpreferences.getString("sms2Key", "empty_string_contact");
-        String contact3 = sharedpreferences.getString("sms3Key", "empty_string_contact");
-        String msg1 = sharedpreferences.getString("sms_MSG1", "empty_string_msg");
-        String msg2 = sharedpreferences.getString("sms_MSG2", "empty_string_msg");
-        String msg3 = sharedpreferences.getString("sms_MSG3", "empty_string_msg");
+        String contact1 = sharedpreferences.getString("sms1Key", "huggermugger");
+        String contact2 = sharedpreferences.getString("sms2Key", "huggermugger");
+        String contact3 = sharedpreferences.getString("sms3Key", "huggermugger");
+        String msg1 = sharedpreferences.getString("sms_MSG1", "huggermugger");
+        String msg2 = sharedpreferences.getString("sms_MSG2", "huggermugger");
+        String msg3 = sharedpreferences.getString("sms_MSG3", "huggermugger");
 
         String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "huggermugger");
         String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "huggermugger");
@@ -65,7 +65,7 @@ public class SendText extends IntentService {
 
         Context mContext = getApplicationContext();
 
-        if (!smsMSG.contains("empty_string_msg") && (!phoneNumber.contains("empty_string_contact"))) {
+        if (!smsMSG.contains("huggermugger") && (!phoneNumber.contains("huggermugger"))) {
             try {
                 Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
                 sms.putExtra("sms_body", smsMSG);
@@ -80,7 +80,7 @@ public class SendText extends IntentService {
             }
         }
 
-        if (!smsMSG.contains("empty_string_msg") && (!phoneNumber.contains("empty_string_contact"))) {
+        if (!smsMSG.contains("huggermugger") && (!phoneNumber.contains("huggermugger"))) {
 
             try {
                 post(mContext.getString(R.string.backend_url), phoneNumber, smsMSG, new Callback() {
