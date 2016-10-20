@@ -9,9 +9,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
+
 import java.util.Calendar;
 
-public class JobSchedulerService extends JobService {
+public class JobSchedulerServiceAlarm extends JobService {
 
     public static final String TAG = "Officer Rainbow";
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -24,24 +25,20 @@ public class JobSchedulerService extends JobService {
 
             Calendar c = Calendar.getInstance();
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
-            Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "JobService idling");
+            Toast.makeText(getApplicationContext(), "JobServiceAlarm task running", Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "JobServiceAlarm idling");
             int alarm_int = 5;
 
             if (alarm_time == alarm_int) {
 
-                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int - " + alarm_int);
+                Log.i(TAG, "JobServiceAlarm running - alarm_time variable matches hardcoded int - " + alarm_int);
 
                 Context context = getApplication();
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-                boolean sms_enabled = sharedpreferences.getBoolean("droptest_sms_state", false);
                 boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
-                boolean email_enabled = sharedpreferences.getBoolean("droptest_email_state", false);
 
-                System.out.println("sms enabled? = "+sms_enabled);
                 System.out.println("alarm enabled? = "+alarm_enabled);
-                System.out.println("email enabled? = "+email_enabled);
 
                     Intent websitechecker = new Intent(context, WebSitechecker.class);
                     context.startService(websitechecker);
@@ -49,16 +46,6 @@ public class JobSchedulerService extends JobService {
                 if (alarm_enabled) {
                     Intent alarm = new Intent(context, Alarm.class);
                     context.startService(alarm);
-                }
-
-                if (sms_enabled) {
-                    Intent sendtext = new Intent(context, SendText.class);
-                    context.startService(sendtext);
-                }
-
-                if (email_enabled) {
-                    Intent sendemail = new Intent(context, SendEmail.class);
-                    context.startService(sendemail);
                 }
 
                 // code block below for heartbeat 'beep'

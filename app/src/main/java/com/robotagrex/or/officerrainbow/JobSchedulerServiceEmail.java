@@ -9,9 +9,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
+
 import java.util.Calendar;
 
-public class JobSchedulerService extends JobService {
+public class JobSchedulerServiceEmail extends JobService {
 
     public static final String TAG = "Officer Rainbow";
     public static final String MyPREFERENCES = "MyPrefs" ;
