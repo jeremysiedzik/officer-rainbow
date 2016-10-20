@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.Toast;
 
 import java.io.IOException;
 import okhttp3.Call;
@@ -43,7 +41,7 @@ public class SendText extends IntentService {
             sendSMS(contact1,msg1);
             sendSMS(contact2,msg2);
             sendSMS(contact3,msg3);
-            Log.i(TAG, "Calling loadFromNetwork via Confirmation.java");
+            Log.i(TAG, "Calling sendSMS via SendText.java");
         } catch (Exception e) {
             Log.i(TAG, getString(R.string.connection_error));
         }
@@ -59,15 +57,10 @@ public class SendText extends IntentService {
                     sms.putExtra("sms_body", smsMSG);
                     sms.putExtra(Intent.EXTRA_TEXT, smsMSG);
                     startActivity(sms);
-                    Toast toast= Toast.makeText(getApplicationContext(),
-                            "SMS Sent via 4G", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
+                    System.out.println("SMS Sent Via 4G Network");
                 } catch (Exception e) {
-                    Toast toast= Toast.makeText(getApplicationContext(),
-                            "Telephone service not found. Trying to send SMS via network", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
+                    System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
+                    e.printStackTrace();
                 }
             } else{
 
@@ -76,26 +69,18 @@ public class SendText extends IntentService {
 
                             @Override
                             public void onFailure(Call call, IOException e) {
-                                Toast toast = Toast.makeText(getApplicationContext(),
-                                        "SMS NOT Sent - Check Network Connection", Toast.LENGTH_LONG);
-                                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                                toast.show();
+                                System.out.println("SMS NOT sent via Twilio API - stacktrace follows");
                                 e.printStackTrace();
                             }
 
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
-                                Toast toast = Toast.makeText(getApplicationContext(),
-                                        "SMS Sent via Wi-Fi network", Toast.LENGTH_LONG);
-                                toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                                toast.show();
-                            }
+                                System.out.println("SMS sent via Twilio");
+                                }
                         });
                     } catch(Exception e){
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "Check Internet Connection", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
-                        toast.show();
+                    System.out.println("SMS NOT sent via Twilio API - Check Internet Connection - stacktrace follows");
+                    e.printStackTrace();
                     }
             }
     }
