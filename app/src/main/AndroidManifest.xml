@@ -77,6 +77,8 @@
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".Confirmation"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".SendText"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
 
     </application>
 

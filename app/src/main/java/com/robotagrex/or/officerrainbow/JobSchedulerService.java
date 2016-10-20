@@ -40,6 +40,9 @@ public class JobSchedulerService extends JobService {
                 boolean sms_enabled = sharedpreferences.getBoolean("droptest_sms_state", false);
                 boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
 
+                System.out.println("sms_enabled = "+sms_enabled);
+                System.out.println("alarm_enabled = "+alarm_enabled);
+
                 if (sms_enabled) {
                     Intent sendtext = new Intent(context, SendText.class);
                     context.startService(sendtext);
