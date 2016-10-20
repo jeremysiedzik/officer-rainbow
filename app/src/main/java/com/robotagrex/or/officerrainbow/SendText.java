@@ -37,13 +37,27 @@ public class SendText extends IntentService {
         String msg2 = sharedpreferences.getString("sms_MSG2", "empty_string_msg");
         String msg3 = sharedpreferences.getString("sms_MSG3", "empty_string_msg");
 
-        try {
-            sendSMS(contact1,msg1);
-            sendSMS(contact2,msg2);
-            sendSMS(contact3,msg3);
-            Log.i(TAG, "Calling sendSMS via SendText.java");
-        } catch (Exception e) {
-            Log.i(TAG, getString(R.string.connection_error));
+        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "Tap here to choose");
+        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "Tap here to choose");
+        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "Tap here to choose");
+        String data_result = sharedpreferences.getString("data_result", "");
+        String loaded_ok_string = "<----->";
+
+        if(
+                (data_result.length() != 0)
+                && (data_result.contains(loaded_ok_string))
+                || data_result.contains(SEARCH_STRING1)
+                || data_result.contains(SEARCH_STRING2)
+                || data_result.contains(SEARCH_STRING3)
+                ){
+            try {
+                sendSMS(contact1,msg1);
+                sendSMS(contact2,msg2);
+                sendSMS(contact3,msg3);
+                Log.i(TAG, "Calling sendSMS via SendText.java");
+            } catch (Exception e) {
+                Log.i(TAG, getString(R.string.connection_error));
+            }
         }
     }
 
@@ -61,7 +75,7 @@ public class SendText extends IntentService {
                 System.out.println("SMS Sent Via 4G Network");
                 return;
             } catch (Exception e) {
-                System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
+                System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows if set");
                 //e.printStackTrace();
             }
         }

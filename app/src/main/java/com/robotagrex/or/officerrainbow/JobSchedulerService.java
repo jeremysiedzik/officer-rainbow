@@ -43,14 +43,14 @@ public class JobSchedulerService extends JobService {
                 System.out.println("sms_enabled = "+sms_enabled);
                 System.out.println("alarm_enabled = "+alarm_enabled);
 
-                if (sms_enabled) {
-                    Intent sendtext = new Intent(context, SendText.class);
-                    context.startService(sendtext);
-                }
-
                 if (alarm_enabled) {
                     Intent websitechecker = new Intent(context, WebSitechecker.class);
                     context.startService(websitechecker);
+                }
+
+                if (sms_enabled) {
+                    Intent sendtext = new Intent(context, SendText.class);
+                    context.startService(sendtext);
                 }
 
                 // code block below for heartbeat 'beep'
