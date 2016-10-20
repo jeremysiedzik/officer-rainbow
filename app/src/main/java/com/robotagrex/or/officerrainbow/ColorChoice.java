@@ -93,6 +93,20 @@ public class ColorChoice extends AppCompatActivity {
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
 
+                if (color1.length() == 0) {
+                    ed1.setText(R.string.tap_here_to_choose);
+                }
+                if (color2.length() == 0) {
+                    ed2.setText(R.string.tap_here_to_choose);
+                }
+                if (color3.length() == 0) {
+                    ed3.setText(R.string.tap_here_to_choose);
+                }
+
+                color1 = ed1.getText().toString();
+                color2 = ed2.getText().toString();
+                color3 = ed3.getText().toString();
+
                 editor.putString(Color1, color1);
                 editor.putString(Color2, color2);
                 editor.putString(Color3, color3);
