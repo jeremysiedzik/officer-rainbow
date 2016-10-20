@@ -56,8 +56,10 @@ public class SendText extends IntentService {
                     Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
                     sms.putExtra("sms_body", smsMSG);
                     sms.putExtra(Intent.EXTRA_TEXT, smsMSG);
+                    sms.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(sms);
                     System.out.println("SMS Sent Via 4G Network");
+                    return;
                 } catch (Exception e) {
                     System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
                     e.printStackTrace();
