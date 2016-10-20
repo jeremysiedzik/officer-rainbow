@@ -37,9 +37,9 @@ public class SendText extends IntentService {
         String msg2 = sharedpreferences.getString("sms_MSG2", "empty_string_msg");
         String msg3 = sharedpreferences.getString("sms_MSG3", "empty_string_msg");
 
-        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "");
-        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "");
-        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "");
+        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "huggermugger");
+        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "huggermugger");
+        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "huggermugger");
         String data_result = sharedpreferences.getString("data_result", "");
         String loaded_ok_string = "<----->";
 
