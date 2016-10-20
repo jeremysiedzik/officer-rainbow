@@ -62,7 +62,7 @@ public class SendText extends IntentService {
                 return;
             } catch (Exception e) {
                 System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
 
@@ -73,8 +73,8 @@ public class SendText extends IntentService {
 
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        System.out.println("SMS NOT sent via Twilio API - stacktrace follows");
-                        e.printStackTrace();
+                        System.out.println("SMS NOT sent via Twilio API - stacktrace follows if set");
+                        //e.printStackTrace();
                     }
 
                     @Override
@@ -83,8 +83,8 @@ public class SendText extends IntentService {
                     }
                 });
             } catch (Exception e) {
-                System.out.println("SMS NOT sent via Twilio API - Check Internet Connection - stacktrace follows");
-                e.printStackTrace();
+                System.out.println("SMS NOT sent via Twilio API - Check Internet Connection - stacktrace follows if set");
+                //e.printStackTrace();
             }
         }
     }
