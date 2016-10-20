@@ -49,42 +49,45 @@ public class SendText extends IntentService {
 
     private void sendSMS(String phoneNumber, String smsMSG) {
 
-            Context mContext = getApplicationContext();
+        Context mContext = getApplicationContext();
 
-            if (!smsMSG.contains("empty_string_msg") && (!phoneNumber.contains("empty_string_contact"))) {
-                try {
-                    Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
-                    sms.putExtra("sms_body", smsMSG);
-                    sms.putExtra(Intent.EXTRA_TEXT, smsMSG);
-                    sms.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(sms);
-                    System.out.println("SMS Sent Via 4G Network");
-                    return;
-                } catch (Exception e) {
-                    System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
-                    e.printStackTrace();
-                }
+        if (!smsMSG.contains("empty_string_msg") && (!phoneNumber.contains("empty_string_contact"))) {
+            try {
+                Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + phoneNumber));
+                sms.putExtra("sms_body", smsMSG);
+                sms.putExtra(Intent.EXTRA_TEXT, smsMSG);
+                sms.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(sms);
+                System.out.println("SMS Sent Via 4G Network");
+                return;
+            } catch (Exception e) {
+                System.out.println("SMS NOT Sent Attempting to send via post to Twilio API - stacktrace follows");
+                e.printStackTrace();
             }
+        }
 
-                try {
-                        post(mContext.getString(R.string.backend_url), phoneNumber, smsMSG, new Callback() {
+        if (!smsMSG.contains("empty_string_msg") && (!phoneNumber.contains("empty_string_contact"))) {
 
-                            @Override
-                            public void onFailure(Call call, IOException e) {
-                                System.out.println("SMS NOT sent via Twilio API - stacktrace follows");
-                                e.printStackTrace();
-                            }
+            try {
+                post(mContext.getString(R.string.backend_url), phoneNumber, smsMSG, new Callback() {
 
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                System.out.println("SMS sent via Twilio");
-                                }
-                        });
-                    } catch(Exception e){
-                    System.out.println("SMS NOT sent via Twilio API - Check Internet Connection - stacktrace follows");
-                    e.printStackTrace();
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        System.out.println("SMS NOT sent via Twilio API - stacktrace follows");
+                        e.printStackTrace();
                     }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        System.out.println("SMS sent via Twilio");
+                    }
+                });
+            } catch (Exception e) {
+                System.out.println("SMS NOT sent via Twilio API - Check Internet Connection - stacktrace follows");
+                e.printStackTrace();
             }
+        }
+    }
 
     Call post(String url, String current_sms_number, String current_sms_msg, Callback callback) throws IOException{
         RequestBody formBody = new FormBody.Builder()
