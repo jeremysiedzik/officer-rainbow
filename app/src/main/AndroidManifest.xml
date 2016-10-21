@@ -29,9 +29,6 @@
         <activity android:name=".Notifications"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".AlarmPopup"
-            android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotificationMessage"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>

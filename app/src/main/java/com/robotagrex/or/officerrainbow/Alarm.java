@@ -11,7 +11,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 
-
 public class Alarm extends IntentService {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
@@ -20,11 +19,13 @@ public class Alarm extends IntentService {
     }
     public static final String TAG = "Alarm Service";
     public static final int NOTIFICATION_ID = 1;
+    public static final String color_confirm_push = "color_confirm";
 
     @Override
     protected void onHandleIntent(Intent intent) {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
         String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "huggermugger");
         String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "huggermugger");
         String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "huggermugger");
@@ -44,12 +45,14 @@ public class Alarm extends IntentService {
                 ){
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
-            System.out.println("About to run AlarmPopup");
-            new AlarmPopup();
+            editor.putBoolean(color_confirm_push, true);
+            editor.apply();
 
         } else {
             sendNotification(getString(R.string.notify_unfound));
             Log.i(TAG, "No color found. :-(");
+            editor.putBoolean(color_confirm_push, false);
+            editor.apply();
         }
     }
 
@@ -73,6 +76,4 @@ public class Alarm extends IntentService {
             mBuilder.setContentIntent(contentIntent);
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
-
-
 }
