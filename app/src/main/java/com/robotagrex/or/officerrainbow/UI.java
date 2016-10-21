@@ -19,6 +19,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
@@ -256,8 +257,8 @@ public class UI extends AppCompatActivity {
                 String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
                 boolean confirm_popup = sharedpreferences.getBoolean("color_confirm", false);
                 boolean dialog_showing = sharedpreferences.getBoolean("dialog_showing", false);
-                System.out.println(confirm_popup);
-                System.out.println(dialog_showing);
+                System.out.println("confirm popup is "+confirm_popup);
+                System.out.println("dialog showing is "+dialog_showing);
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
@@ -272,9 +273,10 @@ public class UI extends AppCompatActivity {
 
 
                 if ((confirm_popup) && (!dialog_showing)) {
-                    FragmentManager fm = getSupportFragmentManager();
                     AlarmDialog dialogFragment = new AlarmDialog ();
-                    dialogFragment.show(fm, "Alarm Fragment");
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.add(dialogFragment, null);
+                    ft.commitAllowingStateLoss();
                     editor.putBoolean(alarm_showing, true);
                     editor.putBoolean("color_confirm", false);
                     editor.apply();
