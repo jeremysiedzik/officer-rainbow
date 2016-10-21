@@ -120,7 +120,7 @@ public class Confirm extends AppCompatActivity {
         protected void onPreExecute() {
             mProgressDialog = new ProgressDialog(Confirm.this);
             mProgressDialog.setTitle("Confirming Notification");
-            mProgressDialog.setMessage("Confirming...");
+            mProgressDialog.setMessage("Resetting Alarm");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.show();
         }

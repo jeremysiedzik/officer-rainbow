@@ -7,6 +7,8 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -19,13 +21,13 @@ public class Alarm extends IntentService {
     }
     public static final String TAG = "Alarm Service";
     public static final int NOTIFICATION_ID = 1;
-    public static final String color_confirm_push = "color_confirm";
 
     @Override
     protected void onHandleIntent(Intent intent) {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
+        Context context = getApplication();
+
         String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "huggermugger");
         String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "huggermugger");
         String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "huggermugger");
@@ -45,14 +47,12 @@ public class Alarm extends IntentService {
                 ){
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
-            editor.putBoolean(color_confirm_push, true);
-            editor.apply();
-
+                playalarm();
+                Intent confirmation = new Intent(context, Confirm.class);
+                context.startService(confirmation);
         } else {
             sendNotification(getString(R.string.notify_unfound));
             Log.i(TAG, "No color found. :-(");
-            editor.putBoolean(color_confirm_push, false);
-            editor.apply();
         }
     }
 
@@ -75,5 +75,35 @@ public class Alarm extends IntentService {
 
             mBuilder.setContentIntent(contentIntent);
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    }
+
+    private void playalarm() {
+        // code block below for heartbeat 'beep'
+        final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+        final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("alarm", "raw", getPackageName()));
+        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        mPlayer.setOnPreparedListener(
+        new MediaPlayer.OnPreparedListener() {
+            public void onPrepared(MediaPlayer player) {
+                mPlayer.start();
+                mPlayer.setLooping(true);
+            }
+        });
+
+
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+             @Override
+            public void onCompletion(MediaPlayer mp) {
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                if (mp != null) {
+                    mp.release();
+                }
+            }
+        });
+        // code block above for heartbeat 'beep'
     }
 }

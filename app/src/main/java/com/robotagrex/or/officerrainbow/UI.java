@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
@@ -70,7 +69,6 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
-    public static final String alarm_showing = "dialog_showing";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -250,14 +248,10 @@ public class UI extends AppCompatActivity {
                 }
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
+
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
                 String marquee_description = sharedpreferences.getString("marquee_description", "");
                 String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
-                boolean confirm_popup = sharedpreferences.getBoolean("color_confirm", false);
-                boolean dialog_showing = sharedpreferences.getBoolean("dialog_showing", false);
-                System.out.println("confirm popup is "+confirm_popup);
-                System.out.println("dialog showing is "+dialog_showing);
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
@@ -268,17 +262,6 @@ public class UI extends AppCompatActivity {
                 if(getSupportActionBar() != null){
                     System.out.println(app_title);
                     getSupportActionBar().setTitle(app_title);
-                }
-
-
-                if ((confirm_popup) && (!dialog_showing)) {
-                    AlarmDialog dialogFragment = new AlarmDialog ();
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.add(dialogFragment, null);
-                    ft.commitAllowingStateLoss();
-                    editor.putBoolean("dialog_showing", true);
-                    editor.putBoolean("color_confirm", false);
-                    editor.apply();
                 }
 
                 mHandler.postDelayed(this, 1000 * 30);
