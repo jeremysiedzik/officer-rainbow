@@ -13,11 +13,11 @@ public class AlarmDialog extends DialogFragment {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
+    Context context_shared = getActivity();
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Alarm Confirmation");
@@ -28,9 +28,11 @@ public class AlarmDialog extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                sharedpreferences = context_shared.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 dismiss();
                 editor.putBoolean("dialog_showing", false);
+                System.out.println("writing dialog showing = FALSE");
                 editor.apply();
             }
         });
@@ -38,9 +40,11 @@ public class AlarmDialog extends DialogFragment {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                sharedpreferences = context_shared.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 dismiss();
                 editor.putBoolean("dialog_showing", false);
+                System.out.println("writing dialog showing = FALSE");
                 editor.apply();
             }
         });

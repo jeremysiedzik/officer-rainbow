@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -277,7 +276,7 @@ public class UI extends AppCompatActivity {
                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.add(dialogFragment, null);
                     ft.commitAllowingStateLoss();
-                    editor.putBoolean(alarm_showing, true);
+                    editor.putBoolean("dialog_showing", true);
                     editor.putBoolean("color_confirm", false);
                     editor.apply();
                 }
