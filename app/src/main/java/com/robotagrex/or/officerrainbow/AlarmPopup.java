@@ -13,8 +13,7 @@ public class AlarmPopup extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(
-                AlarmPopup.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
         builder.setTitle("Sample Alert");
         builder.setMessage("One Action Button Alert");
         builder.setPositiveButton("OK",
