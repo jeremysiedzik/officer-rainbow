@@ -29,6 +29,9 @@
         <activity android:name=".Notifications"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".AlarmPopup"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotificationMessage"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
@@ -72,6 +75,10 @@
         <service android:name=".JobSchedulerService"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".JobSchedulerServiceAlarm"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".JobSchedulerServiceEmail"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".JobSchedulerServiceSMS"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".Alarm"
             android:permission="android.permission.BIND_JOB_SERVICE"/>

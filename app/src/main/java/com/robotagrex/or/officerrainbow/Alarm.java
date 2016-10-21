@@ -44,6 +44,7 @@ public class Alarm extends IntentService {
                 ){
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
+            new AlarmPopup();
 
         } else {
             sendNotification(getString(R.string.notify_unfound));

@@ -2,9 +2,9 @@ package com.robotagrex.or.officerrainbow;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class AlarmPopup extends Activity {
     /** Called when the activity is first created. */
@@ -13,22 +13,18 @@ public class AlarmPopup extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui);
 
-        this.setTheme(R.style.CustomAlertDialog);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("HELLO!");
-        builder .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //MyActivity.this.finish();
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //dialog.cancel();
+        AlertDialog.Builder builder = new AlertDialog.Builder(
+                AlarmPopup.this);
+        builder.setTitle("Sample Alert");
+        builder.setMessage("One Action Button Alert");
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        Toast.makeText(getApplicationContext(),"Yes is clicked",Toast.LENGTH_LONG).show();
                     }
                 });
+        builder.show();
 
-        AlertDialog alertdialog = builder.create();
-        alertdialog.show();
     }
 }
