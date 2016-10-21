@@ -267,9 +267,10 @@ public class UI extends AppCompatActivity {
                     getSupportActionBar().setTitle(app_title);
                 }
 
-                if (confirm_popup) {
-                    FragmentManager fm = getSupportFragmentManager();
-                    AlarmDialog dialogFragment = new AlarmDialog ();
+                FragmentManager fm = getSupportFragmentManager();
+                AlarmDialog dialogFragment = new AlarmDialog ();
+
+                if ((confirm_popup) && (!dialogFragment.isVisible())) {
                     dialogFragment.show(fm, "Sample Fragment");
                     editor.putBoolean("color_confirm", false);
                     editor.apply();
