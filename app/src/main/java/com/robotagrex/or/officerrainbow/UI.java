@@ -3,7 +3,6 @@ package com.robotagrex.or.officerrainbow;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -71,6 +70,7 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
+    public static final String alarm_showing = "dialog_showing";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -255,7 +255,9 @@ public class UI extends AppCompatActivity {
                 String marquee_description = sharedpreferences.getString("marquee_description", "");
                 String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
                 boolean confirm_popup = sharedpreferences.getBoolean("color_confirm", false);
+                boolean dialog_showing = sharedpreferences.getBoolean("dialog_showing", false);
                 System.out.println(confirm_popup);
+                System.out.println(dialog_showing);
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
@@ -268,12 +270,12 @@ public class UI extends AppCompatActivity {
                     getSupportActionBar().setTitle(app_title);
                 }
 
-                Fragment dialog_showing = getFragmentManager().findFragmentByTag("Alarm Fragment");
 
-                if ((confirm_popup) && (dialog_showing == null)) {
+                if ((confirm_popup) && (!dialog_showing)) {
                     FragmentManager fm = getSupportFragmentManager();
                     AlarmDialog dialogFragment = new AlarmDialog ();
                     dialogFragment.show(fm, "Alarm Fragment");
+                    editor.putBoolean(alarm_showing, true);
                     editor.putBoolean("color_confirm", false);
                     editor.apply();
                 }

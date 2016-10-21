@@ -1,6 +1,7 @@
 package com.robotagrex.or.officerrainbow;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,22 +17,31 @@ public class AlarmDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Alarm Confirmation");
         builder.setMessage("Your Color/Test Group Was Selected");
 
+
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
                 dismiss();
+                editor.putBoolean("dialog_showing", false);
+                editor.apply();
             }
         });
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
                 dismiss();
+                editor.putBoolean("dialog_showing", false);
+                editor.apply();
             }
         });
 
