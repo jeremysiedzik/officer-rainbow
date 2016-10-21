@@ -18,6 +18,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class Confirm extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -71,6 +75,13 @@ public class Confirm extends AppCompatActivity {
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 try {
+                    Calendar c = Calendar.getInstance();
+                    System.out.println("Current time => " + c.getTime());
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+                    String formattedDate = df.format(c.getTime());
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.putString("todays_date", formattedDate);
+                    editor.apply();
                     stopaudio(getApplication());
                 } catch (IllegalStateException e) {
                     e.printStackTrace();

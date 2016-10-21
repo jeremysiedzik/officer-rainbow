@@ -5,12 +5,15 @@ import android.app.job.JobService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class JobSchedulerServiceAlarm extends JobService {
 
@@ -28,13 +31,21 @@ public class JobSchedulerServiceAlarm extends JobService {
             Toast.makeText(getApplicationContext(), "JobServiceAlarm task running", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "JobServiceAlarm idling");
             int alarm_int = 5;
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-            if (alarm_time == alarm_int) {
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+            String formattedDate = df.format(c.getTime());
+            String storedDate = sharedpreferences.getString("todays_date", "07-21-2020");
+            boolean checkedtoday = false;
+            if (formattedDate.equals(storedDate)) {
+                checkedtoday = true;
+            }
+
+            if (alarm_time == alarm_int && (!checkedtoday)) {
 
                 Log.i(TAG, "JobServiceAlarm running - alarm_time variable matches hardcoded int - " + alarm_int);
 
                 Context context = getApplication();
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
                 boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
 
