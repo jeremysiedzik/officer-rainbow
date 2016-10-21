@@ -70,7 +70,6 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
-    public static final String color_confirm_push = "color_confirm";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,7 +253,8 @@ public class UI extends AppCompatActivity {
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
                 String marquee_description = sharedpreferences.getString("marquee_description", "");
                 String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
-                boolean confirm_popup = sharedpreferences.getBoolean("color_confirm_push", false);
+                boolean confirm_popup = sharedpreferences.getBoolean("color_confirm", false);
+                System.out.println(confirm_popup);
 
                 if (marquee_key.contains("321654987")) {
                     marquee.setText(marquee_description);
@@ -271,7 +271,7 @@ public class UI extends AppCompatActivity {
                     FragmentManager fm = getSupportFragmentManager();
                     AlarmDialog dialogFragment = new AlarmDialog ();
                     dialogFragment.show(fm, "Sample Fragment");
-                    editor.putBoolean(color_confirm_push, false);
+                    editor.putBoolean("color_confirm", false);
                     editor.apply();
                 }
 
