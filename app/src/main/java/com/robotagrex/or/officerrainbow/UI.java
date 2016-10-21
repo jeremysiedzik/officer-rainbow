@@ -3,6 +3,7 @@ package com.robotagrex.or.officerrainbow;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -267,11 +268,12 @@ public class UI extends AppCompatActivity {
                     getSupportActionBar().setTitle(app_title);
                 }
 
-                FragmentManager fm = getSupportFragmentManager();
-                AlarmDialog dialogFragment = new AlarmDialog ();
+                Fragment dialog_showing = getFragmentManager().findFragmentByTag("Alarm Fragment");
 
-                if ((confirm_popup) && (!dialogFragment.isVisible())) {
-                    dialogFragment.show(fm, "Sample Fragment");
+                if ((confirm_popup) && (dialog_showing == null)) {
+                    FragmentManager fm = getSupportFragmentManager();
+                    AlarmDialog dialogFragment = new AlarmDialog ();
+                    dialogFragment.show(fm, "Alarm Fragment");
                     editor.putBoolean("color_confirm", false);
                     editor.apply();
                 }
