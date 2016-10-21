@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +26,8 @@ public class Confirm extends AppCompatActivity {
     TextView titletxt;
     //String debug;
     public static final String confirmation_result_push = "confirmation_result";
+    Context context = getApplication();
+    private MediaPlayer mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class Confirm extends AppCompatActivity {
         assert buttontest != null;
 
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
+
+        playalarm();
 
         Runnable confirmation_msg = new Runnable() {
             @Override
@@ -64,6 +70,11 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
+                try {
+                    stopaudio(getApplication());
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
                 if (checkInternetConnection()) {
                     new confirmation_task().execute();
                 } else {
@@ -88,6 +99,11 @@ public class Confirm extends AppCompatActivity {
         });
     }
 
+    void releaseAudioFocusForMyApp(final Context context) {
+        AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        am.abandonAudioFocus(null);
+    }
+
     void sendconfirmation(final Context uicontext) {
        if (checkInternetConnection()) {
             //if (debug.contains("on")) {System.out.println("About to run Confirmation.class within sendconfirmation method");}
@@ -110,6 +126,50 @@ public class Confirm extends AppCompatActivity {
         Context context = getApplication();
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    private void playalarm() {
+        // code block below for heartbeat 'beep'
+        final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("alarm", "raw", getPackageName()));
+
+        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        mPlayer.setOnPreparedListener(
+                new MediaPlayer.OnPreparedListener() {
+                    public void onPrepared(MediaPlayer player) {
+                        mPlayer.start();
+                        mPlayer.setLooping(true);
+                    }
+                });
+
+
+        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                if (mp != null) {
+                    mp.release();
+                }
+            }
+        });
+        // code block above for heartbeat 'beep'
+    }
+
+    void stopaudio(final Context context) {
+        AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+        if(mPlayer!=null) {
+            if(mPlayer.isPlaying())
+                mPlayer.pause();
+            mPlayer.reset();
+            mPlayer.release();
+            mPlayer=null;
+        }
+        am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+        releaseAudioFocusForMyApp(getApplication());
     }
 
     class confirmation_task extends AsyncTask<Void, Void, Void> {
