@@ -160,10 +160,10 @@ public class Confirm extends AppCompatActivity {
         mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                if (mp != null) {
-                    mp.release();
-                }
+                    mPlayer.seekTo(0);
+                //if (mp != null) {
+                //    mp.release();
+                //}
             }
         });
         // code block above for heartbeat 'beep'

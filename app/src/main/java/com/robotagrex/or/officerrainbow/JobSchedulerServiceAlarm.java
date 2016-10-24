@@ -26,13 +26,11 @@ public class JobSchedulerServiceAlarm extends JobService {
         @Override
         public boolean handleMessage(Message msg) {
 
-            Calendar c = Calendar.getInstance();
-            int alarm_time = c.get(Calendar.HOUR_OF_DAY);
             Toast.makeText(getApplicationContext(), "JobServiceAlarm task running", Toast.LENGTH_SHORT).show();
             Log.i(TAG, "JobServiceAlarm idling");
-            int alarm_int = 5;
-            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
             String formattedDate = df.format(c.getTime());
             String storedDate = sharedpreferences.getString("todays_date", "07-21-2020");
@@ -40,6 +38,9 @@ public class JobSchedulerServiceAlarm extends JobService {
             if (formattedDate.equals(storedDate)) {
                 checkedtoday = true;
             }
+
+            int alarm_int = 5;
+            int alarm_time = c.get(Calendar.HOUR_OF_DAY);
 
             if (alarm_time == alarm_int && (!checkedtoday)) {
 
