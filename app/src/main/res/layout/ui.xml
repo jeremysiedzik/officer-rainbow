@@ -62,6 +62,7 @@
             android:id="@+id/progress_bar_ring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:max="100"
             app:ringColor="@android:color/background_light"
             app:ringProgressColor="@android:color/holo_red_dark"
@@ -222,6 +223,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/confidence_header"
+            android:visibility="invisible"
             android:textSize="18sp"
             android:layout_above="@+id/progress_bar_ring"
             android:layout_centerHorizontal="true"
@@ -351,17 +353,6 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
-            android:text="@string/daily_colors_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily_colors_heading"
-            android:textSize="16sp"
-            android:textColor="@color/heading_colors"
-            android:textAlignment="viewStart"
-            android:layout_alignTop="@+id/progress_bar_ring"
-            android:layout_alignParentStart="true" />
-
-        <TextView
             android:text="@string/no_data_pulled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -380,5 +371,16 @@
             android:textSize="18sp"
             android:layout_below="@+id/call_probation_heading"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="@string/daily_colors_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/daily_colors_heading"
+            android:textSize="16sp"
+            android:textColor="@color/heading_colors"
+            android:textAlignment="viewStart"
+            android:layout_alignTop="@+id/progress_bar_ring"
+            android:layout_alignParentStart="true" />
 
 </RelativeLayout>
