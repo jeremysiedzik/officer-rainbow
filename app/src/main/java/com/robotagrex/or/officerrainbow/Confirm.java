@@ -151,8 +151,8 @@ public class Confirm extends AppCompatActivity {
         mPlayer.setOnPreparedListener(
                 new MediaPlayer.OnPreparedListener() {
                     public void onPrepared(MediaPlayer player) {
-                        mPlayer.start();
                         mPlayer.setLooping(true);
+                        mPlayer.start();
                     }
                 });
 
