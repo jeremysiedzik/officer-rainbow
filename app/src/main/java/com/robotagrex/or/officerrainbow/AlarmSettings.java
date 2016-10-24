@@ -19,28 +19,28 @@ public class AlarmSettings extends AppCompatActivity {
 
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
-    ToggleButton toggleButton5, toggleButton6, toggleButton7;
+    ToggleButton email_button, txt_button, alarm_button;
     private JobScheduler mJobScheduler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarmsettings);
-        toggleButton5 = (ToggleButton) findViewById(R.id.toggleButton5);
-        toggleButton6 = (ToggleButton) findViewById(R.id.toggleButton6);
-        toggleButton7 = (ToggleButton) findViewById(R.id.toggleButton7);
+        email_button = (ToggleButton) findViewById(R.id.email_button);
+        txt_button = (ToggleButton) findViewById(R.id.txt_button);
+        alarm_button = (ToggleButton) findViewById(R.id.alarm_button);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         mJobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
 
         boolean toggle1state = sharedpreferences.getBoolean("droptest_email_state", false);
-        toggleButton5.setChecked(toggle1state);
+        email_button.setChecked(toggle1state);
 
         boolean toggle2state = sharedpreferences.getBoolean("droptest_sms_state", false);
-        toggleButton6.setChecked(toggle2state);
+        txt_button.setChecked(toggle2state);
 
         boolean toggle3state = sharedpreferences.getBoolean("droptest_alarm_state", false);
-        toggleButton7.setChecked(toggle3state);
+        alarm_button.setChecked(toggle3state);
 
         //String txtdate = sharedpreferences.getString("probation_meeting_date", "No date chosen yet");
 
@@ -63,11 +63,11 @@ public class AlarmSettings extends AppCompatActivity {
             }
         });
 
-        toggleButton5.setOnClickListener(new View.OnClickListener() {
+        email_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                if (toggleButton5.isChecked())
+                if (email_button.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_email_state", true);
@@ -82,11 +82,11 @@ public class AlarmSettings extends AppCompatActivity {
             }
         });
 
-        toggleButton6.setOnClickListener(new View.OnClickListener() {
+        txt_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                if (toggleButton6.isChecked())
+                if (txt_button.isChecked())
                 {
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_sms_state", true);
@@ -101,11 +101,11 @@ public class AlarmSettings extends AppCompatActivity {
             }
         });
 
-        toggleButton7.setOnClickListener(new View.OnClickListener() {
+        alarm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                if (toggleButton7.isChecked())
+                if (alarm_button.isChecked())
                 {
                     JobInfo.Builder builder = new JobInfo.Builder( 1,
                             new ComponentName( getPackageName(), JobSchedulerServiceAlarm.class.getName() ) );
@@ -139,6 +139,7 @@ public class AlarmSettings extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_alarm_state", false);
+                    editor.putString("todays_date", "08-01-2000");
                     editor.apply();
                 }
             }

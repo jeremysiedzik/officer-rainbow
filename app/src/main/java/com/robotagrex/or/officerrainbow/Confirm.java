@@ -142,7 +142,6 @@ public class Confirm extends AppCompatActivity {
     private void playalarm() {
         // code block below for heartbeat 'beep'
         final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
         final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("alarm", "raw", getPackageName()));
 

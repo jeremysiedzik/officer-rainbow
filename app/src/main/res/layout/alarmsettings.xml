@@ -41,18 +41,18 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/toggleButton6"
+            android:id="@+id/txt_button"
             android:textSize="36sp"
             android:checked="false"
             android:textOn="@string/text_msg_enabled"
             android:textOff="@string/text_msg_disabled"
-            android:layout_above="@+id/toggleButton5"
+            android:layout_above="@+id/email_button"
             android:layout_centerHorizontal="true" />
 
         <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/toggleButton5"
+        android:id="@+id/email_button"
         android:textSize="36sp"
         android:checked="false"
         android:textOn="@string/email_enabled"
@@ -63,12 +63,12 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/toggleButton7"
+            android:id="@+id/alarm_button"
             android:textSize="36sp"
             android:checked="false"
             android:textOn="@string/alarm_enabled"
             android:textOff="@string/alarm_disabled"
-            android:layout_above="@+id/toggleButton6"
+            android:layout_above="@+id/txt_button"
             android:layout_centerHorizontal="true" />
 
         <Button

@@ -38,8 +38,6 @@ public class WebsiteChoice extends AppCompatActivity {
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
 
-
-
         boolean toggle1state = sharedpreferences.getBoolean("jams_state", false);
             toggleButton.setChecked(toggle1state);
 
