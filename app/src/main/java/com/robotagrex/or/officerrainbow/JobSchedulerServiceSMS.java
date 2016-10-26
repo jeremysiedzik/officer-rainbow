@@ -20,7 +20,7 @@ public class JobSchedulerServiceSMS extends JobService {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    private Handler mJobHandler = new Handler( new Handler.Callback() {
+    private Handler mJobHandlerSMS = new Handler( new Handler.Callback() {
 
         @Override
         public boolean handleMessage(Message msg) {
@@ -97,13 +97,13 @@ public class JobSchedulerServiceSMS extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        mJobHandler.sendMessage( Message.obtain( mJobHandler, 22, params ) );
+        mJobHandlerSMS.sendMessage( Message.obtain( mJobHandlerSMS, 1, params ) );
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        mJobHandler.removeMessages( 22 );
+        mJobHandlerSMS.removeMessages( 1 );
         return false;
     }
 }

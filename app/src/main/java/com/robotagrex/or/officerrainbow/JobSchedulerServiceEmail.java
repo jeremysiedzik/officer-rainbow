@@ -20,7 +20,7 @@ public class JobSchedulerServiceEmail extends JobService {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
 
-    private Handler mJobHandler = new Handler( new Handler.Callback() {
+    private Handler mJobHandlerEmail = new Handler( new Handler.Callback() {
 
         @Override
         public boolean handleMessage(Message msg) {
@@ -96,13 +96,13 @@ public class JobSchedulerServiceEmail extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        mJobHandler.sendMessage( Message.obtain( mJobHandler, 11, params ) );
+        mJobHandlerEmail.sendMessage( Message.obtain( mJobHandlerEmail, 1, params ) );
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        mJobHandler.removeMessages( 11 );
+        mJobHandlerEmail.removeMessages( 1 );
         return false;
     }
 }
