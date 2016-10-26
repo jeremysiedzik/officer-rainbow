@@ -90,6 +90,12 @@
         <service android:name=".SendEmail"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
+        <receiver android:name="com.robotagrex.or.officerrainbow.NetworkChange" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 

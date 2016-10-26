@@ -38,6 +38,9 @@ public class JobSchedulerServiceAlarm extends JobService {
             if (formattedDate.equals(storedDate)) {
                 checkedtoday = true;
             }
+            System.out.println("checked today = " +checkedtoday);
+            System.out.println("formatted date = " +formattedDate);
+            System.out.println("stored date = " +storedDate);
 
             int alarm_int = 5;
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);

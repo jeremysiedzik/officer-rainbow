@@ -112,11 +112,6 @@ public class AlarmSettings extends AppCompatActivity {
 
                     builder.setPeriodic(30 * 1000);
                     builder.setPersisted(true);
-                    //Toast toast1= Toast.makeText(getApplicationContext(),
-                    //        "JobService Set", Toast.LENGTH_SHORT);
-                    //toast1.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
-                    //toast1.show();
-
 
                     if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
                         Toast toast2= Toast.makeText(getApplicationContext(),

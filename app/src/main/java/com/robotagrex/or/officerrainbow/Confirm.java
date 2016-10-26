@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -74,6 +75,9 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
+                SystemClock.sleep(3000);
+                stopaudio(getApplication());
+                stopaudio(getApplication());
                 try {
                     Calendar c = Calendar.getInstance();
                     System.out.println("Current time => " + c.getTime());
@@ -82,7 +86,6 @@ public class Confirm extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString("todays_date", formattedDate);
                     editor.apply();
-                    stopaudio(getApplication());
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
                 }
