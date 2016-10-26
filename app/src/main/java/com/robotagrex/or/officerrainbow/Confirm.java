@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -75,7 +74,6 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                SystemClock.sleep(3000);
                 stopaudio(getApplication());
                 stopaudio(getApplication());
                 try {
@@ -84,7 +82,7 @@ public class Confirm extends AppCompatActivity {
                     SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
                     String formattedDate = df.format(c.getTime());
                     SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.putString("todays_date", formattedDate);
+                    editor.putString("todays_date_alarm", formattedDate);
                     editor.apply();
                 } catch (IllegalStateException e) {
                     e.printStackTrace();

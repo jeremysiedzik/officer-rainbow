@@ -44,7 +44,13 @@ public class NetworkChange extends BroadcastReceiver {
         JobInfo.Builder builder = new JobInfo.Builder( 1,
                 new ComponentName( context.getPackageName(), JobSchedulerServiceAlarm.class.getName() ) );
 
-                builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+            builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+
+            if (checkInternetConnection(context)) {
+                Intent websitechecker = new Intent(context, WebSitechecker.class);
+                context.startService(websitechecker);
+            }
+
 
         if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
             Toast toast2= Toast.makeText(context.getApplicationContext(),
@@ -55,5 +61,8 @@ public class NetworkChange extends BroadcastReceiver {
 
         mJobScheduler.cancelAll();
     }
-
+    public boolean checkInternetConnection(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    }
 }

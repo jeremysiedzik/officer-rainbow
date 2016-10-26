@@ -20,7 +20,9 @@ public class AlarmSettings extends AppCompatActivity {
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedpreferences;
     ToggleButton email_button, txt_button, alarm_button;
-    private JobScheduler mJobScheduler;
+    private JobScheduler mJobSchedulerSms;
+    private JobScheduler mJobSchedulerAlarm;
+    private JobScheduler mJobSchedulerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,9 @@ public class AlarmSettings extends AppCompatActivity {
         alarm_button = (ToggleButton) findViewById(R.id.alarm_button);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        mJobScheduler = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
+        mJobSchedulerSms = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
+        mJobSchedulerAlarm = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
+        mJobSchedulerEmail = (JobScheduler) getSystemService( Context.JOB_SCHEDULER_SERVICE );
 
         boolean toggle1state = sharedpreferences.getBoolean("droptest_email_state", false);
         email_button.setChecked(toggle1state);
@@ -69,14 +73,34 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (email_button.isChecked())
                 {
+                    JobInfo.Builder builderemail = new JobInfo.Builder( 1,
+                            new ComponentName( getPackageName(), JobSchedulerServiceEmail.class.getName() ) );
+
+                    builderemail.setPeriodic(30 * 1000);
+                    builderemail.setPersisted(true);
+
+                    if( mJobSchedulerEmail.schedule( builderemail.build() ) <= 0 ) {
+                        Toast toast2= Toast.makeText(getApplicationContext(),
+                                "JobServiceEmail task is broken", Toast.LENGTH_SHORT);
+                        toast2.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast2.show();
+                    }
+
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_email_state", true);
                     editor.apply();
                 }
                 else
                 {
+                    mJobSchedulerEmail.cancelAll();
+                    Toast toast3= Toast.makeText(getApplicationContext(),
+                            "JobServiceEmail Cancelled", Toast.LENGTH_SHORT);
+                    toast3.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast3.show();
+
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_email_state", false);
+                    editor.putString("todays_date_email", "08-01-2000");
                     editor.apply();
                 }
             }
@@ -88,14 +112,34 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (txt_button.isChecked())
                 {
+                    JobInfo.Builder buildersms = new JobInfo.Builder( 1,
+                            new ComponentName( getPackageName(), JobSchedulerServiceSMS.class.getName() ) );
+
+                    buildersms.setPeriodic(30 * 1000);
+                    buildersms.setPersisted(true);
+
+                    if( mJobSchedulerSms.schedule( buildersms.build() ) <= 0 ) {
+                        Toast toast2= Toast.makeText(getApplicationContext(),
+                                "JobServiceSMS task is broken", Toast.LENGTH_SHORT);
+                        toast2.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast2.show();
+                    }
+
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_sms_state", true);
                     editor.apply();
                 }
                 else
                 {
+                    mJobSchedulerSms.cancelAll();
+                    Toast toast3= Toast.makeText(getApplicationContext(),
+                            "JobServiceSMS Cancelled", Toast.LENGTH_SHORT);
+                    toast3.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast3.show();
+
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_sms_state", false);
+                    editor.putString("todays_date_sms", "08-01-2000");
                     editor.apply();
                 }
             }
@@ -107,15 +151,15 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (alarm_button.isChecked())
                 {
-                    JobInfo.Builder builder = new JobInfo.Builder( 1,
+                    JobInfo.Builder builderalarm = new JobInfo.Builder( 1,
                             new ComponentName( getPackageName(), JobSchedulerServiceAlarm.class.getName() ) );
 
-                    builder.setPeriodic(30 * 1000);
-                    builder.setPersisted(true);
+                    builderalarm.setPeriodic(30 * 1000);
+                    builderalarm.setPersisted(true);
 
-                    if( mJobScheduler.schedule( builder.build() ) <= 0 ) {
+                    if( mJobSchedulerAlarm.schedule( builderalarm.build() ) <= 0 ) {
                         Toast toast2= Toast.makeText(getApplicationContext(),
-                                "JobService task is broken", Toast.LENGTH_SHORT);
+                                "JobServiceAlarm task is broken", Toast.LENGTH_SHORT);
                         toast2.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                         toast2.show();
                     }
@@ -126,15 +170,15 @@ public class AlarmSettings extends AppCompatActivity {
                 }
                 else
                 {
-                    mJobScheduler.cancelAll();
+                    mJobSchedulerAlarm.cancelAll();
                     Toast toast3= Toast.makeText(getApplicationContext(),
-                            "JobService Cancelled", Toast.LENGTH_SHORT);
+                            "JobServiceAlarm Cancelled", Toast.LENGTH_SHORT);
                     toast3.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast3.show();
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_alarm_state", false);
-                    editor.putString("todays_date", "08-01-2000");
+                    editor.putString("todays_date_alarm", "08-01-2000");
                     editor.apply();
                 }
             }

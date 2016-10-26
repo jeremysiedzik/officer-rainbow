@@ -10,7 +10,9 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class JobSchedulerServiceSMS extends JobService {
 
@@ -23,43 +25,41 @@ public class JobSchedulerServiceSMS extends JobService {
         @Override
         public boolean handleMessage(Message msg) {
 
+            Toast.makeText(getApplicationContext(), "JobServiceSMS task running", Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "JobServiceSMS idling");
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             Calendar c = Calendar.getInstance();
-            int alarm_time = c.get(Calendar.HOUR_OF_DAY);
-            Toast.makeText(getApplicationContext(), "JobService task running", Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "JobService idling");
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+            String formattedDate = df.format(c.getTime());
+            String storedDate = sharedpreferences.getString("todays_date_sms", "07-21-2020");
+            boolean checkedtodaysms = false;
+            if (formattedDate.equals(storedDate)) {
+                checkedtodaysms = true;
+            }
+            System.out.println("checked today = " +checkedtodaysms);
+            System.out.println("formatted date = " +formattedDate);
+            System.out.println("stored date = " +storedDate);
+
             int alarm_int = 5;
+            int alarm_time = c.get(Calendar.HOUR_OF_DAY);
+            if (alarm_time == alarm_int && (!checkedtodaysms)) {
 
-            if (alarm_time == alarm_int) {
-
-                Log.i(TAG, "JobService running - alarm_time variable matches hardcoded int - " + alarm_int);
+                Log.i(TAG, "JobServiceSMS running - alarm_time variable matches hardcoded int - " + alarm_int);
 
                 Context context = getApplication();
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
                 boolean sms_enabled = sharedpreferences.getBoolean("droptest_sms_state", false);
-                boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
-                boolean email_enabled = sharedpreferences.getBoolean("droptest_email_state", false);
 
                 System.out.println("sms enabled? = "+sms_enabled);
-                System.out.println("alarm enabled? = "+alarm_enabled);
-                System.out.println("email enabled? = "+email_enabled);
 
                     Intent websitechecker = new Intent(context, WebSitechecker.class);
                     context.startService(websitechecker);
 
-                if (alarm_enabled) {
-                    Intent alarm = new Intent(context, Alarm.class);
-                    context.startService(alarm);
-                }
 
                 if (sms_enabled) {
                     Intent sendtext = new Intent(context, SendText.class);
                     context.startService(sendtext);
-                }
-
-                if (email_enabled) {
-                    Intent sendemail = new Intent(context, SendEmail.class);
-                    context.startService(sendemail);
                 }
 
                 // code block below for heartbeat 'beep'

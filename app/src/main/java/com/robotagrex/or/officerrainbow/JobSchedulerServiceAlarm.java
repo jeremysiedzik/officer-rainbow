@@ -33,19 +33,19 @@ public class JobSchedulerServiceAlarm extends JobService {
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
             String formattedDate = df.format(c.getTime());
-            String storedDate = sharedpreferences.getString("todays_date", "07-21-2020");
-            boolean checkedtoday = false;
+            String storedDate = sharedpreferences.getString("todays_date_alarm", "07-21-2020");
+            boolean checkedtodayalarm = false;
             if (formattedDate.equals(storedDate)) {
-                checkedtoday = true;
+                checkedtodayalarm = true;
             }
-            System.out.println("checked today = " +checkedtoday);
+            System.out.println("checked today = " +checkedtodayalarm);
             System.out.println("formatted date = " +formattedDate);
             System.out.println("stored date = " +storedDate);
 
             int alarm_int = 5;
             int alarm_time = c.get(Calendar.HOUR_OF_DAY);
 
-            if (alarm_time == alarm_int && (!checkedtoday)) {
+            if (alarm_time == alarm_int && (!checkedtodayalarm)) {
 
                 Log.i(TAG, "JobServiceAlarm running - alarm_time variable matches hardcoded int - " + alarm_int);
 
