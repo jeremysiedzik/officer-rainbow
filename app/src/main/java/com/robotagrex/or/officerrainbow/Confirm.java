@@ -40,6 +40,15 @@ public class Confirm extends AppCompatActivity {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String formattedDate = df.format(c.getTime());
+        String storedDate = sharedpreferences.getString("todays_date_alarm", "07-21-2020");
+        boolean checkedtodayalarm = false;
+        if (formattedDate.equals(storedDate)) {
+            checkedtodayalarm = true;
+        }
+
         final Button titlebutton = (Button) findViewById(R.id.titlebutton);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -50,7 +59,12 @@ public class Confirm extends AppCompatActivity {
 
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
 
-        playalarm();
+        if (checkedtodayalarm) {
+            Intent qoneintent = new Intent(Confirm.this, UI.class);
+            startActivity(qoneintent);
+        } else {
+            playalarm();
+        }
 
         Runnable confirmation_msg = new Runnable() {
             @Override
@@ -151,19 +165,19 @@ public class Confirm extends AppCompatActivity {
         mPlayer.setOnPreparedListener(
                 new MediaPlayer.OnPreparedListener() {
                     public void onPrepared(MediaPlayer player) {
-                        mPlayer.setLooping(true);
                         mPlayer.start();
                     }
                 });
 
 
         mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            int n = 0;
             @Override
-            public void onCompletion(MediaPlayer mp) {
-                    mPlayer.seekTo(0);
-                //if (mp != null) {
-                //    mp.release();
-                //}
+            public void onCompletion(MediaPlayer player) {
+                if (n < 10) {
+                    mPlayer.start();
+                    n++;
+                }
             }
         });
         // code block above for heartbeat 'beep'
