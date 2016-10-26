@@ -58,9 +58,18 @@ public class SendEmail extends IntentService {
                         || data_result.contains(SEARCH_STRING3)
                 ){
                 try {
-                    loadFromNetwork(emailtrigger1);
-                    loadFromNetwork(emailtrigger2);
-                    loadFromNetwork(emailtrigger3);
+                    if (!emailtrigger1.contains("huggermugger")) {
+                        loadFromNetwork(emailtrigger1);
+                    }
+
+                    if (!emailtrigger2.contains("huggermugger")) {
+                        loadFromNetwork(emailtrigger2);
+                    }
+
+                    if (!emailtrigger3.contains("huggermugger")) {
+                        loadFromNetwork(emailtrigger3);
+                    }
+
                     Log.i(TAG, "Calling loadFromNetwork via SendEmail.java");
                     System.out.println("SendEmail 1 url is "+emailtrigger1);
                     System.out.println("SendEmail 2 url is "+emailtrigger2);
