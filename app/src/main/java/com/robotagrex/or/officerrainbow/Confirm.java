@@ -28,9 +28,8 @@ public class Confirm extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
     TextView titletxt;
-    //String debug;
     public static final String confirmation_result_push = "confirmation_result";
-    Context context = getApplication();
+    Context context = Confirm.this;
     private MediaPlayer mPlayer;
 
     @Override
@@ -88,8 +87,7 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                stopaudio(getApplication());
-                stopaudio(getApplication());
+                stopaudio();
                 try {
                     Calendar c = Calendar.getInstance();
                     System.out.println("Current time => " + c.getTime());
@@ -125,16 +123,16 @@ public class Confirm extends AppCompatActivity {
         });
     }
 
-    void releaseAudioFocusForMyApp(final Context context) {
+    void releaseAudioFocusForMyApp() {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         am.abandonAudioFocus(null);
     }
 
-    void sendconfirmation(final Context uicontext) {
+    void sendconfirmation() {
        if (checkInternetConnection()) {
             //if (debug.contains("on")) {System.out.println("About to run Confirmation.class within sendconfirmation method");}
-            Intent confirmationservice = new Intent(uicontext, Confirmation.class);
-            uicontext.startService(confirmationservice);
+            Intent confirmationservice = new Intent(context, Confirmation.class);
+            context.startService(confirmationservice);
         }
         else {
             toast_internet_down();
@@ -149,7 +147,6 @@ public class Confirm extends AppCompatActivity {
     }
 
     public boolean checkInternetConnection() {
-        Context context = getApplication();
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
@@ -158,7 +155,7 @@ public class Confirm extends AppCompatActivity {
         // code block below for heartbeat 'beep'
         final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-        final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("alarm", "raw", getPackageName()));
+        final MediaPlayer mPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
 
         mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
@@ -183,7 +180,7 @@ public class Confirm extends AppCompatActivity {
         // code block above for heartbeat 'beep'
     }
 
-    void stopaudio(final Context context) {
+    void stopaudio() {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         if(mPlayer!=null) {
@@ -194,11 +191,10 @@ public class Confirm extends AppCompatActivity {
             mPlayer=null;
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-        releaseAudioFocusForMyApp(getApplication());
+        releaseAudioFocusForMyApp();
     }
 
     class confirmation_task extends AsyncTask<Void, Void, Void> {
-        Context context = getApplicationContext();
         private ProgressDialog mProgressDialog;
 
         @Override
@@ -212,7 +208,7 @@ public class Confirm extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            sendconfirmation(getApplicationContext());
+            sendconfirmation();
             return null;
         }
 
