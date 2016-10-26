@@ -73,7 +73,7 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (email_button.isChecked())
                 {
-                    JobInfo.Builder builderemail = new JobInfo.Builder( 1,
+                    JobInfo.Builder builderemail = new JobInfo.Builder( 11,
                             new ComponentName( getPackageName(), JobSchedulerServiceEmail.class.getName() ) );
 
                     builderemail.setPeriodic(30 * 1000);
@@ -112,7 +112,7 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (txt_button.isChecked())
                 {
-                    JobInfo.Builder buildersms = new JobInfo.Builder( 1,
+                    JobInfo.Builder buildersms = new JobInfo.Builder( 22,
                             new ComponentName( getPackageName(), JobSchedulerServiceSMS.class.getName() ) );
 
                     buildersms.setPeriodic(30 * 1000);
@@ -151,7 +151,7 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (alarm_button.isChecked())
                 {
-                    JobInfo.Builder builderalarm = new JobInfo.Builder( 1,
+                    JobInfo.Builder builderalarm = new JobInfo.Builder( 33,
                             new ComponentName( getPackageName(), JobSchedulerServiceAlarm.class.getName() ) );
 
                     builderalarm.setPeriodic(30 * 1000);

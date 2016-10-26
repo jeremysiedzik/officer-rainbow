@@ -96,13 +96,13 @@ public class JobSchedulerServiceEmail extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        mJobHandler.sendMessage( Message.obtain( mJobHandler, 1, params ) );
+        mJobHandler.sendMessage( Message.obtain( mJobHandler, 11, params ) );
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        mJobHandler.removeMessages( 1 );
+        mJobHandler.removeMessages( 11 );
         return false;
     }
 }

@@ -98,13 +98,13 @@ public class JobSchedulerServiceAlarm extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        mJobHandler.sendMessage( Message.obtain( mJobHandler, 1, params ) );
+        mJobHandler.sendMessage( Message.obtain( mJobHandler, 33, params ) );
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        mJobHandler.removeMessages( 1 );
+        mJobHandler.removeMessages( 33 );
         return false;
     }
 
