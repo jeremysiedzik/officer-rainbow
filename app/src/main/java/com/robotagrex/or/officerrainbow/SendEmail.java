@@ -12,6 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class SendEmail extends IntentService {
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -111,6 +114,13 @@ public class SendEmail extends IntentService {
         Log.i(TAG, "About to run HttpURLConnection query via conn.connect");
         try {
             conn.connect();
+            Calendar c = Calendar.getInstance();
+            System.out.println("Current time => " + c.getTime());
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+            String formattedDate = df.format(c.getTime());
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString("todays_date_email", formattedDate);
+            editor.apply();
         }
 
         catch(IOException e) {

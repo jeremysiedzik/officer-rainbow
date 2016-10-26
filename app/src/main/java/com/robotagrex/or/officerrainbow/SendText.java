@@ -8,6 +8,10 @@ import android.net.Uri;
 import android.util.Log;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -72,6 +76,13 @@ public class SendText extends IntentService {
                 sms.putExtra(Intent.EXTRA_TEXT, smsMSG);
                 sms.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(sms);
+                Calendar c = Calendar.getInstance();
+                System.out.println("Current time => " + c.getTime());
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+                String formattedDate = df.format(c.getTime());
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString("todays_date_sms", formattedDate);
+                editor.apply();
                 System.out.println("SMS Sent Via 4G Network");
                 return;
             } catch (Exception e) {
@@ -93,6 +104,13 @@ public class SendText extends IntentService {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
+                        Calendar c = Calendar.getInstance();
+                        System.out.println("Current time => " + c.getTime());
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+                        String formattedDate = df.format(c.getTime());
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("todays_date_sms", formattedDate);
+                        editor.apply();
                         System.out.println("SMS sent via Twilio");
                     }
                 });
