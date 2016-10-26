@@ -140,7 +140,7 @@ public class Confirm extends AppCompatActivity {
    }
 
     void toast_internet_down() {
-        Toast toast = Toast.makeText(getApplicationContext(),
+        Toast toast = Toast.makeText(context,
                 "Check your internet connection.", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
@@ -152,7 +152,6 @@ public class Confirm extends AppCompatActivity {
     }
 
     private void playalarm() {
-        // code block below for heartbeat 'beep'
         final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
         final MediaPlayer mPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
@@ -177,16 +176,13 @@ public class Confirm extends AppCompatActivity {
                 }
             }
         });
-        // code block above for heartbeat 'beep'
     }
 
     void stopaudio() {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         if(mPlayer!=null) {
-            if(mPlayer.isPlaying())
-                mPlayer.pause();
-            mPlayer.reset();
+            mPlayer.stop();
             mPlayer.release();
             mPlayer=null;
         }
