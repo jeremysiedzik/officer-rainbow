@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -154,9 +155,23 @@ public class Confirm extends AppCompatActivity {
     private void playalarm() {
         final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-        final MediaPlayer mPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
 
-        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            if(mPlayer != null){
+                mPlayer.pause();
+                mPlayer.release();
+                mPlayer = null;
+            }
+
+            mPlayer = MediaPlayer.create(context, getResources().getIdentifier("beep", "raw", getPackageName()));
+            mPlayer = new MediaPlayer();
+            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mPlayer.prepare();
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
         mPlayer.setOnPreparedListener(
                 new MediaPlayer.OnPreparedListener() {
@@ -170,7 +185,7 @@ public class Confirm extends AppCompatActivity {
             int n = 0;
             @Override
             public void onCompletion(MediaPlayer player) {
-                if (n < 10) {
+                if (n < 3) {
                     mPlayer.start();
                     n++;
                 }
@@ -178,10 +193,13 @@ public class Confirm extends AppCompatActivity {
         });
     }
 
+
     void stopaudio() {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+        System.out.println("about to run mplayer kill");
         if(mPlayer!=null) {
+            System.out.println("killing within mplayer kill != null if statement");
             mPlayer.stop();
             mPlayer.release();
             mPlayer=null;
@@ -210,7 +228,7 @@ public class Confirm extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm.");
+            String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm");
             //String loaded_ok_string = "Alarm Confirmed";
                 try {
                     titletxt.setText(confirmation_result);

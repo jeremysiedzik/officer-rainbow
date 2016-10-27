@@ -88,6 +88,7 @@ public class AlarmSettings extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_email_state", true);
+                    editor.putString("todays_date_email", "08-01-2000");
                     editor.apply();
                 }
                 else
@@ -127,6 +128,7 @@ public class AlarmSettings extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_sms_state", true);
+                    editor.putString("todays_date_sms", "08-01-2000");
                     editor.apply();
                 }
                 else
@@ -166,6 +168,7 @@ public class AlarmSettings extends AppCompatActivity {
 
                     SharedPreferences.Editor editor = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE).edit();
                     editor.putBoolean("droptest_alarm_state", true);
+                    editor.putString("todays_date_alarm", "08-01-2000");
                     editor.apply();
                 }
                 else
