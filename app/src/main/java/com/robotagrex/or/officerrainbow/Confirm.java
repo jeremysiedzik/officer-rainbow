@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -31,7 +30,7 @@ public class Confirm extends AppCompatActivity {
     TextView titletxt;
     public static final String confirmation_result_push = "confirmation_result";
     Context context = Confirm.this;
-    private MediaPlayer mPlayer;
+    private MediaPlayer confirmPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +47,9 @@ public class Confirm extends AppCompatActivity {
         if (formattedDate.equals(storedDate)) {
             checkedtodayalarm = true;
         }
+        System.out.println("from confirm - checked today = "+checkedtodayalarm);
+        System.out.println("from confirm - formatted date = "+storedDate);
+        System.out.println("from confirm - stored date = "+storedDate);
 
         final Button titlebutton = (Button) findViewById(R.id.titlebutton);
 
@@ -60,6 +62,7 @@ public class Confirm extends AppCompatActivity {
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
 
         if (checkedtodayalarm) {
+            System.out.println("Alarm was confirmed today - via Confirm.java - running UI - skipping Confirm activity");
             Intent qoneintent = new Intent(Confirm.this, UI.class);
             startActivity(qoneintent);
         } else {
@@ -153,43 +156,44 @@ public class Confirm extends AppCompatActivity {
     }
 
     private void playalarm() {
-        final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
         try {
-            if(mPlayer != null){
-                mPlayer.pause();
-                mPlayer.release();
-                mPlayer = null;
+            if(confirmPlayer != null){
+                confirmPlayer.pause();
+                confirmPlayer.release();
+                confirmPlayer = null;
             }
-
-            mPlayer = MediaPlayer.create(context, getResources().getIdentifier("beep", "raw", getPackageName()));
-            mPlayer = new MediaPlayer();
-            mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mPlayer.prepare();
         }
 
-        catch (IOException e) {
+        catch (Exception e) {
             e.printStackTrace();
         }
 
-        mPlayer.setOnPreparedListener(
+        final AudioManager mAudioManager_alarm = (AudioManager) getSystemService(AUDIO_SERVICE);
+        final int originalVolume = mAudioManager_alarm.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_alarm.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+
+        final MediaPlayer confirmPlayer = MediaPlayer.create(context, getResources().getIdentifier("beep", "raw", getPackageName()));
+        confirmPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        confirmPlayer.setOnPreparedListener(
                 new MediaPlayer.OnPreparedListener() {
                     public void onPrepared(MediaPlayer player) {
-                        mPlayer.start();
+                        confirmPlayer.start();
                     }
                 });
 
-
-        mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        confirmPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             int n = 0;
             @Override
             public void onCompletion(MediaPlayer player) {
                 if (n < 3) {
-                    mPlayer.start();
+                    confirmPlayer.start();
                     n++;
                 }
+                mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
             }
+
         });
     }
 
@@ -198,11 +202,11 @@ public class Confirm extends AppCompatActivity {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         System.out.println("about to run mplayer kill");
-        if(mPlayer!=null) {
+        if(confirmPlayer!=null) {
             System.out.println("killing within mplayer kill != null if statement");
-            mPlayer.stop();
-            mPlayer.release();
-            mPlayer=null;
+            confirmPlayer.stop();
+            confirmPlayer.release();
+            confirmPlayer=null;
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp();

@@ -850,28 +850,14 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickcount[0] = 0;
-                Context context = getApplication();
-                AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
-                int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-                if(mediaPlayer!=null) {
-                    if(mediaPlayer.isPlaying())
-                        mediaPlayer.pause();
-                        mediaPlayer.reset();
-                        mediaPlayer.release();
-                        mediaPlayer=null;
-                        am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        //listen_star.setImageResource(android.R.drawable.star_off);
-                }
-
-                else {
+                stopaudio(getApplication());
+                boolean gotFocus = requestAudioFocusForMyApp(getApplication());
+                if ((gotFocus) && checkInternetConnection()) {
                     System.out.println("audio start button pressed - getting focus");
-                    boolean gotFocus = requestAudioFocusForMyApp(getApplication());
-                    if ((gotFocus) && checkInternetConnection()) {
-                        new asyncURLaudio().execute();
-                    } else if (!checkInternetConnection()) {
-                        //listen_star.setImageResource(android.R.drawable.star_off);
-                        toast_internet_down();
-                    }
+                    new asyncURLaudio().execute();
+
+                } else {
+                    toast_internet_down();
                 }
             }
         });
@@ -1007,9 +993,6 @@ public class UI extends AppCompatActivity {
                         if (mediaPlayer != null) {
                             mediaPlayer.release();
                         }
-                        ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
-                        assert listen_star != null;
-                        //listen_star.setImageResource(android.R.drawable.star_off);
                     }
                 });
 

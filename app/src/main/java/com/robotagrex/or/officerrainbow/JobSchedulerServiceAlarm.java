@@ -63,33 +63,6 @@ public class JobSchedulerServiceAlarm extends JobService {
                     Intent alarm = new Intent(context, Alarm.class);
                     context.startService(alarm);
                 }
-
-                // code block below for heartbeat 'beep'
-                //final AudioManager mAudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
-                //final int originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                //mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
-                //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                //mPlayer.setOnPreparedListener(
-                        //new MediaPlayer.OnPreparedListener() {
-                        //    public void onPrepared(MediaPlayer player) {
-                        //        mPlayer.start();
-                        //    }
-                        //});
-
-
-                //mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-               //     @Override
-                //    public void onCompletion(MediaPlayer mp) {
-                //        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                //        if (mp != null) {
-                //            mp.release();
-                //        }
-                //    }
-                //});
-                // code block above for heartbeat 'beep'
             }
                 jobFinished((JobParameters) msg.obj, false);
                 return true;
