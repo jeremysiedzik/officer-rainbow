@@ -30,6 +30,7 @@ public class WebSitechecker extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String urlString = url;
         String data_result ="";
+
         try {
             data_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork via WebSitechecker.java");
@@ -50,7 +51,9 @@ public class WebSitechecker extends IntentService {
         System.out.println("Search String 2 is "+SEARCH_STRING2);
         System.out.println("Search String 3 is "+SEARCH_STRING3);
 
-        if (data_result.contains(SEARCH_STRING1) || data_result.contains(SEARCH_STRING2) || data_result.contains(SEARCH_STRING3)) {
+        if (data_result.contains(SEARCH_STRING1)
+                || data_result.contains(SEARCH_STRING2)
+                || data_result.contains(SEARCH_STRING3)) {
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
         } else {
@@ -92,21 +95,12 @@ public class WebSitechecker extends IntentService {
             System.err.println("ERROR");
             e.printStackTrace();
         }
-//        finally {
             if (stream != null) {
                 stream.close();
             }
-//       }
         return str;
     }
 
-    /**
-     * Given a string representation of a URL, sets up a connection and gets
-     * an input stream.
-     * @param urlString A string representation of a URL.
-     * @return An InputStream retrieved from a successful HttpURLConnection.
-     * @throws IOException
-     */
     private InputStream downloadUrl(String urlString) throws IOException {
     
         URL url = new URL(urlString);
@@ -130,22 +124,6 @@ public class WebSitechecker extends IntentService {
         return conn.getInputStream();
     }
 
-    /** 
-     * Reads an InputStream and converts it to a String.
-     * @param stream InputStream containing HTML from www.google.com.
-     * @return String version of InputStream.
-     * @throws IOException
-     */
-   // private String readIt(InputStream stream) throws IOException {
-      
-     //   StringBuilder builder = new StringBuilder();
-     //   BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-     //   for(String line = reader.readLine(); line != null; line = reader.readLine())
-     //       builder.append(line);
-     //   reader.close();
-     //   return builder.toString();
-    //}
-
     private String readIt_again(InputStream stream) throws IOException {
         String newliner = System.getProperty("line.separator");
         StringBuilder builder = new StringBuilder();
@@ -159,10 +137,4 @@ public class WebSitechecker extends IntentService {
         reader.close();
         return builder.toString();
     }
-
-    //public boolean checkInternetConnection() {
-    //    Context context = getApplication();
-    //    ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-    //    return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
-    //}
 }

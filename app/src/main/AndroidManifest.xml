@@ -81,6 +81,8 @@
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".WebSitechecker"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".ServerUp"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".Confidence"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".Confirmation"

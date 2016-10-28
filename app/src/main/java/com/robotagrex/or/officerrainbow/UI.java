@@ -76,19 +76,6 @@ public class UI extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        //Calendar c = Calendar.getInstance();
-        //SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
-        //String formattedDate = df.format(c.getTime());
-        //String storedDate = sharedpreferences.getString("todays_date", "07-21-2020");
-        //boolean checkedtoday = false;
-        //if (formattedDate.equals(storedDate)) {
-        //    checkedtoday = true;
-        //}
-        //final boolean finalCheckedtoday = checkedtoday;
-
-        //final int alarm_int = 5;
-        //final int alarm_time = c.get(Calendar.HOUR_OF_DAY);
-
         RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.ui);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -215,18 +202,26 @@ public class UI extends AppCompatActivity {
             color_choice_3.setText(fillcolor3);
         }
 
-        //Runnable change_network_state = new Runnable() {
-        //    @Override
-        //    public void run() {
-        //        Context uicontext = getApplicationContext();
-        //        if (alarm_time == alarm_int && (!finalCheckedtoday)) {
-        //            Intent webservice = new Intent(uicontext, WebSitechecker.class);
-        //            uicontext.startService(webservice);
-        //        }
-        //        mHandler.postDelayed(this, 1000 * 20);
-        //    }
-        //};
-        //mHandler.post(change_network_state);
+        Runnable server_stat = new Runnable() {
+            @Override
+            public void run() {
+                Intent serverup = new Intent(UI.this, ServerUp.class);
+                startService(serverup);
+
+                final boolean server_up = sharedpreferences.getBoolean("web_status_result", false);
+
+                if (!server_up) {
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(10); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(20);
+                    listen_colors_heading.startAnimation(anim);
+                }
+                mHandler.postDelayed(this, 60 * 1000);
+            }
+        };
+        mHandler.post(server_stat);
 
         Runnable colors_from_prefs = new Runnable() {
             @Override
