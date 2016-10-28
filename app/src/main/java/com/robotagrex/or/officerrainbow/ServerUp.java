@@ -44,10 +44,11 @@ public class ServerUp extends IntentService {
             editor.putBoolean(server_up_push, true);
             System.out.println("server is reachable");
             editor.apply();
-        } else
+        } else {
             editor.putBoolean(server_up_push, false);
             System.out.println("server is NOT reachable");
             editor.apply();
+        }
     }
 
     private String loadFromNetwork(String urlString) throws IOException {
