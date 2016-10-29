@@ -212,7 +212,7 @@ public class UI extends AppCompatActivity {
 
                 if (!server_up) {
                     Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                    anim.setDuration(10); //You can manage the time of the blink with this parameter
+                    anim.setDuration(50); //You can manage the time of the blink with this parameter
                     anim.setStartOffset(20);
                     anim.setRepeatMode(Animation.REVERSE);
                     anim.setRepeatCount(20);
