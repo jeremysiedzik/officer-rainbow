@@ -99,7 +99,6 @@ public class Confirm extends AppCompatActivity {
         assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
-                stopaudio();
                 try {
                     Calendar c = Calendar.getInstance();
                     System.out.println("Current time => " + c.getTime());
@@ -226,6 +225,7 @@ public class Confirm extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            stopaudio();
             mProgressDialog = new ProgressDialog(Confirm.this);
             mProgressDialog.setTitle("Confirming Notification");
             mProgressDialog.setMessage("Resetting Alarm");

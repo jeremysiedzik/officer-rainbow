@@ -29,16 +29,16 @@ public class SendEmail extends IntentService {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        String emailmsg1 = sharedpreferences.getString("email_MSG1", "huggermugger");
-        String emailmsg2 = sharedpreferences.getString("email_MSG2", "huggermugger");
-        String emailmsg3 = sharedpreferences.getString("email_MSG3", "huggermugger");
-        String contact1 = sharedpreferences.getString("email1Key", "huggermugger");
-        String contact2 = sharedpreferences.getString("email2Key", "huggermugger");
-        String contact3 = sharedpreferences.getString("email3Key", "huggermugger");
+        String emailmsg1 = sharedpreferences.getString("email_MSG1", "");
+        String emailmsg2 = sharedpreferences.getString("email_MSG2", "");
+        String emailmsg3 = sharedpreferences.getString("email_MSG3", "");
+        String contact1 = sharedpreferences.getString("email1Key", "");
+        String contact2 = sharedpreferences.getString("email2Key", "");
+        String contact3 = sharedpreferences.getString("email3Key", "");
 
-        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "huggermugger");
-        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "huggermugger");
-        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "huggermugger");
+        String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "");
+        String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "");
+        String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "");
         String data_result = sharedpreferences.getString("data_result", "");
         String loaded_ok_string = "<----->";
 
@@ -61,15 +61,15 @@ public class SendEmail extends IntentService {
                         || data_result.contains(SEARCH_STRING3)
                 ){
                 try {
-                    if (!emailtrigger1.contains("huggermugger")) {
+                    if ((emailtrigger1.contains("@")) && (emailmsg1.length() != 0)) {
                         loadFromNetwork(emailtrigger1);
                     }
 
-                    if (!emailtrigger2.contains("huggermugger")) {
+                    if ((emailtrigger2.contains("@")) && (emailmsg2.length() != 0)) {
                         loadFromNetwork(emailtrigger2);
                     }
 
-                    if (!emailtrigger3.contains("huggermugger")) {
+                    if ((emailtrigger3.contains("@")) && (emailmsg3.length() != 0)) {
                         loadFromNetwork(emailtrigger3);
                     }
 
