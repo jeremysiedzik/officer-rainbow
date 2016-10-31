@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -154,7 +153,6 @@ public class AlarmSettings extends AppCompatActivity {
             {
                 if (alarm_button.isChecked())
                 {
-                    SystemClock.sleep(30 * 1000);
                     JobInfo.Builder builderalarm = new JobInfo.Builder( 33,
                             new ComponentName( getPackageName(), JobSchedulerServiceAlarm.class.getName() ) );
 

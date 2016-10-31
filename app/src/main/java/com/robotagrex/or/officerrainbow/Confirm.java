@@ -47,6 +47,7 @@ public class Confirm extends AppCompatActivity {
         if (formattedDate.equals(storedDate)) {
             checkedtodayalarm = true;
         }
+
         System.out.println("from confirm - checked today = "+checkedtodayalarm);
         System.out.println("from confirm - formatted date = "+storedDate);
         System.out.println("from confirm - stored date = "+storedDate);
@@ -61,12 +62,13 @@ public class Confirm extends AppCompatActivity {
         buttontest.setVisibility(View.INVISIBLE);
 
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
+        boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
 
         if (checkedtodayalarm) {
             System.out.println("Alarm was confirmed today - via Confirm.java - running UI - skipping Confirm activity");
             Intent qoneintent = new Intent(Confirm.this, UI.class);
             startActivity(qoneintent);
-        } else {
+        } else if (alarm_enabled){
             playalarm();
         }
 
