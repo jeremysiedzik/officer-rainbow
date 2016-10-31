@@ -42,7 +42,7 @@ public class Confirm extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
         String formattedDate = df.format(c.getTime());
-        String storedDate = sharedpreferences.getString("todays_date_alarm", "07-21-2020");
+        String storedDate = sharedpreferences.getString("todays_date_alarm", "08-01-2000");
         boolean checkedtodayalarm = false;
         if (formattedDate.equals(storedDate)) {
             checkedtodayalarm = true;
@@ -61,16 +61,17 @@ public class Confirm extends AppCompatActivity {
         assert buttontest != null;
         buttontest.setVisibility(View.INVISIBLE);
 
-        final TextView titletxt=(TextView)findViewById(R.id.titletxt);
-        boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
-
-        if (checkedtodayalarm) {
-            System.out.println("Alarm was confirmed today - via Confirm.java - running UI - skipping Confirm activity");
-            Intent qoneintent = new Intent(Confirm.this, UI.class);
-            startActivity(qoneintent);
-        } else if (alarm_enabled){
+        if (!checkedtodayalarm) {
             playalarm();
+        } else {
+            Intent unconfirmation = new Intent(Confirm.this, UI.class);
+            unconfirmation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            unconfirmation.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            unconfirmation.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            System.out.println("about to run UI.class because the alarm was checked");
+            startActivity(unconfirmation);
         }
+
 
         Runnable confirmation_msg = new Runnable() {
             @Override
