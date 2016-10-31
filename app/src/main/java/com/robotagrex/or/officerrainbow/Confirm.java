@@ -56,8 +56,9 @@ public class Confirm extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        Button buttontest = (Button) findViewById(R.id.buttontest);
+        final Button buttontest = (Button) findViewById(R.id.buttontest);
         assert buttontest != null;
+        buttontest.setVisibility(View.INVISIBLE);
 
         final TextView titletxt=(TextView)findViewById(R.id.titletxt);
 
@@ -100,6 +101,7 @@ public class Confirm extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.putString("todays_date_alarm", formattedDate);
                     editor.apply();
+                    buttontest.setVisibility(View.VISIBLE);
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
                 }
@@ -173,7 +175,7 @@ public class Confirm extends AppCompatActivity {
         final int originalVolume = mAudioManager_alarm.getStreamVolume(AudioManager.STREAM_MUSIC);
         mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_alarm.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-        final MediaPlayer confirmPlayer = MediaPlayer.create(context, getResources().getIdentifier("beep", "raw", getPackageName()));
+        final MediaPlayer confirmPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
         confirmPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         confirmPlayer.setOnPreparedListener(
