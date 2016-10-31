@@ -241,7 +241,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void run() {
                 String daily_confidence_raw = sharedpreferences.getString("confidence_result", "0");
-                String daily_confidence_string_to_int = daily_confidence_raw.replaceAll("\\s+","");
+                String daily_confidence_string_to_int = daily_confidence_raw.replaceAll("\\s+","0");
                 if (checkInternetConnection()) {
                     try {
                         int daily_confidence_string_data = Integer.parseInt(daily_confidence_string_to_int);
