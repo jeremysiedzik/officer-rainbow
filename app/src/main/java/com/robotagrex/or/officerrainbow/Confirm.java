@@ -61,7 +61,9 @@ public class Confirm extends AppCompatActivity {
         assert buttontest != null;
         buttontest.setVisibility(View.INVISIBLE);
 
-        if (!checkedtodayalarm) {
+        boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
+
+        if ((!checkedtodayalarm) && (alarm_enabled)){
             playalarm();
         } else {
             Intent unconfirmation = new Intent(Confirm.this, UI.class);
@@ -72,14 +74,16 @@ public class Confirm extends AppCompatActivity {
             startActivity(unconfirmation);
         }
 
+        titletxt = (TextView)findViewById(R.id.titletxt);
 
         Runnable confirmation_msg = new Runnable() {
             @Override
             public void run() {
-                String confirmation_result = sharedpreferences.getString("confirmation_result", "Click above to confirm");
-                //String loaded_ok_string = "Alarm Confirmed";
-                if((confirmation_result.length() != 0)) {
+                String confirmation_result = sharedpreferences.getString("confirmation_result", "");
+                if(confirmation_result.length() != 0) {
                     titletxt.setText(confirmation_result);
+                } else {
+                    titletxt.setText(R.string.clickabove);
                 }
                 mHandler.postDelayed(this, 5000);
             }

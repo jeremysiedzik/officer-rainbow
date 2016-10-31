@@ -122,5 +122,6 @@
     <string name="backend_url_sms">http://data.robotagrex.com:8080/sms-text</string>
     <string name="com.officer.rainbow.PREFERENCE_FILE_KEY">thx1138</string>
     <string name="continue_button">Continue</string>
+    <string name="clickabove">Click above to confirm</string>
 
 </resources>
