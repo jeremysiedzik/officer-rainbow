@@ -50,7 +50,7 @@ public class JobSchedulerServiceAlarm extends JobService {
 
                 Log.i(TAG, "JobServiceAlarm running - alarm_time variable matches hardcoded int - " + alarm_int);
 
-                Context context = getApplication();
+                Context context = getApplicationContext();
 
                 boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
 

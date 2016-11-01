@@ -111,7 +111,7 @@ public class SendEmail extends IntentService {
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
         // Start the query
-        Log.i(TAG, "About to run HttpURLConnection query via conn.connect");
+        Log.i(TAG, "About to run HttpURLConnection query via SendEmail.java");
         try {
             conn.connect();
             Calendar c = Calendar.getInstance();

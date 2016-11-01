@@ -100,6 +100,7 @@ public class Confirm extends AppCompatActivity {
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 try {
+                    stopaudio();
                     Calendar c = Calendar.getInstance();
                     System.out.println("Current time => " + c.getTime());
                     SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
@@ -109,11 +110,14 @@ public class Confirm extends AppCompatActivity {
                     editor.apply();
                     buttontest.setVisibility(View.VISIBLE);
                 } catch (IllegalStateException e) {
+                    stopaudio();
                     e.printStackTrace();
                 }
                 if (checkInternetConnection()) {
+                    stopaudio();
                     new confirmation_task().execute();
                 } else {
+                    stopaudio();
                     toast_internet_down();
                 }
                 }
@@ -122,6 +126,7 @@ public class Confirm extends AppCompatActivity {
         buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                stopaudio();
                 titletxt.setText("");
                 String confirmation_result = "Click above to confirm";
 
