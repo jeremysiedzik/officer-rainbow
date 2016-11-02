@@ -78,9 +78,6 @@ public class UI extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-
-
         RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.ui);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -747,7 +744,7 @@ public class UI extends AppCompatActivity {
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
+                mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mPlayerBeep.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
@@ -798,7 +795,7 @@ public class UI extends AppCompatActivity {
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
+                mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
                 mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 mPlayerBeep.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
@@ -955,7 +952,6 @@ public class UI extends AppCompatActivity {
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 System.out.println("audio start button pressed - GOT FOCUS - ");
                 Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
-                //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
 
                 try {
                     if(mPlayerURL != null){

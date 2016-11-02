@@ -25,6 +25,7 @@
             app:titleTextColor="@android:color/holo_red_dark" />
 
         <TextView
+            android:visibility="invisible"
             android:text="@string/prob_end_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
             android:textColor="@color/heading_colors" />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/raw_countown_date"
@@ -48,6 +50,7 @@
             android:layout_alignParentStart="true" />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/count_down_date"
@@ -79,6 +82,7 @@
 
         <TextView
             android:text="@string/probation_meeting_date"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/probation_meeting_date_heading"
@@ -89,6 +93,7 @@
             android:textColor="@color/heading_colors" />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/raw_countown_date"
@@ -100,6 +105,7 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/count_down_date"
@@ -310,6 +316,7 @@
             android:layout_alignParentEnd="true" />
 
     <TextView
+            android:visibility="invisible"
             android:text="@string/call_probation_office"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -321,6 +328,7 @@
             android:layout_alignParentEnd="true" />
 
         <TextView
+            android:visibility="invisible"
             android:text="@string/tap_here_to_choose_probation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -332,6 +340,7 @@
             android:layout_alignParentEnd="true" />
 
         <Button
+            android:visibility="invisible"
             android:text="@string/call_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
