@@ -1,6 +1,5 @@
 package com.robotagrex.or.officerrainbow;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -31,14 +30,12 @@ public class Confirm extends AppCompatActivity {
     TextView titletxt;
     public static final String confirmation_result_push = "confirmation_result";
     Context context = Confirm.this;
-    private MediaPlayer confirmPlayer;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm);
-
-        UI.mActivity.finish();
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
@@ -176,10 +173,10 @@ public class Confirm extends AppCompatActivity {
     private void playalarm() {
 
         try {
-            if(confirmPlayer != null){
-                confirmPlayer.pause();
-                confirmPlayer.release();
-                confirmPlayer = null;
+            if(mediaPlayer != null){
+                mediaPlayer.pause();
+                mediaPlayer.release();
+                mediaPlayer = null;
             }
         }
 
@@ -220,12 +217,12 @@ public class Confirm extends AppCompatActivity {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         System.out.println("about to run mplayer kill");
-        if(confirmPlayer!=null) {
-            if (confirmPlayer.isPlaying())
-                confirmPlayer.pause();
-            confirmPlayer.reset();
-            confirmPlayer.release();
-            confirmPlayer = null;
+        if(mediaPlayer!=null) {
+            if (mediaPlayer.isPlaying())
+                mediaPlayer.pause();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp();

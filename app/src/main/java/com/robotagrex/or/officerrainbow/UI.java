@@ -3,7 +3,6 @@ package com.robotagrex.or.officerrainbow;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -70,13 +69,11 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
-    public static Activity mActivity;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui);
-        this.mActivity = this;
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
