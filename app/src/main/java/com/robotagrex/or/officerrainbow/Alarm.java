@@ -44,10 +44,11 @@ public class Alarm extends IntentService {
                 ){
             sendNotification(getString(R.string.notify_found));
             Log.i(TAG, "Found color!!");
-                Intent confirmation = new Intent(Alarm.this, Confirm.class);
-                confirmation.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                System.out.println("about to run Confirm.class");
-                startActivity(confirmation);
+            Intent unconfirmation = new Intent(Alarm.this, Confirm.class);
+            unconfirmation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            unconfirmation.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            unconfirmation.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(unconfirmation);
 
         } else {
             sendNotification(getString(R.string.notify_unfound));
