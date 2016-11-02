@@ -188,22 +188,22 @@ public class Confirm extends AppCompatActivity {
         final int originalVolume = mAudioManager_alarm.getStreamVolume(AudioManager.STREAM_MUSIC);
         mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_alarm.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-        final MediaPlayer confirmPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
-        confirmPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-        confirmPlayer.setOnPreparedListener(
+        mediaPlayer.setOnPreparedListener(
                 new MediaPlayer.OnPreparedListener() {
                     public void onPrepared(MediaPlayer player) {
-                        confirmPlayer.start();
+                        mediaPlayer.start();
                     }
                 });
 
-        confirmPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             int n = 0;
             @Override
             public void onCompletion(MediaPlayer player) {
                 if (n < 3) {
-                    confirmPlayer.start();
+                    mediaPlayer.start();
                     n++;
                 }
                 mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);

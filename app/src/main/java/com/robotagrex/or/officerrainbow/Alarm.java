@@ -10,6 +10,10 @@ import android.content.SharedPreferences;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 
 public class Alarm extends IntentService {
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -24,6 +28,15 @@ public class Alarm extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
+        String formattedDate = df.format(c.getTime());
+        String storedDate = sharedpreferences.getString("todays_date_alarm", "08-01-2000");
+        boolean checkedtodayalarm = false;
+        if (formattedDate.equals(storedDate)) {
+            checkedtodayalarm = true;
+        }
+        boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
 
         String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "huggermugger");
         String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "huggermugger");
@@ -38,6 +51,7 @@ public class Alarm extends IntentService {
         if(
                 (data_result.length() != 0)
                         && (data_result.contains(loaded_ok_string))
+                        && alarm_enabled && checkedtodayalarm
                         && data_result.contains(SEARCH_STRING1)
                         || data_result.contains(SEARCH_STRING2)
                         || data_result.contains(SEARCH_STRING3)
