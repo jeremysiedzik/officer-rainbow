@@ -133,8 +133,11 @@ public class Confirm extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(confirmation_result_push, confirmation_result);
                 editor.apply();
-                Intent qoneintent = new Intent(Confirm.this, UI.class);
-                startActivity(qoneintent);
+                Intent unconfirmation = new Intent(Confirm.this, UI.class);
+                unconfirmation.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                unconfirmation.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                unconfirmation.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(unconfirmation);
             }
         });
     }
