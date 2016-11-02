@@ -37,6 +37,8 @@ public class Confirm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm);
 
+        mediaPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
+
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         Calendar c = Calendar.getInstance();
@@ -96,7 +98,6 @@ public class Confirm extends AppCompatActivity {
             getSupportActionBar().setTitle(app_title);
         }
 
-        assert titlebutton != null;
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 try {
@@ -183,12 +184,10 @@ public class Confirm extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
-
         final AudioManager mAudioManager_alarm = (AudioManager) getSystemService(AUDIO_SERVICE);
         final int originalVolume = mAudioManager_alarm.getStreamVolume(AudioManager.STREAM_MUSIC);
         mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_alarm.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-        final MediaPlayer mediaPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         mediaPlayer.setOnPreparedListener(
@@ -217,13 +216,19 @@ public class Confirm extends AppCompatActivity {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         System.out.println("about to run mplayer kill");
-        if(mediaPlayer!=null) {
-            if (mediaPlayer.isPlaying())
+        try {
+            if(mediaPlayer != null){
+                System.out.println("stopping audio - mediaPlayer is NOT null ---------------------------");
                 mediaPlayer.pause();
-            mediaPlayer.reset();
-            mediaPlayer.release();
-            mediaPlayer = null;
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
         }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp();
     }
