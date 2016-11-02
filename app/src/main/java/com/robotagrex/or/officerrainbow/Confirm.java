@@ -100,7 +100,7 @@ public class Confirm extends AppCompatActivity {
         titlebutton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
                 try {
-                    stopaudio();
+                    stopaudio(getApplication());
                     Calendar c = Calendar.getInstance();
                     System.out.println("Current time => " + c.getTime());
                     SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
@@ -110,14 +110,14 @@ public class Confirm extends AppCompatActivity {
                     editor.apply();
                     buttontest.setVisibility(View.VISIBLE);
                 } catch (IllegalStateException e) {
-                    stopaudio();
+                    stopaudio(getApplication());
                     e.printStackTrace();
                 }
                 if (checkInternetConnection()) {
-                    stopaudio();
+                    stopaudio(getApplication());
                     new confirmation_task().execute();
                 } else {
-                    stopaudio();
+                    stopaudio(getApplication());
                     toast_internet_down();
                 }
                 }
@@ -126,7 +126,6 @@ public class Confirm extends AppCompatActivity {
         buttontest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio();
                 titletxt.setText("");
                 String confirmation_result = "Click above to confirm";
 
@@ -211,15 +210,16 @@ public class Confirm extends AppCompatActivity {
     }
 
 
-    void stopaudio() {
+    void stopaudio(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         System.out.println("about to run mplayer kill");
         if(confirmPlayer!=null) {
-            System.out.println("killing within mplayer kill != null if statement");
-            confirmPlayer.stop();
+            if (confirmPlayer.isPlaying())
+                confirmPlayer.pause();
+            confirmPlayer.reset();
             confirmPlayer.release();
-            confirmPlayer=null;
+            confirmPlayer = null;
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp();
@@ -230,7 +230,7 @@ public class Confirm extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            stopaudio();
+            stopaudio(getApplication());
             mProgressDialog = new ProgressDialog(Confirm.this);
             mProgressDialog.setTitle("Confirming Notification");
             mProgressDialog.setMessage("Resetting Alarm");
