@@ -59,7 +59,8 @@ public class UI extends AppCompatActivity {
     TextView sms_notification1, sms_notification2, sms_notification3, email_msg_header, sms_msg_header;
     TextView email_notification1, email_notification2, email_notification3, listen_colors_heading;
     String debug = "off";
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer mPlayerBeep;
+    private MediaPlayer mPlayerURL;
     ProgressDialog mProgressDialog;
 
     Context context = getApplication();
@@ -76,6 +77,9 @@ public class UI extends AppCompatActivity {
         setContentView(R.layout.ui);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+
 
         RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.ui);
 
@@ -436,7 +440,7 @@ public class UI extends AppCompatActivity {
                 }
 
                 try {
-                    stopaudio(getApplication());
+                    stopaudioURL(getApplication());
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
                 }
@@ -447,7 +451,7 @@ public class UI extends AppCompatActivity {
         marquee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 String marquee_key = sharedpreferences.getString("marquee_key", "");
                 String marquee_link = sharedpreferences.getString("marquee_link", "");
@@ -467,7 +471,7 @@ public class UI extends AppCompatActivity {
         call_probation_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationContact.class);
                 startActivity(qoneintent);
             }
@@ -476,7 +480,7 @@ public class UI extends AppCompatActivity {
         notification_message_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -484,7 +488,7 @@ public class UI extends AppCompatActivity {
         sms_notification1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -492,7 +496,7 @@ public class UI extends AppCompatActivity {
         sms_notification2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -500,7 +504,7 @@ public class UI extends AppCompatActivity {
         sms_notification3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -508,7 +512,7 @@ public class UI extends AppCompatActivity {
         email_notification1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -516,7 +520,7 @@ public class UI extends AppCompatActivity {
         email_notification2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -524,7 +528,7 @@ public class UI extends AppCompatActivity {
         email_notification3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -532,7 +536,7 @@ public class UI extends AppCompatActivity {
         email_msg_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -540,7 +544,7 @@ public class UI extends AppCompatActivity {
         sms_msg_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, Notifications.class);
                 startActivity(qoneintent);
             }
@@ -549,7 +553,7 @@ public class UI extends AppCompatActivity {
         probation_officer_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationContact.class);
                 startActivity(qoneintent);
             }
@@ -558,7 +562,7 @@ public class UI extends AppCompatActivity {
         button_call_probation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
 
                 String raw_officer_number = sharedpreferences.getString("officerNumber","");
                 String probation_officer_number = raw_officer_number.replace("-", "");
@@ -584,7 +588,7 @@ public class UI extends AppCompatActivity {
         color_choice_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
@@ -593,7 +597,7 @@ public class UI extends AppCompatActivity {
         color_choice_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
@@ -602,7 +606,7 @@ public class UI extends AppCompatActivity {
         color_choice_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
@@ -611,7 +615,7 @@ public class UI extends AppCompatActivity {
         color_choice_3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ColorChoice.class);
                 startActivity(qoneintent);
             }
@@ -620,7 +624,7 @@ public class UI extends AppCompatActivity {
         alarm_state_notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -629,7 +633,7 @@ public class UI extends AppCompatActivity {
         alarm_state_sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -638,7 +642,7 @@ public class UI extends AppCompatActivity {
         alarm_state_email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -647,7 +651,7 @@ public class UI extends AppCompatActivity {
         alarmprompt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, AlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -656,7 +660,7 @@ public class UI extends AppCompatActivity {
         probation_end_counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -665,7 +669,7 @@ public class UI extends AppCompatActivity {
         raw_end_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -674,7 +678,7 @@ public class UI extends AppCompatActivity {
         probation_end_date_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationEndAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -683,7 +687,7 @@ public class UI extends AppCompatActivity {
         probation_meeting_counter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -692,7 +696,7 @@ public class UI extends AppCompatActivity {
         raw_meeting_probation_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -701,7 +705,7 @@ public class UI extends AppCompatActivity {
         probation_meeting_date_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 Intent qoneintent = new Intent(UI.this, ProbationMeetingAlarmSettings.class);
                 startActivity(qoneintent);
             }
@@ -710,7 +714,7 @@ public class UI extends AppCompatActivity {
        // image_store_heading.setOnClickListener(new View.OnClickListener() {
        //     @Override
        //     public void onClick(View view) {
-       //         stopaudio(getApplication());
+       //         stopaudioURL(getApplication());
        //         Intent qoneintent = new Intent(UI.this, ImageView.class);
        //         startActivity(qoneintent);
        //     }
@@ -719,7 +723,7 @@ public class UI extends AppCompatActivity {
         progress_bar_ring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
                     checkdailycolors(getApplicationContext());
                     Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -738,28 +742,26 @@ public class UI extends AppCompatActivity {
         daily_colors_string_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                //debug option - System.out.println("beep should play");
-                mPlayer.setOnPreparedListener(
-                        new MediaPlayer.OnPreparedListener() {
-                            public void onPrepared(MediaPlayer player) {
+                mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mPlayerBeep.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mPlayer) {
                                 mPlayer.start();
                             }
                         });
 
-                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mPlayerBeep.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
-                    public void onCompletion(MediaPlayer mp) {
+                    public void onCompletion(MediaPlayer mPlayerBeep) {
                         mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mp != null) {
-                            mp.release();
+                        if (mPlayerBeep != null) {
+                            mPlayerBeep.release();
                         }
                     }
                 });
@@ -791,28 +793,26 @@ public class UI extends AppCompatActivity {
         daily_colors_string.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
-                final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                // debug option - System.out.println("beep should play");
-                mPlayer.setOnPreparedListener(
+                mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mPlayerBeep.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
-                            public void onPrepared(MediaPlayer player) {
-                                mPlayer.start();
+                            public void onPrepared(MediaPlayer mPlayerBeep) {
+                                mPlayerBeep.start();
                             }
                         });
 
-                mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mPlayerBeep.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
-                    public void onCompletion(MediaPlayer mp) {
+                    public void onCompletion(MediaPlayer mPlayerBeep) {
                         mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mp != null) {
-                            mp.release();
+                        if (mPlayerBeep != null) {
+                            mPlayerBeep.release();
                         }
                     }
                 });
@@ -846,7 +846,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickcount[0] = 0;
-                stopaudio(getApplication());
+                stopaudioURL(getApplication());
                 boolean gotFocus = requestAudioFocusForMyApp(getApplication());
                 if ((gotFocus) && checkInternetConnection()) {
                     System.out.println("audio start button pressed - getting focus");
@@ -908,15 +908,18 @@ public class UI extends AppCompatActivity {
         }
     }
 
-    void stopaudio(final Context context) {
+    void stopaudioURL(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
-        if(mediaPlayer!=null) {
-            if(mediaPlayer.isPlaying())
-                mediaPlayer.pause();
-            mediaPlayer.reset();
-            mediaPlayer.release();
-            mediaPlayer=null;
+        try {
+            if(mPlayerURL != null){
+                System.out.println("stopping audio - mPlayerURL is NOT null ---------------------------");
+                mPlayerURL.pause();
+            }
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp(getApplication());
@@ -955,17 +958,17 @@ public class UI extends AppCompatActivity {
                 //final MediaPlayer mPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
 
                 try {
-                    if(mediaPlayer != null){
-                        mediaPlayer.pause();
-                        mediaPlayer.release();
-                        mediaPlayer = null;
+                    if(mPlayerURL != null){
+                        mPlayerURL.pause();
+                        mPlayerURL.release();
+                        mPlayerURL = null;
                     }
 
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), myUri);
-                    mediaPlayer = new MediaPlayer();
-                    mediaPlayer.setDataSource(getApplicationContext(), myUri);
-                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mediaPlayer.prepare();
+                    mPlayerURL = MediaPlayer.create(getApplicationContext(), myUri);
+                    mPlayerURL = new MediaPlayer();
+                    mPlayerURL.setDataSource(getApplicationContext(), myUri);
+                    mPlayerURL.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mPlayerURL.prepare();
                 }
 
                 catch (IOException e) {
@@ -974,20 +977,20 @@ public class UI extends AppCompatActivity {
 
                 //mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-                mediaPlayer.setOnPreparedListener(
+                mPlayerURL.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
-                            public void onPrepared(MediaPlayer player) {
-                                mediaPlayer.start();
+                            public void onPrepared(MediaPlayer mPlayerURL) {
+                                mPlayerURL.start();
                             }
                         });
 
 
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mPlayerURL.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
+                    public void onCompletion(MediaPlayer mPlayerURL) {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mediaPlayer != null) {
-                            mediaPlayer.release();
+                        if (mPlayerURL != null) {
+                            mPlayerURL.release();
                         }
                     }
                 });

@@ -63,6 +63,7 @@
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".Confirm"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
 

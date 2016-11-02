@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class Confirm extends AppCompatActivity {
 
-    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
     Handler mHandler = new Handler();
     TextView titletxt;
@@ -37,9 +37,8 @@ public class Confirm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirm);
 
-        mediaPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
-
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        mediaPlayer = MediaPlayer.create(context, getResources().getIdentifier("alarm", "raw", getPackageName()));
 
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.US);
@@ -50,9 +49,9 @@ public class Confirm extends AppCompatActivity {
             checkedtodayalarm = true;
         }
 
-        System.out.println("from confirm - checked today = "+checkedtodayalarm);
-        System.out.println("from confirm - formatted date = "+storedDate);
-        System.out.println("from confirm - stored date = "+storedDate);
+        System.out.println("from confirm - checked today = " + checkedtodayalarm);
+        System.out.println("from confirm - formatted date = " + formattedDate);
+        System.out.println("from confirm - stored date = " + storedDate);
 
         final Button titlebutton = (Button) findViewById(R.id.titlebutton);
 
@@ -65,7 +64,7 @@ public class Confirm extends AppCompatActivity {
 
         boolean alarm_enabled = sharedpreferences.getBoolean("droptest_alarm_state", false);
 
-        if ((!checkedtodayalarm) && (alarm_enabled)){
+        if ((!checkedtodayalarm) && (alarm_enabled)) {
             playalarm();
         } else {
             Intent unconfirmation = new Intent(Confirm.this, UI.class);
@@ -76,13 +75,13 @@ public class Confirm extends AppCompatActivity {
             startActivity(unconfirmation);
         }
 
-        titletxt = (TextView)findViewById(R.id.titletxt);
+        titletxt = (TextView) findViewById(R.id.titletxt);
 
         Runnable confirmation_msg = new Runnable() {
             @Override
             public void run() {
                 String confirmation_result = sharedpreferences.getString("confirmation_result", "");
-                if(confirmation_result.length() != 0) {
+                if (confirmation_result.length() != 0) {
                     titletxt.setText(confirmation_result);
                 } else {
                     titletxt.setText(R.string.clickabove);
@@ -93,7 +92,7 @@ public class Confirm extends AppCompatActivity {
         mHandler.post(confirmation_msg);
 
         String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             //if (debug.length() != 0 && debug.contains("on")) {System.out.println(app_title);}
             getSupportActionBar().setTitle(app_title);
         }
@@ -121,7 +120,7 @@ public class Confirm extends AppCompatActivity {
                     stopaudio(getApplication());
                     toast_internet_down();
                 }
-                }
+            }
         });
 
         buttontest.setOnClickListener(new View.OnClickListener() {
@@ -144,20 +143,19 @@ public class Confirm extends AppCompatActivity {
     }
 
     void releaseAudioFocusForMyApp() {
-        AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
+        AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         am.abandonAudioFocus(null);
     }
 
     void sendconfirmation() {
-       if (checkInternetConnection()) {
+        if (checkInternetConnection()) {
             //if (debug.contains("on")) {System.out.println("About to run Confirmation.class within sendconfirmation method");}
             Intent confirmationservice = new Intent(context, Confirmation.class);
             context.startService(confirmationservice);
-        }
-        else {
+        } else {
             toast_internet_down();
-       }
-   }
+        }
+    }
 
     void toast_internet_down() {
         Toast toast = Toast.makeText(context,
@@ -171,43 +169,31 @@ public class Confirm extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
 
-    private void playalarm() {
+    public void playalarm() {
 
-        try {
-            if(mediaPlayer != null){
-                mediaPlayer.pause();
-            }
-        }
-
-        catch (Exception e) {
-            e.printStackTrace();
-        }
         final AudioManager mAudioManager_alarm = (AudioManager) getSystemService(AUDIO_SERVICE);
         final int originalVolume = mAudioManager_alarm.getStreamVolume(AudioManager.STREAM_MUSIC);
         mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_alarm.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.prepareAsync();
-        mediaPlayer.setOnPreparedListener(
-                new MediaPlayer.OnPreparedListener() {
-                    public void onPrepared(MediaPlayer player) {
-                        mediaPlayer.start();
-                    }
-                });
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+        });
 
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             int n = 0;
             @Override
-            public void onCompletion(MediaPlayer player) {
+            public void onCompletion(MediaPlayer mediaPlayer) {
                 if (n < 3) {
                     mediaPlayer.start();
                     n++;
                 }
                 mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
             }
-
         });
     }
-
 
     void stopaudio(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
@@ -217,8 +203,6 @@ public class Confirm extends AppCompatActivity {
             if(mediaPlayer != null){
                 System.out.println("stopping audio - mediaPlayer is NOT null ---------------------------");
                 mediaPlayer.pause();
-                mediaPlayer.release();
-                mediaPlayer = null;
             }
         }
 
