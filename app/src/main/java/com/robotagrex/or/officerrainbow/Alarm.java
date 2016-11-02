@@ -51,7 +51,7 @@ public class Alarm extends IntentService {
         if(
                 (data_result.length() != 0)
                         && (data_result.contains(loaded_ok_string))
-                        && alarm_enabled && checkedtodayalarm
+                        && alarm_enabled && (!checkedtodayalarm)
                         && data_result.contains(SEARCH_STRING1)
                         || data_result.contains(SEARCH_STRING2)
                         || data_result.contains(SEARCH_STRING3)
