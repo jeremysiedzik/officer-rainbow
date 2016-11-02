@@ -176,8 +176,6 @@ public class Confirm extends AppCompatActivity {
         try {
             if(mediaPlayer != null){
                 mediaPlayer.pause();
-                mediaPlayer.release();
-                mediaPlayer = null;
             }
         }
 
@@ -187,9 +185,8 @@ public class Confirm extends AppCompatActivity {
         final AudioManager mAudioManager_alarm = (AudioManager) getSystemService(AUDIO_SERVICE);
         final int originalVolume = mAudioManager_alarm.getStreamVolume(AudioManager.STREAM_MUSIC);
         mAudioManager_alarm.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_alarm.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
+        mediaPlayer.prepareAsync();
         mediaPlayer.setOnPreparedListener(
                 new MediaPlayer.OnPreparedListener() {
                     public void onPrepared(MediaPlayer player) {
