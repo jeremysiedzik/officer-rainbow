@@ -91,9 +91,6 @@ public class UI extends AppCompatActivity {
         Button button_call_probation = (Button) findViewById(R.id.button_call_probation);
         assert button_call_probation != null;
 
-        final ImageButton listen_star = (ImageButton) findViewById(R.id.listen_star);
-        assert listen_star != null;
-
         final RingProgressBar progress_bar_ring = (RingProgressBar) findViewById(R.id.progress_bar_ring);
         assert progress_bar_ring != null;
         confidence_header = (TextView) findViewById(R.id.confidence_header);
@@ -885,9 +882,6 @@ public class UI extends AppCompatActivity {
     void releaseAudioFocusForMyApp(final Context context) {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         am.abandonAudioFocus(null);
-        ImageButton listen_star = (ImageButton)findViewById(R.id.listen_star);
-        assert listen_star != null;
-        //listen_star.setImageResource(android.R.drawable.star_off);
     }
 
     void checkdailycolors(final Context uicontext) {
