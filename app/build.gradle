@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'or'
+            keyPassword '1dlasdlas'
+            storeFile file('C:/rainbow/rainbowkey.jks')
+            storePassword '1dlasdlas'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
-
     defaultConfig {
         applicationId "com.robotagrex.or.officerrainbow"
         minSdkVersion 22

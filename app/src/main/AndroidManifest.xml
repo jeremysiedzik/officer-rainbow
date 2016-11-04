@@ -29,38 +29,50 @@
         </activity>
 
         <activity android:name=".Notifications"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".NotificationMessage"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ColorChoice"
+            android:noHistory="true"
             android:screenOrientation="landscape"/>
         <activity android:name=".DataTest"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".WebsiteChoice"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".AlarmSettings"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".CountdownActivity"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProbationContact"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".OfficerRainbow"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ProbationEndAlarmSettings"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ProbationMeetingAlarmSettings"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ImageView"
+            android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".Confirm"
@@ -94,6 +106,7 @@
             android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".SendEmail"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
+
 
         <receiver android:name="com.robotagrex.or.officerrainbow.NetworkChange" >
             <intent-filter>

@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ColorChoice"
-    android:background="@color/blanketBackground"
+    android:background="@drawable/background"
     android:fillViewport="true"
     >
 
@@ -23,7 +23,7 @@
         android:text="@string/probation_colors"
         android:textSize="40sp"
         android:textIsSelectable="false"
-        android:textColor="@color/heading_colors"
+        android:textColor="@android:color/holo_purple"
         android:id="@+id/contact_name_heading"
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentLeft="true"
@@ -40,7 +40,8 @@
         android:textSize="20sp"
         android:layout_below="@+id/contact_name_heading"
         android:layout_alignLeft="@+id/contact_name_heading"
-        android:layout_alignStart="@+id/contact_name_heading" />
+        android:layout_alignStart="@+id/contact_name_heading"
+        android:textColor="@android:color/holo_orange_light" />
 
     <Button
         android:layout_width="wrap_content"
@@ -64,7 +65,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         app:title="Officer Rainbow"
-        app:titleTextColor="@android:color/holo_red_dark"/>
+        app:titleTextColor="@android:color/holo_purple"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -79,7 +80,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/editText6"
-        android:layout_alignEnd="@+id/editText6" />
+        android:layout_alignEnd="@+id/editText6"
+        android:textColor="@android:color/holo_orange_light" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -94,7 +96,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/editText7"
-        android:layout_alignEnd="@+id/editText7" />
+        android:layout_alignEnd="@+id/editText7"
+        android:textColor="@android:color/holo_orange_light" />
 
     </RelativeLayout>
 </ScrollView>

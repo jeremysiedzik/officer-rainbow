@@ -123,5 +123,7 @@
     <string name="com.officer.rainbow.PREFERENCE_FILE_KEY">thx1138</string>
     <string name="continue_button">Continue</string>
     <string name="clickabove">Click above to confirm</string>
+    <string name="onbutton">onbutton</string>
+    <string name="subtype_en_us">subtype_en_us</string>
 
 </resources>
