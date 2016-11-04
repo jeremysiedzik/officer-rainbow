@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OfficerRainbow"
-    android:background="@color/blanketBackground"
+    android:background="@drawable/background"
     android:fillViewport="true"
     android:id="@+id/ui">
 
@@ -22,7 +22,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_alignParentTop="true"
             app:title="Officer Rainbow"
-            app:titleTextColor="@android:color/holo_red_dark" />
+            app:titleTextColor="@android:color/holo_purple" />
 
         <TextView
             android:visibility="invisible"
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_sms"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/alarm_state_notify"
             android:layout_alignParentEnd="true" />
 
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_email"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/alarm_state_sms"
             android:layout_alignParentEnd="true" />
 
@@ -145,7 +145,7 @@
             android:layout_alignBaseline="@+id/alarmprompt"
             android:layout_alignBottom="@+id/alarmprompt"
             android:layout_alignParentStart="true"
-            android:textColor="@color/heading_colors" />
+            android:textColor="@android:color/holo_purple" />
 
         <TextView
             android:text="@string/your_color_choices"
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_1"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/color_choice_heading"
             android:layout_alignParentStart="true" />
 
@@ -166,7 +166,7 @@
             android:layout_below="@+id/probation_meeting_counter"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="37dp"
-            android:textColor="@color/heading_colors" />
+            android:textColor="@android:color/holo_purple" />
 
         <TextView
             android:text="@string/alarm_state_notify"
@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_notify"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/alarmprompt"
             android:layout_alignParentEnd="true" />
 
@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_3"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/color_choice_2"
             android:layout_alignParentStart="true" />
 
@@ -209,7 +209,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_2"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/color_choice_1"
             android:layout_alignParentStart="true" />
 
@@ -222,7 +222,7 @@
             android:layout_below="@+id/confidence_header"
             android:layout_alignParentEnd="true"
             tools:text="Notification Message:"
-            android:textColor="@color/heading_colors" />
+            android:textColor="@android:color/holo_purple" />
 
         <TextView
             android:text="@string/confidence"
@@ -241,7 +241,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_notification1"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/email_msg_header"
             android:layout_alignParentEnd="true" />
 
@@ -251,7 +251,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_notification3"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/email_notification2"
             android:layout_alignParentEnd="true" />
 
@@ -261,7 +261,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sms_notification1"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/sms_msg_header"
             android:layout_alignParentEnd="true" />
 
@@ -271,7 +271,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sms_notification2"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/sms_notification1"
             android:layout_alignParentEnd="true" />
 
@@ -281,7 +281,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sms_notification3"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/sms_notification2"
             android:layout_alignParentEnd="true" />
 
@@ -291,7 +291,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_notification2"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/email_notification1"
             android:layout_alignParentEnd="true" />
 
@@ -301,7 +301,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/email_msg_header"
             android:textSize="16sp"
-            android:textColor="@color/heading_colors"
+            android:textColor="@android:color/holo_purple"
             android:layout_below="@+id/notification_message_heading"
             android:layout_alignParentEnd="true" />
 
@@ -311,7 +311,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sms_msg_header"
             android:textSize="16sp"
-            android:textColor="@color/heading_colors"
+            android:textColor="@android:color/holo_purple"
             android:layout_below="@+id/email_notification3"
             android:layout_alignParentEnd="true" />
 
@@ -356,7 +356,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/daily_colors_string"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@android:color/holo_orange_light"
             android:maxLines="10"
             android:layout_below="@+id/daily_colors_heading"
             android:layout_alignParentStart="true" />
@@ -367,7 +367,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/daily_colors_heading"
             android:textSize="16sp"
-            android:textColor="@color/heading_colors"
+            android:textColor="@android:color/holo_purple"
             android:textAlignment="viewStart"
             android:layout_alignTop="@+id/progress_bar_ring"
             android:layout_alignParentStart="true" />
@@ -379,7 +379,7 @@
         android:id="@+id/listen_colors_heading"
         android:textSize="16sp"
         android:elevation="1dp"
-        android:textColor="@color/heading_colors"
+        android:textColor="@android:color/holo_purple"
         android:layout_below="@+id/sms_notification3"
         android:layout_alignParentStart="true" />
 
@@ -390,6 +390,7 @@
         android:id="@+id/debug_heading"
         android:textSize="16sp"
         android:layout_below="@+id/probation_officer_name"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_orange_light" />
 
 </RelativeLayout>
