@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".OfficerRainbow"
+    android:fillViewport="false"
+    android:background="@drawable/background"
+    android:id="@+id/betaui">
+
+
+    <TextView
+        android:text="@string/color_test_group_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colorchoiceheading"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_alignParentStart="true" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#000000"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentTop="true"
+        app:title="Officer Rainbow"
+        app:titleTextColor="@android:color/holo_purple" />
+
+    <TextView
+        android:text="@string/tap_here_to_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colorchoice1"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/colorchoiceheading"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/tap_here_to_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colorchoice2"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/colorchoice1"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/tap_here_to_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colorchoice3"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/colorchoice2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:visibility="invisible"
+        android:text="@string/color_test_group_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invisible1"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/colorchoice3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:visibility="invisible"
+        android:text="@string/color_test_group_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invisible2"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/invisible1"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:visibility="invisible"
+        android:text="@string/color_test_group_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invisible3"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/invisible2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:visibility="invisible"
+        android:text="@string/color_test_group_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invisible4"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/invisible3"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:visibility="invisible"
+        android:text="@string/color_test_group_choices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/invisible5"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/invisible4"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/results_for_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colortodayheading"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_below="@+id/invisible5"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/no_data_pulled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/daily_colors_string"
+        android:textSize="30sp"
+        android:maxLines = "5"
+        android:scrollbars = "vertical"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/colortodayheading"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/todaysdate"
+        android:textSize="36sp"
+        android:textColor="@android:color/black"
+        android:text="@string/none_yet"
+        android:layout_below="@+id/invisible5"
+        android:layout_toEndOf="@+id/daily_colors_string" />
+
+    <TextView
+        android:id="@+id/marquee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="16sp"
+        android:clickable="true"
+        android:maxLines="2"
+        android:textColor="@android:color/holo_purple"
+        android:text="@string/marquee_contents"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
