@@ -128,5 +128,6 @@
     <string name="color_test_group_choices">Color / Test Group Choices:</string>
     <string name="results_for_today">Results for Today: </string>
     <string name="none_yet">None Yet</string>
+    <string name="notification_settings">Notification Settings:</string>
 
 </resources>
