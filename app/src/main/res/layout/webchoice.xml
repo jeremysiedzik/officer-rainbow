@@ -62,4 +62,12 @@
         </TableRow>
     </TableLayout>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:id="@+id/buttonnext"
+        android:clickable="false"
+        android:textSize="50sp" />
+
 </LinearLayout>
