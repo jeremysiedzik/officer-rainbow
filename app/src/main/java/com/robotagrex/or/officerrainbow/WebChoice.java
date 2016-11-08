@@ -42,7 +42,6 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
-    public static final String colors_url_push = "colors_url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +74,8 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
             public void onClick(View view) {
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                String colors_url  = textViewName.getText().toString();
-                editor.putString(colors_url_push, colors_url);
+                String config_url  = textViewName.getText().toString();
+                editor.putString("config_url", config_url);
                 editor.apply();
                 Intent qoneintent = new Intent(WebChoice.this, UI.class);
                 startActivity(qoneintent);

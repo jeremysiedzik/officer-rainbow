@@ -1030,10 +1030,10 @@ public class UI extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             System.out.println("Fetching XML");
-            String finalUrl = sharedpreferences.getString("colors_url", "nothing yet");
-            System.out.println("finalUrl is " +finalUrl);
-            //String finalUrl = "http://data.robotagrex.com/onsite-ads.xml";
-            HandleXML obj = new HandleXML(finalUrl);
+            String configURL = sharedpreferences.getString("config_url", "nothing yet");
+            System.out.println("configURL is " +configURL);
+
+            HandleXML obj = new HandleXML(configURL);
             obj.fetchXML();
 
             while(true) {

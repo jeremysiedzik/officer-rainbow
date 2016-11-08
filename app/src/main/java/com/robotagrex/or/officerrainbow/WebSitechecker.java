@@ -23,12 +23,12 @@ public class WebSitechecker extends IntentService {
     }
     public static final String TAG = "Color Check Service";
     public static final int NOTIFICATION_ID = 1;
-    public static final String url = "http://data.robotagrex.com/onsite-colors.txt";
     public static final String data_result_push = "data_result";
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        String urlString = url;
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String urlString = sharedpreferences.getString("colors_url", "nothing yet");
         String data_result ="";
 
         try {
@@ -36,9 +36,10 @@ public class WebSitechecker extends IntentService {
             Log.i(TAG, "Calling loadFromNetwork via WebSitechecker.java");
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
+            System.out.println("no url set yet. urlString set to " +urlString);
         }
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         String SEARCH_STRING1 = sharedpreferences.getString("color1Key", "Tap here to choose");
         String SEARCH_STRING2 = sharedpreferences.getString("color2Key", "Tap here to choose");
         String SEARCH_STRING3 = sharedpreferences.getString("color3Key", "Tap here to choose");
