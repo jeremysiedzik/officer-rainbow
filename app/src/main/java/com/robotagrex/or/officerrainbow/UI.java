@@ -69,8 +69,6 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
-    public static final String colors_list_push = "colors_list";
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -1051,7 +1049,7 @@ public class UI extends AppCompatActivity {
             editor.putString(marquee_link_push, marquee_link);
             editor.putString(marquee_key_push, marquee_key);
             editor.putString(app_title_push, app_title);
-            editor.putString(colors_list_push, colors_list);
+            editor.putString("colors_url", colors_list);
             editor.apply();
 
             return null;
