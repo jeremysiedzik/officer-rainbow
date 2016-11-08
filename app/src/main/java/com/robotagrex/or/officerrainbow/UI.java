@@ -69,6 +69,7 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
+    public static final String colors_list_push = "colors_list";
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -1027,8 +1028,11 @@ public class UI extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             System.out.println("Fetching XML");
-            String finalUrl = "http://data.robotagrex.com/onsite-ads.xml";
+            String finalUrl = sharedpreferences.getString("colors_url", "nothing yet");
+            System.out.println("finalUrl is " +finalUrl);
+            //String finalUrl = "http://data.robotagrex.com/onsite-ads.xml";
             HandleXML obj = new HandleXML(finalUrl);
             obj.fetchXML();
 
@@ -1040,13 +1044,14 @@ public class UI extends AppCompatActivity {
             String marquee_key = obj.getTitle();
             String marquee_description = obj.getDescription();
             String app_title = obj.getEditor();
+            String colors_list = obj.getColorslist();
 
-            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(marquee_description_push, marquee_description);
             editor.putString(marquee_link_push, marquee_link);
             editor.putString(marquee_key_push, marquee_key);
             editor.putString(app_title_push, app_title);
+            editor.putString(colors_list_push, colors_list);
             editor.apply();
 
             return null;

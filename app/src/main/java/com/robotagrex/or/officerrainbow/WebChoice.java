@@ -1,6 +1,7 @@
 package com.robotagrex.or.officerrainbow;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,10 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
     private TextView textViewCourse;
     private TextView textViewSession;
 
+    public static final String MyPREFERENCES = "MyPrefs";
+    SharedPreferences sharedpreferences;
+    public static final String colors_url_push = "colors_url";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,10 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                String colors_url  = textViewName.getText().toString();
+                editor.putString(colors_url_push, colors_url);
+                editor.apply();
                 Intent qoneintent = new Intent(WebChoice.this, UI.class);
                 startActivity(qoneintent);
             }

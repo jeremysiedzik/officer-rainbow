@@ -15,12 +15,17 @@ class HandleXML  {
     private String title = "title";
     private String link = "link";
     private String description = "description";
+    private String colorslist = "colorslist";
     private String urlString = null;
     private XmlPullParserFactory xmlFactoryObject;
     volatile boolean parsingComplete = true;
 
     HandleXML(String url){
         this.urlString = url;
+    }
+
+    public String getColorslist(){
+        return colorslist;
     }
 
     public String getTitle(){
@@ -61,6 +66,9 @@ class HandleXML  {
                     case XmlPullParser.END_TAG:
 
                         switch (name) {
+                            case "colorslist":
+                                colorslist = text;
+                                break;
                             case "title":
                                 title = text;
                                 break;
