@@ -24,7 +24,7 @@ class HandleXML  {
         this.urlString = url;
     }
 
-    public String getColorslist(){
+    String getColorslist(){
         return colorslist;
     }
 
