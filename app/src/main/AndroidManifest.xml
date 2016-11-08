@@ -79,6 +79,10 @@
             android:noHistory="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".WebChoice"
+            android:noHistory="true"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

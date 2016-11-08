@@ -49,9 +49,9 @@
     <string name="count_down_date">Count Down Date</string>
     <string name="raw_countown_date">Raw Countdown Date</string>
     <string name="probation_office_contact">Probation Office Contact</string>
-    <string name="name">Name</string>
-    <string name="phone_number">Phone Number</string>
-    <string name="note">Notes</string>
+    <string name="probation_officer_name">Name</string>
+    <string name="probation_phone_number">Phone Number</string>
+    <string name="probation_note">Notes</string>
     <string name="prob_end_date_text">Probation End Date</string>
     <string name="your_color_choices">Tap here to add</string>
     <string name="your_color_choices_prompt">Color Choices</string>
@@ -129,5 +129,13 @@
     <string name="results_for_today">Results for Today: </string>
     <string name="none_yet">None Yet</string>
     <string name="notification_settings">Notification Settings:</string>
+    <string name="name">Name</string>
+    <string name="course">Course</string>
+    <string name="session">Session</string>
+    <string name="hotline">Hotline</string>
+    <string name="site">Site</string>
+    <string name="web_url">Web URL</string>
+    <string name="state">State</string>
+    <string name="url">URL</string>
 
 </resources>
