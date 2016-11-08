@@ -461,6 +461,15 @@ public class UI extends AppCompatActivity {
             }
         });
 
+        debug_heading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                stopaudioURL(getApplication());
+                Intent qoneintent = new Intent(UI.this, WebChoice.class);
+                startActivity(qoneintent);
+            }
+        });
+
         call_probation_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
