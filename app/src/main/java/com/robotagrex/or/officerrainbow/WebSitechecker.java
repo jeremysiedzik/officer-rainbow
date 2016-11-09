@@ -32,8 +32,8 @@ public class WebSitechecker extends IntentService {
         String data_result ="";
 
         try {
-            data_result = loadFromNetwork(urlString);
             Log.i(TAG, "Calling loadFromNetwork via WebSitechecker.java");
+            data_result = loadFromNetwork(urlString);
         } catch (IOException e) {
             Log.i(TAG, getString(R.string.connection_error));
             System.out.println("no url set yet. urlString set to " +urlString);
@@ -70,7 +70,6 @@ public class WebSitechecker extends IntentService {
 
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
                     new Intent(this, Confirm.class), 0);
-
 
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)

@@ -93,11 +93,20 @@ public class UI extends AppCompatActivity {
         assert progress_bar_ring != null;
         confidence_header = (TextView) findViewById(R.id.confidence_header);
 
+        String colorsURL = sharedpreferences.getString("colors_url", "nothing yet");
+        String configURL = sharedpreferences.getString("config_url", "nothing yet");
+
         boolean justinstalled = sharedpreferences.getBoolean("justinstalled", true);
 
         if (justinstalled) {
             Intent qoneintent = new Intent(UI.this, WebChoice.class);
             startActivity(qoneintent);
+        }
+
+        if (!justinstalled) {
+            new asyncxml().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            System.out.println("colors_url is " +colorsURL);
+            System.out.println("config_url is " +configURL);
         }
 
         if (checkInternetConnection()) {
@@ -269,7 +278,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void run() {
                if (checkInternetConnection()) {
-                    new asyncxml().execute();
+                    new asyncxml().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
 
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -900,14 +909,13 @@ public class UI extends AppCompatActivity {
 
     void checkdailycolors(final Context uicontext) {
         if (checkInternetConnection()) {
-            new asyncxml().execute();
             System.out.println("About to run WebSitechecker.class within checkdailycolors method");
             Intent webservice = new Intent(uicontext, WebSitechecker.class);
             uicontext.startService(webservice);
 
-            System.out.println("About to run Confidence.class within checkdailycolors method");
-            Intent confservice = new Intent(uicontext, Confidence.class);
-            uicontext.startService(confservice);
+            //System.out.println("About to run Confidence.class within checkdailycolors method");
+            //Intent confservice = new Intent(uicontext, Confidence.class);
+            //uicontext.startService(confservice);
         }
         else {
             toast_internet_down();

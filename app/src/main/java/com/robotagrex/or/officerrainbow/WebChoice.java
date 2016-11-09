@@ -3,6 +3,7 @@ package com.robotagrex.or.officerrainbow;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelectedListener{
@@ -78,6 +78,10 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
                 String config_url  = textViewName.getText().toString();
                 editor.putString("config_url", config_url);
                 editor.apply();
+                System.out.println("about to run fetchxml from WebChoice.java");
+                if (checkInternetConnection()){
+                    fetchxml();
+                }
                 Intent qoneintent = new Intent(WebChoice.this, UI.class);
                 startActivity(qoneintent);
             }
@@ -193,5 +197,35 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
         textViewName.setText("");
         textViewCourse.setText("");
         textViewSession.setText("");
+    }
+
+    public boolean checkInternetConnection() {
+        Context context = getApplication();
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    void fetchxml() {
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        System.out.println("Fetching XML to retrieve colors URL in WebChoice.java");
+        String configURL = sharedpreferences.getString("config_url", "nothing yet");
+        System.out.println("configURL is " +configURL);
+
+        try {
+            HandleXML obj = new HandleXML(configURL);
+            obj.fetchXML();
+
+            while(true) {
+                if (!(obj.parsingComplete)) break;
+            }
+            String colors_list = obj.getColorslist();
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString("colors_url", colors_list);
+            editor.apply();
+        }
+        catch(Exception e) {
+            System.err.println("error in fetchxml called from WebChoice.java");
+            e.printStackTrace();
+        }
     }
 }
