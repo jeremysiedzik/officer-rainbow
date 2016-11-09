@@ -16,6 +16,7 @@ class HandleXML  {
     private String link = "link";
     private String description = "description";
     private String colorslist = "colorslist";
+    private String soundfile = "soundfile";
     private String urlString = null;
     private XmlPullParserFactory xmlFactoryObject;
     volatile boolean parsingComplete = true;
@@ -26,6 +27,10 @@ class HandleXML  {
 
     String getColorslist(){
         return colorslist;
+    }
+
+    String getSoundfile(){
+        return soundfile;
     }
 
     public String getTitle(){
@@ -66,6 +71,9 @@ class HandleXML  {
                     case XmlPullParser.END_TAG:
 
                         switch (name) {
+                            case "soundfile":
+                                soundfile = text;
+                                break;
                             case "colorslist":
                                 colorslist = text;
                                 break;

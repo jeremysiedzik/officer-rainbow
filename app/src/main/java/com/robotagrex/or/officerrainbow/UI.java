@@ -104,13 +104,13 @@ public class UI extends AppCompatActivity {
         }
 
         if (!justinstalled) {
-            new asyncxml().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             System.out.println("colors_url is " +colorsURL);
             System.out.println("config_url is " +configURL);
         }
 
         if (checkInternetConnection()) {
             checkdailycolors(getApplicationContext());
+            new asyncxml().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
 
         String device_id_number = getDeviceId(getApplicationContext());
@@ -761,6 +761,7 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
+                    fetchxml();
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -812,6 +813,7 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
+                    fetchxml();
                 final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
                 final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
                 mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
@@ -867,8 +869,8 @@ public class UI extends AppCompatActivity {
                 boolean gotFocus = requestAudioFocusForMyApp(getApplication());
                 if ((gotFocus) && checkInternetConnection()) {
                     System.out.println("audio start button pressed - getting focus");
+                    fetchxml();
                     new asyncURLaudio().execute();
-
                 } else {
                     toast_internet_down();
                 }
@@ -968,6 +970,7 @@ public class UI extends AppCompatActivity {
                 final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 System.out.println("audio start button pressed - GOT FOCUS - ");
+
                 Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
 
                 try {
@@ -1033,6 +1036,31 @@ public class UI extends AppCompatActivity {
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
 
+    void fetchxml() {
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        System.out.println("Fetching XML to retrieve colors URL in WebChoice.java");
+        String configURL = sharedpreferences.getString("config_url", "nothing yet");
+        System.out.println("configURL is " +configURL);
+        String soundfile = sharedpreferences.getString("soundfile", "null.mp3");
+
+        try {
+            HandleXML obj = new HandleXML(configURL);
+            obj.fetchXML();
+
+            while(true) {
+                if (!(obj.parsingComplete)) break;
+            }
+            String colors_list = obj.getColorslist();
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString("colors_url", colors_list);
+            editor.apply();
+        }
+        catch(Exception e) {
+            System.err.println("error in fetchxml called from UI.java");
+            e.printStackTrace();
+        }
+    }
+
     class asyncxml extends AsyncTask<Void, Void, Void> {
         Context context = getApplication();
         @Override
@@ -1059,12 +1087,14 @@ public class UI extends AppCompatActivity {
             String marquee_description = obj.getDescription();
             String app_title = obj.getEditor();
             String colors_list = obj.getColorslist();
+            String soundfile = obj.getSoundfile();
 
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(marquee_description_push, marquee_description);
             editor.putString(marquee_link_push, marquee_link);
             editor.putString(marquee_key_push, marquee_key);
             editor.putString(app_title_push, app_title);
+            editor.putString("soundfile", soundfile);
             editor.putString("colors_url", colors_list);
             editor.apply();
 
