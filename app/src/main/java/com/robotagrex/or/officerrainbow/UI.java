@@ -93,6 +93,13 @@ public class UI extends AppCompatActivity {
         assert progress_bar_ring != null;
         confidence_header = (TextView) findViewById(R.id.confidence_header);
 
+        boolean justinstalled = sharedpreferences.getBoolean("justinstalled", true);
+
+        if (justinstalled) {
+            Intent qoneintent = new Intent(UI.this, WebChoice.class);
+            startActivity(qoneintent);
+        }
+
         if (checkInternetConnection()) {
             checkdailycolors(getApplicationContext());
         }

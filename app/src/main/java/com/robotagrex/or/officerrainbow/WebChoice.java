@@ -74,6 +74,7 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
             public void onClick(View view) {
                 sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("justinstalled", false);
                 String config_url  = textViewName.getText().toString();
                 editor.putString("config_url", config_url);
                 editor.apply();
