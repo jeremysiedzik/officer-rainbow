@@ -970,8 +970,8 @@ public class UI extends AppCompatActivity {
                 final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 System.out.println("audio start button pressed - GOT FOCUS - ");
-
-                Uri myUri = Uri.parse("http://pots.robotagrex.com/onsite.flac");
+                String soundfile = sharedpreferences.getString("soundfile", "null.mp3");
+                Uri myUri = Uri.parse(soundfile);
 
                 try {
                     if(mPlayerURL != null){
@@ -1041,7 +1041,6 @@ public class UI extends AppCompatActivity {
         System.out.println("Fetching XML to retrieve colors URL in WebChoice.java");
         String configURL = sharedpreferences.getString("config_url", "nothing yet");
         System.out.println("configURL is " +configURL);
-        String soundfile = sharedpreferences.getString("soundfile", "null.mp3");
 
         try {
             HandleXML obj = new HandleXML(configURL);
