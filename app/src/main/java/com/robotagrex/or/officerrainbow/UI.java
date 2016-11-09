@@ -893,6 +893,7 @@ public class UI extends AppCompatActivity {
 
     void checkdailycolors(final Context uicontext) {
         if (checkInternetConnection()) {
+            new asyncxml().execute();
             System.out.println("About to run WebSitechecker.class within checkdailycolors method");
             Intent webservice = new Intent(uicontext, WebSitechecker.class);
             uicontext.startService(webservice);
