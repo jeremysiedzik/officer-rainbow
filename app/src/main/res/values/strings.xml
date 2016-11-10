@@ -137,5 +137,6 @@
     <string name="web_url">Web URL</string>
     <string name="state">State</string>
     <string name="url">URL</string>
+    <string name="loading_text">Loading....</string>
 
 </resources>

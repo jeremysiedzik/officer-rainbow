@@ -3,7 +3,7 @@ package com.robotagrex.or.officerrainbow;
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.ProgressDialog;
+//import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,7 +59,7 @@ public class UI extends AppCompatActivity {
     TextView email_notification1, email_notification2, email_notification3, listen_colors_heading;
     String debug = "off";
     private MediaPlayer mPlayerURL;
-    ProgressDialog mProgressDialog;
+    //ProgressDialog mProgressDialog;
 
     Context context = getApplication();
     public static final String marquee_link_push = "marquee_link";
@@ -820,6 +820,16 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 clickcount[0] = 0;
                 stopaudioURL(getApplication());
+                Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                anim.setDuration(50); //You can manage the time of the blink with this parameter
+                anim.setStartOffset(20);
+                anim.setRepeatMode(Animation.REVERSE);
+                anim.setRepeatCount(50);
+                String current_heading = listen_colors_heading.getText().toString();
+                listen_colors_heading.setText(R.string.loading_text);
+                listen_colors_heading.startAnimation(anim);
+                listen_colors_heading.setText(current_heading);
+
                 boolean gotFocus = requestAudioFocusForMyApp(getApplication());
                 if ((gotFocus) && checkInternetConnection()) {
                     System.out.println("audio start button pressed - getting focus");
@@ -888,6 +898,8 @@ public class UI extends AppCompatActivity {
             if(mPlayerURL != null){
                 System.out.println("stopping audio - mPlayerURL is NOT null ---------------------------");
                 mPlayerURL.pause();
+                mPlayerURL.release();
+                mPlayerURL = null;
             }
         }
 
@@ -915,11 +927,11 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            mProgressDialog = new ProgressDialog(UI.this);
-            mProgressDialog.setTitle("Onsite Voice Message");
-            mProgressDialog.setMessage("Downloading...");
-            mProgressDialog.setIndeterminate(false);
-            mProgressDialog.show();
+            //mProgressDialog = new ProgressDialog(UI.this);
+            //mProgressDialog.setTitle("Onsite Voice Message");
+            //mProgressDialog.setMessage("Downloading...");
+            //mProgressDialog.setIndeterminate(false);
+            //mProgressDialog.show();
         }
 
         @Override
@@ -954,6 +966,7 @@ public class UI extends AppCompatActivity {
                 mPlayerURL.setOnPreparedListener(
                         new MediaPlayer.OnPreparedListener() {
                             public void onPrepared(MediaPlayer mPlayerURL) {
+                                //if (mProgressDialog != null) mProgressDialog.dismiss();
                                 mPlayerURL.start();
                             }
                         });
@@ -974,7 +987,6 @@ public class UI extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            if (mProgressDialog != null) mProgressDialog.dismiss();
 
         }
     }
