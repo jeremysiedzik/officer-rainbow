@@ -68,6 +68,7 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
+    public static String current_heading = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +96,7 @@ public class UI extends AppCompatActivity {
 
         String colorsURL = sharedpreferences.getString("colors_url", "nothing yet");
         String configURL = sharedpreferences.getString("config_url", "nothing yet");
+        current_heading = listen_colors_heading.getText().toString();
 
         if (checkInternetConnection()) {
             System.out.println("Internet looks up - running xml - running http");
@@ -818,7 +820,6 @@ public class UI extends AppCompatActivity {
         listen_colors_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listen_colors_heading.setText(R.string.loading_text);
                 clickcount[0] = 0;
                 stopaudioURL(getApplication());
                 Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -826,10 +827,7 @@ public class UI extends AppCompatActivity {
                 anim.setStartOffset(20);
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setRepeatCount(50);
-                String current_heading = listen_colors_heading.getText().toString();
-
                 listen_colors_heading.startAnimation(anim);
-                listen_colors_heading.setText(current_heading);
 
                 boolean gotFocus = requestAudioFocusForMyApp(getApplication());
                 if ((gotFocus) && checkInternetConnection()) {
@@ -928,11 +926,8 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            //mProgressDialog = new ProgressDialog(UI.this);
-            //mProgressDialog.setTitle("Onsite Voice Message");
-            //mProgressDialog.setMessage("Downloading...");
-            //mProgressDialog.setIndeterminate(false);
-            //mProgressDialog.show();
+            stopaudioURL(getApplicationContext());
+            listen_colors_heading.setText(R.string.loading_text);
         }
 
         @Override
@@ -979,6 +974,7 @@ public class UI extends AppCompatActivity {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mPlayerURL != null) {
                             mPlayerURL.release();
+                            listen_colors_heading.setText(current_heading);
                         }
                     }
                 });
