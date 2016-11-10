@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
@@ -99,18 +100,17 @@ public class UI extends AppCompatActivity {
         boolean justinstalled = sharedpreferences.getBoolean("justinstalled", true);
 
         if (justinstalled) {
-            Intent qoneintent = new Intent(UI.this, WebChoice.class);
-            startActivity(qoneintent);
-        }
-
-        if (!justinstalled) {
-            System.out.println("colors_url is " +colorsURL);
-            System.out.println("config_url is " +configURL);
+            Intent intent = new Intent(getApplicationContext(), WebChoice.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
 
         if (checkInternetConnection()) {
+            System.out.println("Internet looks up - running xml - running http");
+            fetchxml();
             checkdailycolors(getApplicationContext());
-            new asyncxml().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            System.out.println("colors_url is " +colorsURL);
+            System.out.println("config_url is " +configURL);
         }
 
         String device_id_number = getDeviceId(getApplicationContext());
@@ -269,7 +269,7 @@ public class UI extends AppCompatActivity {
                     }
                 }
 
-                mHandler.postDelayed(this, 10000);
+                mHandler.postDelayed(this, 60 * 1000);
             }
         };
         mHandler.post(confidence_from_prefs);
@@ -298,7 +298,7 @@ public class UI extends AppCompatActivity {
                     getSupportActionBar().setTitle(app_title);
                 }
 
-                mHandler.postDelayed(this, 1000 * 30);
+                mHandler.postDelayed(this, 1000 * 40);
             }
         };
         mHandler.post(rss_setter);
@@ -1049,8 +1049,20 @@ public class UI extends AppCompatActivity {
             while(true) {
                 if (!(obj.parsingComplete)) break;
             }
+
+            String marquee_link = obj.getLink();
+            String marquee_key = obj.getTitle();
+            String marquee_description = obj.getDescription();
+            String app_title = obj.getEditor();
             String colors_list = obj.getColorslist();
+            String soundfile = obj.getSoundfile();
+
             SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(marquee_description_push, marquee_description);
+            editor.putString(marquee_link_push, marquee_link);
+            editor.putString(marquee_key_push, marquee_key);
+            editor.putString(app_title_push, app_title);
+            editor.putString("soundfile", soundfile);
             editor.putString("colors_url", colors_list);
             editor.apply();
         }
