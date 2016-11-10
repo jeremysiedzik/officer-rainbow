@@ -96,7 +96,6 @@ public class UI extends AppCompatActivity {
 
         String colorsURL = sharedpreferences.getString("colors_url", "nothing yet");
         String configURL = sharedpreferences.getString("config_url", "nothing yet");
-        current_heading = listen_colors_heading.getText().toString();
 
         if (checkInternetConnection()) {
             System.out.println("Internet looks up - running xml - running http");
@@ -183,6 +182,8 @@ public class UI extends AppCompatActivity {
         }
 
         listen_colors_heading = (TextView)findViewById(R.id.listen_colors_heading);
+        current_heading = listen_colors_heading.getText().toString();
+
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         notification_message_heading = (TextView)findViewById(R.id.notification_message_heading);
         daily_colors_string_heading = (TextView)findViewById(R.id.daily_colors_heading);
@@ -907,6 +908,7 @@ public class UI extends AppCompatActivity {
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp(getApplication());
+        listen_colors_heading.setText(current_heading);
     }
 
     private void dialContactPhone(final String phoneNumber) {
@@ -926,7 +928,6 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            stopaudioURL(getApplicationContext());
             listen_colors_heading.setText(R.string.loading_text);
         }
 
