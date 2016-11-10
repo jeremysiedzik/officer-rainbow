@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -82,18 +84,38 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putBoolean("justinstalled", false);
                 String config_url  = textViewName.getText().toString();
+
                 editor.putString("config_url", config_url);
+                editor.putBoolean("preferences_set", true);
                 editor.apply();
                 System.out.println("about to run fetchxml from Settings.java");
                 if (checkInternetConnection()){
+                    checkdailycolors(getApplicationContext());
                     fetchxml();
                 }
                 Intent qoneintent = new Intent(Settings.this, UI.class);
                 startActivity(qoneintent);
             }
         });
+    }
+
+    void checkdailycolors(final Context uicontext) {
+        if (checkInternetConnection()) {
+            System.out.println("About to run WebSitechecker.class within Settings method");
+            Intent webservice = new Intent(uicontext, WebSitechecker.class);
+            uicontext.startService(webservice);
+        }
+        else {
+            toast_internet_down();
+        }
+    }
+
+    void toast_internet_down() {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Check your internet connection.", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
     }
 
     private void getData(){

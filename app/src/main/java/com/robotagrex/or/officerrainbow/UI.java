@@ -74,6 +74,7 @@ public class UI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         RelativeLayout rlayout = (RelativeLayout) findViewById(R.id.ui);
@@ -471,6 +472,9 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudioURL(getApplication());
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("preferences_set", false);
+                editor.apply();
                 Intent qoneintent = new Intent(UI.this, Settings.class);
                 startActivity(qoneintent);
             }
