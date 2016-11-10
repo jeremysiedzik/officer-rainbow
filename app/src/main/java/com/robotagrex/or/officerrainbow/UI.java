@@ -58,7 +58,6 @@ public class UI extends AppCompatActivity {
     TextView sms_notification1, sms_notification2, sms_notification3, email_msg_header, sms_msg_header;
     TextView email_notification1, email_notification2, email_notification3, listen_colors_heading;
     String debug = "off";
-    private MediaPlayer mPlayerBeep;
     private MediaPlayer mPlayerURL;
     ProgressDialog mProgressDialog;
 
@@ -757,27 +756,7 @@ public class UI extends AppCompatActivity {
                 stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
                     fetchxml();
-                final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
-                final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
-                mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mPlayerBeep.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mPlayer) {
-                                mPlayer.start();
-                            }
-                        });
-
-                mPlayerBeep.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mPlayerBeep) {
-                        mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mPlayerBeep != null) {
-                            mPlayerBeep.release();
-                        }
-                    }
-                });
+                    playbeep();
 
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
@@ -809,27 +788,7 @@ public class UI extends AppCompatActivity {
                 stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
                     fetchxml();
-                final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
-                final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
-                mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
-                mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mPlayerBeep.setOnPreparedListener(
-                        new MediaPlayer.OnPreparedListener() {
-                            public void onPrepared(MediaPlayer mPlayerBeep) {
-                                mPlayerBeep.start();
-                            }
-                        });
-
-                mPlayerBeep.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mPlayerBeep) {
-                        mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                        if (mPlayerBeep != null) {
-                            mPlayerBeep.release();
-                        }
-                    }
-                });
+                    playbeep();
 
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
@@ -865,7 +824,10 @@ public class UI extends AppCompatActivity {
                 if ((gotFocus) && checkInternetConnection()) {
                     System.out.println("audio start button pressed - getting focus");
                     fetchxml();
-                    new asyncURLaudio().execute();
+                    if (soundFileSet()){
+                        new asyncURLaudio().execute();
+                    }
+
                 } else {
                     toast_internet_down();
                 }
@@ -948,7 +910,8 @@ public class UI extends AppCompatActivity {
     }
 
     class asyncURLaudio extends AsyncTask<Void, Void, Void> {
-    Context context = getApplication();
+        Context context = getApplication();
+        String soundfile = sharedpreferences.getString("soundfile", "null.mp3");
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -965,7 +928,7 @@ public class UI extends AppCompatActivity {
                 final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
                 System.out.println("audio start button pressed - GOT FOCUS - ");
-                String soundfile = sharedpreferences.getString("soundfile", "null.mp3");
+
                 Uri myUri = Uri.parse(soundfile);
 
                 try {
@@ -1029,6 +992,36 @@ public class UI extends AppCompatActivity {
         Context context = getApplication();
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    public boolean soundFileSet() {
+        String soundfile = sharedpreferences.getString("soundfile", "null.mp3");
+        return !soundfile.contains("null.mp3") && soundfile.contains("flac");
+    }
+
+    void playbeep() {
+        stopaudioURL(getApplication());
+        final AudioManager mAudioManager_beep = (AudioManager) getSystemService(AUDIO_SERVICE);
+        final int originalVolume = mAudioManager_beep.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager_beep.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        MediaPlayer mPlayerBeep = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("beep", "raw", getPackageName()));
+        mPlayerBeep.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mPlayerBeep.setOnPreparedListener(
+                new MediaPlayer.OnPreparedListener() {
+                    public void onPrepared(MediaPlayer mPlayerBeep) {
+                        mPlayerBeep.start();
+                    }
+                });
+
+        mPlayerBeep.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mPlayerBeep) {
+                mAudioManager_beep.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                if (mPlayerBeep != null) {
+                    mPlayerBeep.release();
+                }
+            }
+        });
     }
 
     void fetchxml() {
