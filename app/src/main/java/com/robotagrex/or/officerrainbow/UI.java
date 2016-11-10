@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
@@ -96,14 +95,6 @@ public class UI extends AppCompatActivity {
 
         String colorsURL = sharedpreferences.getString("colors_url", "nothing yet");
         String configURL = sharedpreferences.getString("config_url", "nothing yet");
-
-        boolean justinstalled = sharedpreferences.getBoolean("justinstalled", true);
-
-        if (justinstalled) {
-            Intent intent = new Intent(getApplicationContext(), WebChoice.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
 
         if (checkInternetConnection()) {
             System.out.println("Internet looks up - running xml - running http");
@@ -480,7 +471,7 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudioURL(getApplication());
-                Intent qoneintent = new Intent(UI.this, WebChoice.class);
+                Intent qoneintent = new Intent(UI.this, Settings.class);
                 startActivity(qoneintent);
             }
         });
@@ -1038,7 +1029,7 @@ public class UI extends AppCompatActivity {
 
     void fetchxml() {
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        System.out.println("Fetching XML to retrieve colors URL in WebChoice.java");
+        System.out.println("Fetching XML to retrieve colors URL in Settings.java");
         String configURL = sharedpreferences.getString("config_url", "nothing yet");
         System.out.println("configURL is " +configURL);
 

@@ -24,7 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelectedListener{
+public class Settings extends AppCompatActivity implements Spinner.OnItemSelectedListener{
 
     //Declaring an Spinner
     private Spinner spinner;
@@ -47,6 +47,15 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webchoice);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        boolean preferences_set = sharedpreferences.getBoolean("preferences_set", false);
+
+        if (preferences_set) {
+            Intent intent = new Intent(getApplicationContext(), UI.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
@@ -72,17 +81,16 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putBoolean("justinstalled", false);
                 String config_url  = textViewName.getText().toString();
                 editor.putString("config_url", config_url);
                 editor.apply();
-                System.out.println("about to run fetchxml from WebChoice.java");
+                System.out.println("about to run fetchxml from Settings.java");
                 if (checkInternetConnection()){
                     fetchxml();
                 }
-                Intent qoneintent = new Intent(WebChoice.this, UI.class);
+                Intent qoneintent = new Intent(Settings.this, UI.class);
                 startActivity(qoneintent);
             }
         });
@@ -138,7 +146,7 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
         }
 
         //Setting adapter to show the items in the spinner
-        spinner.setAdapter(new ArrayAdapter<>(WebChoice.this, android.R.layout.simple_spinner_dropdown_item, sites));
+        spinner.setAdapter(new ArrayAdapter<>(Settings.this, android.R.layout.simple_spinner_dropdown_item, sites));
     }
 
     //Method to get student name of a particular position
@@ -206,8 +214,7 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
     }
 
     void fetchxml() {
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        System.out.println("Fetching XML to retrieve colors URL in WebChoice.java");
+        System.out.println("Fetching XML to retrieve colors URL in Settings.java");
         String configURL = sharedpreferences.getString("config_url", "nothing yet");
         System.out.println("configURL is " +configURL);
 
@@ -224,7 +231,7 @@ public class WebChoice extends AppCompatActivity implements Spinner.OnItemSelect
             editor.apply();
         }
         catch(Exception e) {
-            System.err.println("error in fetchxml called from WebChoice.java");
+            System.err.println("error in fetchxml called from Settings.java");
             e.printStackTrace();
         }
     }
