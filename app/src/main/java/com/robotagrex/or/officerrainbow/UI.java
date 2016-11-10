@@ -818,6 +818,7 @@ public class UI extends AppCompatActivity {
         listen_colors_heading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                listen_colors_heading.setText(R.string.loading_text);
                 clickcount[0] = 0;
                 stopaudioURL(getApplication());
                 Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -826,7 +827,7 @@ public class UI extends AppCompatActivity {
                 anim.setRepeatMode(Animation.REVERSE);
                 anim.setRepeatCount(50);
                 String current_heading = listen_colors_heading.getText().toString();
-                listen_colors_heading.setText(R.string.loading_text);
+
                 listen_colors_heading.startAnimation(anim);
                 listen_colors_heading.setText(current_heading);
 
