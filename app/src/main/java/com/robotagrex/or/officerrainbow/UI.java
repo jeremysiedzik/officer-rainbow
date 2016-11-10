@@ -974,7 +974,7 @@ public class UI extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            mProgressDialog.dismiss();
+            if (mProgressDialog != null) mProgressDialog.dismiss();
 
         }
     }
