@@ -72,6 +72,7 @@ public class UI extends AppCompatActivity {
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
     public static String listen_current_heading = "";
+    public boolean ColorsHandlerLoop = true;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,17 +234,19 @@ public class UI extends AppCompatActivity {
         };
         StatHandler.post(server_stat);
 
+
         Runnable colors_from_prefs = new Runnable() {
             @Override
             public void run() {
-                int colors_delay = 5000;
                 daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
                 String loaded_ok_string = "<----->";
                     if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
                         daily_colors_string.setText(daily_colors_string_data);
                     }
-                        ColorsHandler.postDelayed(this, colors_delay);
+                    if (ColorsHandlerLoop) {
+                        ColorsHandler.postDelayed(this, 5000);
+                    }
             }
         };
         ColorsHandler.post(colors_from_prefs);
@@ -764,6 +767,7 @@ public class UI extends AppCompatActivity {
                     daily_colors_string.setText(R.string.loading_text);
                     fetchxml();
                     playbeep();
+                    fetchcolors();
 
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "The daily colors have been checked!", Toast.LENGTH_LONG);
@@ -1036,6 +1040,15 @@ public class UI extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    void fetchcolors() {
+        daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
+        String daily_colors_string_data = sharedpreferences.getString("data_result", "");
+        String loaded_ok_string = "<----->";
+        if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
+            daily_colors_string.setText(daily_colors_string_data);
+        }
     }
 
     void fetchxml() {
