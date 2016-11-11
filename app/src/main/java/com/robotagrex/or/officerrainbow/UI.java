@@ -49,7 +49,10 @@ public class UI extends AppCompatActivity {
     CountDownTimer probation_meet;
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
-    Handler mHandler = new Handler();
+    Handler RSSHandler = new Handler();
+    Handler ColorsHandler = new Handler();
+    Handler StatHandler = new Handler();
+    Handler ConfHandler = new Handler();
     TextView color_choice_heading, color_choice_1, daily_colors_string_heading, marquee;
     TextView alarm_state_notify, alarm_state_email, alarm_state_sms, daily_colors_string, probation_officer_name;
     TextView alarmprompt, probation_end_date_heading, probation_meeting_date_heading, call_probation_heading;
@@ -68,7 +71,7 @@ public class UI extends AppCompatActivity {
     public static final String app_title_push = "app_title";
     public static final String device_ID = "unique_id";
     public static final String device_email = "email";
-    public static String current_heading = "";
+    public static String listen_current_heading = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,7 +185,7 @@ public class UI extends AppCompatActivity {
         }
 
         listen_colors_heading = (TextView)findViewById(R.id.listen_colors_heading);
-        current_heading = listen_colors_heading.getText().toString();
+        listen_current_heading = listen_colors_heading.getText().toString();
 
         call_probation_heading = (TextView)findViewById(R.id.call_probation_heading);
         notification_message_heading = (TextView)findViewById(R.id.notification_message_heading);
@@ -225,24 +228,25 @@ public class UI extends AppCompatActivity {
                     anim.setRepeatCount(20);
                     listen_colors_heading.startAnimation(anim);
                 }
-                mHandler.postDelayed(this, 60 * 1000);
+                StatHandler.postDelayed(this, 60 * 1000);
             }
         };
-        mHandler.post(server_stat);
+        StatHandler.post(server_stat);
 
         Runnable colors_from_prefs = new Runnable() {
             @Override
             public void run() {
+                int colors_delay = 5000;
                 daily_colors_string = (TextView)findViewById(R.id.daily_colors_string);
                 String daily_colors_string_data = sharedpreferences.getString("data_result", "");
                 String loaded_ok_string = "<----->";
                     if((daily_colors_string_data.length() != 0) && (daily_colors_string_data.contains(loaded_ok_string))) {
                         daily_colors_string.setText(daily_colors_string_data);
                     }
-                        mHandler.postDelayed(this, 5000);
+                        ColorsHandler.postDelayed(this, colors_delay);
             }
         };
-        mHandler.post(colors_from_prefs);
+        ColorsHandler.post(colors_from_prefs);
 
         Runnable confidence_from_prefs = new Runnable() {
             @Override
@@ -263,10 +267,10 @@ public class UI extends AppCompatActivity {
                     }
                 }
 
-                mHandler.postDelayed(this, 60 * 1000);
+                ConfHandler.postDelayed(this, 60 * 1000);
             }
         };
-        mHandler.post(confidence_from_prefs);
+        ConfHandler.post(confidence_from_prefs);
 
        Runnable rss_setter = new Runnable() {
             @Override
@@ -292,10 +296,10 @@ public class UI extends AppCompatActivity {
                     getSupportActionBar().setTitle(app_title);
                 }
 
-                mHandler.postDelayed(this, 1000 * 40);
+                RSSHandler.postDelayed(this, 1000 * 40);
             }
         };
-        mHandler.post(rss_setter);
+        RSSHandler.post(rss_setter);
 
         alarmprompt = (TextView)findViewById(R.id.alarmprompt);
 
@@ -749,7 +753,6 @@ public class UI extends AppCompatActivity {
                 } else {
                     toast_internet_down();
                 }
-
             }
         });
 
@@ -758,6 +761,7 @@ public class UI extends AppCompatActivity {
             public void onClick(View view) {
                 stopaudioURL(getApplication());
                 if (checkInternetConnection()) {
+                    daily_colors_string.setText(R.string.loading_text);
                     fetchxml();
                     playbeep();
 
@@ -908,7 +912,7 @@ public class UI extends AppCompatActivity {
         }
         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
         releaseAudioFocusForMyApp(getApplication());
-        listen_colors_heading.setText(current_heading);
+        listen_colors_heading.setText(listen_current_heading);
     }
 
     private void dialContactPhone(final String phoneNumber) {
@@ -975,7 +979,7 @@ public class UI extends AppCompatActivity {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mPlayerURL != null) {
                             mPlayerURL.release();
-                            listen_colors_heading.setText(current_heading);
+                            listen_colors_heading.setText(listen_current_heading);
                         }
                     }
                 });
