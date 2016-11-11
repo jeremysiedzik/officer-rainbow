@@ -903,7 +903,7 @@ public class UI extends AppCompatActivity {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         try {
-            if(mPlayerURL != null){
+            if(mPlayerURL != null && mPlayerURL.isPlaying()){
                 System.out.println("stopping audio - mPlayerURL is NOT null ---------------------------");
                 mPlayerURL.pause();
                 mPlayerURL.release();
