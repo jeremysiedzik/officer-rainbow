@@ -904,8 +904,17 @@ public class UI extends AppCompatActivity {
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         try {
             if(mPlayerURL != null && mPlayerURL.isPlaying()){
-                System.out.println("stopping audio - mPlayerURL is NOT null ---------------------------");
+                System.out.println("stopping audio - mPlayerURL is NOT null and isPlaying = true");
                 mPlayerURL.pause();
+                mPlayerURL.release();
+                mPlayerURL = null;
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                releaseAudioFocusForMyApp(getApplication());
+                listen_colors_heading.setText(listen_current_heading);
+            }
+
+            if(mPlayerURL != null){
+                System.out.println("stopping audio - mPlayerURL is NOT null and isPlaying = false");
                 mPlayerURL.release();
                 mPlayerURL = null;
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
@@ -917,7 +926,6 @@ public class UI extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void dialContactPhone(final String phoneNumber) {
@@ -942,16 +950,21 @@ public class UI extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+                System.out.println("audio start button pressed - GOT FOCUS - ");
                 final AudioManager am = (AudioManager)context.getSystemService(AUDIO_SERVICE);
                 final int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
-                System.out.println("audio start button pressed - GOT FOCUS - ");
 
                 Uri myUri = Uri.parse(soundfile);
 
                 try {
-                    if(mPlayerURL != null){
+                    if(mPlayerURL != null && mPlayerURL.isPlaying()){
                         mPlayerURL.pause();
+                        mPlayerURL.release();
+                        mPlayerURL = null;
+                    }
+
+                    if(mPlayerURL != null){
                         mPlayerURL.release();
                         mPlayerURL = null;
                     }
@@ -977,13 +990,13 @@ public class UI extends AppCompatActivity {
                             }
                         });
 
-
                 mPlayerURL.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mPlayerURL) {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mPlayerURL != null) {
                             mPlayerURL.release();
+                            releaseAudioFocusForMyApp(getApplication());
                             listen_colors_heading.setText(listen_current_heading);
                         }
                     }
