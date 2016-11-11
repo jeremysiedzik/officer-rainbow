@@ -830,7 +830,6 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickcount[0] = 0;
-                stopaudioURL(getApplication());
                 Animation anim = new AlphaAnimation(0.0f, 1.0f);
                 anim.setDuration(50); //You can manage the time of the blink with this parameter
                 anim.setStartOffset(20);
@@ -903,18 +902,10 @@ public class UI extends AppCompatActivity {
         AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         int originalVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         try {
-            if(mPlayerURL != null && mPlayerURL.isPlaying()){
+            if(mPlayerURL != null) {
+            if (mPlayerURL.isPlaying()) mPlayerURL.stop();
                 System.out.println("stopping audio - mPlayerURL is NOT null and isPlaying = true");
-                mPlayerURL.pause();
-                mPlayerURL.release();
-                mPlayerURL = null;
-                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-                releaseAudioFocusForMyApp(getApplication());
-                listen_colors_heading.setText(listen_current_heading);
-            }
-
-            if(mPlayerURL != null){
-                System.out.println("stopping audio - mPlayerURL is NOT null and isPlaying = false");
+                mPlayerURL.reset();
                 mPlayerURL.release();
                 mPlayerURL = null;
                 am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
@@ -945,6 +936,7 @@ public class UI extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            stopaudioURL(getApplicationContext());
             listen_colors_heading.setText(R.string.loading_text);
         }
 
@@ -958,16 +950,6 @@ public class UI extends AppCompatActivity {
                 Uri myUri = Uri.parse(soundfile);
 
                 try {
-                    if(mPlayerURL != null && mPlayerURL.isPlaying()){
-                        mPlayerURL.pause();
-                        mPlayerURL.release();
-                        mPlayerURL = null;
-                    }
-
-                    if(mPlayerURL != null){
-                        mPlayerURL.release();
-                        mPlayerURL = null;
-                    }
 
                     mPlayerURL = MediaPlayer.create(getApplicationContext(), myUri);
                     mPlayerURL = new MediaPlayer();
@@ -995,6 +977,7 @@ public class UI extends AppCompatActivity {
                     public void onCompletion(MediaPlayer mPlayerURL) {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mPlayerURL != null) {
+                            mPlayerURL.reset();
                             mPlayerURL.release();
                             releaseAudioFocusForMyApp(getApplication());
                             listen_colors_heading.setText(listen_current_heading);
