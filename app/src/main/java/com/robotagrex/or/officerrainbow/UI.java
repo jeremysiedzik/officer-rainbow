@@ -908,15 +908,16 @@ public class UI extends AppCompatActivity {
                 mPlayerURL.pause();
                 mPlayerURL.release();
                 mPlayerURL = null;
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+                releaseAudioFocusForMyApp(getApplication());
+                listen_colors_heading.setText(listen_current_heading);
             }
         }
 
         catch (Exception e) {
             e.printStackTrace();
         }
-        am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
-        releaseAudioFocusForMyApp(getApplication());
-        listen_colors_heading.setText(listen_current_heading);
+
     }
 
     private void dialContactPhone(final String phoneNumber) {
