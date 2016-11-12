@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,23 +43,83 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     private TextView textViewName;
     private TextView textViewCourse;
     private TextView textViewSession;
+    public static final String Color1 = "color1Key";
+    public static final String Color2 = "color2Key";
+    public static final String Color3 = "color3Key";
 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedpreferences;
 
+    EditText color1,color2,color3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.webchoice);
+        setContentView(R.layout.settings);
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         boolean preferences_set = sharedpreferences.getBoolean("preferences_set", false);
+
+        color1=(EditText)findViewById(R.id.color1);
+        color2=(EditText)findViewById(R.id.color2);
+        color3=(EditText)findViewById(R.id.color3);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
+        if(getSupportActionBar() != null){
+            System.out.println(app_title);
+            getSupportActionBar().setTitle(app_title);
+        }
 
         if (preferences_set) {
             Intent intent = new Intent(getApplicationContext(), UI.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }
+
+        final String fillcolor1 = sharedpreferences.getString("color1Key", "");
+        String fillcolor2 = sharedpreferences.getString("color2Key", "");
+        String fillcolor3 = sharedpreferences.getString("color3Key", "");
+
+        if((fillcolor1.length() != 0)) {
+            color1.setText(fillcolor1);
+        } else {
+            color1.setText(R.string.tap_here_to_choose);
+        }
+
+        if((fillcolor2.length() != 0)) {
+            color2.setText(fillcolor2);
+        } else {
+            color2.setText(R.string.tap_here_to_choose);
+        }
+
+        if((fillcolor3.length() != 0)) {
+            color3.setText(fillcolor3);
+        } else {
+            color3.setText(R.string.tap_here_to_choose);
+        }
+
+        color1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                color1.setSelectAllOnFocus(true);
+            }
+        });
+
+        color2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                color2.setSelectAllOnFocus(true);
+            }
+        });
+
+        color3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                color3.setSelectAllOnFocus(true);
+            }
+        });
 
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
@@ -85,11 +147,33 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 String config_url  = textViewName.getText().toString();
+                String colorchoice1 = color1.getText().toString();
+                String colorchoice2 = color2.getText().toString();
+                String colorchoice3 = color3.getText().toString();
+
+                if (colorchoice1.length() == 0) {
+                    color1.setText(R.string.tap_here_to_choose);
+                }
+                if (colorchoice2.length() == 0) {
+                    color2.setText(R.string.tap_here_to_choose);
+                }
+                if (colorchoice3.length() == 0) {
+                    color3.setText(R.string.tap_here_to_choose);
+                }
+
+                colorchoice1 = color1.getText().toString();
+                colorchoice2 = color2.getText().toString();
+                colorchoice3 = color3.getText().toString();
+
+                editor.putString(Color1, colorchoice1);
+                editor.putString(Color2, colorchoice2);
+                editor.putString(Color3, colorchoice3);
 
                 editor.putString("config_url", config_url);
                 editor.putBoolean("preferences_set", true);
                 editor.apply();
                 System.out.println("about to run fetchxml from Settings.java");
+
                 if (checkInternetConnection()){
                     checkdailycolors(getApplicationContext());
                     fetchxml();

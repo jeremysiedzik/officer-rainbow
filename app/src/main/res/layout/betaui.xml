@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OfficerRainbow"
     android:fillViewport="false"
-    android:background="@drawable/background"
+    android:background="@android:color/black"
     android:id="@+id/betaui">
 
 
@@ -110,27 +110,6 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:visibility="invisible"
-        android:text="@string/color_test_group_choices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/invisible5"
-        android:textSize="36sp"
-        android:textColor="@android:color/holo_purple"
-        android:layout_below="@+id/invisible4"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="@string/results_for_today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/colortodayheading"
-        android:textSize="36sp"
-        android:textColor="@android:color/holo_purple"
-        android:layout_below="@+id/invisible5"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="@string/no_data_pulled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -141,16 +120,6 @@
         android:textColor="@android:color/holo_orange_light"
         android:layout_below="@+id/colortodayheading"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/todaysdate"
-        android:textSize="36sp"
-        android:textColor="@android:color/black"
-        android:text="@string/none_yet"
-        android:layout_below="@+id/invisible5"
-        android:layout_toEndOf="@+id/daily_colors_string" />
 
     <TextView
         android:id="@+id/marquee"
@@ -175,5 +144,146 @@
         android:textColor="@android:color/holo_purple"
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifyalarm"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notificationalarmheading"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifytext"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notifyalarm"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifyemail"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notifytext"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notificationmessagetextheading"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_below="@+id/notificationmessageheading"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifytext1"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notificationmessagetextheading"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/notification_messages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:id="@+id/notificationmessageheading"
+        android:layout_alignBaseline="@+id/invisible4"
+        android:layout_alignBottom="@+id/invisible4"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notificationmessageemailheading"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_below="@+id/notifytext3"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifyemail1"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notificationmessageemailheading"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifytext2"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notifytext1"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifytext3"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notifytext2"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifyemail2"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notifyemail1"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/tap_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notifyemail3"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:layout_below="@+id/notifyemail2"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/results_for_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/colortodayheading"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_above="@+id/notifytext1"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/todaysdate"
+        android:textSize="36sp"
+        android:textColor="@android:color/holo_blue_light"
+        android:text="@string/none_yet"
+        android:layout_above="@+id/daily_colors_string"
+        android:layout_toEndOf="@+id/daily_colors_string" />
 
 </RelativeLayout>

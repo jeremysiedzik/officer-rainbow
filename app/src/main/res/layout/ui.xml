@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OfficerRainbow"
-    android:background="@drawable/background"
+    android:background="@drawable/neonwolf"
     android:fillViewport="true"
     android:id="@+id/ui">
 
@@ -17,12 +17,14 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#000000"
+            android:background="@android:color/transparent"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_alignParentTop="true"
             app:title="Officer Rainbow"
-            app:titleTextColor="@android:color/holo_purple" />
+            app:titleTextColor="@android:color/holo_purple"
+            android:layout_toStartOf="@+id/mywidget"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:visibility="invisible"
@@ -121,8 +123,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_sms"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/alarm_state_notify"
             android:layout_alignParentEnd="true" />
 
@@ -131,8 +133,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_email"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/alarm_state_sms"
             android:layout_alignParentEnd="true" />
 
@@ -141,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_heading"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:layout_alignBaseline="@+id/alarmprompt"
             android:layout_alignBottom="@+id/alarmprompt"
             android:layout_alignParentStart="true"
@@ -152,8 +154,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_1"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/color_choice_heading"
             android:layout_alignParentStart="true" />
 
@@ -162,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarmprompt"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:layout_below="@+id/probation_meeting_counter"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="37dp"
@@ -173,33 +175,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/alarm_state_notify"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/alarmprompt"
             android:layout_alignParentEnd="true" />
 
-        <TextView
-        android:id="@+id/mywidget"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textSize="16sp"
-        android:clickable="true"
-        android:maxLines="2"
-        android:textColor="@android:color/holo_green_light"
-        android:text="@string/marquee_contents"
-        android:layout_alignParentBottom="true"
-            android:textAlignment="center"
-            android:layout_toStartOf="@+id/probation_meeting_date_heading"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
+    <TextView
             android:text="@string/your_color_choices"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_3"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/color_choice_2"
             android:layout_alignParentStart="true" />
 
@@ -208,23 +195,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/color_choice_2"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/color_choice_1"
             android:layout_alignParentStart="true" />
 
-        <TextView
-            android:text="@string/notification_message_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/notification_message_heading"
-            android:textSize="16sp"
-            android:layout_below="@+id/confidence_header"
-            android:layout_alignParentEnd="true"
-            tools:text="Notification Message:"
-            android:textColor="@android:color/holo_purple" />
-
-        <TextView
+    <TextView
             android:text="@string/confidence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -240,8 +216,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email_notification1"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/email_msg_header"
             android:layout_alignParentEnd="true" />
 
@@ -250,8 +226,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email_notification3"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/email_notification2"
             android:layout_alignParentEnd="true" />
 
@@ -260,8 +236,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sms_notification1"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/sms_msg_header"
             android:layout_alignParentEnd="true" />
 
@@ -270,8 +246,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sms_notification2"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/sms_notification1"
             android:layout_alignParentEnd="true" />
 
@@ -280,7 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sms_notification3"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textColor="@android:color/holo_orange_light"
             android:layout_below="@+id/sms_notification2"
             android:layout_alignParentEnd="true" />
@@ -290,8 +266,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email_notification2"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:layout_below="@+id/email_notification1"
             android:layout_alignParentEnd="true" />
 
@@ -300,8 +276,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/email_msg_header"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_purple"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_blue_light"
             android:layout_below="@+id/notification_message_heading"
             android:layout_alignParentEnd="true" />
 
@@ -310,8 +286,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sms_msg_header"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_purple"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_blue_light"
             android:layout_below="@+id/email_notification3"
             android:layout_alignParentEnd="true" />
 
@@ -355,33 +331,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/daily_colors_string"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_orange_dark"
             android:maxLines="10"
             android:layout_below="@+id/daily_colors_heading"
             android:layout_alignParentStart="true" />
 
     <TextView
-            android:text="@string/daily_colors_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/daily_colors_heading"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_purple"
-            android:textAlignment="viewStart"
-            android:layout_alignTop="@+id/progress_bar_ring"
-            android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="@string/listen_to_the_daily_colors"
-        android:layout_width="wrap_content"
+    android:id="@+id/mywidget"
         android:layout_height="wrap_content"
-        android:id="@+id/listen_colors_heading"
-        android:textSize="16sp"
-        android:elevation="1dp"
-        android:textColor="@android:color/holo_purple"
-        android:layout_below="@+id/sms_notification3"
-        android:layout_alignParentStart="true" />
+    android:padding="16dp"
+    android:textSize="16sp"
+    android:clickable="true"
+    android:maxLines="2"
+    android:textColor="@android:color/holo_blue_light"
+    android:text="@string/marquee_contents"
+        android:layout_width="800sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="@string/debug_enabled"
@@ -389,8 +356,43 @@
         android:layout_height="wrap_content"
         android:id="@+id/debug_heading"
         android:textSize="16sp"
-        android:layout_below="@+id/probation_officer_name"
-        android:layout_alignParentStart="true"
-        android:textColor="@android:color/holo_orange_light" />
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_alignBaseline="@+id/mywidget"
+        android:layout_alignBottom="@+id/mywidget"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/listen_to_the_daily_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listen_colors_heading"
+        android:textSize="24sp"
+        android:elevation="1dp"
+        android:textColor="@android:color/holo_purple"
+        android:layout_above="@+id/button_call_probation"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+            android:text="@string/daily_colors_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/daily_colors_heading"
+            android:textSize="24sp"
+            android:textColor="@android:color/holo_purple"
+            android:textAlignment="viewStart"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/notification_message_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/notification_message_heading"
+        android:textSize="24sp"
+        tools:text="Notification Message:"
+        android:textColor="@android:color/holo_purple"
+        android:layout_alignBottom="@+id/daily_colors_string"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="14dp" />
 
 </RelativeLayout>
