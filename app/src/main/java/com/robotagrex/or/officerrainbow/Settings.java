@@ -57,6 +57,9 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
+        View current = getCurrentFocus();
+        if (current != null) current.clearFocus();
+
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         boolean preferences_set = sharedpreferences.getBoolean("preferences_set", false);
 
@@ -123,6 +126,8 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
+
+
 
         //Initializing the ArrayList
         sites = new ArrayList<>();
@@ -252,7 +257,8 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         }
 
         //Setting adapter to show the items in the spinner
-        spinner.setAdapter(new ArrayAdapter<>(Settings.this, android.R.layout.simple_spinner_dropdown_item, sites));
+        spinner.setAdapter(new ArrayAdapter<>(Settings.this, R.layout.spinner_item, sites));
+
     }
 
     //Method to get student name of a particular position
