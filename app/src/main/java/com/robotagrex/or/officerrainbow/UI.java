@@ -61,7 +61,7 @@ public class UI extends AppCompatActivity {
     TextView sms_notification1, sms_notification2, sms_notification3, email_msg_header, sms_msg_header;
     TextView email_notification1, email_notification2, email_notification3, listen_colors_heading;
     String debug = "off";
-    private MediaPlayer mPlayerURL;
+    MediaPlayer mPlayerURL;
     //ProgressDialog mProgressDialog;
 
     Context context = getApplication();
@@ -915,6 +915,7 @@ public class UI extends AppCompatActivity {
         }
 
         catch (Exception e) {
+            System.out.println("mPlayer is NULL - nothing to do but crash");
             e.printStackTrace();
         }
     }
@@ -977,6 +978,7 @@ public class UI extends AppCompatActivity {
                     public void onCompletion(MediaPlayer mPlayerURL) {
                         am.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
                         if (mPlayerURL != null) {
+                            System.out.println("mPlayer not null - so i'm resetting and releasing it - just played the colors audio flac");
                             mPlayerURL.reset();
                             mPlayerURL.release();
                             releaseAudioFocusForMyApp(getApplication());
