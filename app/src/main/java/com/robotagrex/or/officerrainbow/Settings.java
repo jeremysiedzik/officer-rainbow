@@ -8,11 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,8 +60,8 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        View current = getCurrentFocus();
-        if (current != null) current.clearFocus();
+        View current_focus = getCurrentFocus();
+        if (current_focus != null) current_focus.clearFocus();
 
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         boolean preferences_set = sharedpreferences.getBoolean("preferences_set", false);
@@ -222,7 +225,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
                             result = j.getJSONArray(WebConfig.JSON_ARRAY);
 
                             //Calling method getStudents to get the students from the JSON Array
-                            getStudents(result);
+                            getSites(result);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -242,7 +245,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         requestQueue.add(stringRequest);
     }
 
-    private void getStudents(JSONArray j){
+    private void getSites(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
             try {
@@ -262,8 +265,47 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                returnbackground();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
+        spinner.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    greyoutbackground();
+                }
+                return false;
+            }
+        });
+
         //spinner.setAdapter(new ArrayAdapter<>(Settings.this, R.layout.spinner_item, sites));
 
+    }
+    public void greyoutbackground() {
+        System.out.println("running greyoutbackground -------------------");
+        final RelativeLayout settings_animate = (RelativeLayout) findViewById(R.id.settings);
+        AlphaAnimation alpha = new AlphaAnimation(1.0F, 0.5F);
+        alpha.setDuration(2); // Make animation instant
+        alpha.setFillAfter(true); // Tell it to persist after the animation ends
+        settings_animate.startAnimation(alpha);
+    }
+
+    public void returnbackground() {
+        System.out.println("running returnbackground -------------------");
+        final RelativeLayout settings_animate = (RelativeLayout) findViewById(R.id.settings);
+        AlphaAnimation alpha = new AlphaAnimation(0.5F, 1.0F);
+        alpha.setDuration(2); // Make animation instant
+        alpha.setFillAfter(true); // Tell it to persist after the animation ends
+        settings_animate.startAnimation(alpha);
     }
 
     //Method to get student name of a particular position

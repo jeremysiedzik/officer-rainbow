@@ -3,7 +3,7 @@
     android:id="@android:id/text1"
     style="?android:attr/spinnerDropDownItemStyle"
     android:maxLines="1"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:ellipsize="marquee"
     android:textSize="30sp"
@@ -11,5 +11,5 @@
     android:textAlignment="gravity"
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
-    android:background="@color/black_half_opacity"
+    android:background="#07000000"
     android:textColor="@android:color/holo_blue_dark"/>
