@@ -11,5 +11,5 @@
     android:textAlignment="gravity"
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
-    android:background="@color/blanketBackground"
+    android:background="@color/black_half_opacity"
     android:textColor="@android:color/holo_blue_dark"/>
