@@ -257,7 +257,12 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         }
 
         //Setting adapter to show the items in the spinner
-        spinner.setAdapter(new ArrayAdapter<>(Settings.this, R.layout.spinner_item, sites));
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(Settings.this, R.layout.spinner_item, sites);
+        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+
+        //spinner.setAdapter(new ArrayAdapter<>(Settings.this, R.layout.spinner_item, sites));
 
     }
 

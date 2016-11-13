@@ -42,6 +42,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/select_your_test_site"
+        android:textSize="30sp"
+        android:textIsSelectable="false"
+        android:textColor="@android:color/holo_purple"
+        android:id="@+id/selectwebsiteheading"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/empty_string"
         android:textSize="30sp"
         android:textIsSelectable="false"
@@ -80,7 +92,7 @@
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/my_toolbar"
+        android:layout_below="@+id/selectwebsiteheading"
         android:id="@+id/spinner" />
 
     <TableLayout
@@ -122,22 +134,22 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="10dp"
                 android:id="@+id/textViewName"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="18sp" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="24sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:id="@+id/textViewCourse"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="18sp" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="24sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:id="@+id/textViewSession"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="18sp" />
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="24sp" />
         </TableRow>
     </TableLayout>
 
