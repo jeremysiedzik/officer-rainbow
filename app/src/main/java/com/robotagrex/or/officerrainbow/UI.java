@@ -938,7 +938,7 @@ public class UI extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             stopaudioURL(getApplicationContext());
-            listen_colors_heading.setText(R.string.loading_text);
+            listen_colors_heading.setText(R.string.loading_text_audio);
         }
 
         @Override
@@ -1062,7 +1062,7 @@ public class UI extends AppCompatActivity {
                 String marquee_link = "http://www.tescron.com";
                 String marquee_key = "32165498";
                 String marquee_description = "Please check your internet connection and restart";
-                String app_title = "Tescron - Officer Rainbow";
+                String app_title = "Tescron - Officer Rainbow - no options set yet";
                 String colors_list = "http://data.robotagrex.com/onsite-colors.txt";
                 String soundfile = "http://pots.robotagrex.com/onsite.flac";
 

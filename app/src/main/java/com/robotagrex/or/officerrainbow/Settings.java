@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-//import android.view.MotionEvent;
+import android.view.MotionEvent;
 import android.view.View;
 //import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
@@ -265,29 +265,30 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
 
-       // spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-       //     @Override
-       //     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-       //         returnbackground();
-       //     }
-       //     @Override
-       //     public void onNothingSelected(AdapterView<?> parentView) {
-       //     }
-       // });
 
-        //spinner.setOnTouchListener(new View.OnTouchListener() {
-        //    @Override
-        //    public boolean onTouch(View v, MotionEvent event) {
-        //        if (event.getAction() == MotionEvent.ACTION_UP) {
-        //            greyoutbackground();
-        //        }
-        //        return false;
-        //    }
-       // });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                System.out.println("setting the background to regular");
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
 
-        //spinner.setAdapter(new ArrayAdapter<>(Settings.this, R.layout.spinner_item, sites));
+        spinner.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    System.out.println("greying out the background");
+                }
+                return false;
+                    }
+        });
 
     }
+
     //public void greyoutbackground() {
     //    System.out.println("running greyoutbackground -------------------");
     //    final RelativeLayout settings_animate = (RelativeLayout) findViewById(R.id.settings);

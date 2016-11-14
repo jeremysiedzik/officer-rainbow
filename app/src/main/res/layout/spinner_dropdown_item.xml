@@ -11,5 +11,5 @@
     android:textAlignment="gravity"
     android:layout_centerVertical="true"
     android:layout_centerHorizontal="true"
-    android:background="#07000000"
-    android:textColor="@android:color/holo_blue_dark"/>
+    android:background="@android:color/transparent"
+    android:textColor="@android:color/holo_purple"/>
