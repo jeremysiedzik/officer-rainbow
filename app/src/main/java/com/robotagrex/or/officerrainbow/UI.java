@@ -1057,28 +1057,57 @@ public class UI extends AppCompatActivity {
         System.out.println("configURL is " +configURL);
 
         try {
-            HandleXML obj = new HandleXML(configURL);
-            obj.fetchXML();
+            if (configURL.contains("nothing yet") || configURL.length() > 4) {
+                configURL = "http://data.robotagrex.com/onsite-config.xml";
+                String marquee_link = "http://www.tescron.com";
+                String marquee_key = "32165498";
+                String marquee_description = "Please check your internet connection and restart";
+                String app_title = "Tescron - Officer Rainbow";
+                String colors_list = "http://data.robotagrex.com/onsite-colors.txt";
+                String soundfile = "http://pots.robotagrex.com/onsite.flac";
 
-            while(true) {
-                if (!(obj.parsingComplete)) break;
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(marquee_description_push, marquee_description);
+                editor.putString(marquee_link_push, marquee_link);
+                editor.putString(marquee_key_push, marquee_key);
+                editor.putString(app_title_push, app_title);
+                editor.putString("soundfile", soundfile);
+                editor.putString("colors_url", colors_list);
+                editor.apply();
+
+                HandleXML obj = new HandleXML(configURL);
+                obj.fetchXML();
+
+                while(true) {
+                    if (!(obj.parsingComplete)) break;
+                }
+
+            } else {
+                HandleXML obj = new HandleXML(configURL);
+                obj.fetchXML();
+
+                while(true) {
+                    if (!(obj.parsingComplete)) break;
+                }
+
+                String marquee_link = obj.getLink();
+                String marquee_key = obj.getTitle();
+                String marquee_description = obj.getDescription();
+                String app_title = obj.getEditor();
+                String colors_list = obj.getColorslist();
+                String soundfile = obj.getSoundfile();
+
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(marquee_description_push, marquee_description);
+                editor.putString(marquee_link_push, marquee_link);
+                editor.putString(marquee_key_push, marquee_key);
+                editor.putString(app_title_push, app_title);
+                editor.putString("soundfile", soundfile);
+                editor.putString("colors_url", colors_list);
+                editor.apply();
             }
 
-            String marquee_link = obj.getLink();
-            String marquee_key = obj.getTitle();
-            String marquee_description = obj.getDescription();
-            String app_title = obj.getEditor();
-            String colors_list = obj.getColorslist();
-            String soundfile = obj.getSoundfile();
 
-            SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString(marquee_description_push, marquee_description);
-            editor.putString(marquee_link_push, marquee_link);
-            editor.putString(marquee_key_push, marquee_key);
-            editor.putString(app_title_push, app_title);
-            editor.putString("soundfile", soundfile);
-            editor.putString("colors_url", colors_list);
-            editor.apply();
         }
         catch(Exception e) {
             System.err.println("error in fetchxml called from UI.java");
