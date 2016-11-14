@@ -135,7 +135,7 @@
     <string name="web_url">Web URL</string>
     <string name="state">State</string>
     <string name="url">URL</string>
-    <string name="loading_text">Loading audio from server.....</string>
+    <string name="loading_text">Loading Audio From Server.....</string>
     <string name="notification_messages">Notification Messages:</string>
     <string name="text">Text</string>
     <string name="email">Email</string>
