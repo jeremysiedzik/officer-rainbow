@@ -1057,7 +1057,7 @@ public class UI extends AppCompatActivity {
         System.out.println("configURL is " +configURL);
 
         try {
-            if (configURL.contains("nothing yet") || configURL.length() > 4) {
+            if (configURL.contains("nothing yet") || configURL.length() < 4) {
                 configURL = "http://data.robotagrex.com/onsite-config.xml";
                 String marquee_link = "http://www.tescron.com";
                 String marquee_key = "32165498";
