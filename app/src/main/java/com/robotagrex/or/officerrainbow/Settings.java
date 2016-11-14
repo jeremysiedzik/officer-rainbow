@@ -55,6 +55,8 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
     EditText color1,color2,color3;
 
+    public boolean opened = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -266,15 +268,15 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinner.setAdapter(spinnerArrayAdapter);
 
 
-        //spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-        //    @Override
-        //    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-        //        System.out.println("setting the background to regular");
-        //    }
-        //    @Override
-        //    public void onNothingSelected(AdapterView<?> parentView) {
-        //    }
-        //});
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                System.out.println("item selected");
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
 
         spinner.setOnTouchListener(new View.OnTouchListener() {
 
@@ -282,10 +284,14 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     System.out.println("greying out the background - ACTION_UP");
+                    opened = true;
                 }
-                if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                    System.out.println("greying out the background - ACTION_DOWN");
+
+                if(event.getAction() == MotionEvent.ACTION_UP && (opened)) {
+                    System.out.println("returning background to regular - ACTION_UP");
+                    opened = false;
                 }
+
                 return false;
                     }
         });
