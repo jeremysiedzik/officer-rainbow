@@ -55,7 +55,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
     EditText color1,color2,color3;
 
-    public boolean opened = true;
+    public boolean opened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,12 +282,10 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getAction() == MotionEvent.ACTION_UP && (!opened)) {
                     System.out.println("greying out the background - ACTION_UP");
                     opened = true;
-                }
-
-                if(event.getAction() == MotionEvent.ACTION_UP && (opened)) {
+                } else if(event.getAction() == MotionEvent.ACTION_UP && (opened)) {
                     System.out.println("returning background to regular - ACTION_UP");
                     opened = false;
                 }
