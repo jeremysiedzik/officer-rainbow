@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -142,7 +143,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
         //Adding an Item Selected Listener to our Spinner
         //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
-        //spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(this);
 
         //Initializing TextViews
         textViewName = (TextView) findViewById(R.id.textViewName);
@@ -268,28 +269,35 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinner.setAdapter(spinnerArrayAdapter);
 
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       // spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       //     @Override
+       //     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+       //         System.out.println("item selected");
+       //     }
+       //     @Override
+       //     public void onNothingSelected(AdapterView<?> parentView) {
+       //     }
+       //});
+
+        spinner.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener(){
+
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                System.out.println("item selected");
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                System.out.println("running oncreatecontextmenu");
             }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
+
         });
 
         spinner.setOnTouchListener(new View.OnTouchListener() {
-
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_UP && (!opened)) {
-                    System.out.println("greying out the background - ACTION_UP");
+                if(event.getAction() == MotionEvent.ACTION_DOWN && (!opened)) {
+                    System.out.println("greying out the background - ACTION_UP opened = "+opened);
                     opened = true;
-                } else if(event.getAction() == MotionEvent.ACTION_UP && (opened)) {
-                    System.out.println("returning background to regular - ACTION_UP");
+                } else if(event.getAction() == MotionEvent.ACTION_DOWN && (opened)) {
+                    System.out.println("returning background to regular - ACTION_UP opened = "+opened);
                     opened = false;
                 }
-
                 return false;
                     }
         });
