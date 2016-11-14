@@ -140,7 +140,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
         //Adding an Item Selected Listener to our Spinner
         //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
-        spinner.setOnItemSelectedListener(this);
+        //spinner.setOnItemSelectedListener(this);
 
         //Initializing TextViews
         textViewName = (TextView) findViewById(R.id.textViewName);
@@ -288,6 +288,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         });
 
     }
+
 
     //public void greyoutbackground() {
     //    System.out.println("running greyoutbackground -------------------");
