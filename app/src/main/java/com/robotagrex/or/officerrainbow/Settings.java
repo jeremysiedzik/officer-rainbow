@@ -266,22 +266,25 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinner.setAdapter(spinnerArrayAdapter);
 
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                System.out.println("setting the background to regular");
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
-        });
+        //spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //    @Override
+        //    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+        //        System.out.println("setting the background to regular");
+        //    }
+        //    @Override
+        //    public void onNothingSelected(AdapterView<?> parentView) {
+        //    }
+        //});
 
         spinner.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if(event.getAction() == MotionEvent.ACTION_UP) {
-                    System.out.println("greying out the background");
+                    System.out.println("greying out the background - ACTION_UP");
+                }
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    System.out.println("greying out the background - ACTION_DOWN");
                 }
                 return false;
                     }
