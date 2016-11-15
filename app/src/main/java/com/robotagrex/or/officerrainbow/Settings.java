@@ -52,7 +52,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     public static final String Color3 = "color3Key";
 
     public static final String MyPREFERENCES = "MyPrefs";
-    public String longestString = sites.get(0);
+    public String longestString;
     SharedPreferences sharedpreferences;
 
     EditText color1,color2,color3;
@@ -308,6 +308,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
    // }
 
     public void longest_string_java() {
+        longestString = sites.get(0);
         for (String element : sites) {
             if (element.length() > longestString.length()) {
                 longestString = element;
