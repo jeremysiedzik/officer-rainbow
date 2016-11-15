@@ -354,7 +354,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         textViewCourse.setText(getCourse(position));
         textViewSession.setText(getSession(position));
         sharedpreferences.edit().putInt("PREF_SPINNER", position).apply();
-        System.out.print("item was just selected");
+        System.out.println("item was just selected");
     }
 
     //When no item is selected this method would execute
