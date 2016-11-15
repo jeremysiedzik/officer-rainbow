@@ -12,7 +12,7 @@ import android.view.Gravity;
 //import android.view.MotionEvent;
 import android.view.View;
 //import android.view.animation.AlphaAnimation;
-//import android.view.ViewGroup;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -273,9 +273,9 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         longest_string_java();
         System.out.println("this is the longest string "+longestString);
         System.out.println("it's character count is "+longestStringCharacters);
-        //ViewGroup.LayoutParams params = spinner.getLayoutParams();
-        //params.width = longestStringCharacters;
-        //spinner.setLayoutParams(params);
+        ViewGroup.LayoutParams params = spinner.getLayoutParams();
+        params.width = longestStringCharacters;
+        spinner.setLayoutParams(params);
 
 
         //spinner.setOnTouchListener(new View.OnTouchListener() {
