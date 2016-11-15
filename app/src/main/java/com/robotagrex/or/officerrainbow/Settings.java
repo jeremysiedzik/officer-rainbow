@@ -52,6 +52,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     public static final String Color3 = "color3Key";
 
     public static final String MyPREFERENCES = "MyPrefs";
+    public String longestString = sites.get(0);
     SharedPreferences sharedpreferences;
 
     EditText color1,color2,color3;
@@ -268,7 +269,8 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner.setSelection(sharedpreferences.getInt("PREF_SPINNER", 0));
-
+        longest_string_java();
+        System.out.println("this is the longest string "+longestString);
 
         //spinner.setOnTouchListener(new View.OnTouchListener() {
         //    @Override
@@ -304,6 +306,15 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     //    alpha.setFillAfter(true); // Tell it to persist after the animation ends
     //    settings_animate.startAnimation(alpha);
    // }
+
+    public void longest_string_java() {
+        for (String element : sites) {
+            if (element.length() > longestString.length()) {
+                longestString = element;
+            }
+        }
+    }
+
 
     //Method to get student name of a particular position
     private String getName(int position){
