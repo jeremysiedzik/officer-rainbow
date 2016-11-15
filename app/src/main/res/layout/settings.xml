@@ -92,7 +92,8 @@
         android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/spinnerbackground"
+        android:background="@android:color/transparent"
+        android:popupBackground="@android:color/transparent"
         android:layout_below="@+id/selectwebsiteheading"
         android:id="@+id/spinner"
         android:spinnerMode="dropdown"/>
