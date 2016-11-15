@@ -142,7 +142,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinner = (Spinner) findViewById(R.id.spinner);
 
         //Adding an Item Selected Listener to our Spinner
-        //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
+        //As we have implemented the class Spinner.OnItemSelectedListener to this class itself we are passing this to setOnItemSelectedListener
         spinner.setOnItemSelectedListener(this);
 
         //Initializing TextViews
@@ -270,18 +270,6 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinner.setSelection(sharedpreferences.getInt("PREF_SPINNER", 0));
 
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                System.out.println("item selected");
-                sharedpreferences.edit().putInt("PREF_SPINNER", position).apply();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-            }
-       });
-
-
         //spinner.setOnTouchListener(new View.OnTouchListener() {
         //    @Override
         //    public boolean onTouch(View v, MotionEvent event) {
@@ -358,13 +346,15 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     }
 
 
-    //this method will execute when we pic an item from the spinner
+    //this method will execute when we pick an item from the spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //Setting the values to textviews for a selected item
         textViewName.setText(getName(position));
         textViewCourse.setText(getCourse(position));
         textViewSession.setText(getSession(position));
+        sharedpreferences.edit().putInt("PREF_SPINNER", position).apply();
+        System.out.print("item was just selected");
     }
 
     //When no item is selected this method would execute
@@ -399,7 +389,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
             editor.apply();
         }
         catch(Exception e) {
-            System.err.println("error in fetchxml called from Settings.java");
+            System.out.println("error in fetchxml called from Settings.java");
             e.printStackTrace();
         }
     }
