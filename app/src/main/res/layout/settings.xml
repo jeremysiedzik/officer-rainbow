@@ -89,13 +89,12 @@
 
 
     <Spinner
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:popupBackground="@android:color/transparent"
         android:layout_below="@+id/selectwebsiteheading"
         android:id="@+id/spinner"
+        android:dropDownWidth="wrap_content"
         android:spinnerMode="dropdown"/>
 
     <TableLayout
@@ -110,9 +109,10 @@
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="10dp"
-                android:text="@string/url"
+                android:text="@string/hotline"
                 android:textSize="30sp"
-                android:textColor="@android:color/holo_orange_dark" />
+                android:textColor="@android:color/holo_orange_dark"
+                android:id="@+id/urlheading" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_marginEnd="20dp"
-                android:text="@string/hotline"
+                android:text="@string/url"
                 android:textSize="30sp"
                 android:textColor="@android:color/holo_orange_dark" />
         </TableRow>
@@ -136,9 +136,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="10dp"
-                android:id="@+id/textViewName"
                 android:textColor="@android:color/holo_blue_dark"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:id="@+id/textViewSession" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:id="@+id/textViewSession"
+                android:id="@+id/textViewName"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="24sp" />
         </TableRow>
