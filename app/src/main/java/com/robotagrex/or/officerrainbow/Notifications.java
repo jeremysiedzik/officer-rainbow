@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class Notifications extends AppCompatActivity {
 
@@ -20,7 +19,7 @@ public class Notifications extends AppCompatActivity {
     EditText sms_msg1,sms_msg2,sms_msg3;
     EditText email_edit1,email_edit2,email_edit3;
     EditText sms_contact_number_1,sms_contact_number_2,sms_contact_number_3;
-    TextView current_name,contact_name_1,contact_name_2,contact_name_3;
+    EditText current_name,contact_name_1,contact_name_2,contact_name_3;
     public static final String MyPREFERENCES = "MyPrefs" ;
     public static final String emailkey1 = "email1Key";
     public static final String emailkey2 = "email2Key";
@@ -128,7 +127,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_name=(TextView)findViewById(R.id.contact_name_1);
+                current_name=(EditText) findViewById(R.id.contact_name_1);
                 current_ed=(EditText)findViewById(R.id.sms_contact1);
                 Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -140,7 +139,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_name=(TextView)findViewById(R.id.contact_name_2);
+                current_name=(EditText) findViewById(R.id.contact_name_2);
                 current_ed=(EditText)findViewById(R.id.sms_contact2);
                 Intent pickContactIntent2 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent2.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -152,7 +151,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_name=(TextView)findViewById(R.id.contact_name_3);
+                current_name=(EditText) findViewById(R.id.contact_name_3);
                 current_ed=(EditText)findViewById(R.id.sms_contact3);
                 Intent pickContactIntent3 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent3.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
