@@ -127,7 +127,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_name=(EditText) findViewById(R.id.contact_name_1);
+                current_name=(EditText)findViewById(R.id.contact_name_1);
                 current_ed=(EditText)findViewById(R.id.sms_contact1);
                 Intent pickContactIntent1 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent1.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -139,7 +139,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_name=(EditText) findViewById(R.id.contact_name_2);
+                current_name=(EditText)findViewById(R.id.contact_name_2);
                 current_ed=(EditText)findViewById(R.id.sms_contact2);
                 Intent pickContactIntent2 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent2.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
@@ -151,7 +151,7 @@ public class Notifications extends AppCompatActivity {
         {
             @Override
             public void onClick (View view) {
-                current_name=(EditText) findViewById(R.id.contact_name_3);
+                current_name=(EditText)findViewById(R.id.contact_name_3);
                 current_ed=(EditText)findViewById(R.id.sms_contact3);
                 Intent pickContactIntent3 = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
                 pickContactIntent3.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
