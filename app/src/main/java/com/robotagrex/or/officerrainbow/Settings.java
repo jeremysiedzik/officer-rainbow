@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -51,6 +52,13 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     public static final String Color1 = "color1Key";
     public static final String Color2 = "color2Key";
     public static final String Color3 = "color3Key";
+    public static final String marquee_link_push = "marquee_link";
+    public static final String marquee_key_push = "marquee_key";
+    public static final String marquee_description_push = "marquee_description";
+    public static final String app_title_push = "app_title";
+    public static final String sound_file_push = "soundfile";
+    public static final String colors_url_push = "colors_url";
+    //public boolean xmlverified = false;
 
     public static final String MyPREFERENCES = "MyPrefs";
     public String longestString;
@@ -58,8 +66,6 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     SharedPreferences sharedpreferences;
 
     EditText color1,color2,color3;
-
-    //public boolean opened = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +84,9 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow");
-        if(getSupportActionBar() != null){
+
+        String app_title = sharedpreferences.getString("app_title", "Officer Rainbow - Settings");
+        if (getSupportActionBar() != null){
             System.out.println(app_title);
             getSupportActionBar().setTitle(app_title);
         }
@@ -90,7 +97,7 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
             startActivity(intent);
         }
 
-        final String fillcolor1 = sharedpreferences.getString("color1Key", "");
+        String fillcolor1 = sharedpreferences.getString("color1Key", "");
         String fillcolor2 = sharedpreferences.getString("color2Key", "");
         String fillcolor3 = sharedpreferences.getString("color3Key", "");
 
@@ -136,8 +143,6 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         Button buttonnext = (Button) findViewById(R.id.buttonnext);
         assert buttonnext != null;
 
-
-
         //Initializing the ArrayList
         sites = new ArrayList<>();
 
@@ -145,7 +150,8 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         spinner = (Spinner) findViewById(R.id.spinner);
 
         //Adding an Item Selected Listener to our Spinner
-        //As we have implemented the class Spinner.OnItemSelectedListener to this class itself we are passing this to setOnItemSelectedListener
+        //As we have implemented the class Spinner.OnItemSelectedListener to this class itself
+        // we are passing this to setOnItemSelectedListener
         spinner.setOnItemSelectedListener(this);
 
         //Initializing TextViews
@@ -154,7 +160,9 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         textViewSession = (TextView) findViewById(R.id.textViewSession);
 
         //This method will fetch the data from the URL
-        getData();
+        //if (checkInternetConnection() && serverUp()) {
+            getData();
+        //}
 
         buttonnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,12 +196,15 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
                 editor.apply();
                 System.out.println("about to run fetchxml from Settings.java");
 
-                if (checkInternetConnection()){
+                if (checkInternetConnection() && serverUp()){
                     checkdailycolors(getApplicationContext());
-                    fetchxml();
+                    new asyncxml().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 }
-                Intent qoneintent = new Intent(Settings.this, UI.class);
-                startActivity(qoneintent);
+                if (config_url.contains("xml")) {
+                    Intent qoneintent = new Intent(Settings.this, UI.class);
+                    startActivity(qoneintent);
+                } else toast_select_xml();
+
             }
         });
     }
@@ -212,6 +223,13 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
     void toast_internet_down() {
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Check your internet connection.", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
+    }
+
+    void toast_select_xml() {
+        Toast toast = Toast.makeText(getApplicationContext(),
+                "Please choose a URL that contains .xml", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
     }
@@ -393,26 +411,62 @@ public class Settings extends AppCompatActivity implements Spinner.OnItemSelecte
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isAvailable() && cm.getActiveNetworkInfo().isConnected();
     }
 
-    void fetchxml() {
-        System.out.println("Fetching XML to retrieve colors URL in Settings.java");
-        String configURL = sharedpreferences.getString("config_url", "nothing yet");
-        System.out.println("configURL is " +configURL);
+    public boolean serverUp() {
+        Intent serverup = new Intent(Settings.this, ServerUp.class);
+        startService(serverup);
+        return sharedpreferences.getBoolean("web_status_result", false);
+    }
 
-        try {
+    //public boolean validXML() {
+    //    return sharedpreferences.getString()
+    //}
+
+    class asyncxml extends AsyncTask<Void, Void, Void> {
+        Context context = getApplication();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+            System.out.println("Fetching XML");
+            String configURL = sharedpreferences.getString("config_url", "nothing yet");
+            System.out.println("configURL is " +configURL);
+
             HandleXML obj = new HandleXML(configURL);
             obj.fetchXML();
 
             while(true) {
                 if (!(obj.parsingComplete)) break;
             }
+
+            String marquee_link = obj.getLink();
+            String marquee_key = obj.getTitle();
+            String marquee_description = obj.getDescription();
+            String app_title = obj.getEditor();
             String colors_list = obj.getColorslist();
+            String soundfile = obj.getSoundfile();
+
             SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.putString("colors_url", colors_list);
+            editor.putString(marquee_description_push, marquee_description);
+            editor.putString(marquee_link_push, marquee_link);
+            editor.putString(marquee_key_push, marquee_key);
+            editor.putString(app_title_push, app_title);
+            editor.putString(sound_file_push, soundfile);
+            editor.putString(colors_url_push, colors_list);
             editor.apply();
+
+            //xmlverified = marquee_key.contains("321654987");
+
+            return null;
         }
-        catch(Exception e) {
-            System.out.println("error in fetchxml called from Settings.java");
-            e.printStackTrace();
+
+        @Override
+        protected void onPostExecute(Void result) {
+
+
         }
     }
 }
