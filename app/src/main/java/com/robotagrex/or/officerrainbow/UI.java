@@ -610,7 +610,10 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudioURL(getApplication());
-                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("preferences_set", false);
+                editor.apply();
+                Intent qoneintent = new Intent(UI.this, Settings.class);
                 startActivity(qoneintent);
             }
         });
@@ -619,7 +622,10 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudioURL(getApplication());
-                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("preferences_set", false);
+                editor.apply();
+                Intent qoneintent = new Intent(UI.this, Settings.class);
                 startActivity(qoneintent);
             }
         });
@@ -628,7 +634,10 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudioURL(getApplication());
-                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("preferences_set", false);
+                editor.apply();
+                Intent qoneintent = new Intent(UI.this, Settings.class);
                 startActivity(qoneintent);
             }
         });
@@ -637,7 +646,10 @@ public class UI extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 stopaudioURL(getApplication());
-                Intent qoneintent = new Intent(UI.this, ColorChoice.class);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putBoolean("preferences_set", false);
+                editor.apply();
+                Intent qoneintent = new Intent(UI.this, Settings.class);
                 startActivity(qoneintent);
             }
         });
