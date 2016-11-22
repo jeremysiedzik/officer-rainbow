@@ -218,7 +218,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="text"
             android:ems="10"
             android:id="@+id/sms_contact2"
             android:labelFor="@id/sms_contact2"
@@ -231,15 +231,15 @@
         <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
+            android:ems="10"
         android:id="@+id/sms_contact3"
         android:labelFor="@id/sms_contact3"
         android:maxLength="11"
         android:textSize="26sp"
         android:selectAllOnFocus="true"
             android:layout_below="@+id/sms_contact2"
-            android:layout_alignStart="@+id/sms_contact2" />
+            android:layout_alignStart="@+id/sms_contact2"
+            android:inputType="text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -255,7 +255,6 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="phone"
             android:ems="10"
             android:id="@+id/sms_contact1"
             android:maxLength="11"
@@ -263,7 +262,8 @@
             android:selectAllOnFocus="true"
             android:labelFor="@id/sms_contact1"
             android:layout_below="@+id/text_message_header"
-            android:layout_toEndOf="@+id/mail3" />
+            android:layout_toEndOf="@+id/mail3"
+            android:inputType="text" />
 
         <EditText
             android:layout_width="wrap_content"

@@ -247,9 +247,11 @@ public class Notifications extends AppCompatActivity {
                     number = number.substring(number.length() - 10);
                     // Do something with the phone number...
                     current_ed.setText(number);
+                    System.out.println("just ran current_ed.setText(number)");
                 }
                 catch (Exception e) {
                     e.printStackTrace();
+                    System.out.println("an exception just occurred - number 123");
                 }
             }
 
