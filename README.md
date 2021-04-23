@@ -1,7 +1,7 @@
 # officer-rainbow
 This is the source for Officer Rainbow, an android app that checks certain websites
 for a users Color, as assigned by the State for purposes of drug or alcohol testing.
-If offers custom text or email messages to multiple destinations to notify if today
+It offers custom text or email messages to multiple destinations to notify if today
 is a testing day, it also has the option of setting off the phone's alarm and display
 a notification.
 
